@@ -6,8 +6,8 @@
 
 > **重要提示**：
 >
-> 本项目GitHub链接：[duorua/narutomobile](https://github.com/duorua/narutomobile)  
-> 软件本体完全免费，若您有付费购买请立即退款并举报！
+> 使用前要在模拟器设置里将分辨率调整为`平板版`的`1600x900`并`锁定屏幕旋转`为横屏。别再问为什么会在小程序里卡住了！
+
 
 ## 使用说明
 
@@ -19,3 +19,6 @@
 
 - 交流（用户）群：[1047724031](https://qm.qq.com/q/KnowNWxNIs)
 - 开发群：[984076079](https://qm.qq.com/q/rJqesYyJws)
+
+> 本项目GitHub链接：[duorua/narutomobile](https://github.com/duorua/narutomobile)  
+> 软件本体完全免费，若您有付费购买请立即退款并举报！
