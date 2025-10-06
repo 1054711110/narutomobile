@@ -12,8 +12,7 @@
   <img alt="commit" src="https://img.shields.io/github/commit-activity/w/duorua/narutomobile">
   <img alt="stars" src="https://img.shields.io/github/stars/duorua/narutomobile?style=social">
   <img alt="downloads" src="https://img.shields.io/github/downloads/duorua/narutomobile/total?style=social">
-  <!-- 等什么时候支持mirrorchyan了再加回来 -->
-  <!-- <a href="https://mirrorchyan.com/zh/projects?rid=M9A&source=m9agh-badge" target="_blank"><img alt="mirrorc" src="https://img.shields.io/badge/Mirror%E9%85%B1-%239af3f6?logo=countingworkspro&logoColor=4f46e5"></a> -->
+  <a href="https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&source=MaaAutoNarutogh-badge" target="_blank"><img alt="mirrorc" src="https://img.shields.io/badge/Mirror%E9%85%B1-%239af3f6?logo=countingworkspro&logoColor=4f46e5"></a>
 </p>
 
 <div align="center">
@@ -30,7 +29,7 @@
 
 2. 在模拟器设置里将分辨率调整为平板**1600x900**并**锁定屏幕旋转**为横屏以达到最佳运行效果。
 
-3. 调整软件调整配置，然后启动。
+3. 调整软件配置，然后启动。
 
 ## 常见问题
 
@@ -51,6 +50,8 @@
 本项目由 **[MaaFramework](https://github.com/MaaXYZ/MaaFramework)** 强力驱动！
 
 本项目的前端使用了 **[MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)** 。
+
+本项目在开发过程中，修改或借鉴了来自 **[M9A](https://github.com/MAA1999/M9A)** 的代码以及文档。
 
 感谢以下开发者对本项目作出的贡献:
 
