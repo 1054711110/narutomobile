@@ -84,22 +84,6 @@
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]打开轻松助手[/color]"
     },
-    "easy_helper_gold_sweep": {
-        "recognition": "TemplateMatch",
-        "template": "Easy_helper/use_gold.png",
-        "roi": [
-            414,
-            416,
-            202,
-            69
-        ],
-        "action": "Click",
-        "next": [
-            "confirm_easy_helper_one_key"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]使用金币扫荡丰饶[/color]"
-    },
     "easy_helper_no_gold_sweep": {
         "recognition": "TemplateMatch",
         "template": "Easy_helper/no_gold.png",
