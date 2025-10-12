@@ -1,2 +1,1 @@
-# Set default behavior: auto-detect text files and use CRLF on checkout
-* text=auto eol=crlf
+*.md text eol=crlf
