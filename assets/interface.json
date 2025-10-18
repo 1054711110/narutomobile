@@ -29,11 +29,6 @@
             ]
         },
         {
-            "name": "开始游戏",
-            "entry": "start_game",
-            "check": true
-        },
-        {
             "name": "轻松助手",
             "entry": "easy_helper",
             "check": true

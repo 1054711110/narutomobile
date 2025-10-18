@@ -27,7 +27,7 @@
             218
         ],
         "next": [
-            "check_start_game"
+            "click_start_game"
         ],
         "interrupt": [
             "agreement",
@@ -80,18 +80,6 @@
         "inverse": true,
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]检查是否关闭游戏前公告[/color]"
-    },
-    "check_start_game": {
-        "recognition": "TemplateMatch",
-        "template": "Startup/start_game.png",
-        "roi": [
-            487,
-            570,
-            294,
-            75
-        ],
-        "action": "StopTask",
-        "focus": "[color:DeepSkyBlue]检查到开始游戏并终止子任务[/color]"
     },
     "unagreement": {
         "recognition": "TemplateMatch",
