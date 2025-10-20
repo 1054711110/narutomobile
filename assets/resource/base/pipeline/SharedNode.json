@@ -30,7 +30,7 @@
       "weekly_sign",
       "close_chat",
       "close_friend_rank",
-      "close_new_ninjia_page",
+      "close_current_page",
       "close_announcement"
     ],
     "focus": "[color:darkgray]尝试返回主页面[/color]"
