@@ -100,5 +100,95 @@
     "action": "Swipe",
     "duration": 50,
     "focus": "[color:DeepSkyBlue]关闭好友排名[/color]"
+  },
+  "close_chat": {
+    "recognition": "TemplateMatch",
+    "template": "Share/chat_close_button.png",
+    "roi": [
+      807,
+      295,
+      53,
+      104
+    ],
+    "action": "Click",
+    "focus": "[color:darkgray]关闭聊天[/color]"
+  },
+  "click_x_single": {
+    "recognition": "TemplateMatch",
+    "roi": [
+      1067,
+      0,
+      213,
+      143
+    ],
+    "template": [
+      "Share/green_masked_x.png",
+      "Share/x.png"
+    ],
+    "action": "Swipe",
+    "duration": 50,
+    "green_mask": true,
+    "next": "back_main_screen_and_stop",
+    "threshold": 0.5,
+    "post_delay": 500,
+    "focus": "[color:darkgray]关闭当前窗口[/color]"
+  },
+  "award_center_enter": {
+    "recognition": "TemplateMatch",
+    "template": "Share/center_entry.png",
+    "roi": [
+      1200,
+      348,
+      42,
+      39
+    ],
+    "action": "Click",
+    "post_wait_freezes": 300,
+    "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
+  },
+  "Swipe_for_award_center_find": {
+    "recognition": "TemplateMatch",
+    "template": "Share/check_in_daily_award.png",
+    "roi": [
+      37,
+      172,
+      130,
+      47
+    ],
+    "action": "Swipe",
+    "begin": [
+      1133,
+      169,
+      56,
+      61
+    ],
+    "end": [
+      294,
+      169,
+      56,
+      61
+    ],
+    "duration": 700,
+    "focus": "[color:DeepSkyBlue]寻找奖励中心功能入口[/color]"
+  },
+  "Swipe_for_award_center_find_end": {
+    "recognition": "TemplateMatch",
+    "template": "Share/center_entry_end.png",
+    "roi": [
+      180,
+      384,
+      1100,
+      118
+    ]
+  },
+  "check_in_daily_award": {
+    "recognition": "TemplateMatch",
+    "template": "Share/check_in_daily_award.png",
+    "roi": [
+      37,
+      172,
+      130,
+      47
+    ]
   }
 }
