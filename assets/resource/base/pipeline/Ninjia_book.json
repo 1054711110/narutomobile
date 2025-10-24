@@ -80,13 +80,15 @@
         "interrupt": [
             "ninjia_book_share_to_qq"
         ],
-        "post_wait_freezes": 500
+        "pre_wait_freezes": 200,
+        "post_wait_freezes": 400,
+        "post_delay": 1000
     },
     "click_ninjia_book_share_x_single": {
         "recognition": "TemplateMatch",
         "template": [
-            "Share/green_masked_x.png",
-            "Share/x.png"
+            "SharedNode/green_masked_x.png",
+            "SharedNode/x.png"
         ],
         "action": "Swipe",
         "duration": 50,
@@ -564,7 +566,8 @@
             "Ninjia_book/energe_waiting.png",
             "Ninjia_book/soul_waiting.png",
             "Ninjia_book/box_waiting.png",
-            "Ninjia_book/wooden_spike_roll_waiting.png"
+            "Ninjia_book/wooden_spike_roll_waiting.png",
+            "Ninjia_book/title_waiting.png"
         ],
         "roi": [
             98,
@@ -590,7 +593,8 @@
             "Ninjia_book/energe_waiting.png",
             "Ninjia_book/soul_waiting.png",
             "Ninjia_book/box_waiting.png",
-            "Ninjia_book/wooden_spike_roll_waiting.png"
+            "Ninjia_book/wooden_spike_roll_waiting.png",
+            "Ninjia_book/title_waiting.png"
         ],
         "roi": [
             98,
