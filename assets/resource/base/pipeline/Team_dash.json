@@ -136,10 +136,23 @@
             "team_dash_my_help_done"
         ],
         "interrupt": [
-            "team_dash_group_help_undone"
+            "not_in_group"
         ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]进入组织助战[/color]"
+    },
+    "not_in_group": {
+        "recognition": "TemplateMatch",
+        "template": "Team_dash/not_in_group.png",
+        "roi": [
+            460,
+            282,
+            380,
+            150
+        ],
+        "next": [
+            "team_dash_auto_fight"
+        ]
     },
     "team_dash_group_help_done": {
         "recognition": "TemplateMatch",
