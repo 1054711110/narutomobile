@@ -3,15 +3,15 @@
         "next": [
             "ninjia_book_entry"
         ],
-        "interrupt": [
-            "back_main_screen"
-        ],
         "focus": "[color:DeepSkyBlue]进入忍法帖子任务[/color]"
     },
     "ninjia_book_entry": {
         "next": [
             "ninjia_book_undone",
             "ninjia_book_done"
+        ],
+        "interrupt": [
+            "back_main_screen"
         ]
     },
     "ninjia_book_done": {
@@ -54,7 +54,7 @@
             "好",
             "友"
         ],
-        "recommended roi": [
+        "roi": [
             1085,
             586,
             195,
