@@ -24,7 +24,7 @@
         "interrupt": [
             "free_headhunt_waiting"
         ],
-        "post_delay": 1000,
+        "post_delay": 3000,
         "focus": "[color:DeepSkyBlue]进入招募[/color]"
     },
     "no_free_headhunt": {
@@ -69,8 +69,9 @@
             174,
             523
         ],
-        "threshold": 0.85,
         "action": "Click",
+        "threshold": 0.85,
+        "post_delay": 3000,
         "next": [
             "headhunt_recruit_no_free"
         ],
