@@ -14,7 +14,8 @@
         "interrupt": [
             "before_game",
             "close_before_game_notice",
-            "close_teenager_page"
+            "close_teenager_page",
+            "wait_5_second"
         ]
     },
     "before_game": {
