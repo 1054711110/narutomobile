@@ -80,29 +80,30 @@
     },
     "headhunt_recruit_no_free": {
         "recognition": "TemplateMatch",
-        "template": "Headhunt/free_headhunt.png",
-        "recommended roi": [
-            690,
-            508,
-            211,
-            141
+        "template": "Headhunt/no_free_headhunt_2.png",
+        "roi": [
+            735,
+            560,
+            225,
+            45
         ],
-        "inverse": true,
         "next": [
             "top_secret_treasure_box_done"
         ],
+        "threshold":0.5,
         "interrupt": "top_secret_treasure_box_undone",
         "focus": "[color:DeepSkyBlue]免费普通招募已使用[/color]"
     },
     "headhunt_recruit": {
         "recognition": "TemplateMatch",
-        "template": "Headhunt/free_headhunt.png",
-        "recommended roi": [
-            690,
-            508,
-            211,
-            141
+        "template": "Headhunt/recruit_done_2.png",
+        "roi": [
+            735,
+            560,
+            225,
+            45
         ],
+        "threshold":0.6,
         "action": "Click",
         "next": "confrim_headhunt_recruit",
         "post_delay": 700,
