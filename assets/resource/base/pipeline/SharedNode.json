@@ -49,6 +49,7 @@
     ],
     "order_by": "Score",
     "action": "Swipe",
+    "threshold": 0.66,
     "post_wait_freezes": 1000,
     "green_mask": true,
     "focus": "[color:darkgray]关闭当前窗口[/color]"
