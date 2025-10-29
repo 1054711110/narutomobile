@@ -84,9 +84,6 @@
         {
             "name": "小队突袭",
             "entry": "team_dash",
-            "option": [
-                "勾选本周不再提醒"
-            ],
             "check": true
         },
         {
@@ -223,44 +220,6 @@
                     "pipeline_override": {
                         "survival_challenge_sweep_ticket_confirm": {
                             "post_delay": 40000
-                        }
-                    }
-                }
-            ]
-        },
-        "勾选本周不再提醒": {
-            "cases": [
-                {
-                    "name": "勾选",
-                    "pipeline_override": {
-                        "team_dash_auto_fight": {
-                            "interrupt": [
-                                "team_dash_do_not_remind_gold",
-                                "team_dash_keep_fight",
-                                "sleep_500ms"
-                            ]
-                        },
-                        "team_dash_above_kage_sweep": {
-                            "next": [
-                                "team_dash_do_not_remind_gold",
-                                "team_dash_keep_fight"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "不勾选",
-                    "pipeline_override": {
-                        "team_dash_auto_fight": {
-                            "interrupt": [
-                                "team_dash_keep_fight",
-                                "sleep_500ms"
-                            ]
-                        },
-                        "team_dash_above_kage_sweep": {
-                            "next": [
-                                "team_dash_keep_fight"
-                            ]
                         }
                     }
                 }

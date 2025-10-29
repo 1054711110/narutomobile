@@ -117,7 +117,7 @@
             150
         ],
         "next": [
-            "team_dash_auto_fight"
+            "dash_or_exit"
         ]
     },
     "team_dash_group_help_done": {
@@ -130,7 +130,7 @@
             64
         ],
         "next": [
-            "team_dash_auto_fight"
+            "dash_or_exit"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]选择组织助战[/color]"
@@ -220,7 +220,7 @@
         ],
         "timeout": 5000,
         "on_error": [
-            "team_dash_auto_fight"
+            "dash_or_exit"
         ],
         "focus": "[color:DeepSkyBlue]进入助战邀请界面[/color]"
     },
@@ -235,9 +235,7 @@
         ],
         "action": "Click",
         "next": [
-            "team_dash_remin_2",
-            "team_dash_remin_1",
-            "team_dash_remin_0"
+            "dash_or_exit"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]邀请组织助战忍者[/color]"
@@ -264,27 +262,21 @@
         "threshold": 0.5,
         "focus": "[color:darkgray]当前页面没有可邀请的助战忍者[/color]"
     },
-    "team_dash_remin_2": {
-        "recognition": "OCR",
-        "expected": [
-            "2"
-        ],
+    "dash_or_exit": {
+        "next": "team_dash_reach_the_upper_limit",
+        "interrupt": "team_dash_auto_fight"
+    },
+    "team_dash_reach_the_upper_limit": {
+        "recognition": "TemplateMatch",
+        "template": "Team_dash/team_dash_reach_the_upper_limit.png",
         "roi": [
-            722,
-            618,
-            29,
-            34
+            477,
+            609,
+            360,
+            111
         ],
-        "next": [
-            "team_dash_auto_fight"
-        ],
-        "interrupt": [
-            "team_dash_remin_2",
-            "team_dash_remin_1",
-            "team_dash_remin_0"
-        ],
-        "post_delay": 300,
-        "focus": "[color:DeepSkyBlue]小队突袭还可以进行两次[/color]"
+        "next": "close_team_desh",
+        "focus": "[color:darkgray]达到今日收益[/color]"
     },
     "team_dash_auto_fight": {
         "recognition": "TemplateMatch",
@@ -303,9 +295,8 @@
             "check_in_team_dash_sweep"
         ],
         "interrupt": [
-            "team_dash_keep_fight",
             "team_dash_auto_fight",
-            "sleep_500ms"
+            "team_dash_do_not_remind_gold"
         ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]小队突袭自动战斗[/color]"
@@ -322,10 +313,7 @@
         "action": "Click",
         "threshold": 0.5,
         "next": [
-            "team_dash_above_kage_sweep",
-            "team_dash_remin_2",
-            "team_dash_remin_1",
-            "team_dash_remin_0"
+            "team_dash_above_kage_sweep"
         ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]点击继续战斗[/color]"
@@ -347,46 +335,19 @@
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]点击本周不再提醒[/color]"
     },
-    "team_dash_remin_1": {
-        "recognition": "OCR",
-        "expected": [
-            "1"
-        ],
-        "roi": [
-            722,
-            618,
-            29,
-            34
-        ],
-        "action": "Click",
-        "post_delay": 300,
-        "next": [
-            "team_dash_above_kage_sweep",
-            "team_dash_auto_fight"
-        ],
-        "interrupt": [
-            "team_dash_group_help_entry"
-        ],
-        "focus": "[color:DeepSkyBlue]小队突袭还可以进行一次[/color]"
-    },
     "check_in_team_dash_sweep": {
-        "recognition": "OCR",
-        "expected": [
-            "0"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Team_dash/damage.png",
         "roi": [
-            589,
-            21,
-            99,
-            38
+            0,
+            288,
+            216,
+            129
         ],
         "next": [
-            "team_dash_auto_fight",
-            "check_not_in_team_dash_sweep"
+            "check_in_team_dash_sweep"
         ],
-        "interrupt": [
-            "sleep_500ms"
-        ],
+        "rate_limit": 5000,
         "focus": "[color:DeepSkyBlue]检测正在进行小队突袭战斗[/color]"
     },
     "check_not_in_team_dash_sweep": {
@@ -402,9 +363,7 @@
         ],
         "inverse": true,
         "next": [
-            "team_dash_remin_2",
-            "team_dash_remin_1",
-            "team_dash_remin_0"
+            "dash_or_exit"
         ],
         "post_delay": 4000,
         "focus": "[color:DeepSkyBlue]检测不在进行小队突袭战斗[/color]"
@@ -425,46 +384,11 @@
             "team_dash_keep_fight"
         ],
         "interrupt": [
-            "team_dash_remin_0",
+            "dash_or_exit",
             "sleep_500ms"
         ],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]超影扫荡[/color]"
-    },
-    "team_dash_group_help_entry": {
-        "recognition": "TemplateMatch",
-        "template": "Team_dash/team_dash_group_help.png",
-        "roi": [
-            973,
-            629,
-            63,
-            48
-        ],
-        "action": "Click",
-        "next": [
-            "team_dash_invite_page"
-        ],
-        "post_delay": 200,
-        "focus": "[color:DeepSkyBlue]进入组织助战[/color]"
-    },
-    "team_dash_remin_0": {
-        "recognition": "OCR",
-        "expected": [
-            "0",
-            "O",
-            "o"
-        ],
-        "roi": [
-            722,
-            618,
-            29,
-            34
-        ],
-        "next": [
-            "close_team_desh"
-        ],
-        "post_delay": 1000,
-        "focus": "[color:DeepSkyBlue]小队突袭还可以进行零次[/color]"
     },
     "close_team_desh": {
         "recognition": "TemplateMatch",
@@ -477,12 +401,10 @@
         ],
         "action": "Click",
         "next": [
-            "close_team_desh_out_team_sign"
-        ],
-        "interrupt": [
+            "close_team_desh_out_team_sign",
             "back_main_screen_and_stop"
         ],
-        "post_delay": 200,
+        "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]关闭小队突袭[/color]"
     },
     "close_team_desh_out_team_sign": {

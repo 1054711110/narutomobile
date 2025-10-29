@@ -96,7 +96,7 @@
     "recognition": "TemplateMatch",
     "template": "SharedNode/check_in_daily_award.png",
     "roi": [
-      37,
+      580,
       172,
       130,
       47
