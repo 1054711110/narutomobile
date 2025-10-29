@@ -82,15 +82,15 @@
         "recognition": "TemplateMatch",
         "template": "Headhunt/no_free_headhunt_2.png",
         "roi": [
-            735,
-            560,
-            225,
-            45
+            679,
+            508,
+            318,
+            138
         ],
         "next": [
             "top_secret_treasure_box_done"
         ],
-        "threshold":0.5,
+        "threshold": 0.5,
         "interrupt": "top_secret_treasure_box_undone",
         "focus": "[color:DeepSkyBlue]免费普通招募已使用[/color]"
     },
@@ -98,12 +98,12 @@
         "recognition": "TemplateMatch",
         "template": "Headhunt/recruit_done_2.png",
         "roi": [
-            735,
-            560,
-            225,
-            45
+            679,
+            508,
+            318,
+            138
         ],
-        "threshold":0.6,
+        "threshold": 0.6,
         "action": "Click",
         "next": "confrim_headhunt_recruit",
         "post_delay": 700,
@@ -119,6 +119,10 @@
             75
         ],
         "action": "Click",
+        "next": [
+            "top_secret_treasure_box_undone",
+            "top_secret_treasure_box_done"
+        ],
         "post_delay": 300,
         "focus": "[color:DeepSkyBlue]确认免费普通招募[/color]"
     },
