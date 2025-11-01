@@ -13,14 +13,15 @@
         "recognition": "TemplateMatch",
         "template": [
             "Group/group_entry_white.png",
-            "Group/group.png"
+            "Group/group.png",
         ],
         "threshold": 0.7,
         "action": "Swipe",
         "duration": 100,
         "next": [
             "group_gameplay_undone",
-            "group_gameplay_done"
+            "group_gameplay_done",
+            "no_group"
         ],
         "interrupt": [
             "group_entry",
@@ -28,6 +29,18 @@
         ],
         "post_delay": 1500,
         "focus": "[color:DeepSkyBlue]组织主界面入口[/color]"
+    },
+    "no_group": {
+        "recognition": "TemplateMatch",
+        "template": "Group/group_list.png",
+        "recommended roi": [
+            94,
+            30,
+            474,
+            173
+        ],
+        "next": "back_main_screen_and_stop",
+        "focus": "[color:DeepSkyBlue]没有加入组织[/color]"
     },
     "group_gameplay_undone": {
         "recognition": "TemplateMatch",
