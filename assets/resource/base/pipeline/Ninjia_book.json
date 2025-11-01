@@ -409,7 +409,8 @@
         ],
         "duration": 500,
         "next": [
-            "check_no_ninjia_book_award_red_point"
+            "check_no_ninjia_book_award_red_point",
+            "top_level_award"
         ],
         "interrupt": [
             "get_ninjia_book_award",
@@ -417,6 +418,17 @@
             "ninjia_book_award_swip_to_right"
         ],
         "focus": "[color:DeepSkyBlue]滑动领取忍法帖奖励[/color]"
+    },
+    "top_level_award": {
+        "recognition": "OCR",
+        "expected": "165",
+        "roi": [
+            303,
+            553,
+            974,
+            129
+        ],
+        "next": "back_main_screen_and_stop"
     },
     "ninjia_book_award_swip_to_right": {
         "recognition": "TemplateMatch",
@@ -433,7 +445,7 @@
         "threshold": 0.9,
         "action": "Swipe",
         "begin": [
-            416,
+            832,
             525,
             84,
             81
@@ -461,9 +473,6 @@
         ],
         "threshold": 0.85,
         "next": [
-            "confirm_ninjia_book_award"
-        ],
-        "interrupt": [
             "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
@@ -492,9 +501,6 @@
         ],
         "threshold": 0.85,
         "action": "Click",
-        "next": [
-            "confirm_ninjia_book_award"
-        ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]领取忍法帖奖励[/color]"
     },
