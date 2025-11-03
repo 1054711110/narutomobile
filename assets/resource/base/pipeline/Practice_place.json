@@ -295,9 +295,7 @@
         "next": [
             "train_road_award",
             "train_road_unreset",
-            "train_road_done"
-        ],
-        "interrupt": [
+            "train_road_done",
             "train_road_sweeping"
         ]
     },
@@ -564,9 +562,7 @@
     },
     "survival_challenge_reset": {
         "next": [
-            "survival_challenge_reset_undone"
-        ],
-        "interrupt": [
+            "survival_challenge_reset_undone",
             "survival_challenge_reset_done"
         ]
     },
@@ -673,12 +669,10 @@
         ],
         "action": "Click",
         "next": [
-            "survival_challenge_sweep_ready"
-        ],
-        "interrupt": [
+            "survival_challenge_sweep_ready",
             "check_survival_challenge_done",
-            "start_survival_challenge_sweep",
-            "survival_challenge_done"
+            "survival_challenge_done",
+            "start_survival_challenge_sweep"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]进入生存挑战扫荡任务[/color]"
@@ -758,8 +752,8 @@
             75
         ],
         "action": "Click",
-        "next": "wait_for_survival_challenge_sweep_complete",
-        "interrupt": [
+        "next": [
+            "wait_for_survival_challenge_sweep_complete",
             "survival_challenge_sweep_ticket_used_up"
         ],
         "post_wait_freezes": 200,
