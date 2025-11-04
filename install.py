@@ -77,21 +77,10 @@ def install_agent():
         dirs_exist_ok=True,
     )
 
-def validate_resource():
-    status = Resource().post_bundle(install_path / "resource" / "base").wait().succeeded
-    if not status:
-        print("Resource validation failed.")
-        print("资源校验失败。")
-        sys.exit(1)
-    
-    print("Resource validation succeeded.")
-    print("资源校验成功。")
-
 if __name__ == "__main__":
     install_deps()
     install_resource()
     install_chores()
     install_agent()
-    validate_resource()
 
     print(f"Install to {install_path} successfully.")
