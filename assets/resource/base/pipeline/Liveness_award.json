@@ -118,10 +118,10 @@
         "recognition": "TemplateMatch",
         "template": "Liveness_award/weekly_award_undone.png",
         "roi": [
-            1219,
-            650,
-            50,
-            55
+            1125,
+            633,
+            145,
+            87
         ],
         "action": "Click",
         "next": [
@@ -150,13 +150,14 @@
     },
     "weekly_liveness_award_done": {
         "recognition": "TemplateMatch",
-        "template": "Liveness_award/weekly_award.png",
+        "template": "Liveness_award/weekly_award_undone.png",
         "roi": [
-            1098,
-            654,
-            167,
-            50
+            1125,
+            633,
+            145,
+            87
         ],
+        "inverse": true,
         "next": [
             "back_main_screen_and_stop"
         ],
