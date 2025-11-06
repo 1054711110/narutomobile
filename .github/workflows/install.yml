@@ -144,7 +144,7 @@ jobs:
         if: runner.os == 'Windows'
         shell: bash
         run: |
-          ./install/python/bin/python.exe tools/ci/download_deps.py --deps-dir deps
+          ./install/python/python.exe tools/ci/download_deps.py --deps-dir deps
 
       - name: Download Python dependencies on macOS
         if: runner.os == 'macOS'
