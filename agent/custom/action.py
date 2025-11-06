@@ -2,16 +2,18 @@ from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
 
+from utils.logger import logger
 
-@AgentServer.custom_action("my_action_111")
-class MyCustomAction(CustomAction):
+@AgentServer.custom_action("MyAction111")
+class MyAction111(CustomAction):
 
     def run(
         self,
         context: Context,
         argv: CustomAction.RunArg,
-    ) -> bool:
+    ) -> CustomAction.RunResult:
 
-        print("my_action_111 is running!")
+        logger.info("MyAction111 is running!")
+        print("MyAction111 is running!")
 
-        return True
+        return CustomAction.RunResult(success=True)

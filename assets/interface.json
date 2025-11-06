@@ -141,7 +141,7 @@
             "entry": "hundred_ninjia"
         },
         {
-            "name": "agent",
+            "name": "agent Debug",
             "entry": "use_agent"
         }
     ],
