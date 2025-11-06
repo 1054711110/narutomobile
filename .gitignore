@@ -467,3 +467,4 @@ install/debug/maa.log
 /.nicegui
 /debug
 .nicegui/storage-general.json
+.venv
