@@ -14,6 +14,5 @@ class MyAction111(CustomAction):
     ) -> CustomAction.RunResult:
 
         logger.info("MyAction111 is running!")
-        print("MyAction111 is running!")
 
         return CustomAction.RunResult(success=True)
