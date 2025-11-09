@@ -267,5 +267,8 @@
     ],
     "green_mask": true,
     "focus": "[color:darkgray]在主界面向右滑动[/color]"
+  },
+  "debug_stop": {
+    "action": "StopTask"
   }
 }
