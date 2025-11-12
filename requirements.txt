@@ -1,3 +1,5 @@
 maafw
 loguru
 json-with-comments
+Pillow
+pip
