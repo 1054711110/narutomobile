@@ -4,6 +4,14 @@
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
     "url": "https://github.com/duorua/narutomobile",
+    "message": "你现在使用的是一个测试版本，她并不稳定",
+    "agent": {
+        "child_exec": "python",
+        "child_args": [
+            "-u",
+            "{PROJECT_DIR}/../agent/main.py"
+        ]
+    },
     "controller": [
         {
             "name": "安卓端",
@@ -130,7 +138,14 @@
         },
         {
             "name": "百忍大战",
-            "entry": "hundred_ninjia"
+            "entry": "hundred_ninjia",
+            "option": [
+                "战斗时是否点击普攻"
+            ]
+        },
+        {
+            "name": "agent Debug",
+            "entry": "use_agent"
         }
     ],
     "option": {
@@ -145,9 +160,6 @@
                         "account_type": {
                             "next": "android_qq"
                         },
-                        "try_share": {
-                            "next": "share_to_qq_friend"
-                        },
                         "naruto_club_entry": {
                             "next": "start_qq"
                         },
@@ -156,6 +168,17 @@
                         },
                         "shut_wechat": {
                             "package": "com.tencent.mm"
+                        }
+                    }
+                },
+                {
+                    "name": "苹果",
+                    "pipeline_override": {
+                        "close_ninjia_book_wechat_share": {
+                            "package": "com.tencent.xin"
+                        },
+                        "close_wechat_app": {
+                            "package": "com.tencent.xin"
                         }
                     }
                 }
@@ -254,6 +277,26 @@
                             "next": [
                                 "weekly_win_rank"
                             ]
+                        }
+                    }
+                }
+            ]
+        },
+        "战斗时是否点击普攻": {
+            "cases": [
+                {
+                    "name": "否",
+                    "pipeline_override": {
+                        "hundred_ninjia_check_fight": {
+                            "action": "DoNothing"
+                        }
+                    }
+                },
+                {
+                    "name": "是",
+                    "pipeline_override": {
+                        "hundred_ninjia_check_fight": {
+                            "action": "Click"
                         }
                     }
                 }
