@@ -30,7 +30,7 @@
     "weekly_win_entry": {
         "recognition": "TemplateMatch",
         "template": "Weekly_win/duel_field.png",
-        "threshold": 0.7,
+        "threshold": 0.8,
         "action": "Swipe",
         "duration": 30,
         "next": [
@@ -130,7 +130,7 @@
         ],
         "inverse": true,
         "next": [
-            "nndetect_fight"
+            "weekly_win_match_fighting"
         ],
         "interrupt": [
             "sleep_500ms"
@@ -218,8 +218,9 @@
         "recognition": "TemplateMatch",
         "template": "Rich_room/roll_masked.png",
         "green_mask": true,
-        "action": "Click",
+        "action": "Swipe",
         "threshold": 0.4,
+        "duration": 30,
         "next": [
             "weekly_win_replace_1"
         ],
@@ -246,8 +247,9 @@
         "recognition": "TemplateMatch",
         "template": "Rich_room/summon_masked.png",
         "green_mask": true,
-        "action": "Click",
+        "action": "Swipe",
         "threshold": 0.4,
+        "duration": 30,
         "next": [
             "weekly_win_replace_2"
         ],
@@ -281,8 +283,7 @@
         "next": [
             "weekly_win_substitution",
             "weekly_win_fail",
-            "weekly_win_success",
-            "weekly_win_match_fighting"
+            "weekly_win_success"
         ],
         "interrupt": [
             "sleep_500ms"
@@ -292,19 +293,16 @@
         "recognition": "TemplateMatch",
         "template": "Weekly_win/success.png",
         "roi": [
-            469,
-            328,
-            289,
-            195
+            748,
+            468,
+            37,
+            32
         ],
         "action": "Swipe",
-        "duration": 50,
-        "threshold": 0.8,
+        "duration": 100,
+        "threshold": 0.9,
         "next": [
             "weekly_win_match_fight"
-        ],
-        "interrupt": [
-            "weekly_win_success"
         ],
         "post_delay": 3000
     },
