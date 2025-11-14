@@ -1,0 +1,279 @@
+{
+    "nndetect_fight": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            10
+        ],
+        "threshold": 0.5,
+        "action": "Click",
+        "next": [
+            "nndetect_roll",
+            "nndetect_skill1",
+            "nndetect_skill2",
+            "nndetect_normal_attack"
+        ],
+        "interrupt": [
+            "nndetect_peace"
+        ]
+    },
+    "nndetect_peace": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "inverse": true,
+        "expected": [
+            10
+        ],
+        "threshold": 0.3,
+        "action": "Click",
+        "next": [
+            "nndetect_fight",
+            "weekly_win_fail",
+            "weekly_win_success",
+            "weekly_win_match_fight"
+        ],
+        "interrupt": [
+            "sleep_500ms"
+        ]
+    },
+    "nndetect_replace": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            2
+        ],
+        "threshold": 0.4,
+        "action": "Click",
+        "next": [
+            "nndetect_roll",
+            "nndetect_skill1",
+            "nndetect_skill2",
+            "nndetect_normal_attack"
+        ],
+        "interrupt": [
+            "nndetect_peace"
+        ]
+    },
+    "nndetect_replace_cd": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            2
+        ],
+        "threshold": 0.4,
+        "inverse": true,
+        "action": "Click",
+        "next": [
+            "nndetect_roll",
+            "nndetect_skill1",
+            "nndetect_skill2",
+            "nndetect_normal_attack"
+        ],
+        "interrupt": [
+            "nndetect_peace"
+        ]
+    },
+    "nndetect_roll": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            4
+        ],
+        "threshold": 0.3,
+        "action": "Click",
+        "next": [
+            "nndetect_replace",
+            "nndetect_replace_cd"
+        ],
+        "interrupt": [
+            "nndetect_peace"
+        ]
+    },
+    "nndetect_skill1": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            6
+        ],
+        "threshold": 0.3,
+        "action": "Click",
+        "next": [
+            "nndetect_replace",
+            "nndetect_replace_cd"
+        ],
+        "interrupt": [
+            "nndetect_peace"
+        ]
+    },
+    "nndetect_skill2": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            8
+        ],
+        "threshold": 0.3,
+        "action": "Click",
+        "next": [
+            "nndetect_replace",
+            "nndetect_replace_cd"
+        ],
+        "interrupt": [
+            "nndetect_peace"
+        ]
+    },
+    "nndetect_normal_attack": {
+        "recognition": "NeuralNetworkDetect",
+        "model": "skill_noob.onnx",
+        "labels": [
+            "summon",
+            "summon_cd",
+            "replace",
+            "replace_cd",
+            "roll",
+            "roll_cd",
+            "skill1",
+            "skill1_cd",
+            "skill2",
+            "skill2_cd",
+            "normal_attack",
+            "skill3",
+            "skill3_cd",
+            "sub_skill",
+            "sub_skill_cd"
+        ],
+        "expected": [
+            10
+        ],
+        "threshold": 0.5,
+        "action": "Swipe",
+        "duration": 2000,
+        "next": [
+            "nndetect_roll",
+            "nndetect_skill1",
+            "nndetect_skill2"
+        ],
+        "interrupt": [
+            "nndetect_normal_attack",
+            "nndetect_peace"
+        ]
+    }
+}
