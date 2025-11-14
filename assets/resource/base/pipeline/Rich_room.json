@@ -124,6 +124,51 @@
         ],
         "focus": "[color:DeepSkyBlue]挑战丰饶之间[/color]"
     },
+    "swipe_for_right_entries": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Group/group.png",
+            "Rich_room/ninja_drama.png"
+        ],
+        "green_mask": true,
+        "action": "Swipe",
+        "begin": [
+            850,
+            150,
+            50,
+            50
+        ],
+        "end": [
+            150,
+            150,
+            50,
+            50
+        ],
+        "focus": "[color:DeepSkyBlue]滑动寻找右边的功能入口[/color]"
+    },
+    "peace": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "auto_battle/normal_attack.png",
+            "auto_battle/normal_attack_1.png"
+        ],
+        "action": "Swipe",
+        "threshold": 0.7,
+        "inverse": true,
+        "post_delay": 1500,
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "focus": "[color:DeepSkyBlue]检查是否和平[/color]"
+    },
+    "fight": {
+        "next": [
+            "peace"
+        ],
+        "interrupt": [
+            "fighting"
+        ]
+    },
     "fighting": {
         "next": [
             "is_in_battle_scene"
