@@ -96,8 +96,7 @@
             523
         ],
         "threshold": 0.9,
-        "action": "Swipe",
-        "duration": 100,
+        "action":"Click",
         "next": [
             "mouthly_signature",
             "check_mouthly_signature_title"
@@ -146,11 +145,11 @@
     "check_mouthly_signature_title": {
         "recognition": "TemplateMatch",
         "template": "Activity/title.png",
-        "roi": [
-            525,
-            527,
-            101,
-            98
+        "roi" : [
+            508,
+            523,
+            135,
+            121
         ],
         "action": "Click",
         "threshold": 0.68,
