@@ -102,7 +102,7 @@
             "team_dash_my_help_done"
         ],
         "interrupt": [
-            "not_in_group"
+            "dash_or_exit"
         ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]进入组织助战[/color]"
