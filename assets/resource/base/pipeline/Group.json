@@ -211,7 +211,14 @@
         "recognition": "TemplateMatch",
         "template": "Group/yesterday_award.png",
         "action": "DoNothing",
+        "roi": [
+            402,
+            135,
+            200,
+            175
+        ],
         "inverse": true,
+        "green_mask": true,
         "next": [
             "first_group_award",
             "first_group_award_done"
@@ -648,11 +655,12 @@
         "template": "Group/yesterday_award.png",
         "action": "Click",
         "roi": [
-            390,
-            132,
-            107,
-            93
+            402,
+            135,
+            200,
+            175
         ],
+        "green_mask": true,
         "next": [
             "yesterday_award_done"
         ],

@@ -61,11 +61,6 @@
             "check": true
         },
         {
-            "name": "火影情报社",
-            "entry": "naruto_club",
-            "check": true
-        },
-        {
             "name": "组织",
             "entry": "group",
             "check": true
@@ -122,6 +117,11 @@
         {
             "name": "丰饶",
             "entry": "rich_room",
+            "check": true
+        },
+        {
+            "name": "火影情报社",
+            "entry": "naruto_club",
             "check": true
         },
         {

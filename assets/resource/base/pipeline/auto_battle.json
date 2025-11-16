@@ -1,5 +1,18 @@
 {
   "is_in_battle_scene": {
+    "recognition": "TemplateMatch",
+    "template": [
+      "auto_battle/normal_attack.png",
+      "auto_battle/normal_attack_1.png",
+      "auto_battle/normal_attack_pressed.png",
+      "auto_battle/normal_attack_left.png"
+    ],
+    "roi": [
+      1063,
+      513,
+      158,
+      161
+    ],
     "next": "battle_detail",
     "interrupt": [
       "has_attack_button"

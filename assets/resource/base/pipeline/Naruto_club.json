@@ -198,6 +198,9 @@
         "next": [
             "scroll"
         ],
+        "interrupt": [
+            "close_surf_post"
+        ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭话题[/color]"
     },
@@ -213,6 +216,9 @@
         "action": "Click",
         "next": [
             "close_scroll"
+        ],
+        "interrupt": [
+            "scroll"
         ],
         "post_wait_freezes": 500,
         "post_delay": 1000,
@@ -231,6 +237,9 @@
         "next": [
             "ninja_station"
         ],
+        "interrupt": [
+            "close_scroll"
+        ],
         "threshold": 0.4,
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭卷轴[/color]"
@@ -247,6 +256,9 @@
         "action": "Click",
         "next": [
             "close_ninja_station"
+        ],
+        "interrupt": [
+            "ninja_station"
         ],
         "post_wait_freezes": 8000,
         "focus": "[color:DeepSkyBlue]进入忍者站[/color]"
@@ -265,6 +277,9 @@
         "next": [
             "village_entry"
         ],
+        "interrupt": [
+            "close_ninja_station"
+        ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭忍者站[/color]"
     },
@@ -282,6 +297,9 @@
         "next": [
             "close_village_entry"
         ],
+        "interrupt": [
+            "village_entry"
+        ],
         "focus": "[color:DeepSkyBlue]进入村口[/color]"
     },
     "close_village_entry": {
@@ -296,6 +314,9 @@
         "action": "Click",
         "next": [
             "benefit_station"
+        ],
+        "interrupt": [
+            "close_village_entry"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭村口[/color]"
@@ -314,6 +335,9 @@
             "naruto_club_sign",
             "sign_done"
         ],
+        "interrupt": [
+            "benefit_station"
+        ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]进入福利站[/color]"
     },
@@ -329,6 +353,9 @@
         "action": "Click",
         "next": [
             "feed_pig"
+        ],
+        "interrupt": [
+            "sign_done"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]签到已经完成[/color]"
