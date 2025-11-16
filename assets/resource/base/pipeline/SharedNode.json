@@ -35,11 +35,10 @@
   "check_has_x": {
     "recognition": "TemplateMatch",
     "template": [
+      "SharedNode/announcement_x.png",
       "SharedNode/green_masked_x.png",
       "SharedNode/ad_x_button.png",
-      "SharedNode/green_masked_x.png",
       "SharedNode/x.png",
-      "SharedNode/announcement_x.png",
       "SharedNode/rich_room_x.png"
     ],
     "roi": [
