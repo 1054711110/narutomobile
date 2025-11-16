@@ -90,11 +90,6 @@
             "check": true
         },
         {
-            "name": "忍法帖",
-            "entry": "ninjia_book",
-            "check": true
-        },
-        {
             "name": "免费招募",
             "entry": "headhunt",
             "check": true
@@ -117,6 +112,11 @@
         {
             "name": "丰饶",
             "entry": "rich_room",
+            "check": true
+        },
+        {
+            "name": "忍法帖",
+            "entry": "ninjia_book",
             "check": true
         },
         {
