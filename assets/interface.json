@@ -30,50 +30,42 @@
         {
             "name": "进入火影",
             "entry": "start_up",
-            "check": true,
             "option": [
                 "账号属性"
             ]
         },
         {
             "name": "轻松助手",
-            "entry": "easy_helper",
-            "check": true
+            "entry": "easy_helper"
         },
         {
             "name": "招财",
-            "entry": "get_chopper",
-            "check": true
+            "entry": "get_chopper"
         },
         {
             "name": "排行榜",
-            "entry": "leaderboard",
-            "check": true
+            "entry": "leaderboard"
         },
         {
             "name": "送体力",
-            "entry": "give_energy",
-            "check": true
+            "entry": "give_energy"
         },
         {
             "name": "每日分享",
-            "entry": "share",
-            "check": true
+            "entry": "share"
         },
         {
             "name": "组织",
-            "entry": "group",
-            "check": true
+            "entry": "group"
         },
         {
             "name": "邮箱",
-            "entry": "mail",
-            "check": true
+            "entry": "mail"
         },
         {
-            "name": "积分赛(只会领奖励)",
+            "name": "领取积分赛奖励",
             "entry": "point_race",
-            "check": true
+            "doc": "[size:15][color:tomato]该功能不会进行战斗，仅领取奖励[/color][/size]"
         },
         {
             "name": "试炼",
@@ -81,56 +73,47 @@
             "option": [
                 "不做修行",
                 "等待生存扫荡时间选择"
-            ],
-            "check": true
+            ]
         },
         {
             "name": "小队突袭",
-            "entry": "team_dash",
-            "check": true
+            "entry": "team_dash"
         },
         {
             "name": "免费招募",
-            "entry": "headhunt",
-            "check": true
+            "entry": "headhunt"
         },
         {
             "name": "月签到和活动",
-            "entry": "activity",
-            "check": true
+            "entry": "activity"
         },
         {
             "name": "任务集会所(beta)",
-            "entry": "mission_office",
-            "check": true
+            "entry": "mission_office"
         },
         {
             "name": "刷体力(beta)",
-            "entry": "use_energy",
-            "check": true
+            "entry": "use_energy"
         },
         {
-            "name": "丰饶",
-            "entry": "rich_room",
-            "check": true
+            "name": "丰饶之间",
+            "entry": "rich_room"
         },
         {
             "name": "忍法帖",
             "entry": "ninjia_book",
-            "check": true
+            "doc": "[size:15]本功能会领取忍法帖升级的[color:red]全部奖励[/color]，需要攒体验卡的不要用！[/size]"
         },
         {
             "name": "火影情报社",
-            "entry": "naruto_club",
-            "check": true
+            "entry": "naruto_club"
         },
         {
-            "name": "活跃宝箱(beta)",
-            "entry": "liveness_award",
-            "check": true
+            "name": "活跃宝箱",
+            "entry": "liveness_award"
         },
         {
-            "name": "周胜(只能刷人机)",
+            "name": "周胜(没做完)",
             "entry": "weekly_win",
             "option": [
                 "匹配还是排位"
