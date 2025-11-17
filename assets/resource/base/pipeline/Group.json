@@ -13,7 +13,8 @@
         "recognition": "TemplateMatch",
         "template": [
             "Group/group_entry_white.png",
-            "Group/group.png"
+            "Group/group.png",
+            "Group/group_blue.png"
         ],
         "threshold": 0.7,
         "action": "Swipe",
