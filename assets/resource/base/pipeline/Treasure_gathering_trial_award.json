@@ -35,9 +35,22 @@
             "treasure_gathering_trial_box"
         ],
         "interrupt": [
-            "treasure_gathering_trial_award"
+            "treasure_gathering_trial_award",
+            "treasure_gathering_trial_back"
         ],
         "post_delay": 500
+    },
+    "treasure_gathering_trial_back": {
+        "recognition": "TemplateMatch",
+        "template": "Treasure_gathering_trial_award/back.png",
+        "roi": [
+            165,
+            619,
+            143,
+            101
+        ],
+        "next": "back_main_screen_and_stop",
+        "focus": "[color:DeepSkyBlue]聚宝试炼奖励已领取[/color]"
     },
     "treasure_gathering_trial_box": {
         "recognition": "TemplateMatch",
@@ -97,6 +110,8 @@
             "treasure_gathering_trial_end_level",
             "swipe_for_treasure_gathering_trial_find_red_point"
         ],
+        "timeout": 20000,
+        "on_error": "back_main_screen_and_stop",
         "post_delay": 500
     },
     "treasure_gathering_trial_end_level": {
