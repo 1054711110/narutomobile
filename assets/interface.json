@@ -134,6 +134,13 @@
         {
             "name": "agent Debug",
             "entry": "use_agent"
+        },
+        {
+            "name": "小游戏",
+            "entry": "mini_game",
+            "option": [
+                "选择小游戏"
+            ]
         }
     ],
     "option": {
@@ -354,6 +361,18 @@
                             "interrupt": [
                                 "stoptask"
                             ]
+                        }
+                    }
+                }
+            ]
+        },
+        "选择小游戏": {
+            "cases": [
+                {
+                    "name": "聚宝试炼领取奖励",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "treasure_gathering_trial_award"
                         }
                     }
                 }
