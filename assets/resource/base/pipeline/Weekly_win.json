@@ -1,11 +1,10 @@
 {
     "weekly_win": {
         "next": [
-            "weekly_win_entry",
             "weekly_win_in_duel_field"
         ],
         "interrupt": [
-            "back_main_screen"
+            "weekly_win_entry"
         ],
         "focus": "[color:DeepSkyBlue]进入使用周胜子任务[/color]"
     },
@@ -26,9 +25,6 @@
         "next": [
             "weekly_win_match"
         ],
-        "interrupt": [
-            "weekly_win"
-        ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]已在决斗场界面[/color]"
     },
@@ -40,9 +36,6 @@
         "duration": 30,
         "next": [
             "weekly_win_match"
-        ],
-        "interrupt": [
-            "weekly_win"
         ],
         "green_mask": true,
         "post_delay": 1500,
