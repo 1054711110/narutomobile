@@ -4,7 +4,6 @@
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
     "url": "https://github.com/duorua/narutomobile",
-    "message": "你现在使用的是一个测试版本，她并不稳定",
     "agent": {
         "child_exec": "python",
         "child_args": [
