@@ -34,7 +34,7 @@
     },
     "weekly_win_entry": {
         "recognition": "TemplateMatch",
-        "template": "Weekly_win/duel_field.png",
+        "template": "home/决斗场",
         "threshold": 0.7,
         "action": "Swipe",
         "duration": 30,

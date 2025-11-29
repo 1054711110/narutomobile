@@ -116,10 +116,7 @@
     },
     "swipe_for_right_entries": {
         "recognition": "TemplateMatch",
-        "template": [
-            "Group/group.png",
-            "Rich_room/ninja_drama.png"
-        ],
+        "template": "home/丰饶之间",
         "green_mask": true,
         "action": "Swipe",
         "begin": [
