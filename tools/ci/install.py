@@ -14,6 +14,8 @@ from utils import working_dir  # type: ignore
 install_path = working_dir / Path("install")
 version = len(sys.argv) > 1 and sys.argv[1] or "v0.0.1"
 
+sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
+
 
 def get_dotnet_platform_tag():
     """自动检测当前平台并返回对应的平台标签"""
