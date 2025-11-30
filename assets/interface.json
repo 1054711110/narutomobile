@@ -1,11 +1,11 @@
 {
     "name": "MaaAutoNaruto",
-    "version": "v0.2.5",
+    "version": "v0.2.7",
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
     "url": "https://github.com/duorua/narutomobile",
-    "mfa_max_version": "v1.8.0",
-    "mfa_min_version": "v1.8.0",
+    "mfa_max_version": "v2.0.3",
+    "mfa_min_version": "v2.0.3",
     "agent": {
         "child_exec": "python",
         "child_args": [
@@ -125,6 +125,18 @@
             ]
         },
         {
+            "name": "冒险副本(beta)",
+            "entry": "advanture"
+        },
+        {
+            "name": "精英副本(beta)",
+            "entry": "elite_instance"
+        },
+        {
+            "name": "修罗副本(beta)",
+            "entry": "asura_instance"
+        },
+        {
             "name": "百忍大战",
             "entry": "hundred_ninjia",
             "option": [
@@ -151,12 +163,6 @@
                     "pipeline_override": {
                         "start_naruto": {
                             "package": "com.tencent.KiHan"
-                        },
-                        "account_type": {
-                            "next": "android_qq"
-                        },
-                        "naruto_club_entry": {
-                            "next": "start_qq"
                         },
                         "shut_qq": {
                             "package": "com.tencent.mobileqq"

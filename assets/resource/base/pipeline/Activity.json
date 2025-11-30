@@ -53,7 +53,7 @@
         "action": "Swipe",
         "begin": [
             80,
-            700,
+            300,
             10,
             10
         ],
@@ -67,8 +67,11 @@
             "mouthly_sign_done",
             "mouthly_sign_undone"
         ],
-        "duration": 100,
-        "post_delay": 500,
+        "interrupt": [
+            "swipes_for_monthly_sign"
+        ],
+        "duration": 200,
+        "post_delay": 900,
         "focus": "[color:DeepSkyBlue]前往月度签到[/color]"
     },
     "get_ramen": {
@@ -96,7 +99,7 @@
             523
         ],
         "threshold": 0.9,
-        "action":"Click",
+        "action": "Click",
         "next": [
             "mouthly_signature",
             "check_mouthly_signature_title"
@@ -104,7 +107,7 @@
         "interrupt": [
             "mouthly_sign_undone"
         ],
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]月度签到未完成[/color]"
     },
     "mouthly_sign_done": {
@@ -122,7 +125,7 @@
         ],
         "threshold": 0.9,
         "next": [
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]月度签到已完成[/color]"
     },
@@ -138,14 +141,14 @@
         "action": "Click",
         "next": [
             "check_mouthly_signature_title",
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]进行月度签到[/color]"
     },
     "check_mouthly_signature_title": {
         "recognition": "TemplateMatch",
         "template": "Activity/title.png",
-        "roi" : [
+        "roi": [
             508,
             523,
             135,
@@ -160,7 +163,7 @@
             98
         ],
         "next": [
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]检查月度签到称号是否可以领取[/color]"
     }

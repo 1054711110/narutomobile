@@ -159,7 +159,7 @@
         "duration": 50,
         "threshold": 0.9,
         "next": [
-            "weekly_win_click_skill_1"
+            "click_All_skill"
         ],
         "interrupt": [
             "weekly_win_peace"
@@ -291,25 +291,37 @@
         "focus": "[color:DeepSkyBlue]替身[/color]"
     },
     "weekly_win_peace": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "auto_battle/normal_attack.png",
-            "auto_battle/normal_attack_1.png"
+        "recognition": "OCR",
+        "expected": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
         ],
-        "action": "Swipe",
-        "duration": 50,
-        "threshold": 0.7,
+        "roi": [
+            377,
+            0,
+            516,
+            301
+        ],
         "inverse": true,
         "next": [
             "weekly_win_substitution",
             "weekly_win_fail",
             "weekly_win_success",
             "weekly_win_match_fight",
-            "weekly_win_match_fighting"
+            "click_All_skill"
         ],
         "interrupt": [
             "sleep_500ms"
         ],
+        "post_delay": 1500,
         "focus": "[color:DeepSkyBlue]识别不到普攻按钮,开始识别状态[/color]"
     },
     "weekly_win_success": {
