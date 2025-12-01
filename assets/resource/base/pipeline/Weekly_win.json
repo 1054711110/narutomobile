@@ -343,7 +343,9 @@
             "6",
             "7",
             "8",
-            "9"
+            "9",
+            "与",
+            "t"
         ],
         "roi": [
             377,
@@ -357,10 +359,8 @@
             "weekly_win_fail",
             "weekly_win_success",
             "weekly_win_match_fight",
+            "weekly_win_in_seasonal_awards",
             "click_All_skill"
-        ],
-        "interrupt": [
-            "sleep_500ms"
         ],
         "post_delay": 1500,
         "focus": "[color:DeepSkyBlue]识别不到普攻按钮,开始识别状态[/color]"
@@ -562,5 +562,33 @@
         "action": "Click",
         "post_delay": 400,
         "focus": "[color:DeepSkyBlue]确认忍者[/color]"
+    },
+    "weekly_win_in_seasonal_awards": {
+        "recognition": "OCR",
+        "expected": [
+            "兑",
+            "换"
+        ],
+        "roi": [
+            780,
+            609,
+            463,
+            111
+        ],
+        "threshold": 0.6,
+        "action": "Click",
+        "target": [
+            1193,
+            0,
+            71,
+            74
+        ],
+        "next": [
+            "weekly_win_in_duel_field"
+        ],
+        "interrupt": [
+            "weekly_win_in_seasonal_awards"
+        ],
+        "post_delay": 1000
     }
 }
