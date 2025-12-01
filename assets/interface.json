@@ -11,7 +11,8 @@
         "child_args": [
             "-u",
             "{PROJECT_DIR}/../agent/main.py"
-        ]
+        ],
+        "identifier": "3be2c931-9c0d-4d69-9ebd-eed2263e06fd"
     },
     "controller": [
         {
@@ -33,36 +34,45 @@
             "entry": "start_up",
             "option": [
                 "账号属性"
-            ]
+            ],
+            "check": true
         },
         {
             "name": "轻松助手",
-            "entry": "easy_helper"
+            "entry": "easy_helper",
+            "check": true
         },
         {
             "name": "招财",
-            "entry": "get_chopper"
+            "entry": "get_chopper",
+            "check": true
         },
         {
             "name": "排行榜",
-            "entry": "leaderboard"
+            "entry": "leaderboard",
+            "doc": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]",
+            "check": true
         },
         {
             "name": "送体力",
-            "entry": "give_energy"
+            "entry": "give_energy",
+            "check": true
         },
         {
             "name": "每日分享",
-            "entry": "share"
+            "entry": "share",
+            "check": true
         },
         {
             "name": "组织",
-            "entry": "group"
+            "entry": "group",
+            "doc": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]",
+            "check": true
         },
         {
-            "name": "领取积分赛奖励",
+            "name": "积分赛",
             "entry": "point_race",
-            "doc": "[size:15][color:tomato]该功能不会进行战斗，仅领取奖励[/color][/size]"
+            "check": true
         },
         {
             "name": "试炼",
@@ -70,31 +80,42 @@
             "option": [
                 "不做修行",
                 "等待生存扫荡时间选择"
-            ]
+            ],
+            "check": true
         },
         {
             "name": "小队突袭",
-            "entry": "team_dash"
+            "entry": "team_dash",
+            "option": [
+                "借组织助战"
+            ],
+            "check": true
         },
         {
             "name": "免费招募",
-            "entry": "headhunt"
+            "entry": "headhunt",
+            "check": true
         },
         {
             "name": "月签到和活动",
-            "entry": "activity"
+            "entry": "activity",
+            "check": true
         },
         {
             "name": "任务集会所(beta)",
-            "entry": "mission_office"
+            "entry": "mission_office",
+            "doc": "[size:15][color:tomato]有超影的时候,依旧只会接当前显示的三个任务,不会刷新。要拿满奖励记得关[/color][/size]",
+            "check": true
         },
         {
             "name": "刷体力(beta)",
-            "entry": "use_energy"
+            "entry": "use_energy",
+            "check": true
         },
         {
             "name": "丰饶之间",
-            "entry": "rich_room"
+            "entry": "rich_room",
+            "check": true
         },
         {
             "name": "忍法帖",
@@ -103,26 +124,46 @@
             "option": [
                 "是否领取体验卡宝箱",
                 "是否领取奖励"
-            ]
+            ],
+            "check": true
         },
         {
             "name": "火影情报社",
-            "entry": "naruto_club"
+            "entry": "naruto_club",
+            "check": true
         },
         {
             "name": "邮箱",
-            "entry": "mail"
+            "entry": "mail",
+            "doc": "[size:15][color:tomato]最近由于十周年情报社容易出bug,可以关闭这个功能用于检查情报社是否正常完成[/color][/size]",
+            "check": true
         },
         {
             "name": "活跃宝箱",
-            "entry": "liveness_award"
+            "entry": "liveness_award",
+            "check": true
         },
         {
-            "name": "周胜(没做完)",
+            "name": "周胜(beta)",
             "entry": "weekly_win",
             "option": [
-                "匹配还是排位"
-            ]
+                "匹配还是排位",
+                "胜利一次就退出任务"
+            ],
+            "doc": "[size:15][color:tomato]目前胜利一次就退出功能还不稳定,可能点掉胜利界面继续战斗[/color][/size]",
+            "check": true
+        },
+        {
+            "name": "冒险副本(beta)",
+            "entry": "advanture"
+        },
+        {
+            "name": "精英副本(beta)",
+            "entry": "elite_instance"
+        },
+        {
+            "name": "修罗副本(beta)",
+            "entry": "asura_instance"
         },
         {
             "name": "百忍大战",
@@ -151,12 +192,6 @@
                     "pipeline_override": {
                         "start_naruto": {
                             "package": "com.tencent.KiHan"
-                        },
-                        "account_type": {
-                            "next": "android_qq"
-                        },
-                        "naruto_club_entry": {
-                            "next": "start_qq"
                         },
                         "shut_qq": {
                             "package": "com.tencent.mobileqq"
@@ -261,7 +296,7 @@
                     }
                 },
                 {
-                    "name": "排位(没做完)",
+                    "name": "排位(beta)",
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
                             "next": [
@@ -357,9 +392,6 @@
                         "ninjia_book_award_undone": {
                             "next": [
                                 "back_main_screen_and_stop"
-                            ],
-                            "interrupt": [
-                                "stoptask"
                             ]
                         }
                     }
@@ -373,6 +405,54 @@
                     "pipeline_override": {
                         "mini_game": {
                             "next": "treasure_gathering_trial_award"
+                        }
+                    }
+                }
+            ]
+        },
+        "胜利一次就退出任务": {
+            "cases": [
+                {
+                    "name": "不开启,无限打",
+                    "pipeline_override": {
+                        "weekly_win_success": {
+                            "next": [
+                                "weekly_win_match_fight"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "开启,胜利一次就退出任务",
+                    "pipeline_override": {
+                        "weekly_win_success": {
+                            "next": [
+                                "back_main_screen_and_stop"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "借组织助战": {
+            "cases": [
+                {
+                    "name": "开,借人",
+                    "pipeline_override": {
+                        "team_dash_invite_page": {
+                            "next": [
+                                "team_dash_invite_ninjia"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "关,不借人",
+                    "pipeline_override": {
+                        "team_dash_invite_page": {
+                            "next": [
+                                "dash_or_exit"
+                            ]
                         }
                     }
                 }
