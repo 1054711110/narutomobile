@@ -7,7 +7,39 @@
         "interrupt": [
             "back_main_screen"
         ],
-        "focus": "[color:DeepSkyBlue]进入使用周胜子任务[/color]"
+        "focus": "[color:DeepSkyBlue]进入周胜子任务[/color]"
+    },
+    "weekly_win_mouthly_award": {
+        "recognition": "OCR",
+        "expected": [
+            "继",
+            "续"
+        ],
+        "roi": [
+            439,
+            552,
+            382,
+            168
+        ],
+        "action": "Click",
+        "post_delay": 700,
+        "focus": "[color:DeepSkyBlue]月度段位结算奖励[/color]"
+    },
+    "weekly_win_mouthly_reset_award": {
+        "recognition": "OCR",
+        "expected": [
+            "升",
+            "段"
+        ],
+        "roi": [
+            439,
+            552,
+            382,
+            168
+        ],
+        "action": "Click",
+        "post_delay": 700,
+        "focus": "[color:DeepSkyBlue]月度段位重置奖励[/color]"
     },
     "weekly_win_in_duel_field": {
         "recognition": "OCR",
@@ -15,7 +47,7 @@
             "忍",
             "术",
             "对",
-            "决"
+            "战"
         ],
         "roi": [
             254,
@@ -27,6 +59,8 @@
             "weekly_win_match"
         ],
         "interrupt": [
+            "weekly_win_mouthly_award",
+            "weekly_win_mouthly_reset_award",
             "weekly_win"
         ],
         "post_delay": 1000,
@@ -42,6 +76,8 @@
             "weekly_win_match"
         ],
         "interrupt": [
+            "weekly_win_mouthly_award",
+            "weekly_win_mouthly_reset_award",
             "weekly_win"
         ],
         "green_mask": true,
