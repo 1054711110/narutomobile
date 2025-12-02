@@ -26,11 +26,8 @@
         "focus": "[color:DeepSkyBlue]月度段位结算奖励[/color]"
     },
     "weekly_win_mouthly_reset_award": {
-        "recognition": "OCR",
-        "expected": [
-            "升",
-            "段"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/mouthly_rank_award.png",
         "roi": [
             439,
             552,
@@ -108,17 +105,13 @@
         "focus": "[color:DeepSkyBlue]匹配模式[/color]"
     },
     "weekly_win_rank": {
-        "recognition": "OCR",
-        "expected": [
-            "段",
-            "位",
-            "赛"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/rank_mode.png",
         "roi": [
-            498,
-            607,
-            111,
-            49
+            336,
+            520,
+            397,
+            200
         ],
         "action": "Click",
         "next": [
@@ -394,5 +387,33 @@
         "action": "Click",
         "post_delay": 5000,
         "focus": "[color:DeepSkyBlue]确认忍者[/color]"
+    },
+    "weekly_win_in_seasonal_awards": {
+        "recognition": "OCR",
+        "expected": [
+            "兑",
+            "换"
+        ],
+        "roi": [
+            780,
+            609,
+            463,
+            111
+        ],
+        "threshold": 0.6,
+        "action": "Click",
+        "target": [
+            1193,
+            0,
+            71,
+            74
+        ],
+        "next": [
+            "weekly_win_in_duel_field"
+        ],
+        "interrupt": [
+            "weekly_win_in_seasonal_awards"
+        ],
+        "post_delay": 1000
     }
 }
