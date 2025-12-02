@@ -124,7 +124,6 @@ jobs:
         shell: bash
         run: |
           python tools/ci/setup_embed_python.py
-          cp "tools/DependencySetup_依赖库安装.bat" install/
 
       - name: Setup Embed Python on macOS
         if: matrix.os == 'macos'
