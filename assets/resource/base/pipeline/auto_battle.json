@@ -351,7 +351,7 @@
           142,
           154
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "summon",
@@ -367,7 +367,7 @@
           54,
           51
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "roll",
@@ -383,7 +383,7 @@
           56,
           55
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "attack",
@@ -399,7 +399,7 @@
           92,
           92
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "ultimate",
@@ -415,7 +415,7 @@
           71,
           65
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "skill1",
@@ -431,7 +431,7 @@
           62,
           54
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "skill2",
@@ -447,7 +447,7 @@
           65,
           59
         ],
-        "duration": 200
+        "duration": 100
       },
       {
         "$doc": "sub_skill1",
@@ -463,7 +463,7 @@
           53,
           44
         ],
-        "duration": 200
+        "duration": 100
       }
     ],
     "pre_delay": 0,

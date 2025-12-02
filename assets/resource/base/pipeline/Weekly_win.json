@@ -132,13 +132,13 @@
         ],
         "green_mask": true,
         "next": [
-            "battle_end",
             "battle_tips"
         ],
         "interrupt": [
             "winner_decided",
             "click_All_skill"
         ],
+        "timeout": 3000,
         "pre_delay": 0,
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
@@ -147,13 +147,12 @@
         "recognition": "TemplateMatch",
         "template": [
             "Weekly_win/winner.png",
-            "Weekly_win/winner_decided.png"
         ],
         "roi": [
-            185,
-            231,
-            927,
-            348
+            412,
+            427,
+            239,
+            177
         ],
         "green_mask": true,
         "next": [
@@ -275,6 +274,7 @@
             "battle_tips",
             "battle_again",
             "weekly_win_substitution",
+            "battle_end",
             "go_to_war"
         ],
         "post_delay": 1000,
