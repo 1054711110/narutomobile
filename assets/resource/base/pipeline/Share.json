@@ -12,8 +12,8 @@
     "share_in_center_enter": {
         "recognition": "TemplateMatch",
         "template": [
-            "Share/check_not_in_daily_award.png",
-            "Share/check_in_daily_award.png"
+            "SharedNode/check_not_in_daily_award.png",
+            "SharedNode/check_in_daily_award.png"
         ],
         "roi": [
             37,
@@ -27,14 +27,14 @@
             "share_ac_done"
         ],
         "interrupt": [
-            "Swipe_for_award_center_find"
+            "swipe_for_award_center_find"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
     "share_ac_entry": {
         "recognition": "TemplateMatch",
-        "template": "Share/center_entry.png",
+        "template": "SharedNode/center_entry.png",
         "roi": [
             1200,
             348,
@@ -69,9 +69,10 @@
             "try_share"
         ],
         "interrupt": [
-            "close_weekly_ninjia_title",
+            "share_close_weekly_ninjia_title_next_step",
+            "share_close_weekly_ninjia_title",
             "share_entry",
-            "share_to_qq_friend"
+            "share_to_qq"
         ],
         "action": "Click",
         "post_wait_freezes": 600,
@@ -79,7 +80,7 @@
     },
     "share_ac_done": {
         "recognition": "TemplateMatch",
-        "template": "Share/center_entry_end.png",
+        "template": "SharedNode/center_entry_end.png",
         "roi": [
             180,
             384,
@@ -94,7 +95,7 @@
     "share_entry": {
         "recognition": "TemplateMatch",
         "template": [
-            "Startgame/main_green_masked.png"
+            "Startup/main_green_masked.png"
         ],
         "roi": [
             11,
@@ -114,9 +115,10 @@
             "try_share"
         ],
         "interrupt": [
-            "close_weekly_ninjia_title",
+            "share_close_weekly_ninjia_title_next_step",
+            "share_close_weekly_ninjia_title",
             "share_entry",
-            "share_to_qq_friend"
+            "share_to_qq"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:darkgray]尝试进入用户主页[/color]"
@@ -132,53 +134,114 @@
         ],
         "action": "Click",
         "next": [
-            "share_to_qq_friend"
+            "share_to_qq",
+            "share_to_wechat"
         ],
         "interrupt": [
-            "close_weekly_ninjia_title"
+            "share_close_weekly_ninjia_title_next_step",
+            "share_close_weekly_ninjia_title"
         ],
         "pre_wait_freezes": 200,
-        "post_wait_freezes": 200,
+        "post_delay": 1200,
         "focus": "[color:DeepSkyBlue]点击分享按钮[/color]"
     },
-    "share_to_qq_friend": {
-        "recognition": "OCR",
-        "expected": [
-            "发给好友",
-            "发给好",
-            "给好友",
-            "发给",
-            "好友",
-            "给好",
-            "好",
-            "友"
-        ],
+    "share_to_qq": {
+        "recognition": "TemplateMatch",
+        "template": "Share/qq.png",
         "roi": [
-            1161,
-            670,
-            93,
-            39
+            1042,
+            475,
+            238,
+            245
         ],
+        "threshold": 0.8,
         "next": [
             "close_qq_app"
         ],
         "interrupt": [
-            "close_weekly_ninjia_title"
+            "share_close_weekly_ninjia_title_next_step",
+            "share_close_weekly_ninjia_title"
         ],
         "action": "Click",
         "pre_wait_freezes": 200,
+        "post_delay": 1000,
         "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]发给好友[/color]"
+        "focus": "[color:DeepSkyBlue]qq分享[/color]"
+    },
+    "share_to_wechat": {
+        "recognition": "TemplateMatch",
+        "template": "Share/wechat.png",
+        "roi": [
+            1042,
+            475,
+            238,
+            245
+        ],
+        "threshold": 0.8,
+        "next": [
+            "close_wechat_app"
+        ],
+        "interrupt": [
+            "share_close_weekly_ninjia_title_next_step",
+            "share_close_weekly_ninjia_title"
+        ],
+        "action": "Click",
+        "pre_wait_freezes": 200,
+        "post_delay": 1000,
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]微信分享[/color]"
     },
     "close_qq_app": {
         "action": "StopApp",
         "package": "com.tencent.mobileqq",
         "next": [
+            "close_share_top_bar"
+        ],
+        "focus": "[color:DeepSkyBlue]关闭QQ[/color]",
+        "pre_delay": 1000,
+        "post_delay": 1000
+    },
+    "close_wechat_app": {
+        "action": "StopApp",
+        "package": "com.tencent.mm",
+        "next": [
+            "close_share_top_bar"
+        ],
+        "focus": "[color:DeepSkyBlue]关闭微信[/color]",
+        "pre_delay": 1000,
+        "post_delay": 1000
+    },
+    "close_share_top_bar": {
+        "recognition": "DirectHit",
+        "target": [
+            1067,
+            0,
+            213,
+            143
+        ],
+        "action": "Click",
+        "next": [
             "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]关闭QQ[/color]"
     },
-    "close_weekly_ninjia_title": {
+    "share_close_weekly_ninjia_title_next_step": {
+        "recognition": "TemplateMatch",
+        "template": "Share/weekly_ninjia_title_next_step.png",
+        "roi": [
+            807,
+            949,
+            294,
+            104
+        ],
+        "next": [
+            "share_close_weekly_ninjia_title"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 400,
+        "focus": "[color:darkgray]关闭周榜更新下一步提示[/color]"
+    },
+    "share_close_weekly_ninjia_title": {
         "recognition": "TemplateMatch",
         "template": "Share/weekly_ninjia_title.png",
         "roi": [
@@ -191,6 +254,7 @@
             "try_share"
         ],
         "action": "Click",
+        "post_wait_freezes": 400,
         "focus": "[color:darkgray]关闭周榜更新提示[/color]"
     }
 }

@@ -1,50 +1,26 @@
 {
     "use_energy": {
         "next": [
-            "use_energy_entry"
+            "use_energy_by_ninjia_piece"
         ],
         "interrupt": [
             "back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入使用体力子任务[/color]"
     },
-    "use_energy_entry": {
-        "recognition": "OCR",
-        "expected": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"
-        ],
-        "roi": [
-            411,
-            23,
-            58,
-            37
-        ],
-        "next": [
-            "use_energy_by_ninjia_piece"
-        ],
-        "focus": "[color:DeepSkyBlue]检测是否可以使用体力[/color]"
-    },
     "use_energy_by_ninjia_piece": {
         "recognition": "TemplateMatch",
         "template": [
             "Use_energy/adventure.png",
             "Use_energy/adventure_undone.png",
-            "Use_energy/adventure_undone_1.png"
+            "Use_energy/adventure_undone_1.png",
+            "Use_energy/adventure_cloud.png"
         ],
         "roi": [
-            1111,
-            586,
-            107,
-            91
+            1083,
+            541,
+            199,
+            180
         ],
         "next": [
             "elite_entry"
@@ -82,7 +58,10 @@
         "next": [
             "use_energy_ez_sweep"
         ],
-        "post_wait_freezes": 300,
+        "interrupt": [
+            "use_energy_ez_sweep_entry"
+        ],
+        "post_delay": 700,
         "focus": "[color:DeepSkyBlue]便捷扫荡[/color]"
     },
     "use_energy_ez_sweep": {
@@ -99,9 +78,12 @@
             "use_energy_confirm_ez_sweep"
         ],
         "interrupt": [
-            "use_energy_not_enough_sign"
+            "use_energy_finish",
+            "use_energy_not_enough_sign",
+            "use_energy_ez_sweep"
         ],
-        "post_wait_freezes": 300
+        "post_wait_freezes": 300,
+        "focus": "[color:DeepSkyBlue]确定便捷扫荡[/color]"
     },
     "use_energy_confirm_ez_sweep": {
         "recognition": "TemplateMatch",
@@ -114,9 +96,13 @@
         ],
         "action": "Click",
         "next": [
-            "use_energy_not_enough_sign"
+            "use_energy_not_enough_sign",
+            "use_energy_finish"
         ],
-        "interrupt": "sleep_500ms",
+        "interrupt": [
+            "use_energy_confirm_ez_sweep",
+            "sleep_500ms"
+        ],
         "post_delay": 5000,
         "focus": "[color:DeepSkyBlue]确认便捷扫荡[/color]"
     },
@@ -139,6 +125,27 @@
         "next": [
             "back_main_screen_and_stop"
         ],
+        "interrupt": [
+            "use_energy_not_enough_sign"
+        ],
         "focus": "[color:DeepSkyBlue]体力不足[/color]"
+    },
+    "use_energy_finish": {
+        "recognition": "TemplateMatch",
+        "template": "Use_energy/sweep_finish.png",
+        "roi": [
+            599,
+            422,
+            79,
+            59
+        ],
+        "action": "Click",
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "interrupt": [
+            "use_energy_finish"
+        ],
+        "focus": "[color:DeepSkyBlue]扫荡完成[/color]"
     }
 }

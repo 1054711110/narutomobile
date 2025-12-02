@@ -440,7 +440,10 @@ enc_temp_folder/*
 .nuke/temp/*
 
 # Build
-deps
+deps/*
+!deps/tools/
+deps/tools/*
+!deps/tools/*.schema.json
 build
 install
 
@@ -464,3 +467,7 @@ install/debug/maa.log
 /.nicegui
 /debug
 .nicegui/storage-general.json
+.venv
+
+config
+assets/resource/model/ocr
