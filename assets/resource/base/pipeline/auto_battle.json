@@ -327,6 +327,8 @@
   "click_All_skill": {
     "recognition": "TemplateMatch",
     "template": "Weekly_win/battle_emoji.png",
+    "green_mask": true,
+    "threshold": 0.5,
     "roi": [
       5,
       267,

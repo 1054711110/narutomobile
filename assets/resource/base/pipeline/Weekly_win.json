@@ -130,7 +130,7 @@
             127,
             154
         ],
-        "threshold": 0.45,
+        "green_mask": true,
         "next": [
             "battle_end",
             "battle_tips"
