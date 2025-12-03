@@ -49,7 +49,6 @@
             48
         ],
         "action": "DoNothing",
-        "threshold": 0.2,
         "next": [
             "sky_ground_mode"
         ],
