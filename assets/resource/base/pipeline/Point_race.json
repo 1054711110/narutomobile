@@ -76,9 +76,24 @@
         "action": "Click",
         "post_wait_freezes": 500,
         "next": [
+            "point_race_chanllenge_limit",
             "point_race_chanllenge_enter",
             "wait_for_select_opponent"
         ]
+    },
+    "point_race_chanllenge_limit": {
+        "recognition": "TemplateMatch",
+        "template": "Point_race/tip_of_buy.png",
+        "roi": [
+            180,
+            288,
+            1100,
+            225
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "focus": "[color:DeepSkyBlue]积分赛挑战次数已用完[/color]"
     },
     "wait_for_select_opponent": {
         "recognition": "TemplateMatch",
@@ -105,7 +120,9 @@
         "action": {
             "type": "Click"
         },
-        "next": "point_race_chanllenge_finished"
+        "next": "point_race_chanllenge_finished",
+        "timeout": 60000,
+        "focus": "[color:DeepSkyBlue]进入积分赛战斗[/color]"
     },
     "point_race_chanllenge_finished": {
         "recognition": "OCR",
@@ -120,7 +137,8 @@
         "next": [
             "point_race_chanllenge_finished",
             "back_main_screen_and_stop"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]积分赛战斗结束[/color]"
     },
     "point_race_get_chanllenge_button": {
         "recognition": "OCR",
