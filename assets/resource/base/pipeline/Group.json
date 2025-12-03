@@ -12,9 +12,7 @@
     "group_entry": {
         "recognition": "TemplateMatch",
         "template": [
-            "Group/group_entry_white.png",
-            "Group/group.png",
-            "Group/group_blue.png"
+            "home/组织"
         ],
         "threshold": 0.7,
         "action": "Click",
@@ -662,7 +660,7 @@
     },
     "pursuit_dawn_organization_entry": {
         "recognition": "TemplateMatch",
-        "template": "Group/group.png",
+        "template": "home/组织",
         "green_mask": true,
         "action": "Click",
         "next": [
