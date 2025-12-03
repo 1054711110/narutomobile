@@ -12,7 +12,7 @@ import argparse
 import platform
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8") # type: ignore
+sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
 
 
 def get_platform_tag():
@@ -93,7 +93,6 @@ def download_dependencies(deps_dir, platform_tag):
             str(deps_path),
             "--platform",
             platform_tag,
-            "--only-binary=:all:",
         ]
 
         print(f"执行命令: {' '.join(cmd)}")
@@ -132,7 +131,6 @@ def download_dependencies(deps_dir, platform_tag):
                     str(requirements_file),
                     "-d",
                     str(deps_path),
-                    "--only-binary=:all:",
                 ]
 
                 print(f"执行回退命令: {' '.join(cmd_fallback)}")
