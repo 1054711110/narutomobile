@@ -117,7 +117,10 @@
             170
         ],
         "action": "Click",
-        "next": "back_main_screen_and_stop"
+        "next": [
+            "point_race_chanllenge_finished",
+            "back_main_screen_and_stop"
+        ]
     },
     "point_race_get_chanllenge_button": {
         "recognition": "OCR",
