@@ -86,7 +86,7 @@ def download_dependencies(deps_dir, platform_tag):
             sys.executable,
             "-m",
             "pip",
-            "download",
+            "install",
             "-r",
             str(requirements_file),
             "-d",
