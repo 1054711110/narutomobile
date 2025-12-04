@@ -9,7 +9,7 @@ default_version = "3.12.9"
 default_arch = "amd64"
 default_tmp_dir = "tmp"
 default_install_path = "install"
-default_is_embed = True
+default_is_embed = False
 
 
 def get_args():
