@@ -89,7 +89,7 @@ def download_dependencies(deps_dir, platform_tag):
             "install",
             "-r",
             str(requirements_file),
-            "-d",
+            "--target",
             str(deps_path),
         ]
 
