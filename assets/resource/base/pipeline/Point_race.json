@@ -58,7 +58,7 @@
             "point_race_main_screen_entry"
         ],
         "post_delay": 800,
-        "focus": "[color:DeepSkyBlue]组织主界面入口[/color]"
+        "focus": "[color:DeepSkyBlue]积分赛主界面入口[/color]"
     },
     "point_race_in_center_enter": {
         "recognition": "TemplateMatch",
