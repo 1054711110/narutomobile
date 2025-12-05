@@ -1,7 +1,13 @@
-name: mirrorchyan
+name: mirrorchyan_release
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        default: ""
+        required: false
+  release:
+    types: [released]
 
 jobs:
   mirrorchyan:
@@ -36,6 +42,8 @@ jobs:
           filename: "MaaAutoNaruto-win-x86_64-*.zip"
           pick_files: '["resource", "interface.json", "agent", "python"]'
           exclude_files: '["resource/model/ocr/**"]'
+          filename: ${{ format('MaaAutoNaruto-{0}-{1}-*', matrix.os, matrix.arch) }}
+          tag: ${{ inputs.tag }}
           mirrorchyan_rid: MaaAutoNaruto
 
           owner: duorua
