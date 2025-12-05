@@ -7,7 +7,7 @@
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
     "agent": {
-        "child_exec": "python",
+        "child_exec": "{PROJECT_DIR}/../.venv/Scripts/python.exe",
         "child_args": [
             "-u",
             "{PROJECT_DIR}/../agent/main.py"
