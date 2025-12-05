@@ -415,7 +415,7 @@ def main():
     is_dev_mode = current_version == "DEBUG"
 
     # 如果是Linux系统，启动虚拟环境
-    if sys.platform.startswith("linux"):
+    if sys.platform.startswith("linux") or is_dev_mode:
         ensure_venv_and_relaunch_if_needed()
 
         # check_and_install_dependencies()

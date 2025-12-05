@@ -7,7 +7,7 @@
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
     "agent": {
-        "child_exec": "python",
+        "child_exec": "{PROJECT_DIR}/../.venv/Scripts/python.exe",
         "child_args": [
             "-u",
             "{PROJECT_DIR}/../agent/main.py"
@@ -66,9 +66,8 @@
         {
             "name": "组织",
             "entry": "group",
-            "doc": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]",
             "default_check": true,
-            "description": "包含祈福签到和领奖，追击晓组织领奖。"
+            "description": "包含祈福签到和领奖，追击晓组织领奖。[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
             "name": "积分赛",
@@ -108,7 +107,7 @@
         {
             "name": "任务集会所(beta)",
             "entry": "mission_office",
-            "description": "[size:15][color:tomato]目前仅能接三个任务,不会刷新。要拿满奖励请手动完成[/color][/size]",
+            "description": "目前仅能接三个任务,不会刷新。买了超影要拿满奖励请手动完成",
             "default_check": true
         },
         {
@@ -124,7 +123,7 @@
         {
             "name": "忍法帖",
             "entry": "ninjia_book",
-            "doc": "[size:15]开启后会领取忍法帖升级的[color:red]全部奖励[/color]，需要攒体验卡的不要用！[/size]",
+            "description": "开启后会领取忍法帖升级的[color:red]全部奖励[/color]，需要攒体验卡的不要用！",
             "option": [
                 "是否领取体验卡宝箱",
                 "是否领取奖励"
@@ -140,7 +139,6 @@
         {
             "name": "邮箱",
             "entry": "mail",
-            "doc": "[size:15][color:tomato]最近由于十周年情报社容易出bug,可以关闭这个功能用于检查情报社是否正常完成[/color][/size]",
             "default_check": true
         },
         {
@@ -152,7 +150,7 @@
             "name": "周胜(连点器)",
             "entry": "weekly_win",
             "option": [
-                "匹配还是排位",
+                "打排位",
                 "胜利一次就退出"
             ]
         },
@@ -194,28 +192,11 @@
             "cases": [
                 {
                     "name": "安卓QQ",
-                    "pipeline_override": {
-                        "start_naruto": {
-                            "package": "com.tencent.KiHan"
-                        },
-                        "shut_qq": {
-                            "package": "com.tencent.mobileqq"
-                        },
-                        "shut_wechat": {
-                            "package": "com.tencent.mm"
-                        }
-                    }
+                    "pipeline_override": {}
                 },
                 {
                     "name": "苹果",
-                    "pipeline_override": {
-                        "close_ninjia_book_wechat_share": {
-                            "package": "com.tencent.xin"
-                        },
-                        "close_wechat_app": {
-                            "package": "com.tencent.xin"
-                        }
-                    }
+                    "pipeline_override": {}
                 }
             ]
         },
@@ -257,12 +238,11 @@
                 }
             ]
         },
-        "匹配还是排位": {
+        "打排位": {
             "type": "switch",
-            "default_case": "匹配",
             "cases": [
                 {
-                    "name": "匹配",
+                    "name": "No",
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
                             "next": [
@@ -277,7 +257,7 @@
                     }
                 },
                 {
-                    "name": "排位(beta)",
+                    "name": "Yes",
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
                             "next": [
@@ -310,11 +290,10 @@
             ]
         },
         "是否领取体验卡宝箱": {
-            "type": "select",
-            "default_case": "否",
+            "type": "switch",
             "cases": [
                 {
-                    "name": "是",
+                    "name": "Yes",
                     "pipeline_override": {
                         "get_ninjia_book_award": {
                             "template": [
@@ -333,7 +312,7 @@
                     }
                 },
                 {
-                    "name": "否",
+                    "name": "No",
                     "pipeline_override": {
                         "get_ninjia_book_award": {
                             "template": [
@@ -380,6 +359,7 @@
             ]
         },
         "选择小游戏": {
+            "type": "select",
             "cases": [
                 {
                     "name": "聚宝试炼领取奖励",
@@ -392,7 +372,7 @@
             ]
         },
         "胜利一次就退出": {
-            "type": "select",
+            "type": "switch",
             "cases": [
                 {
                     "name": "No",
@@ -409,9 +389,10 @@
             ]
         },
         "借组织助战": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "开,借人",
+                    "name": "Yes",
                     "pipeline_override": {
                         "team_dash_invite_page": {
                             "next": [
@@ -421,7 +402,7 @@
                     }
                 },
                 {
-                    "name": "关,不借人",
+                    "name": "No",
                     "pipeline_override": {
                         "team_dash_invite_page": {
                             "next": [
@@ -433,9 +414,10 @@
             ]
         },
         "积分赛战斗选项": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "开启战斗",
+                    "name": "Yes",
                     "pipeline_override": {
                         "point_race": {
                             "next": [
@@ -446,7 +428,7 @@
                     }
                 },
                 {
-                    "name": "关闭战斗",
+                    "name": "No",
                     "pipeline_override": {
                         "point_race": {
                             "next": [
