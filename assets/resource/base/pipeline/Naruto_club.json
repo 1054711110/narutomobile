@@ -29,7 +29,6 @@
         "focus": "[color:DeepSkyBlue]点击情报社[/color]"
     },
     "swipe_for_comments": {
-        "next": ["[JumpBack]swipe_for_comments"],
         "recognition": "DirectHit",
         "action": "Swipe",
         "begin": [
@@ -147,7 +146,9 @@
             311,
             205
         ],
-        "next": ["close_surf_post"],
+        "next": [
+            "close_surf_post"
+        ],
         "focus": "[color:red]暂无评论可供点赞[/color]"
     },
     "second_like": {
@@ -184,7 +185,9 @@
         "threshold": 0.8,
         "action": "Click",
         "post_delay": 1500,
-        "next": ["close_surf_post"],
+        "next": [
+            "close_surf_post"
+        ],
         "focus": "[color:DeepSkyBlue]第四个点赞任务[/color]"
     },
     "close_surf_post": {
@@ -405,12 +408,16 @@
             "feed_pig_done"
         ],
         "timeout": 10000,
-        "on_error": ["feed_pig_not_found"],
+        "on_error": [
+            "feed_pig_not_found"
+        ],
         "post_delay": 1500,
         "focus": "[color:DeepSkyBlue]喂豚豚[/color]"
     },
     "feed_pig_not_found": {
-        "next": ["close_feed_pig"],
+        "next": [
+            "close_feed_pig"
+        ],
         "focus": "[color:DeepSkyBlue]无法找到喂豚豚按钮[/color]"
     },
     "weekly_feed_pig": {
@@ -495,7 +502,9 @@
         "focus": "[color:DeepSkyBlue]上滑动提交任务[/color]"
     },
     "glod_helper_not_found": {
-        "next": ["swipe_for_club_submit"],
+        "next": [
+            "swipe_for_club_submit"
+        ],
         "focus": "[color:red]没有找到金币助手任务[/color]"
     },
     "gold_helper_undone": {
@@ -564,8 +573,10 @@
         ],
         "next": [
             "check_club_all_submit",
+            "[JumpBACK]naruto_club_duplicate_claim",
             "[JumpBack]club_submit"
         ],
+        "on_error": [],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]滑动提交任务[/color]"
     },
@@ -586,6 +597,32 @@
         "action": "Click",
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]提交任务[/color]"
+    },
+    "naruto_club_duplicate_claim": {
+        "recognition": "OCR",
+        "roi": [
+            518,
+            327,
+            239,
+            64
+        ],
+        "expected": [
+            "重复"
+        ],
+        "next": [
+            "naruto_club_back_post"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]土豆[/color]"
+    },
+    "naruto_club_back_post": {
+        "action": "ClickKey",
+        "key": 4,
+        "next": [
+            "benefit_station"
+        ],
+        "post_wait_freezes": 500,
+        "focus": "[color:DeepSkyBlue]退回话题[/color]"
     },
     "start_qq": {
         "action": "StartApp",
@@ -656,9 +693,27 @@
             124,
             53
         ],
+        "timeout": 5000,
+        "on_error": [
+            "naruto_club_in_loop_wheel"
+        ],
         "action": "Click",
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]收到第一个奖励领取通知[/color]"
+    },
+    "naruto_club_in_loop_wheel": {
+        "recognition": "TemplateMatch",
+        "roi": [
+            464,
+            190,
+            387,
+            370
+        ],
+        "template": "Naruto_club/loop_wheel.png",
+        "next": [
+            "naruto_club_back_post"
+        ],
+        "focus": "[color:DeepSkyBlue]意志坚定[/color]"
     },
     "club_second_award": {
         "recognition": "TemplateMatch",
@@ -730,7 +785,9 @@
     },
     "no_third_award": {
         "recognition": "DirectHit",
-        "next": ["close_naruto_club"],
+        "next": [
+            "close_naruto_club"
+        ],
         "focus": "[color:red]无法领取第三奖励[/color]"
     },
     "club_third_award": {
@@ -780,7 +837,8 @@
         ],
         "action": "Click",
         "next": [
-            "roger_club_third_award"
+            "club_third_award_done",
+            "[JumpBack]roger_club_third_award"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]收到第三个奖励领取通知[/color]"

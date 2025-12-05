@@ -17,11 +17,43 @@
         ],
         "action": "Click",
         "next": [
-            "no_free_headhunt",
-            "[JumpBack]free_headhunt_waiting"
+            "headhunt_selected_advanced_recruit",
+            "headhunt_to_advanced_recruit"
         ],
         "post_delay": 3000,
         "focus": "[color:DeepSkyBlue]进入招募[/color]"
+    },
+    "headhunt_to_advanced_recruit": {
+        "recognition": "TemplateMatch",
+        "template": "Headhunt/headhunt.png",
+        "roi": [
+            4,
+            108,
+            210,
+            456
+        ],
+        "action": "Click",
+        "next": [
+            "headhunt_selected_advanced_recruit",
+            "[JumpBack]headhunt_to_advanced_recruit"
+        ],
+        "post_delay": 300
+    },
+    "headhunt_selected_advanced_recruit": {
+        "recognition": "TemplateMatch",
+        "template": "Headhunt/headhunt_selected.png",
+        "roi": [
+            0,
+            110,
+            224,
+            247
+        ],
+        "threshold": 0.9,
+        "next": [
+            "no_free_headhunt",
+            "[JumpBack]free_headhunt_waiting"
+        ],
+        "post_delay": 400
     },
     "no_free_headhunt": {
         "recognition": "TemplateMatch",
@@ -101,25 +133,31 @@
         ],
         "threshold": 0.6,
         "action": "Click",
-        "next": ["confrim_headhunt_recruit"],
+        "next": [
+            "confrim_headhunt_recruit"
+        ],
         "post_delay": 700,
         "focus": "[color:DeepSkyBlue]进行免费普通招募[/color]"
     },
     "confrim_headhunt_recruit": {
-        "recognition": "TemplateMatch",
-        "template": "Headhunt/confirm_free_headhunt.png",
+        "recognition": "OCR",
+        "expected": [
+            "确",
+            "认"
+        ],
         "roi": [
-            430,
-            523,
-            202,
-            75
+            353,
+            352,
+            614,
+            368
         ],
         "action": "Click",
         "next": [
             "top_secret_treasure_box_undone",
-            "top_secret_treasure_box_done"
+            "top_secret_treasure_box_done",
+            "[JumpBack]confrim_headhunt_recruit"
         ],
-        "post_delay": 300,
+        "post_delay": 400,
         "focus": "[color:DeepSkyBlue]确认免费普通招募[/color]"
     },
     "top_secret_treasure_box_undone": {
@@ -153,7 +191,9 @@
         "threshold": 0.9,
         "inverse": true,
         "post_delay": 300,
-        "next": ["back_main_screen_and_stop"],
+        "next": [
+            "back_main_screen_and_stop"
+        ],
         "focus": "[color:DeepSkyBlue]绝密宝匣已完成[/color]"
     },
     "top_secret_treasure_box_log": {
