@@ -45,13 +45,13 @@
         "template": [
             "home/积分赛"
         ],
-        "threshold": 0.7,
+        "threshold": 0.65,
         "action": "Click",
         "next": [
             "point_race_chanllenge_enter",
             "[JumpBack]point_race_main_screen_entry"
         ],
-        "post_delay": 800,
+        "post_delay": 500,
         "focus": "[color:DeepSkyBlue]积分赛主界面入口[/color]"
     },
     "point_race_in_center_enter": {
@@ -117,7 +117,7 @@
         "recognition": "TemplateMatch",
         "template": "SharedNode/chanllenge_rhombus.png",
         "action": "Click",
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 400,
         "next": [
             "point_race_chanllenge_limit",
             "point_race_chanllenge_enter",
@@ -128,10 +128,10 @@
         "recognition": "TemplateMatch",
         "template": "Point_race/tip_of_buy.png",
         "roi": [
-            541,
-            124,
-            195,
-            155
+            504,
+            133,
+            308,
+            163
         ],
         "next": [
             "back_main_screen_and_stop"
