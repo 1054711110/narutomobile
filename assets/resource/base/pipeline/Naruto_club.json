@@ -876,9 +876,7 @@
     },
     "shut_qq": {
         "action": "StopApp",
-        "package": "com.tencent.mobileqq",
-        "pre_delay": 1000,
-        "post_delay": 1000
+        "package": "com.tencent.mobileqq"
     },
     "shut_wechat": {
         "action": "StopApp",
