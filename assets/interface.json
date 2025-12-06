@@ -130,7 +130,7 @@
             "default_check": true
         },
         {
-            "name": "火影情报社（beta）",
+            "name": "火影情报社(beta)",
             "entry": "naruto_club",
             "default_check": true,
             "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
@@ -365,6 +365,14 @@
                     "pipeline_override": {
                         "mini_game": {
                             "next": "treasure_gathering_trial_award"
+                        }
+                    }
+                },
+                {
+                    "name": "山中花店",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "flower_shop"
                         }
                     }
                 }
