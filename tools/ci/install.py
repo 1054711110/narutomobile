@@ -144,7 +144,7 @@ def install_chores():
 
     if platform.system() == "Linux":
         shutil.copy2(
-            working_dir / "tools" / "ci" / "deploy_python_env_linux.sh",
+            working_dir / "tools" / "deploy_python_env_linux.sh",
             install_path / "deploy_python_env_linux.sh",
         )
 
