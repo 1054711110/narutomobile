@@ -8,7 +8,7 @@ from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
 
-from utils.logger import logger
+from utils.logger import logger, log_dir
 from utils import get_format_timestamp
 
 
@@ -72,7 +72,7 @@ class Screenshot(CustomAction):
 
         img = Image.fromarray(rgb_array)
 
-        save_dir = json.loads(argv.custom_action_param)["save_dir"]
+        save_dir = log_dir
         os.makedirs(save_dir, exist_ok=True)
         time_str = get_format_timestamp()
         img.save(f"{save_dir}/{time_str}.png")
