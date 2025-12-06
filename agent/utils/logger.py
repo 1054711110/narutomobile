@@ -8,12 +8,12 @@ _agent_dir = _utils_dir.parent  # agent 目录
 _project_root = _agent_dir.parent  # 项目根目录
 
 # 默认日志目录使用绝对路径
-_default_log_dir = _project_root / "debug" / "custom"
+log_dir = _project_root / "debug" / "custom"
 
 try:
     from loguru import logger as _logger
 
-    def setup_logger(log_dir: Path = _default_log_dir, console_level: str = "INFO"):
+    def setup_logger(log_dir: Path = log_dir, console_level: str = "INFO"):
         """
         Set up the logger with optional file logging.
 
