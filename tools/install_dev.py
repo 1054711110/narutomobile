@@ -77,6 +77,26 @@ except (subprocess.CalledProcessError, OSError) as e:
     sys.exit(1)
 
 
+# install Python dependents
+print("开始安装python依赖")
+cmd = [
+    "python",
+    "-m",
+    "pip",
+    "install",
+    "-r",
+    "./requirements.txt",
+    "-t",
+    "install/python/Lib/",
+]
+
+try:
+    subprocess.run(cmd, check=True)
+except (subprocess.CalledProcessError, OSError) as e:
+    print(f"Failed to install Python: {e}")
+    sys.exit(1)
+
+
 # install MFA
 def install_mfa():
     arch = get_dotnet_platform_tag()
