@@ -89,7 +89,15 @@
     ],
     "action": "Click",
     "post_wait_freezes": 300,
+    "next": "daily_mission",
+    "timeout": 3000,
     "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
+  },
+  "daily_mission": {
+    "recognition": "TemplateMatch",
+    "template": "SharedNode/daily_mission.png",
+    "action": "Click",
+    "focus": "[color:DeepSkyBlue]进入每日任务[/color]"
   },
   "swipe_for_award_center_find": {
     "recognition": "TemplateMatch",
