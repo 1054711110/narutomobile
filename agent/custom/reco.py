@@ -77,14 +77,10 @@ class FindToChallenge(CustomRecognition):
                 )
 
             if enemySenryoku > team_senryoku:
-                logger.warning(
-                    f"敌队{idx + 1}的战力 {enemySenryoku // 10000}万 大于小队战力 {team_senryoku // 10000}万！"
-                )
+                logger.warning(f"打不过敌队{idx + 1}！")
                 continue
 
-            logger.info(
-                f"敌队{idx + 1}的战力 {enemySenryoku // 10000}万 小于小队战力 {team_senryoku // 10000}万！"
-            )
+            logger.info(f"可以挑战敌队{idx + 1}！")
             reco_detail = context.run_recognition(
                 "point_race_get_chanllenge_button",
                 argv.image,
