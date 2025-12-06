@@ -31,9 +31,6 @@ parser.add_argument(
     "--install_dir", type=str, default="install", help="Install directory"
 )
 parser.add_argument(
-    "--mfa_version", type=str, default=DEFAULT_MFA_VERSION, help="MFA version"
-)
-parser.add_argument(
     "--arch", type=str, default="amd64", help="Architecture (amd64 or win32)"
 )
 parser.add_argument(
