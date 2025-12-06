@@ -250,7 +250,7 @@
         "focus": "[color:DeepSkyBlue]不在战斗[/color]"
     },
     "advanture_not_in_auto_fight": {
-        "recognition": "OCR",
+        "recognition": "TemplateMatch",
         "template": "Advanture/normal_attack.png",
         "roi": [
             958,
