@@ -1,13 +1,12 @@
 {
     "name": "MaaAutoNaruto",
-    "version": "v0.2.7",
+    "github": "https://github.com/duorua/narutomobile",
+    "description": "本软件开源免费，受AGPL v3协议保护。",
+    "license": "LICENSE",
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
-    "url": "https://github.com/duorua/narutomobile",
-    "mfa_max_version": "v2.0.3",
-    "mfa_min_version": "v2.0.3",
     "agent": {
-        "child_exec": "python",
+        "child_exec": "{PROJECT_DIR}/../.venv/Scripts/python.exe",
         "child_args": [
             "-u",
             "{PROJECT_DIR}/../agent/main.py"
@@ -35,53 +34,56 @@
             "option": [
                 "账号属性"
             ],
-            "check": true
+            "default_check": true
         },
         {
             "name": "轻松助手",
-            "entry": "easy_helper",
-            "check": true
+            "entry": "easy_helper"
         },
         {
             "name": "招财",
             "entry": "get_chopper",
-            "check": true
+            "default_check": true,
+            "description": "使用每日免费招财次数。"
         },
         {
             "name": "排行榜",
             "entry": "leaderboard",
-            "doc": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]",
-            "check": true
+            "default_check": true,
+            "description": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
             "name": "送体力",
             "entry": "give_energy",
-            "check": true
+            "default_check": true
         },
         {
             "name": "每日分享",
             "entry": "share",
-            "check": true
+            "default_check": true
         },
         {
             "name": "组织",
             "entry": "group",
-            "doc": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]",
-            "check": true
+            "default_check": true,
+            "description": "包含祈福签到和领奖，追击晓组织领奖。[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
             "name": "积分赛",
             "entry": "point_race",
-            "check": true
+            "description": "领取当日奖励并尝试进行一次挑战。",
+            "option": [
+                "积分赛战斗选项"
+            ],
+            "default_check": true
         },
         {
             "name": "试炼",
             "entry": "practice_place",
             "option": [
-                "不做修行",
-                "等待生存扫荡时间选择"
+                "不做修行"
             ],
-            "check": true
+            "default_check": true
         },
         {
             "name": "小队突袭",
@@ -89,69 +91,67 @@
             "option": [
                 "借组织助战"
             ],
-            "check": true
+            "default_check": true
         },
         {
             "name": "免费招募",
             "entry": "headhunt",
-            "check": true
+            "default_check": true
         },
         {
             "name": "月签到和活动",
             "entry": "activity",
-            "check": true
+            "default_check": true
         },
         {
             "name": "任务集会所(beta)",
             "entry": "mission_office",
-            "doc": "[size:15][color:tomato]有超影的时候,依旧只会接当前显示的三个任务,不会刷新。要拿满奖励记得关[/color][/size]",
-            "check": true
+            "description": "目前仅能接三个任务,不会刷新。买了超影要拿满奖励请手动完成",
+            "default_check": true
         },
         {
-            "name": "刷体力(beta)",
+            "name": "刷体力(精英副本)",
             "entry": "use_energy",
-            "check": true
+            "default_check": true
         },
         {
             "name": "丰饶之间",
             "entry": "rich_room",
-            "check": true
+            "default_check": true
         },
         {
             "name": "忍法帖",
             "entry": "ninjia_book",
-            "doc": "[size:15]开启后会领取忍法帖升级的[color:red]全部奖励[/color]，需要攒体验卡的不要用！[/size]",
+            "description": "开启后会领取忍法帖升级的[color:red]全部奖励[/color]，需要攒体验卡的不要用！",
             "option": [
                 "是否领取体验卡宝箱",
                 "是否领取奖励"
             ],
-            "check": true
+            "default_check": true
         },
         {
-            "name": "火影情报社",
+            "name": "火影情报社(beta)",
             "entry": "naruto_club",
-            "check": true
+            "default_check": true,
+            "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
         },
         {
             "name": "邮箱",
             "entry": "mail",
-            "doc": "[size:15][color:tomato]最近由于十周年情报社容易出bug,可以关闭这个功能用于检查情报社是否正常完成[/color][/size]",
-            "check": true
+            "default_check": true
         },
         {
             "name": "活跃宝箱",
             "entry": "liveness_award",
-            "check": true
+            "default_check": true
         },
         {
-            "name": "周胜(beta)",
+            "name": "周胜(连点器)",
             "entry": "weekly_win",
             "option": [
-                "匹配还是排位",
-                "胜利一次就退出任务"
-            ],
-            "doc": "[size:15][color:tomato]目前胜利一次就退出功能还不稳定,可能点掉胜利界面继续战斗[/color][/size]",
-            "check": true
+                "打排位",
+                "胜利一次就退出"
+            ]
         },
         {
             "name": "冒险副本(beta)",
@@ -186,35 +186,22 @@
     ],
     "option": {
         "账号属性": {
+            "type": "select",
+            "default_case": "安卓QQ",
             "cases": [
                 {
                     "name": "安卓QQ",
-                    "pipeline_override": {
-                        "start_naruto": {
-                            "package": "com.tencent.KiHan"
-                        },
-                        "shut_qq": {
-                            "package": "com.tencent.mobileqq"
-                        },
-                        "shut_wechat": {
-                            "package": "com.tencent.mm"
-                        }
-                    }
+                    "pipeline_override": {}
                 },
                 {
                     "name": "苹果",
-                    "pipeline_override": {
-                        "close_ninjia_book_wechat_share": {
-                            "package": "com.tencent.xin"
-                        },
-                        "close_wechat_app": {
-                            "package": "com.tencent.xin"
-                        }
-                    }
+                    "pipeline_override": {}
                 }
             ]
         },
         "不做修行": {
+            "type": "select",
+            "default_case": "做修行",
             "cases": [
                 {
                     "name": "做修行",
@@ -250,38 +237,11 @@
                 }
             ]
         },
-        "等待生存扫荡时间选择": {
+        "打排位": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "等待20秒",
-                    "pipeline_override": {
-                        "survival_challenge_sweep_ticket_confirm": {
-                            "post_delay": 20000
-                        }
-                    }
-                },
-                {
-                    "name": "等待30秒",
-                    "pipeline_override": {
-                        "survival_challenge_sweep_ticket_confirm": {
-                            "post_delay": 30000
-                        }
-                    }
-                },
-                {
-                    "name": "等待40秒",
-                    "pipeline_override": {
-                        "survival_challenge_sweep_ticket_confirm": {
-                            "post_delay": 40000
-                        }
-                    }
-                }
-            ]
-        },
-        "匹配还是排位": {
-            "cases": [
-                {
-                    "name": "匹配",
+                    "name": "No",
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
                             "next": [
@@ -296,14 +256,9 @@
                     }
                 },
                 {
-                    "name": "排位(beta)",
+                    "name": "Yes",
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
-                            "next": [
-                                "weekly_win_rank"
-                            ]
-                        },
-                        "weekly_win_entry": {
                             "next": [
                                 "weekly_win_rank"
                             ]
@@ -313,6 +268,7 @@
             ]
         },
         "战斗时是否点击普攻": {
+            "type": "select",
             "cases": [
                 {
                     "name": "否",
@@ -333,9 +289,10 @@
             ]
         },
         "是否领取体验卡宝箱": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "是",
+                    "name": "Yes",
                     "pipeline_override": {
                         "get_ninjia_book_award": {
                             "template": [
@@ -354,7 +311,7 @@
                     }
                 },
                 {
-                    "name": "否",
+                    "name": "No",
                     "pipeline_override": {
                         "get_ninjia_book_award": {
                             "template": [
@@ -374,6 +331,8 @@
             ]
         },
         "是否领取奖励": {
+            "type": "select",
+            "default_case": "否",
             "cases": [
                 {
                     "name": "是",
@@ -399,6 +358,7 @@
             ]
         },
         "选择小游戏": {
+            "type": "select",
             "cases": [
                 {
                     "name": "聚宝试炼领取奖励",
@@ -407,37 +367,39 @@
                             "next": "treasure_gathering_trial_award"
                         }
                     }
+                },
+                {
+                    "name": "山中花店",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "flower_shop"
+                        }
+                    }
                 }
             ]
         },
-        "胜利一次就退出任务": {
+        "胜利一次就退出": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "不开启,无限打",
-                    "pipeline_override": {
-                        "weekly_win_success": {
-                            "next": [
-                                "weekly_win_match_fight"
-                            ]
-                        }
-                    }
+                    "name": "No",
+                    "pipeline_override": {}
                 },
                 {
-                    "name": "开启,胜利一次就退出任务",
+                    "name": "Yes",
                     "pipeline_override": {
                         "weekly_win_success": {
-                            "next": [
-                                "back_main_screen_and_stop"
-                            ]
+                            "next": "back_main_screen_and_stop"
                         }
                     }
                 }
             ]
         },
         "借组织助战": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "开,借人",
+                    "name": "Yes",
                     "pipeline_override": {
                         "team_dash_invite_page": {
                             "next": [
@@ -447,11 +409,37 @@
                     }
                 },
                 {
-                    "name": "关,不借人",
+                    "name": "No",
                     "pipeline_override": {
                         "team_dash_invite_page": {
                             "next": [
                                 "dash_or_exit"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "积分赛战斗选项": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "point_race": {
+                            "next": [
+                                "point_race_check_in_main_screen",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "point_race_ac_entry_undone": {
+                            "next": [
+                                "back_main_screen_and_stop"
                             ]
                         }
                     }

@@ -2,10 +2,8 @@
     "advanture": {
         "next": [
             "advanture_entry",
-            "advanture_in_level_roll"
-        ],
-        "interrupt": [
-            "back_main_screen"
+            "advanture_in_level_roll",
+            "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入冒险副本子任务[/color]"
     },
@@ -20,10 +18,8 @@
         ],
         "action": "Click",
         "next": [
-            "advanture_in_level_roll"
-        ],
-        "interrupt": [
-            "advanture_entry"
+            "advanture_in_level_roll",
+            "[JumpBack]advanture_entry"
         ],
         "post_delay": 400,
         "focus": "[color:DeepSkyBlue]进入冒险副本入口[/color]"
@@ -39,10 +35,8 @@
         ],
         "threshold": 0.9,
         "next": [
-            "advanture_check_no_next_roll"
-        ],
-        "interrupt": [
-            "advanture_to_next_roll"
+            "advanture_check_no_next_roll",
+            "[JumpBack]advanture_to_next_roll"
         ],
         "focus": "[color:DeepSkyBlue]已经在冒险副本[/color]"
     },
@@ -118,10 +112,8 @@
             "advanture_in_fight",
             "advanture_anime",
             "advanture_confirm_advanced_option",
-            "use_energy_not_enough_sign"
-        ],
-        "interrupt": [
-            "sleep_500ms"
+            "use_energy_not_enough_sign",
+            "[JumpBack]sleep_500ms"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
@@ -156,10 +148,8 @@
         "action": "Click",
         "next": [
             "advanture_skip",
-            "advanture_in_fight"
-        ],
-        "interrupt": [
-            "advanture_anime"
+            "advanture_in_fight",
+            "[JumpBack]advanture_anime"
         ],
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]剧情动画[/color]"
@@ -178,10 +168,8 @@
         ],
         "action": "Click",
         "next": [
-            "advanture_in_fight"
-        ],
-        "interrupt": [
-            "advanture_skip"
+            "advanture_in_fight",
+            "[JumpBack]advanture_skip"
         ],
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]跳过[/color]"
@@ -212,6 +200,36 @@
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]战斗中[/color]"
     },
+    "advanture_back_fight": {
+        "recognition": "OCR",
+        "expected": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "挑",
+            "战"
+        ],
+        "roi": [
+            491,
+            0,
+            306,
+            133
+        ],
+        "next": [
+            "advanture_not_in_fight",
+            "[JumpBack]advanture_not_in_auto_fight",
+            "[JumpBack]wait_5_second"
+        ],
+        "post_delay": 900,
+        "focus": "[color:DeepSkyBlue]战斗中[/color]"
+    },
     "advanture_auto_fight": {
         "recognition": "OCR",
         "expected": [
@@ -226,11 +244,9 @@
         ],
         "action": "Click",
         "next": [
-            "advanture_not_in_fight"
-        ],
-        "interrupt": [
-            "advanture_not_in_auto_fight",
-            "wait_5_second"
+            "advanture_not_in_fight",
+            "[JumpBack]advanture_not_in_auto_fight",
+            "[JumpBack]wait_5_second"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]打开自动战斗[/color]"
@@ -247,7 +263,9 @@
             "6",
             "7",
             "8",
-            "9"
+            "9",
+            "挑",
+            "战"
         ],
         "roi": [
             491,
@@ -258,13 +276,14 @@
         "inverse": true,
         "next": [
             "advanture_win",
-            "advanture_lost"
+            "advanture_lost",
+            "advanture_back_fight"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]不在战斗[/color]"
     },
     "advanture_not_in_auto_fight": {
-        "recognition": "OCR",
+        "recognition": "TemplateMatch",
         "template": "Advanture/normal_attack.png",
         "roi": [
             958,
@@ -288,10 +307,8 @@
         ],
         "action": "Click",
         "next": [
-            "advanture_new_level_undone"
-        ],
-        "interrupt": [
-            "advanture_win"
+            "advanture_new_level_undone",
+            "[JumpBack]advanture_win"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]胜利啦[/color]"

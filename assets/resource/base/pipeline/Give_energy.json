@@ -1,11 +1,9 @@
 {
     "give_energy": {
         "next": [
-            "energy_entry"
-        ],
-        "interrupt": [
-            "give_energy_done",
-            "back_main_screen"
+            "energy_entry",
+            "[JumpBack]give_energy_done",
+            "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入送体力子任务[/color]"
     },
@@ -24,9 +22,7 @@
         "action": "Click",
         "duration": 100,
         "next": [
-            "sent_energy"
-        ],
-        "interrupt": [
+            "sent_energy",
             "energy_entry"
         ],
         "post_delay": 700,
@@ -82,9 +78,7 @@
         ],
         "action": "Click",
         "next": [
-            "confirm_get_energy"
-        ],
-        "interrupt": [
+            "confirm_get_energy",
             "close_energy"
         ],
         "post_wait_freezes": 500,
@@ -99,6 +93,7 @@
         ],
         "action": "Click",
         "next": [
+            "confirm_get_energy",
             "close_energy"
         ],
         "post_wait_freezes": 200,
@@ -115,10 +110,7 @@
         ],
         "action": "Click",
         "next": [
-            "check_main_screen_and_stop"
-        ],
-        "interrupt": [
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭送体力[/color]"

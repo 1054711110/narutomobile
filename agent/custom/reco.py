@@ -2,7 +2,7 @@ from maa.define import Rect
 from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
 from maa.context import Context
-
+import time
 from numpy import ndarray, log
 
 from utils.logger import logger
@@ -77,14 +77,10 @@ class FindToChallenge(CustomRecognition):
                 )
 
             if enemySenryoku > team_senryoku:
-                logger.warning(
-                    f"敌队{idx + 1}的战力 {enemySenryoku // 10000}万 大于小队战力 {team_senryoku // 10000}万！"
-                )
+                logger.warning(f"打不过敌队{idx + 1}!")
                 continue
 
-            logger.info(
-                f"敌队{idx + 1}的战力 {enemySenryoku // 10000}万 小于小队战力 {team_senryoku // 10000}万！"
-            )
+            logger.info(f"可以挑战敌队{idx + 1}!")
             reco_detail = context.run_recognition(
                 "point_race_get_chanllenge_button",
                 argv.image,
@@ -110,4 +106,132 @@ class FindToChallenge(CustomRecognition):
         return CustomRecognition.AnalyzeResult(
             box=None,
             detail={},
+        )
+
+
+def get_seed_count(context: Context, image: ndarray, roi: list[int]) -> int | None:
+    """
+    在选花界面中寻找可以种的花
+    """
+
+    reco_detail = context.run_recognition(
+        "GetSenryokuText",
+        image,
+        {
+            "GetSenryokuText": {"roi": roi},
+        },
+    )
+
+    if reco_detail is None:
+        logger.warning(f"ROI{roi}:种子数量识别失败(识别器返回None)")
+        return None
+
+    if not reco_detail.hit:
+        logger.debug(f"ROI{roi}:未识别到种子文本(hit=False)")
+        logger.warning(f"ROI{roi}:无法读取到种子数量文本!")
+        return None
+
+    if reco_detail.best_result is None:
+        logger.warning(f"ROI{roi}:识别到文本但解析失败(best_result为空)")
+        return None
+
+    source_text = str(reco_detail.best_result.text).strip().replace(" ", "")
+    logger.debug(f"ROI{roi}:识别到种子文本:{source_text}")
+
+    prefix = "剩余"
+    if prefix not in source_text:
+        logger.warning(f"ROI{roi}:种子文本无'剩余'关键字,识别文本:{source_text}")
+        return None
+
+    colon_index = source_text.find(prefix) + len(prefix)
+    if colon_index >= len(source_text) or source_text[colon_index] not in [":", "："]:
+        logger.warning(f"ROI{roi}:种子文本格式错误(无有效冒号),识别文本:{source_text}")
+        return None
+
+    slash_index = source_text.find("/", colon_index + 1)
+    if slash_index == -1:
+        logger.warning(f"ROI{roi}:种子文本无'/'分隔符,识别文本:{source_text}")
+        return None
+
+    seed_str = source_text[colon_index + 1 : slash_index]
+    if not seed_str.isdigit():
+        logger.warning(
+            f"ROI{roi}:种子数量不是数字,实际:{seed_str}(识别文本:{source_text})"
+        )
+        return None
+
+    current_seeds = int(seed_str)
+    logger.info(f"ROI{roi}:解析到种子数量:{current_seeds}/10")
+    return current_seeds
+
+
+@AgentServer.custom_recognition("FindPlantableFlower")
+class FindPlantableFlower(CustomRecognition):
+    def analyze(
+        self,
+        context: Context,
+        argv: CustomRecognition.AnalyzeArg,
+    ) -> CustomRecognition.AnalyzeResult:
+        flower_config = [
+            (
+                [400, 352, 113, 34],
+                [419, 275, 81, 81],
+            ),
+            (
+                [504, 350, 113, 44],
+                [523, 273, 81, 81],
+            ),
+            (
+                [605, 352, 116, 34],
+                [624, 275, 81, 81],
+            ),
+            (
+                [711, 352, 106, 37],
+                [730, 275, 81, 81],
+            ),
+            (
+                [807, 352, 118, 42],
+                [832, 285, 64, 66],
+            ),
+        ]
+
+        logger.info("开始检测可种植的花(需10个种子)...")
+
+        # 遍历5种花,依次检查种子数量
+        for flower_idx, (seed_roi, btn_roi) in enumerate(flower_config):
+            flower_num = flower_idx + 1
+            logger.info(
+                f"正在检查第{flower_num}种花(种子ROI:{seed_roi},按钮ROI:{btn_roi})..."
+            )
+
+            current_seeds = get_seed_count(context, argv.image, seed_roi)
+            if current_seeds is None:
+                logger.warning(f"第{flower_num}种花:种子数量读取失败,跳过")
+                continue
+
+            # 判断种子是否足够(≥10)
+            if current_seeds < 10:
+                logger.info(f"第{flower_num}种花:种子不足({current_seeds}/10),跳过")
+                continue
+
+            # 种子充足,返回按钮位置
+            logger.info(
+                f"第{flower_num}种花:种子充足({current_seeds}/10),使用预设按钮ROI点击"
+            )
+            btn_box = Rect(btn_roi[0], btn_roi[1], btn_roi[2], btn_roi[3])
+            return CustomRecognition.AnalyzeResult(
+                box=btn_box,
+                detail={
+                    "flower_num": flower_num,
+                    "seed_count": current_seeds,
+                    "btn_roi": btn_roi,
+                },
+            )
+
+        # 无可用种子或全识别失败
+        invalid_box = Rect(
+            0, 0, 1, 1
+        )  # 直接返回None的box会重试，所以我返回一个不影响的box
+        return CustomRecognition.AnalyzeResult(
+            box=invalid_box, detail={"has_valid_target": False}
         )

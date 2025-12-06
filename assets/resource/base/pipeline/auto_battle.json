@@ -1,12 +1,7 @@
 {
   "is_in_battle_scene": {
     "recognition": "TemplateMatch",
-    "template": [
-      "auto_battle/normal_attack.png",
-      "auto_battle/normal_attack_1.png",
-      "auto_battle/normal_attack_pressed.png",
-      "auto_battle/normal_attack_left.png"
-    ],
+    "template": "auto_battle/normal_attack",
     "roi": [
       1063,
       513,
@@ -15,12 +10,12 @@
     ],
     "next": [
       "battle_detail",
-      "rich_room_peace"
+      "rich_room_peace",
+      "[JumpBack]has_attack_button"
     ],
-    "interrupt": [
-      "has_attack_button"
+    "on_error": [
+      "debug_stop"
     ],
-    "on_error": "debug_stop",
     "timeout": 3000,
     "pre_delay": 0,
     "post_delay": 0,
@@ -28,12 +23,7 @@
   },
   "has_attack_button": {
     "recognition": "TemplateMatch",
-    "template": [
-      "auto_battle/normal_attack.png",
-      "auto_battle/normal_attack_1.png",
-      "auto_battle/normal_attack_pressed.png",
-      "auto_battle/normal_attack_left.png"
-    ],
+    "template": "auto_battle/normal_attack",
     "roi": [
       1063,
       513,
@@ -105,7 +95,9 @@
     ],
     "pre_delay": 0,
     "post_delay": 0,
-    "next": "click_Ult_and_attack_3s"
+    "next": [
+      "click_Ult_and_attack_3s"
+    ]
   },
   "click_skill_1": {
     "target": [
@@ -117,7 +109,9 @@
     "pre_delay": 0,
     "post_delay": 0,
     "action": "Click",
-    "next": "click_attack_2.5s",
+    "next": [
+      "click_attack_2.5s"
+    ],
     "focus": "[color:darkgray]使用一技能[/color]"
   },
   "click_skill_2": {
@@ -130,7 +124,9 @@
     "pre_delay": 0,
     "post_delay": 0,
     "action": "Click",
-    "next": "click_attack_2.5s",
+    "next": [
+      "click_attack_2.5s"
+    ],
     "focus": "[color:darkgray]使用二技能[/color]"
   },
   "click_Ult_and_attack_3s": {
@@ -171,7 +167,9 @@
     ],
     "pre_delay": 0,
     "post_delay": 0,
-    "next": "summon_and_roll",
+    "next": [
+      "summon_and_roll"
+    ],
     "focus": "[color:darkgray]奥义和普攻[/color]"
   },
   "click_attack_2.5s": {
@@ -327,15 +325,28 @@
     "action": "Click",
     "pre_delay": 0,
     "post_delay": 200,
-    "next": "combo",
+    "next": [
+      "combo"
+    ],
     "focus": "[color:darkgray]替身[/color]"
   },
   "auto_battle_debug": {
-    "next": "is_in_battle_scene",
+    "next": [
+      "is_in_battle_scene"
+    ],
     "focus": "[color:tomato]等待时间过长[/color]"
   },
   "click_All_skill": {
-    "recognition": "DirectHit",
+    "recognition": "TemplateMatch",
+    "template": "Weekly_win/battle_emoji.png",
+    "green_mask": true,
+    "threshold": 0.5,
+    "roi": [
+      5,
+      267,
+      79,
+      68
+    ],
     "action": "MultiSwipe",
     "swipes": [
       {
@@ -449,16 +460,25 @@
           59
         ],
         "duration": 100
+      },
+      {
+        "$doc": "sub_skill1",
+        "begin": [
+          875,
+          472,
+          53,
+          44
+        ],
+        "end": [
+          875,
+          472,
+          53,
+          44
+        ],
+        "duration": 100
       }
     ],
     "pre_delay": 0,
-    "post_delay": 0,
-    "next": [
-      "weekly_win_peace"
-    ],
-    "interrupt": [
-      "click_All_skill"
-    ],
-    "focus": "[color:darkgray]连点器[/color]"
+    "post_delay": 0
   }
 }

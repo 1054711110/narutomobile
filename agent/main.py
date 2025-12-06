@@ -154,43 +154,7 @@ def read_interface_version(interface_file_name="./interface.json") -> str:
         return "unknown"
 
 
-def read_pip_config() -> dict:
-    config_dir = Path("./config")
-    config_dir.mkdir(exist_ok=True)
-    config_path = config_dir / "pip_config.json"
-    default_config = {
-        "enable_pip_install": True,
-        "mirror": "https://pypi.tuna.tsinghua.edu.cn/simple",
-        "backup_mirror": "https://mirrors.ustc.edu.cn/pypi/simple",
-    }
-    if not config_path.exists():
-        with open(config_path, "w", encoding="utf-8") as f:
-            json.dump(default_config, f, indent=4, ensure_ascii=False)
-        return default_config
-
-    try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        logger.exception("读取pip配置失败，使用默认配置")
-        return default_config
-
-
 ### 依赖安装相关 ###
-
-
-def find_local_wheels_dir():
-    """查找本地deps目录中的whl文件"""
-    project_root = Path(project_root_dir)
-    deps_dir = project_root / "deps"
-
-    if deps_dir.exists() and any(deps_dir.glob("*.whl")):
-        whl_count = len(list(deps_dir.glob("*.whl")))
-        logger.info(f"发现本地deps目录包含 {whl_count} 个 whl 文件")
-        return deps_dir
-
-    logger.debug("未找到deps目录或目录中无 whl 文件")
-    return None
 
 
 def _run_pip_command(cmd_args: list, operation_name: str) -> bool:
@@ -240,111 +204,11 @@ def _run_pip_command(cmd_args: list, operation_name: str) -> bool:
         return False
 
 
-def install_requirements(pip_config: dict, req_file="requirements.txt") -> bool:
-    req_path = Path(project_root_dir) / req_file  # 确保相对于项目根目录
-    if not req_path.exists():
-        logger.error(f"{req_file} 文件不存在于 {req_path.resolve()}")
-        return False
-
-    # 查找本地deps目录
-    deps_dir = find_local_wheels_dir()
-    if deps_dir:
-        logger.info(f"使用本地 whl 文件安装，目录: {deps_dir}")
-
-        cmd = [
-            sys.executable,
-            "-m",
-            "pip",
-            "install",
-            "-U",
-            "-r",
-            str(req_path),
-            "--no-warn-script-location",
-            "--break-system-packages",
-            "--find-links",
-            str(deps_dir),  # pip会优先使用这里的文件
-            "--no-index",  # 禁止在线索引
-        ]
-
-        if _run_pip_command(cmd, f"从本地deps安装依赖"):
-            return True
-        else:
-            logger.warning("本地deps安装失败，回退到纯在线安装")
-
-    # 回退到在线安装
-    primary_mirror = pip_config.get("mirror", "")
-    backup_mirror = pip_config.get("backup_mirror", "")
-
-    if primary_mirror:
-        # 使用主镜像源，只添加一个备用源避免冲突
-        cmd = [
-            sys.executable,
-            "-m",
-            "pip",
-            "install",
-            "-U",
-            "-r",
-            str(req_path),
-            "--no-warn-script-location",
-            "--break-system-packages",
-            "-i",
-            primary_mirror,
-        ]
-
-        # 只添加一个备用源
-        if backup_mirror:
-            cmd.extend(["--extra-index-url", backup_mirror])
-            logger.info(f"使用主源 {primary_mirror} 和备用源 {backup_mirror} 安装依赖")
-        else:
-            logger.info(f"使用主源 {primary_mirror} 安装依赖")
-
-        if _run_pip_command(cmd, f"从 {req_path.name} 安装依赖"):
-            return True
-        else:
-            logger.error("在线安装失败")
-            return False
-    else:
-        # 如果没有配置主镜像源，使用pip的本地全局配置
-        cmd = [
-            sys.executable,
-            "-m",
-            "pip",
-            "install",
-            "-U",
-            "-r",
-            str(req_path),
-            "--no-warn-script-location",
-            "--break-system-packages",
-        ]
-
-        if _run_pip_command(cmd, f"从 {req_path.name} 安装依赖 (本地全局配置)"):
-            return True
-        else:
-            logger.error("使用pip本地全局配置安装失败")
-            return False
-
-
-def check_and_install_dependencies():
-    """检查并安装项目依赖"""
-    pip_config = read_pip_config()
-    enable_pip_install = pip_config.get("enable_pip_install", True)
-
-    logger.info(f"启用 pip 安装依赖: {enable_pip_install}")
-
-    if enable_pip_install:
-        logger.info("开始安装/更新依赖")
-        if install_requirements(pip_config=pip_config):
-            logger.info("依赖检查和安装完成")
-        else:
-            logger.warning("依赖安装失败，程序可能无法正常运行")
-    else:
-        logger.info("Pip 依赖安装已禁用，跳过依赖安装")
-
-
 ### 核心业务 ###
 
 
 def agent(is_dev_mode=False):
+    global logger  # 声明使用全局 logger
     try:
         # 清理模块缓存
         utils_modules = [
@@ -359,10 +223,12 @@ def agent(is_dev_mode=False):
 
         importlib.reload(utils)
 
-        # 将 utils 的所有公共属性导入到当前命名空间
-        for attr_name in dir(utils):
-            if not attr_name.startswith("_"):
-                globals()[attr_name] = getattr(utils, attr_name)
+        # 重新导入 logger，确保使用新初始化的实例
+        from utils.logger import logger as new_logger  # type: ignore
+
+        # from utils.logger import logger  # type: ignore
+
+        logger = new_logger
 
         if is_dev_mode:
             from utils.logger import change_console_level  # type: ignore
@@ -370,10 +236,19 @@ def agent(is_dev_mode=False):
             change_console_level("DEBUG")
             logger.info("开发模式：日志等级已设置为DEBUG")
 
-        from maa.agent.agent_server import AgentServer
-        from maa.toolkit import Toolkit
+        try:
+            from maa.agent.agent_server import AgentServer
+            from maa.toolkit import Toolkit
 
-        import custom  # type: ignore
+            import custom  # type: ignore
+        except ImportError as e:
+            logger.error(e)
+            logger.error("Failed to import modules")
+            logger.error("Please try to run dependency deployment script first")
+            logger.error("导入模块失败！")
+            logger.error("请先尝试运行依赖部署脚本")
+
+            return
 
         Toolkit.init_option("./")
 
@@ -405,11 +280,9 @@ def main():
     current_version = read_interface_version()
     is_dev_mode = current_version == "DEBUG"
 
-    # 如果是Linux系统或开发模式，启动虚拟环境
+    # 如果是Linux系统或开发环境，启动虚拟环境
     if sys.platform.startswith("linux") or is_dev_mode:
         ensure_venv_and_relaunch_if_needed()
-
-    check_and_install_dependencies()
 
     if is_dev_mode:
         os.chdir(Path("./assets"))
