@@ -31,9 +31,6 @@ parser.add_argument(
     "--install_dir", type=str, default="install", help="Install directory"
 )
 parser.add_argument(
-    "--mfa_version", type=str, default=DEFAULT_MFA_VERSION, help="MFA version"
-)
-parser.add_argument(
     "--arch", type=str, default="amd64", help="Architecture (amd64 or win32)"
 )
 parser.add_argument(
@@ -68,6 +65,26 @@ cmd = [
     "tools/setup_full_python.py",
     "--tmp_dir",
     TEMP_DIR,
+]
+
+try:
+    subprocess.run(cmd, check=True)
+except (subprocess.CalledProcessError, OSError) as e:
+    print(f"Failed to install Python: {e}")
+    sys.exit(1)
+
+
+# install Python dependents
+print("开始安装python依赖")
+cmd = [
+    "python",
+    "-m",
+    "pip",
+    "install",
+    "-r",
+    "./requirements.txt",
+    "-t",
+    "install/python/Lib/",
 ]
 
 try:
