@@ -109,62 +109,6 @@ class FindToChallenge(CustomRecognition):
         )
 
 
-def get_seed_count(context: Context, image: ndarray, roi: list[int]) -> int | None:
-    """
-    在选花界面中寻找可以种的花
-    """
-
-    reco_detail = context.run_recognition(
-        "GetSenryokuText",
-        image,
-        {
-            "GetSenryokuText": {"roi": roi},
-        },
-    )
-
-    if reco_detail is None:
-        logger.warning(f"ROI{roi}:种子数量识别失败(识别器返回None)")
-        return None
-
-    if not reco_detail.hit:
-        logger.debug(f"ROI{roi}:未识别到种子文本(hit=False)")
-        logger.warning(f"ROI{roi}:无法读取到种子数量文本!")
-        return None
-
-    if reco_detail.best_result is None:
-        logger.warning(f"ROI{roi}:识别到文本但解析失败(best_result为空)")
-        return None
-
-    source_text = str(reco_detail.best_result.text).strip().replace(" ", "")
-    logger.debug(f"ROI{roi}:识别到种子文本:{source_text}")
-
-    prefix = "剩余"
-    if prefix not in source_text:
-        logger.warning(f"ROI{roi}:种子文本无'剩余'关键字,识别文本:{source_text}")
-        return None
-
-    colon_index = source_text.find(prefix) + len(prefix)
-    if colon_index >= len(source_text) or source_text[colon_index] not in [":", "："]:
-        logger.warning(f"ROI{roi}:种子文本格式错误(无有效冒号),识别文本:{source_text}")
-        return None
-
-    slash_index = source_text.find("/", colon_index + 1)
-    if slash_index == -1:
-        logger.warning(f"ROI{roi}:种子文本无'/'分隔符,识别文本:{source_text}")
-        return None
-
-    seed_str = source_text[colon_index + 1 : slash_index]
-    if not seed_str.isdigit():
-        logger.warning(
-            f"ROI{roi}:种子数量不是数字,实际:{seed_str}(识别文本:{source_text})"
-        )
-        return None
-
-    current_seeds = int(seed_str)
-    logger.info(f"ROI{roi}:解析到种子数量:{current_seeds}/10")
-    return current_seeds
-
-
 @AgentServer.custom_recognition("FindPlantableFlower")
 class FindPlantableFlower(CustomRecognition):
     def analyze(
@@ -204,7 +148,9 @@ class FindPlantableFlower(CustomRecognition):
                 f"正在检查第{flower_num}种花(种子ROI:{seed_roi},按钮ROI:{btn_roi})..."
             )
 
-            current_seeds = get_seed_count(context, argv.image, seed_roi)
+            current_seeds = self.get_seed_count(
+                context=context, image=argv.image, roi=seed_roi
+            )
             if current_seeds is None:
                 logger.warning(f"第{flower_num}种花:种子数量读取失败,跳过")
                 continue
@@ -235,3 +181,65 @@ class FindPlantableFlower(CustomRecognition):
         return CustomRecognition.AnalyzeResult(
             box=invalid_box, detail={"has_valid_target": False}
         )
+
+    def get_seed_count(
+        self, context: Context, image: ndarray, roi: list[int]
+    ) -> int | None:
+        """
+        在选花界面中寻找可以种的花
+        """
+
+        reco_detail = context.run_recognition(
+            "GetSenryokuText",
+            image,
+            {
+                "GetSenryokuText": {"roi": roi},
+            },
+        )
+
+        if reco_detail is None:
+            logger.warning(f"ROI{roi}:种子数量识别失败(识别器返回None)")
+            return None
+
+        if not reco_detail.hit:
+            logger.debug(f"ROI{roi}:未识别到种子文本(hit=False)")
+            logger.warning(f"ROI{roi}:无法读取到种子数量文本!")
+            return None
+
+        if reco_detail.best_result is None:
+            logger.warning(f"ROI{roi}:识别到文本但解析失败(best_result为空)")
+            return None
+
+        source_text = str(reco_detail.best_result.text).strip().replace(" ", "")  # type: ignore
+        logger.debug(f"ROI{roi}:识别到种子文本:{source_text}")
+
+        prefix = "剩余"
+        if prefix not in source_text:
+            logger.warning(f"ROI{roi}:种子文本无'剩余'关键字,识别文本:{source_text}")
+            return None
+
+        colon_index = source_text.find(prefix) + len(prefix)
+        if colon_index >= len(source_text) or source_text[colon_index] not in [
+            ":",
+            "：",
+        ]:
+            logger.warning(
+                f"ROI{roi}:种子文本格式错误(无有效冒号),识别文本:{source_text}"
+            )
+            return None
+
+        slash_index = source_text.find("/", colon_index + 1)
+        if slash_index == -1:
+            logger.warning(f"ROI{roi}:种子文本无'/'分隔符,识别文本:{source_text}")
+            return None
+
+        seed_str = source_text[colon_index + 1 : slash_index]
+        if not seed_str.isdigit():
+            logger.warning(
+                f"ROI{roi}:种子数量不是数字,实际:{seed_str}(识别文本:{source_text})"
+            )
+            return None
+
+        current_seeds = int(seed_str)
+        logger.info(f"ROI{roi}:解析到种子数量:{current_seeds}/10")
+        return current_seeds
