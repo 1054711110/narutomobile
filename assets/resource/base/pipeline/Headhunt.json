@@ -70,10 +70,43 @@
         "threshold": 0.97,
         "action": "Click",
         "next": [
-            "confrim_free_headhunt"
+            "confrim_free_headhunt",
+            "free_headhunt_fake",
+            "[JumpBack]free_headhunt_waiting"
         ],
         "post_delay": 700,
         "focus": "[color:DeepSkyBlue]有免费高级招募[/color]"
+    },
+    "free_headhunt_fake": {
+        "recognition": "OCR",
+        "expected": [
+            "取消"
+        ],
+        "roi": [
+            639,
+            385,
+            274,
+            153
+        ],
+        "action": "Click",
+        "next": [
+            "free_headhunt_check_cancel"
+        ],
+        "post_delay": 400,
+        "focus": "[color:DeepSkyBlue]什么,情报是假的[/color]"
+    },
+    "free_headhunt_check_cancel": {
+        "recognition": "OCR",
+        "expected": [
+            "取消"
+        ],
+        "roi": [
+            639,
+            385,
+            274,
+            153
+        ],
+        "inverse": true
     },
     "confrim_free_headhunt": {
         "recognition": "TemplateMatch",
