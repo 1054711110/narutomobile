@@ -73,10 +73,10 @@
         "recognition": "TemplateMatch",
         "template": "Rich_room/above_kage.png",
         "roi": [
-            819,
-            535,
-            460,
-            184
+            751,
+            546,
+            395,
+            173
         ],
         "inverse": true,
         "next": [
