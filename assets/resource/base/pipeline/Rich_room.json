@@ -62,7 +62,7 @@
             -114
         ],
         "next": [
-            "rich_room_above_kage_sweep",
+            "rich_room_above_kage",
             "rich_room_without_above_kage_sweep"
         ],
         "action": "Click",
@@ -83,35 +83,53 @@
             "challenge_rich_room"
         ]
     },
-    "rich_room_above_kage_sweep": {
+    "rich_room_above_kage": {
         "recognition": "TemplateMatch",
         "template": "Rich_room/above_kage.png",
         "roi": [
-            819,
-            535,
-            460,
-            184
+            751,
+            546,
+            395,
+            173
+        ],
+        "next": [
+            "rich_room_above_kage_sweep"
+        ]
+    },
+    "rich_room_above_kage_sweep": {
+        "recognition": "OCR",
+        "expected": [
+            "完成"
+        ],
+        "roi": [
+            632,
+            587,
+            224,
+            113
         ],
         "action": "Click",
         "next": [
             "rich_room_confirm_above_kage_sweep",
+            "rich_room_peace",
             "[JumpBack]rich_room_above_kage_sweep"
         ]
     },
     "rich_room_confirm_above_kage_sweep": {
         "recognition": "OCR",
         "expected": [
-            "超影免费"
+            "免费"
         ],
         "roi": [
-            395,
-            335,
-            548,
-            254
+            380,
+            362,
+            528,
+            219
         ],
+        "action": "Click",
         "next": [
             "rich_room_peace",
-            "back_main_screen_and_stop"
+            "back_main_screen_and_stop",
+            "[JumpBack]rich_room_confirm_above_kage_sweep"
         ]
     },
     "rich_room_ac_done": {
