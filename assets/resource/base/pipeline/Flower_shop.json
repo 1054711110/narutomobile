@@ -140,7 +140,8 @@
             }
         },
         "action": {
-            "type": "Click"
+            "type": "LongPress",
+            "duration": 75
         },
         "next": [
             "flower_shop_confrim_choose_flower"
