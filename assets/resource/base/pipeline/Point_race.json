@@ -180,19 +180,30 @@
             "type": "Click"
         },
         "next": [
-            "point_race_chanllenge_finished"
+            "point_race_skip",
+            "point_race_chanllenge_finished",
+            "[JumpBack]sleep_500ms"
         ],
         "timeout": 60000,
         "focus": "[color:DeepSkyBlue]进入积分赛战斗[/color]"
+    },
+    "point_race_skip": {
+        "recognition": "OCR",
+        "expected": "跳过",
+        "action": "Click",
+        "next": [
+            "point_race_chanllenge_finished",
+            "[JumpBack]sleep_500ms"
+        ]
     },
     "point_race_chanllenge_finished": {
         "recognition": "OCR",
         "expected": "确定",
         "roi": [
-            615,
-            543,
-            301,
-            170
+            298,
+            469,
+            691,
+            251
         ],
         "action": "Click",
         "next": [

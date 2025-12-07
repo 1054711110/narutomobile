@@ -277,6 +277,7 @@
         "next": [
             "advanture_win",
             "advanture_lost",
+            "advanture_skip_revive",
             "advanture_back_fight"
         ],
         "post_delay": 900,
@@ -314,8 +315,10 @@
         "focus": "[color:DeepSkyBlue]胜利啦[/color]"
     },
     "advanture_lost": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/click_anywhere_to_quit.png",
+        "recognition": "OCR",
+        "expected": [
+            "点击"
+        ],
         "roi": [
             486,
             574,
@@ -323,6 +326,40 @@
             121
         ],
         "action": "Click",
+        "post_wait_freezes": 500,
+        "next": [
+            "advanture_not_in_lost",
+            "[JumpBack]advanture_lost"
+        ],
+        "focus": "[color:tomato]胜败乃兵家常事[/color]"
+    },
+    "advanture_skip_revive": {
+        "recognition": "OCR",
+        "expected": [
+            "复活"
+        ],
+        "roi": [
+            178,
+            122,
+            348,
+            145
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ]
+    },
+    "advanture_not_in_lost": {
+        "recognition": "OCR",
+        "expected": [
+            "点击"
+        ],
+        "roi": [
+            486,
+            574,
+            298,
+            121
+        ],
+        "inverse": true,
         "post_wait_freezes": 500,
         "next": [
             "back_main_screen_and_stop"

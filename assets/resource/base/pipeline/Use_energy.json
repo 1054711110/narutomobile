@@ -72,8 +72,8 @@
         "action": "Click",
         "next": [
             "use_energy_confirm_ez_sweep",
-            "[JumpBack]use_energy_finish",
-            "[JumpBack]use_energy_not_enough_sign",
+            "use_energy_not_enough_sign",
+            "use_energy_finish",
             "[JumpBack]use_energy_ez_sweep"
         ],
         "post_wait_freezes": 300,
@@ -132,8 +132,23 @@
         ],
         "action": "Click",
         "next": [
-            "back_main_screen_and_stop",
+            "use_energy_finished",
             "[JumpBack]use_energy_finish"
+        ],
+        "focus": "[color:DeepSkyBlue]扫荡完成[/color]"
+    },
+    "use_energy_finished": {
+        "recognition": "TemplateMatch",
+        "template": "Use_energy/sweep_finish.png",
+        "roi": [
+            599,
+            422,
+            79,
+            59
+        ],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]扫荡完成[/color]"
     }
