@@ -1,5 +1,4 @@
 {
-    "interface_version": 2,
     "name": "MaaAutoNaruto",
     "github": "https://github.com/duorua/narutomobile",
     "description": "本软件开源免费，受AGPL v3协议保护。",
@@ -131,7 +130,7 @@
             "default_check": true
         },
         {
-            "name": "火影情报社（beta）",
+            "name": "火影情报社(beta)",
             "entry": "naruto_club",
             "default_check": true,
             "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
@@ -368,6 +367,14 @@
                             "next": "treasure_gathering_trial_award"
                         }
                     }
+                },
+                {
+                    "name": "山中花店",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "flower_shop"
+                        }
+                    }
                 }
             ]
         },
@@ -430,11 +437,6 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "point_race": {
-                            "next": [
-                                "point_race_in_center_enter"
-                            ]
-                        },
                         "point_race_ac_entry_undone": {
                             "next": [
                                 "back_main_screen_and_stop"

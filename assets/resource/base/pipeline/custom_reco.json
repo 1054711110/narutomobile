@@ -1,0 +1,18 @@
+{
+    "GetSenryokuText": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "[\\d]+万?"
+            }
+        }
+    },
+    "custom_ocr": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ".*"
+            }
+        }
+    }
+}

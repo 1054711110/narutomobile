@@ -25,7 +25,8 @@
       "[JumpBack]im_come_back",
       "[JumpBack]im_come_back_award",
       "[JumpBack]click_next_step",
-      "[JumpBack]naruto_club_x"
+      "[JumpBack]naruto_club_x",
+      "[JumpBack]shut_wechat"
     ],
     "focus": "[color:darkgray]尝试返回主页面[/color]"
   },
@@ -307,13 +308,5 @@
   },
   "sleep_500ms": {
     "post_delay": 500
-  },
-  "GetSenryokuText": {
-    "recognition": {
-      "type": "OCR",
-      "param": {
-        "expected": "[\\d]+万?"
-      }
-    }
   }
 }

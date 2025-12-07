@@ -24,6 +24,7 @@ jobs:
           filetype: latest-release
           filename: "MaaAutoNaruto-${{ matrix.os }}-${{ matrix.arch }}-*.zip"
           mirrorchyan_rid: MaaAutoNaruto
+          tag: ${{ inputs.tag }}
 
           owner: duorua
           repo: narutomobile
@@ -42,8 +43,8 @@ jobs:
           filename: "MaaAutoNaruto-win-x86_64-*.zip"
           pick_files: '["resource", "interface.json", "agent", "python"]'
           exclude_files: '["resource/model/ocr/**"]'
-          tag: ${{ inputs.tag }}
           mirrorchyan_rid: MaaAutoNaruto
+          tag: ${{ inputs.tag }}
 
           owner: duorua
           repo: narutomobile

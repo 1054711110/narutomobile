@@ -200,6 +200,36 @@
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]战斗中[/color]"
     },
+    "advanture_back_fight": {
+        "recognition": "OCR",
+        "expected": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "挑",
+            "战"
+        ],
+        "roi": [
+            491,
+            0,
+            306,
+            133
+        ],
+        "next": [
+            "advanture_not_in_fight",
+            "[JumpBack]advanture_not_in_auto_fight",
+            "[JumpBack]wait_5_second"
+        ],
+        "post_delay": 900,
+        "focus": "[color:DeepSkyBlue]战斗中[/color]"
+    },
     "advanture_auto_fight": {
         "recognition": "OCR",
         "expected": [
@@ -233,7 +263,9 @@
             "6",
             "7",
             "8",
-            "9"
+            "9",
+            "挑",
+            "战"
         ],
         "roi": [
             491,
@@ -244,13 +276,14 @@
         "inverse": true,
         "next": [
             "advanture_win",
-            "advanture_lost"
+            "advanture_lost",
+            "advanture_back_fight"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]不在战斗[/color]"
     },
     "advanture_not_in_auto_fight": {
-        "recognition": "OCR",
+        "recognition": "TemplateMatch",
         "template": "Advanture/normal_attack.png",
         "roi": [
             958,
