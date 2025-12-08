@@ -6,8 +6,6 @@ import sys
 
 import json
 
-from maa.resource import Resource
-
 from configure import configure_ocr_model  # type: ignore
 from utils import working_dir  # type: ignore
 
@@ -17,8 +15,9 @@ version = len(sys.argv) > 1 and sys.argv[1] or "v0.0.1"
 sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
 
 
+# modified from download_deps.py of M9A
 def get_dotnet_platform_tag():
-    """自动检测当前平台并返回对应的平台标签"""
+    """自动检测当前平台并返回对应的dotnet平台标签"""
 
     os_type = platform.system()
     os_arch = platform.machine()
@@ -36,7 +35,7 @@ def get_dotnet_platform_tag():
             print(f"检测到ARM64处理器: {processor_identifier}")
             os_arch = "ARM64"
 
-        # 映射platform.machine()到pip的平台标签
+        # 映射platform.machine()到dotnet的平台标签
         arch_mapping = {
             "AMD64": "win-x64",
             "x86_64": "win-x64",
@@ -47,7 +46,7 @@ def get_dotnet_platform_tag():
         platform_tag = arch_mapping.get(os_arch, f"win-{os_arch.lower()}")
 
     elif os_type == "Darwin":  # macOS
-        # 映射platform.machine()到pip的平台标签
+        # 映射platform.machine()到dotnet的平台标签
         arch_mapping = {
             "x86_64": "osx-x64",
             "arm64": "osx-arm64",
@@ -57,7 +56,7 @@ def get_dotnet_platform_tag():
         platform_tag = arch_mapping.get(os_arch, f"osx-{os_arch.lower()}")
 
     elif os_type == "Linux":
-        # 映射platform.machine()到pip的平台标签
+        # 映射platform.machine()到dotnet的平台标签
         arch_mapping = {
             "x86_64": "linux-x64",
             "aarch64": "linux-arm64",
