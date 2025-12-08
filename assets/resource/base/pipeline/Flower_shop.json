@@ -140,7 +140,7 @@
             }
         },
         "action": {
-            "type": "LongPress",
+            "type": "Swipe",
             "duration": 40
         },
         "next": [

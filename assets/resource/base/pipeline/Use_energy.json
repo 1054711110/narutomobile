@@ -74,10 +74,41 @@
             "use_energy_confirm_ez_sweep",
             "use_energy_not_enough_sign",
             "use_energy_finish",
-            "[JumpBack]use_energy_ez_sweep"
+            "[JumpBack]use_energy_skip",
+            "[JumpBack]use_energy_ez_sweep",
+            "[JumpBack]sleep_500ms"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确定便捷扫荡[/color]"
+    },
+    "use_energy_skip": {
+        "recognition": "TemplateMatch",
+        "template": "Use_energy/skip.png",
+        "roi": [
+            257,
+            169,
+            303,
+            419
+        ],
+        "action": "Click",
+        "target": [
+            768,
+            325,
+            59,
+            56
+        ],
+        "next": [
+            "use_energy_skip_1"
+        ]
+    },
+    "use_energy_skip_1": {
+        "action": "Click",
+        "target": [
+            768,
+            325,
+            59,
+            56
+        ]
     },
     "use_energy_confirm_ez_sweep": {
         "recognition": "TemplateMatch",
@@ -94,6 +125,8 @@
             "use_energy_not_enough_sign",
             "use_energy_finish",
             "[JumpBack]use_energy_confirm_ez_sweep",
+            "[JumpBack]use_energy_skip",
+            "[JumpBack]use_energy_ez_sweep",
             "[JumpBack]sleep_500ms"
         ],
         "post_delay": 5000,
@@ -125,10 +158,10 @@
         "recognition": "TemplateMatch",
         "template": "Use_energy/sweep_finish.png",
         "roi": [
-            599,
-            422,
-            79,
-            59
+            477,
+            372,
+            328,
+            192
         ],
         "action": "Click",
         "next": [
