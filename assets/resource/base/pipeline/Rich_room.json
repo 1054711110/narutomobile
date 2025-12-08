@@ -63,13 +63,13 @@
         ],
         "next": [
             "rich_room_above_kage",
-            "rich_room_without_above_kage_sweep"
+            "rich_room_without_above_kage"
         ],
         "action": "Click",
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]丰饶之间未完成[/color]"
     },
-    "rich_room_without_above_kage_sweep": {
+    "rich_room_without_above_kage": {
         "recognition": "TemplateMatch",
         "template": "Rich_room/above_kage.png",
         "roi": [
@@ -77,6 +77,9 @@
             546,
             395,
             173
+        ],
+        "threshold": [
+            0.9
         ],
         "inverse": true,
         "next": [
@@ -91,6 +94,9 @@
             546,
             395,
             173
+        ],
+        "threshold": [
+            0.9
         ],
         "next": [
             "rich_room_above_kage_sweep"
