@@ -62,11 +62,81 @@
             -114
         ],
         "next": [
-            "challenge_rich_room"
+            "rich_room_above_kage",
+            "rich_room_without_above_kage"
         ],
         "action": "Click",
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]丰饶之间未完成[/color]"
+    },
+    "rich_room_without_above_kage": {
+        "recognition": "TemplateMatch",
+        "template": "Rich_room/above_kage.png",
+        "roi": [
+            751,
+            546,
+            395,
+            173
+        ],
+        "threshold": [
+            0.9
+        ],
+        "inverse": true,
+        "next": [
+            "challenge_rich_room"
+        ]
+    },
+    "rich_room_above_kage": {
+        "recognition": "TemplateMatch",
+        "template": "Rich_room/above_kage.png",
+        "roi": [
+            751,
+            546,
+            395,
+            173
+        ],
+        "threshold": [
+            0.9
+        ],
+        "next": [
+            "rich_room_above_kage_sweep"
+        ]
+    },
+    "rich_room_above_kage_sweep": {
+        "recognition": "OCR",
+        "expected": [
+            "完成"
+        ],
+        "roi": [
+            632,
+            587,
+            224,
+            113
+        ],
+        "action": "Click",
+        "next": [
+            "rich_room_confirm_above_kage_sweep",
+            "rich_room_peace",
+            "[JumpBack]rich_room_above_kage_sweep"
+        ]
+    },
+    "rich_room_confirm_above_kage_sweep": {
+        "recognition": "OCR",
+        "expected": [
+            "免费"
+        ],
+        "roi": [
+            380,
+            362,
+            528,
+            219
+        ],
+        "action": "Click",
+        "next": [
+            "rich_room_peace",
+            "back_main_screen_and_stop",
+            "[JumpBack]rich_room_confirm_above_kage_sweep"
+        ]
     },
     "rich_room_ac_done": {
         "recognition": "TemplateMatch",
@@ -83,8 +153,10 @@
         "focus": "[color:DeepSkyBlue]丰饶之间已完成[/color]"
     },
     "rich_room_finished": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/click_anywhere_to_quit.png",
+        "recognition": "OCR",
+        "expected": [
+            "点击"
+        ],
         "roi": [
             465,
             646,
@@ -103,7 +175,7 @@
         "next": [
             "rich_room_ac_done",
             "rich_room_finished",
-            "[JumpBack]is_in_battle_scene",
+            "rich_room_in_fight",
             "[JumpBack]challenge_rich_room"
         ],
         "focus": "[color:DeepSkyBlue]挑战丰饶之间[/color]"
@@ -121,5 +193,104 @@
             "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]检查是否和平[/color]"
+    },
+    "rich_room_in_fight": {
+        "recognition": "OCR",
+        "expected": [
+            "掘",
+            "金"
+        ],
+        "roi": [
+            471,
+            91,
+            330,
+            158
+        ],
+        "next": [
+            "rich_room_peace",
+            "[JumpBack]rich_room_combo"
+        ]
+    },
+    "rich_room_combo": {
+        "recognition": "OCR",
+        "expected": [
+            "掘",
+            "金"
+        ],
+        "roi": [
+            471,
+            91,
+            330,
+            158
+        ],
+        "action": "MultiSwipe",
+        "swipes": [
+            {
+                "$doc": "attack",
+                "begin": [
+                    1099,
+                    548,
+                    92,
+                    92
+                ],
+                "end": [
+                    1099,
+                    548,
+                    92,
+                    92
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "skill1",
+                "begin": [
+                    970,
+                    613,
+                    62,
+                    54
+                ],
+                "end": [
+                    970,
+                    613,
+                    62,
+                    54
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "skill2",
+                "begin": [
+                    985,
+                    471,
+                    65,
+                    59
+                ],
+                "end": [
+                    985,
+                    471,
+                    65,
+                    59
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "sub_skill1",
+                "begin": [
+                    875,
+                    472,
+                    53,
+                    44
+                ],
+                "end": [
+                    875,
+                    472,
+                    53,
+                    44
+                ],
+                "duration": 100
+            }
+        ],
+        "pre_delay": 0,
+        "post_delay": 0
     }
 }

@@ -202,13 +202,15 @@
     "focus": "[color:DeepSkyBlue]点击下一步[/color]"
   },
   "direct_hit_quit": {
-    "recognition": "TemplateMatch",
-    "template": "SharedNode/click_anywhere_to_quit.png",
+    "recognition": "OCR",
+    "expected": [
+      "点击"
+    ],
     "roi": [
-      506,
-      649,
-      66,
-      56
+      480,
+      572,
+      316,
+      135
     ],
     "action": "Click",
     "post_wait_freezes": 500,

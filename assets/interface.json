@@ -262,6 +262,14 @@
                             "next": [
                                 "weekly_win_rank"
                             ]
+                        },
+                        "weekly_win_entry": {
+                            "next": [
+                                "weekly_win_rank",
+                                "[JumpBack]weekly_win_mouthly_award",
+                                "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win"
+                            ]
                         }
                     }
                 }

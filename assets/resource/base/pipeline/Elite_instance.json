@@ -49,7 +49,7 @@
             234
         ],
         "action": "Click",
-        "threshold": 0.5,
+        "threshold": 0.85,
         "next": [
             "elite_instance_in_elite_instance",
             "[JumpBack]elite_instance_to_elite_instance"
@@ -65,7 +65,7 @@
             370,
             251
         ],
-        "threshold": 0.7,
+        "threshold": 0.85,
         "next": [
             "elite_instance_new_level_undone"
         ]
@@ -173,14 +173,15 @@
         "inverse": true,
         "next": [
             "elite_instance_win",
-            "elite_instance_lost",
+            "advanture_lost",
+            "advanture_skip_revive",
             "elite_instance_lock"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]不在战斗[/color]"
     },
     "elite_instance_not_in_auto_fight": {
-        "recognition": "OCR",
+        "recognition": "TemplateMatch",
         "template": "Advanture/normal_attack.png",
         "roi": [
             958,
@@ -212,8 +213,10 @@
         "focus": "[color:DeepSkyBlue]胜利啦[/color]"
     },
     "elite_instance_lost": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/click_anywhere_to_quit.png",
+        "recognition": "OCR",
+        "expected": [
+            "点击"
+        ],
         "roi": [
             486,
             574,

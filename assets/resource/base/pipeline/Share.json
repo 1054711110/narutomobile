@@ -231,10 +231,10 @@
         "recognition": "TemplateMatch",
         "template": "Share/weekly_ninjia_title.png",
         "roi": [
-            319,
-            629,
-            203,
-            80
+            0,
+            475,
+            622,
+            244
         ],
         "next": [
             "try_share"
