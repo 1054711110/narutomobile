@@ -32,105 +32,8 @@ from utils.logger import logger  # type: ignore
 VENV_NAME = ".venv"  # 虚拟环境目录的名称
 VENV_DIR = Path(project_root_dir) / VENV_NAME
 
-### 虚拟环境相关 ###
-
-
-def _is_running_in_our_venv():
-    """检查脚本是否在此脚本管理的特定venv中运行。"""
-    current_python = Path(sys.executable).resolve()
-
-    logger.debug(f"当前Python解释器: {current_python}")
-
-    if sys.platform.startswith("win"):
-        # Windows: 如果在虚拟环境中，Python应该在 Scripts 目录下
-        if current_python.parent.name == "Scripts":
-            return True
-        else:
-            logger.debug("当前不在目标虚拟环境中")
-            return False
-    else:
-        # Linux/Unix: 如果在虚拟环境中，Python应该在 bin 目录下
-        if current_python.parent.name == "bin":
-            return True
-        else:
-            logger.debug("当前不在目标虚拟环境中")
-            return False
-
-
-def ensure_venv_and_relaunch_if_needed():
-    """
-    确保venv存在，并且如果尚未在脚本管理的venv中运行，
-    则在其中重新启动脚本。支持Linux和Windows系统。
-    """
-    logger.info(f"检测到系统: {sys.platform}。当前Python解释器: {sys.executable}")
-
-    if _is_running_in_our_venv():
-        logger.info(f"已在目标虚拟环境 ({VENV_DIR}) 中运行。")
-        return
-
-    if not VENV_DIR.exists():
-        logger.info(f"正在 {VENV_DIR} 创建虚拟环境...")
-        try:
-            # 使用当前运行此脚本的Python（系统/外部Python）
-            subprocess.run(
-                [sys.executable, "-m", "venv", str(VENV_DIR)],
-                check=True,
-                capture_output=True,
-            )
-            logger.info(f"创建成功")
-        except subprocess.CalledProcessError as e:
-            logger.error(
-                f"创建失败: {e.stderr.decode(errors='ignore') if e.stderr else e.stdout.decode(errors='ignore')}"
-            )
-            logger.error("正在退出")
-            sys.exit(1)
-        except FileNotFoundError:
-            logger.error(
-                f"命令 '{sys.executable} -m venv' 未找到。请确保 'venv' 模块可用。"
-            )
-            logger.error("无法在没有虚拟环境的情况下继续。正在退出。")
-            sys.exit(1)
-
-    if sys.platform.startswith("win"):
-        python_in_venv = VENV_DIR / "Scripts" / "python.exe"
-    else:
-        python3_path = VENV_DIR / "bin" / "python3"
-        python_path = VENV_DIR / "bin" / "python"
-        if python3_path.exists():
-            python_in_venv = python3_path
-        elif python_path.exists():
-            python_in_venv = python_path
-        else:
-            python_in_venv = python3_path  # 默认使用python3，让后续错误处理捕获
-
-    if not python_in_venv.exists():
-        logger.error(f"在虚拟环境 {python_in_venv} 中未找到Python解释器。")
-        logger.error("虚拟环境创建可能失败或虚拟环境结构异常。")
-        sys.exit(1)
-
-    logger.info(f"正在使用虚拟环境Python重新启动")
-
-    try:
-        cmd = [str(python_in_venv)] + sys.argv
-        logger.info(f"执行命令: {' '.join(cmd)}")
-
-        result = subprocess.run(
-            cmd,
-            cwd=os.getcwd(),
-            env=os.environ.copy(),
-            check=False,  # 不在非零退出码时抛出异常
-        )
-        # 退出时使用子进程的退出码
-        sys.exit(result.returncode)
-
-    except Exception as e:
-        logger.exception(f"在虚拟环境中重新启动脚本失败: {e}")
-        sys.exit(1)
-
 
 ### 配置相关 ###
-
-
 def read_interface_version(interface_file_name="./interface.json") -> str:
     interface_path = Path(project_root_dir) / interface_file_name
     assets_interface_path = Path(project_root_dir) / "assets" / interface_file_name
@@ -154,59 +57,7 @@ def read_interface_version(interface_file_name="./interface.json") -> str:
         return "unknown"
 
 
-### 依赖安装相关 ###
-
-
-def _run_pip_command(cmd_args: list, operation_name: str) -> bool:
-    try:
-        logger.info(f"开始 {operation_name}")
-        logger.debug(f"执行命令: {' '.join(cmd_args)}")
-
-        # 使用subprocess.Popen进行实时输出
-        process = subprocess.Popen(
-            cmd_args,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,  # 将stderr重定向到stdout
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            bufsize=1,  # 行缓冲
-            universal_newlines=True,
-        )
-
-        # 收集所有输出用于日志记录
-        all_output = []
-
-        # 实时读取并显示输出
-        for line in iter(process.stdout.readline, ""):  # type: ignore
-            line = line.rstrip("\n\r")
-            if line.strip():  # 只显示非空行
-                logger.debug(line)  # 实时显示到终端
-                all_output.append(line)  # 收集到列表中
-
-        # 等待进程结束
-        return_code = process.wait()
-
-        # 记录完整输出到日志
-        if all_output:
-            full_output = "\n".join(all_output)
-            logger.debug(f"{operation_name} 输出:\n{full_output}")
-
-        if return_code == 0:
-            logger.info(f"{operation_name} 完成")
-            return True
-        else:
-            logger.error(f"{operation_name} 时出错。返回码: {return_code}")
-            return False
-
-    except Exception as e:
-        logger.exception(f"{operation_name} 时发生未知异常: {e}")
-        return False
-
-
 ### 核心业务 ###
-
-
 def agent(is_dev_mode=False):
     try:
         if is_dev_mode:
@@ -257,10 +108,6 @@ def agent(is_dev_mode=False):
 def main():
     current_version = read_interface_version()
     is_dev_mode = current_version == "DEBUG"
-
-    # 如果是Linux系统或开发环境，启动虚拟环境
-    if sys.platform.startswith("linux") or is_dev_mode:
-        ensure_venv_and_relaunch_if_needed()
 
     if is_dev_mode:
         os.chdir(Path("./assets"))

@@ -163,7 +163,9 @@ def install_agent():
     elif sys.platform.startswith("darwin"):
         interface["agent"]["child_exec"] = r"{PROJECT_DIR}/python/bin/python3"
     elif sys.platform.startswith("linux"):
-        interface["agent"]["child_exec"] = r"python3"
+        interface["agent"][
+            "child_exec"
+        ] = r"source .venv/bin/activate && python3 main.py"
 
     interface["agent"]["child_args"] = ["-u", r"{PROJECT_DIR}/agent/main.py"]
 
