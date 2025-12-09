@@ -107,7 +107,7 @@ jobs:
         with:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
-          tag: "v5.2.0"
+          tag: "v5.2.3"
           out-file-path: "deps"
           extract: true
 
