@@ -208,28 +208,7 @@ def _run_pip_command(cmd_args: list, operation_name: str) -> bool:
 
 
 def agent(is_dev_mode=False):
-    global logger  # 声明使用全局 logger
     try:
-        # 清理模块缓存
-        utils_modules = [
-            name for name in list(sys.modules.keys()) if name.startswith("utils")
-        ]
-        for module_name in utils_modules:
-            del sys.modules[module_name]
-
-        # 动态导入 utils 的所有内容
-        import utils  # type: ignore
-        import importlib
-
-        importlib.reload(utils)
-
-        # 重新导入 logger，确保使用新初始化的实例
-        from utils.logger import logger as new_logger  # type: ignore
-
-        # from utils.logger import logger  # type: ignore
-
-        logger = new_logger
-
         if is_dev_mode:
             from utils.logger import change_console_level  # type: ignore
 
@@ -247,7 +226,6 @@ def agent(is_dev_mode=False):
             logger.error("Please try to run dependency deployment script first")
             logger.error("导入模块失败！")
             logger.error("请先尝试运行依赖部署脚本")
-
             return
 
         Toolkit.init_option("./")

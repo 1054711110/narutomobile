@@ -4,7 +4,7 @@ from datetime import datetime
 
 from PIL import Image
 
-from maa.agent.agent_server import AgentServer
+from maa.agent.agent_server import AgentServer, TaskDetail
 from maa.custom_action import CustomAction
 from maa.context import Context
 
@@ -78,7 +78,9 @@ class Screenshot(CustomAction):
         img.save(f"{save_dir}/{time_str}.png")
         logger.info(f"截图保存至 {save_dir}/{time_str}.png")
 
-        task_detail = context.tasker.get_task_detail(argv.task_detail.task_id)
+        task_detail: TaskDetail = context.tasker.get_task_detail(
+            argv.task_detail.task_id
+        )  # type: ignore
         logger.debug(
             f"task_id: {task_detail.task_id}, task_entry: {task_detail.entry}, status: {task_detail.status._status}"
         )
