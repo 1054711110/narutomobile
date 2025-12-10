@@ -160,9 +160,26 @@
         "action": "Click",
         "next": [
             "sky_ground_recommended_ninja",
+            "sky_ground_select_nijia",
             "[JumpBack]sky_ground_confrim_battlefield_selection"
         ],
         "post_wait_freezes": 800
+    },
+    "sky_ground_select_nijia": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/ninjia_star.png",
+        "roi": [
+            795,
+            132,
+            434,
+            390
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_selected_ninjia",
+            "[JumpBack]sky_ground_select_nijia"
+        ],
+        "post_wait_freezes": 400
     },
     "sky_ground_recommended_ninja": {
         "recognition": "TemplateMatch",
@@ -190,6 +207,265 @@
             177
         ],
         "inverse": true,
+        "next": [
+            "sky_ground_to_select_summon",
+            "sky_ground_in_select_summon"
+        ],
         "post_wait_freezes": 400
+    },
+    "sky_ground_to_select_summon": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/summon.png",
+        "roi": [
+            615,
+            175,
+            266,
+            253
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_in_select_summon",
+            "[JumpBack]sky_ground_to_select_summon"
+        ]
+    },
+    "sky_ground_in_select_summon": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/summon_selected.png",
+        "roi": [
+            615,
+            175,
+            266,
+            253
+        ],
+        "next": [
+            "sky_ground_summon_done",
+            "[JumpBack]sky_ground_select_summon"
+        ]
+    },
+    "sky_ground_select_summon": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "home/通灵"
+        ],
+        "roi": [
+            790,
+            137,
+            439,
+            407
+        ],
+        "action": "Click"
+    },
+    "sky_ground_summon_done": {
+        "recognition": "OCR",
+        "expected": "未选择",
+        "roi": [
+            0,
+            446,
+            398,
+            216
+        ],
+        "inverse": true,
+        "next": [
+            "sky_ground_to_select_roll",
+            "sky_ground_in_select_roll"
+        ]
+    },
+    "sky_ground_to_select_roll": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/roll.png",
+        "roi": [
+            679,
+            333,
+            143,
+            138
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_in_select_roll",
+            "[JumpBack]sky_ground_to_select_roll"
+        ]
+    },
+    "sky_ground_in_select_roll": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/roll_selected.png",
+        "next": [
+            "sky_ground_select_roll"
+        ]
+    },
+    "sky_ground_select_roll": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "home/秘卷"
+        ],
+        "roi": [
+            797,
+            135,
+            432,
+            385
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_selected_roll"
+        ]
+    },
+    "sky_ground_selected_roll": {
+        "recognition": "OCR",
+        "expected": "未选择",
+        "roi": [
+            387,
+            535,
+            377,
+            148
+        ],
+        "inverse": true,
+        "next": [
+            "sky_ground_confirm_set"
+        ]
+    },
+    "sky_ground_confirm_set": {
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            804,
+            471,
+            328,
+            209
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_group_encouragement",
+            "[JumpBack]sky_ground_confirm_set"
+        ]
+    },
+    "sky_ground_group_encouragement": {
+        "recognition": "OCR",
+        "expected": [
+            "组织"
+        ],
+        "roi": [
+            0,
+            207,
+            158,
+            135
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_to_column",
+            "right_swipe_for_empty_column",
+            "left_swipe_for_empty_column",
+            "up_swipe_for_empty_column"
+        ]
+    },
+    "sky_ground_to_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/empty_column.png",
+        "action": "Click",
+        "next": [
+            "[JumpBack]sky_ground_get_bead"
+        ]
+    },
+    "right_swipe_for_empty_column": {
+        "action": "Swipe",
+        "begin": [
+            955,
+            328,
+            98,
+            105
+        ],
+        "end": [
+            251,
+            323,
+            140,
+            145
+        ],
+        "duration": 200,
+        "max_hit": 1,
+        "post_delay": 900,
+        "next": [
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_get_bead",
+            "down_swipe_for_empty_column"
+        ]
+    },
+    "left_swipe_for_empty_column": {
+        "action": "Swipe",
+        "begin": [
+            251,
+            323,
+            140,
+            145
+        ],
+        "end": [
+            955,
+            328,
+            98,
+            105
+        ],
+        "duration": 200,
+        "max_hit": 1,
+        "post_delay": 900,
+        "next": [
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_get_bead",
+            "up_swipe_for_empty_column"
+        ]
+    },
+    "down_swipe_for_empty_column": {
+        "action": "Swipe",
+        "begin": [
+            566,
+            611,
+            118,
+            91
+        ],
+        "end": [
+            581,
+            29,
+            133,
+            101
+        ],
+        "duration": 200,
+        "max_hit": 1,
+        "post_delay": 900,
+        "next": [
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_get_bead",
+            "left_swipe_for_empty_column"
+        ]
+    },
+    "up_swipe_for_empty_column": {
+        "action": "Swipe",
+        "begin": [
+            581,
+            29,
+            133,
+            101
+        ],
+        "end": [
+            566,
+            611,
+            118,
+            91
+        ],
+        "duration": 200,
+        "max_hit": 1,
+        "post_delay": 900,
+        "next": [
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_get_bead",
+            "down_swipe_for_empty_column"
+        ]
+    },
+    "sky_ground_get_bead": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/bead.png",
+        "action": "Click"
+    },
+    "sky_ground_check_no_bead": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/bead.png",
+        "inverse": true
     }
 }

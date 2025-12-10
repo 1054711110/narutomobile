@@ -129,7 +129,6 @@
             "flower_shop_in_select_flower",
             "[JumpBack]flower_shop_to_select_flower"
         ],
-        "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]去选花[/color]"
     },
     "flower_shop_in_choose_flower": {
@@ -147,7 +146,6 @@
             "flower_shop_check_select_flower",
             "[JumpBack]flower_shop_in_choose_flower"
         ],
-        "post_delay": 400,
         "focus": "[color:DeepSkyBlue]寻找可以种的花[/color]"
     },
     "flower_shop_check_select_flower": {
@@ -175,7 +173,6 @@
             "flower_shop_done",
             "[JumpBack]flower_shop_confrim_choose_flower"
         ],
-        "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]确定种花[/color]"
     },
     "flower_shop_not_select_flower": {
