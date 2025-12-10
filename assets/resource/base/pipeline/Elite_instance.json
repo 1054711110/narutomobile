@@ -67,8 +67,24 @@
         ],
         "threshold": 0.85,
         "next": [
-            "elite_instance_new_level_undone"
+            "elite_instance_new_level_undone",
+            "elite_instance_level_done"
         ]
+    },
+    "elite_instance_level_done": {
+        "recognition": "TemplateMatch",
+        "template": "Elite_instance/level_done.png",
+        "roi": [
+            772,
+            311,
+            39,
+            47
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "post_delay": 900,
+        "focus": "[color:DeepSkyBlue]全部关卡已经完成[/color]"
     },
     "elite_instance_new_level_undone": {
         "recognition": "TemplateMatch",

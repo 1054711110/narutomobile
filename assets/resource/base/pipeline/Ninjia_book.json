@@ -216,6 +216,7 @@
         "next": [
             "mechanical_treasure_box_undone",
             "ninjia_book_award_undone",
+            "ninjia_book_award_selected",
             "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
@@ -314,6 +315,7 @@
         "next": [
             "mechanical_treasure_box_undone",
             "ninjia_book_award_undone",
+            "ninjia_book_award_selected",
             "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
@@ -350,6 +352,7 @@
         "inverse": true,
         "next": [
             "ninjia_book_award_undone",
+            "ninjia_book_award_selected",
             "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
@@ -402,6 +405,7 @@
         "inverse": true,
         "next": [
             "ninjia_book_award_undone",
+            "ninjia_book_award_selected",
             "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
@@ -419,6 +423,7 @@
         "action": "Click",
         "next": [
             "ninjia_book_award_undone",
+            "ninjia_book_award_selected",
             "back_main_screen_and_stop",
             "[JumpBack]get_mechanical_treasure_box_award_one_key"
         ],
@@ -552,8 +557,29 @@
             111,
             108
         ],
+        "max_hit": 4,
         "next": [
-            "ninjia_book_award_undone",
+            "ninjia_book_award_selected",
+            "[JumpBack]ninjia_book_award_undone",
+            "[JumpBack]back_main_screen_and_stop"
+        ],
+        "post_wait_freezes": 500,
+        "action": "Click",
+        "focus": "[color:DeepSkyBlue]忍法帖奖励未领取[/color]"
+    },
+    "ninjia_book_award_selected": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Ninjia_book/has_award_selected.png"
+        ],
+        "roi": [
+            89,
+            98,
+            111,
+            108
+        ],
+        "max_hit": 3,
+        "next": [
             "ninjia_book_award_swip_to_left",
             "[JumpBack]back_main_screen_and_stop"
         ],
@@ -605,7 +631,9 @@
             974,
             129
         ],
-        "next": ["back_main_screen_and_stop"]
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "ninjia_book_award_swip_to_right": {
         "recognition": "TemplateMatch",
@@ -668,7 +696,8 @@
             "Ninjia_book/soul_waiting.png",
             "Ninjia_book/box_waiting.png",
             "Ninjia_book/wooden_spike_roll_waiting.png",
-            "Ninjia_book/title_waiting.png"
+            "Ninjia_book/title_waiting.png",
+            "Ninjia_book/exchange_token_waiting.png"
         ],
         "roi": [
             98,

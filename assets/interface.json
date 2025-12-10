@@ -347,8 +347,9 @@
                     "pipeline_override": {
                         "ninjia_book_award_undone": {
                             "next": [
-                                "ninjia_book_award_undone",
-                                "ninjia_book_award_swip_to_left"
+                                "ninjia_book_award_selected",
+                                "[JumpBack]ninjia_book_award_undone",
+                                "[JumpBack]back_main_screen_and_stop"
                             ]
                         }
                     }
