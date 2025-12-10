@@ -583,7 +583,7 @@
     "check_club_all_submit": {
         "recognition": "TemplateMatch",
         "template": "Naruto_club/mission_submit.png",
-        "threshold": 0.7,
+        "threshold": 0.6,
         "next": [
             "club_first_award_done",
             "[JumpBack]club_first_award"
