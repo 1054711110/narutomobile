@@ -221,12 +221,6 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
-    "roi": [
-      11,
-      0,
-      1269,
-      720
-    ],
     "threshold": 0.95,
     "action": "StopTask",
     "green_mask": true,
@@ -237,12 +231,6 @@
     "recognition": "TemplateMatch",
     "template": [
       "Startup/main_green_masked.png"
-    ],
-    "roi": [
-      11,
-      0,
-      1269,
-      720
     ],
     "threshold": 0.95,
     "action": "DoNothing",
