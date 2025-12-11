@@ -64,7 +64,6 @@
       56
     ],
     "action": "Click",
-    "duration": 50,
     "focus": "[color:DeepSkyBlue]关闭好友排名[/color]"
   },
   "close_chat": {
@@ -225,7 +224,7 @@
     "action": "StopTask",
     "green_mask": true,
     "post_delay": 500,
-    "focus": "[color:tomato]当前任务结束[/color]"
+    "focus": "[color:DeepSkyBlue]当前任务结束[/color]"
   },
   "check_main_screen": {
     "recognition": "TemplateMatch",
@@ -236,7 +235,7 @@
     "action": "DoNothing",
     "green_mask": true,
     "post_delay": 500,
-    "focus": "[color:tomato]检查在主界面[/color]"
+    "focus": "[color:darkgray]检查在主界面[/color]"
   },
   "main_screen_swipe_to_right": {
     "recognition": "TemplateMatch",
