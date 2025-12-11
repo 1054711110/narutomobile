@@ -78,7 +78,6 @@
             "[JumpBack]use_energy_ez_sweep",
             "[JumpBack]sleep_500ms"
         ],
-        "max_hit": 3,
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确定便捷扫荡[/color]"
     },
@@ -98,6 +97,7 @@
             "use_energy_finish",
             "use_energy_finish_1",
             "[JumpBack]use_energy_confirm_ez_sweep",
+            "[JumpBack]use_energy_ez_sweep",
             "[JumpBack]sleep_500ms"
         ],
         "post_delay": 5000,

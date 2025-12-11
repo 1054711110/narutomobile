@@ -134,7 +134,7 @@ class FindPlantableFlower(CustomRecognition):
                 [749, 300, 29, 29],
             ),
             (
-                [812, 355, 103, 29],
+                [810, 256, 143, 140],
                 [844, 298, 37, 34],
             ),
         ]
