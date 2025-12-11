@@ -1,7 +1,7 @@
 {
     "name": "MaaAutoNaruto",
     "github": "https://github.com/duorua/narutomobile",
-    "description": "本软件开源免费，受AGPL v3协议保护。",
+    "description": "本软件开源免费,受AGPL v3协议保护。",
     "license": "LICENSE",
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": false,
@@ -66,7 +66,7 @@
             "name": "组织",
             "entry": "group",
             "default_check": true,
-            "description": "包含祈福签到和领奖，追击晓组织领奖。[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
+            "description": "[size:15][color:tomato]包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
             "name": "积分赛",
@@ -122,7 +122,7 @@
         {
             "name": "忍法帖",
             "entry": "ninjia_book",
-            "description": "开启后会领取忍法帖升级的[color:red]全部奖励[/color]，需要攒体验卡的不要用！",
+            "description": "[size:15][color:tomato]开启后会领取忍法帖升级的全部奖励，需要攒体验卡的不要用！[/color][/size]",
             "option": [
                 "是否领取体验卡宝箱",
                 "是否领取奖励"
