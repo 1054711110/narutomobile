@@ -1,21 +1,28 @@
 {
     "treasure_gathering_trial": {
         "next": [
-            "Treasure_gathering_trial_icon",
+            "treasure_gathering_trial_icon",
             "treasure_gathering_trial_award",
             "treasure_gathering_trial_box",
             "[JumpBack]back_main_screen"
-        ]
+        ],
+        "post_delay": 1500
     },
-    "Treasure_gathering_trial_icon": {
+    "treasure_gathering_trial_icon": {
         "recognition": "TemplateMatch",
         "template": "Treasure_gathering_trial_award/icon.png",
+        "roi": [
+            940,
+            0,
+            339,
+            508
+        ],
         "action": "Click",
         "next": [
             "treasure_gathering_trial_award",
-            "[JumpBack]Treasure_gathering_trial_icon"
+            "[JumpBack]treasure_gathering_trial_icon"
         ],
-        "post_delay": 500
+        "post_delay": 1500
     },
     "treasure_gathering_trial_award": {
         "recognition": "TemplateMatch",
@@ -30,20 +37,24 @@
         "next": [
             "treasure_gathering_trial_box",
             "[JumpBack]treasure_gathering_trial_award",
-            "[JumpBack]treasure_gathering_trial_back"
+            "treasure_gathering_trial_back"
         ],
-        "post_delay": 500
+        "post_delay": 1500
     },
     "treasure_gathering_trial_back": {
         "recognition": "TemplateMatch",
-        "template": "Treasure_gathering_trial_award/back.png",
+        "template": "Treasure_gathering_trial_award/box.png",
         "roi": [
-            165,
-            619,
-            143,
-            101
+            784,
+            377,
+            163,
+            126
         ],
-        "next": ["back_main_screen_and_stop"],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "post_delay": 500,
         "focus": "[color:DeepSkyBlue]聚宝试炼奖励已领取[/color]"
     },
     "treasure_gathering_trial_box": {
@@ -99,18 +110,21 @@
             "[JumpBack]swipe_for_treasure_gathering_trial_find_red_point"
         ],
         "timeout": 20000,
-        "on_error": ["back_main_screen_and_stop"],
+        "on_error": [
+            "back_main_screen_and_stop"
+        ],
         "post_delay": 500
     },
     "treasure_gathering_trial_end_level": {
         "recognition": "TemplateMatch",
         "template": "Treasure_gathering_trial_award/end.png",
         "roi": [
-            975,
-            75,
-            79,
-            61
+            1022,
+            298,
+            172,
+            111
         ],
+        "threshold": 0.9,
         "next": [
             "back_main_screen_and_stop"
         ],
@@ -271,7 +285,9 @@
         "duration": 300,
         "post_delay": 500,
         "timeout": 10000,
-        "on_error": ["treasure_gathering_trial_level"]
+        "on_error": [
+            "treasure_gathering_trial_level"
+        ]
     },
     "treasure_gathering_trial_check_get_award": {
         "recognition": "TemplateMatch",
