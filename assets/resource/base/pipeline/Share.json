@@ -110,7 +110,8 @@
             "[JumpBack]share_close_weekly_ninjia_title_next_step",
             "[JumpBack]share_close_weekly_ninjia_title",
             "[JumpBack]share_entry",
-            "[JumpBack]share_to_qq"
+            "[JumpBack]share_to_qq",
+            "[[JumpBack]get_titel"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:darkgray]尝试进入用户主页[/color]"

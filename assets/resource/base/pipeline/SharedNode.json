@@ -297,5 +297,46 @@
   },
   "sleep_500ms": {
     "post_delay": 500
+  },
+  "get_titel": {
+    "recognition": "OCR",
+    "expected": "获得",
+    "roi": [
+      243,
+      594,
+      118,
+      38
+    ],
+    "action": "Click",
+    "focus": "获得称号",
+    "next": [
+      "[JumpBack]this_week_nintou_title",
+      "[JumpBack]this_week_fighting_title"
+    ],
+    "timeout": 5000
+  },
+  "this_week_nintou_title": {
+    "recognition": "OCR",
+    "expected": "下一步",
+    "roi": [
+      567,
+      641,
+      145,
+      56
+    ],
+    "action": "Click",
+    "focus": "获得忍到称号"
+  },
+  "this_week_fighting_title": {
+    "recognition": "OCR",
+    "expected": "确定",
+    "roi": [
+      375,
+      644,
+      102,
+      47
+    ],
+    "action": "Click",
+    "focus": "获得格斗称号"
   }
 }
