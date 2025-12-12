@@ -9,9 +9,6 @@
     "use_energy_by_ninjia_piece": {
         "recognition": "TemplateMatch",
         "template": [
-            "Use_energy/adventure.png",
-            "Use_energy/adventure_undone.png",
-            "Use_energy/adventure_undone_1.png",
             "Use_energy/adventure_cloud.png"
         ],
         "roi": [
@@ -20,10 +17,17 @@
             199,
             180
         ],
-        "next": [
-            "elite_entry"
-        ],
         "action": "Click",
+        "target": [
+            1129,
+            599,
+            61,
+            59
+        ],
+        "next": [
+            "elite_entry",
+            "[JumpBack]use_energy_by_ninjia_piece"
+        ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]刷忍者碎片[/color]"
     },
