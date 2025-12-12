@@ -64,7 +64,6 @@
       56
     ],
     "action": "Click",
-    "duration": 50,
     "focus": "[color:DeepSkyBlue]关闭好友排名[/color]"
   },
   "close_chat": {
@@ -225,7 +224,7 @@
     "action": "StopTask",
     "green_mask": true,
     "post_delay": 500,
-    "focus": "[color:tomato]当前任务结束[/color]"
+    "focus": "[color:DeepSkyBlue]当前任务结束[/color]"
   },
   "check_main_screen": {
     "recognition": "TemplateMatch",
@@ -236,7 +235,7 @@
     "action": "DoNothing",
     "green_mask": true,
     "post_delay": 500,
-    "focus": "[color:tomato]检查在主界面[/color]"
+    "focus": "[color:darkgray]检查在主界面[/color]"
   },
   "main_screen_swipe_to_right": {
     "recognition": "TemplateMatch",
@@ -298,5 +297,46 @@
   },
   "sleep_500ms": {
     "post_delay": 500
+  },
+  "get_title": {
+    "recognition": "OCR",
+    "expected": "获得",
+    "roi": [
+      243,
+      594,
+      118,
+      38
+    ],
+    "action": "Click",
+    "focus": "获得称号",
+    "next": [
+      "[JumpBack]this_week_nintou_title",
+      "[JumpBack]this_week_fighting_title"
+    ],
+    "timeout": 5000
+  },
+  "this_week_nintou_title": {
+    "recognition": "OCR",
+    "expected": "下一步",
+    "roi": [
+      567,
+      641,
+      145,
+      56
+    ],
+    "action": "Click",
+    "focus": "获得忍到称号"
+  },
+  "this_week_fighting_title": {
+    "recognition": "OCR",
+    "expected": "确定",
+    "roi": [
+      375,
+      644,
+      102,
+      47
+    ],
+    "action": "Click",
+    "focus": "获得格斗称号"
   }
 }
