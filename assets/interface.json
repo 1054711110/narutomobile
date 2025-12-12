@@ -157,6 +157,7 @@
             "name": "秘境(beta)",
             "entry": "secret_realm",
             "option": [
+                "秘境从奖励中心进入",
                 "秘境打几把",
                 "烈炎秘境",
                 "罡体秘境",
@@ -166,7 +167,7 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
-            "description": "会胜利输入次数+1次,输0的时候为打一次"
+            "description": "会胜利输入次数+1次,输0的时候为打一次,由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
         },
         {
             "name": "要塞(beta)",
@@ -473,19 +474,50 @@
                 }
             ]
         },
+        "秘境从奖励中心进入": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "secret_realm": {
+                            "next": [
+                                "secret_realm_in_secret_realm",
+                                "secret_realm_in_center_enter",
+                                "secret_realm_ac_entry",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "secret_realm": {
+                            "next": [
+                                "secret_realm_in_secret_realm",
+                                "secret_realm_main_page_entry",
+                                "secret_realm_check_in_main_screen",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
         "秘境打几把": {
             "type": "input",
             "inputs": [
                 {
                     "name": "胜利次数",
-                    "default": "1",
                     "pipeline_type": "int",
+                    "default": "0",
                     "verify": "^\\d+$"
                 }
             ],
             "pipeline_override": {
                 "secret_realm_celebreate": {
-                    "timeout": "{胜利次数}"
+                    "max_hit": "{胜利次数}"
                 }
             }
         },
