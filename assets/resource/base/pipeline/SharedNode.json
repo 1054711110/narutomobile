@@ -298,7 +298,7 @@
   "sleep_500ms": {
     "post_delay": 500
   },
-  "get_titel": {
+  "get_title": {
     "recognition": "OCR",
     "expected": "获得",
     "roi": [
