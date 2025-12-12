@@ -25,11 +25,17 @@
       "[JumpBack]im_come_back_award",
       "[JumpBack]click_next_step",
       "[JumpBack]naruto_club_x",
+      "[JumpBack]christmas_stocking",
       "check_main_screen",
       "[JumpBack]try_x",
       "[JumpBack]shut_wechat"
     ],
     "focus": "[color:darkgray]尝试返回主页面[/color]"
+  },
+  "christmas_stocking": {
+    "recognition": "TemplateMatch",
+    "template": "SharedNode/christmas_stocking.png",
+    "action": "Click"
   },
   "try_x": {
     "recognition": "TemplateMatch",

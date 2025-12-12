@@ -394,6 +394,14 @@
                             "next": "flower_shop"
                         }
                     }
+                },
+                {
+                    "name": "抢红包",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "red_envelope"
+                        }
+                    }
                 }
             ]
         },
