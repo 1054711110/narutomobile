@@ -478,7 +478,7 @@
             "inputs": [
                 {
                     "name": "胜利次数",
-                    "default": "0",
+                    "default": "1",
                     "pipeline_type": "int",
                     "verify": "^\\d+$"
                 }
