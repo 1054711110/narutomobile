@@ -178,17 +178,31 @@
         "focus": "[color:darkgray]向右走[/color]",
         "next": [
             "stronghold_in_match",
-            "[JumpBack]stronghold_in_stronghold"
+            "[JumpBack]stronghold_in_stronghold",
+            "stronghold_fighting",
+            "[JumpBack]stronghold_match_win",
+            "stronghold_finished"
         ]
     },
     "stronghold_in_match": {
         "recognition": "OCR",
         "expected": [
-            "时间"
+            "旗鼓",
+            "相当"
+        ],
+        "roi": [
+            477,
+            340,
+            311,
+            153
         ],
         "next": [
             "stronghold_fighting",
             "stronghold_end",
+            "[JumpBack]stronghold_in_stronghold",
+            "[JumpBack]stronghold_in_match",
+            "[JumpBack]stronghold_match_win",
+            "stronghold_finished",
             "[JumpBack]sleep_500ms"
         ]
     },
@@ -207,7 +221,8 @@
         "action": "Click",
         "next": [
             "stronghold_without_match_win",
-            "[JumpBack]stronghold_match_win"
+            "[JumpBack]stronghold_match_win",
+            "stronghold_finished"
         ],
         "post_delay": 500
     },
@@ -225,7 +240,8 @@
         ],
         "inverse": true,
         "next": [
-            "stronghold_in_stronghold"
+            "stronghold_in_stronghold",
+            "stronghold_finished"
         ],
         "post_delay": 500
     },
@@ -246,12 +262,30 @@
             "stronghold_in_stronghold",
             "[JumpBack]battle_tips",
             "[JumpBack]stronghold_click_All_skill",
+            "[JumpBack]stronghold_match_win",
+            "stronghold_finished",
             "[JumpBack]sleep_500ms"
         ],
         "timeout": 3000,
         "pre_delay": 0,
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
+    },
+    "stronghold_finished": {
+        "recognition": "OCR",
+        "expected": [
+            "祈愿",
+            "考核"
+        ],
+        "roi": [
+            1005,
+            579,
+            274,
+            140
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "stronghold_battle_end": {
         "recognition": "OCR",
