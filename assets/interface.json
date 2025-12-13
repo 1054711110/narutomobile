@@ -141,17 +141,17 @@
             "default_check": true
         },
         {
-            "name": "活跃宝箱",
-            "entry": "liveness_award",
-            "default_check": true
-        },
-        {
             "name": "周胜(连点器)",
             "entry": "weekly_win",
             "option": [
                 "打排位",
                 "胜利一次就退出"
             ]
+        },
+        {
+            "name": "活跃宝箱",
+            "entry": "liveness_award",
+            "default_check": true
         },
         {
             "name": "秘境(beta)",

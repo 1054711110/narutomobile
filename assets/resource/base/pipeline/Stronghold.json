@@ -17,7 +17,7 @@
         "next": [
             "stronghold_gameplay",
             "no_group",
-            "[JumpBack]group_entry",
+            "[JumpBack]stronghold_entry",
             "[JumpBack]back_main_screen"
         ],
         "post_delay": 1500,
@@ -192,6 +192,43 @@
             "[JumpBack]sleep_500ms"
         ]
     },
+    "stronghold_match_win": {
+        "recognition": "OCR",
+        "expected": [
+            "确",
+            "定"
+        ],
+        "roi": [
+            472,
+            342,
+            325,
+            209
+        ],
+        "action": "Click",
+        "next": [
+            "stronghold_without_match_win",
+            "[JumpBack]stronghold_match_win"
+        ],
+        "post_delay": 500
+    },
+    "stronghold_without_match_win": {
+        "recognition": "OCR",
+        "expected": [
+            "确",
+            "定"
+        ],
+        "roi": [
+            472,
+            342,
+            325,
+            209
+        ],
+        "inverse": true,
+        "next": [
+            "stronghold_in_stronghold"
+        ],
+        "post_delay": 500
+    },
     "stronghold_fighting": {
         "recognition": "OCR",
         "expected": [
@@ -208,7 +245,8 @@
             "stronghold_battle_end",
             "stronghold_in_stronghold",
             "[JumpBack]battle_tips",
-            "[JumpBack]stronghold_click_All_skill"
+            "[JumpBack]stronghold_click_All_skill",
+            "[JumpBack]sleep_500ms"
         ],
         "timeout": 3000,
         "pre_delay": 0,
