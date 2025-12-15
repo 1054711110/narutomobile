@@ -243,26 +243,28 @@
         "threshold": 0.8,
         "post_delay": 500,
         "next": [
-            "weekly_win_without_success",
-            "[JumpBack]weekly_win_success"
+            "weekly_win_success",
+            "win_to_entry"
         ],
-        "focus": "[color:DeepSkyBlue]识别到胜利[/color]"
+        "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
     },
-    "weekly_win_without_success": {
+    "win_to_entry": {
         "recognition": "TemplateMatch",
-        "template": [
-            "Weekly_win/victory.png",
-            "Weekly_win/complete_victory.png"
-        ],
+        "template": "Weekly_win/go_to_war.png",
         "roi": [
-            480,
-            328,
-            341,
-            240
+            1069,
+            506,
+            190,
+            190
         ],
-        "threshold": 0.8,
-        "inverse": true,
-        "post_delay": 3000
+        "next": [
+            "go_to_war_agian",
+            "back_main_screen_and_stop"
+        ]
+    },
+    "go_to_war_agian": {
+        "action": "DoNothing",
+        "focus": "再来一把！"
     },
     "weekly_win_fail": {
         "recognition": "TemplateMatch",
@@ -280,7 +282,7 @@
             "weekly_win_without_fail",
             "[JumpBack]weekly_win_fail"
         ],
-        "focus": "[color:DeepSkyBlue]识别到失败[/color]"
+        "focus": "[color:DeepSkyBlue]战斗失败[/color]"
     },
     "weekly_win_without_fail": {
         "recognition": "TemplateMatch",
