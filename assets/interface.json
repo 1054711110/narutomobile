@@ -146,7 +146,7 @@
             "entry": "weekly_win",
             "option": [
                 "打排位",
-                "胜利一次就退出",
+                "何时退出",
                 "领取周胜奖励",
                 "清周胜宝箱"
             ]
@@ -409,18 +409,30 @@
                 }
             ]
         },
-        "胜利一次就退出": {
-            "type": "switch",
+        "何时退出": {
+            "type": "select",
             "cases": [
                 {
-                    "name": "No",
-                    "pipeline_override": {}
+                    "name": "一直打",
+                    "pipeline_override": {
+                        "go_to_war_agian": {
+                            "max_hit": 648
+                        }
+                    }
                 },
                 {
-                    "name": "Yes",
+                    "name": "赢一把",
                     "pipeline_override": {
-                        "weekly_win_without_success": {
-                            "next": "back_main_screen_and_stop"
+                        "go_to_war_agian": {
+                            "max_hit": 1
+                        }
+                    }
+                },
+                {
+                    "name": "赢10把",
+                    "pipeline_override": {
+                        "go_to_war_agian": {
+                            "max_hit": 10
                         }
                     }
                 }
