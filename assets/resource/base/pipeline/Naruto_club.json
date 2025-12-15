@@ -812,7 +812,7 @@
         ],
         "timeout": 3000,
         "post_wait_freezes": 800,
-        "focus": "[color:DeepSkyBlue]领取第三个奖励[/color]",
+        "focus": "[color:DeepSkyBlue]领取第三个奖励[/color]"
     },
     "confirm_club_third_award": {
         "recognition": "TemplateMatch",
