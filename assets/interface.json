@@ -443,6 +443,23 @@
                 }
             ]
         },
+        "清周胜宝箱(还没做好,不要开)": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "weekly_win_without_success": {
+                            "next": "weekly_win_duel_mission"
+                        }
+                    }
+                }
+            ]
+        },
         "借组织助战": {
             "type": "switch",
             "cases": [

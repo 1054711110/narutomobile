@@ -2,7 +2,7 @@
     "hundred_ninjia": {
         "next": [
             "hundred_ninjia_entry",
-            "[JumpBack]hundred_ninjia_match",
+            "hundred_ninjia_match",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入百忍子任务[/color]"
@@ -166,8 +166,10 @@
         "action": "Swipe",
         "duration": 50,
         "next": [
-            "hundred_ninjia_confirm_selcet_ninjia"
+            "hundred_ninjia_confirm_selcet_ninjia",
+            "[JumpBack]hundred_ninjia_selcet_ninjia"
         ],
+        "post_delay": 500,
         "focus": "[color:DeepSkyBlue]进入百忍选忍者[/color]"
     },
     "hundred_ninjia_confirm_selcet_ninjia": {

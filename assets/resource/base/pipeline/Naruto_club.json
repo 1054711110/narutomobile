@@ -573,7 +573,7 @@
         ],
         "next": [
             "check_club_all_submit",
-            "[JumpBACK]naruto_club_duplicate_claim",
+            "[JumpBack]naruto_club_duplicate_claim",
             "[JumpBack]club_submit"
         ],
         "on_error": [],

@@ -3,11 +3,12 @@
         "next": [
             "weekly_win_in_duel_field",
             "[JumpBack]weekly_win_entry",
+            "swipe_to_left_to_find_duel_field",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]开始周胜任务[/color]"
     },
-    "swipe_to_left_to_find": {
+    "swipe_to_left_to_find_duel_field": {
         "recognition": "TemplateMatch",
         "template": "Startup/main_green_masked.png",
         "action": "Swipe",
@@ -25,13 +26,13 @@
         ],
         "next": [
             "weekly_win_entry",
-            "swipe_to_right_to_find"
+            "swipe_to_right_to_find_duel_field"
         ],
         "green_mask": true,
         "post_delay": 500,
         "focus": "[color:darkgray]往左滑找决斗场[/color]"
     },
-    "swipe_to_right_to_find": {
+    "swipe_to_right_to_find_duel_field": {
         "recognition": "TemplateMatch",
         "template": "Startup/main_green_masked.png",
         "action": "Swipe",
@@ -124,6 +125,7 @@
             "weekly_win_match",
             "[JumpBack]weekly_win_mouthly_award",
             "[JumpBack]weekly_win_mouthly_reset_award",
+            "[JumpBack]weekly_win_entry",
             "[JumpBack]weekly_win"
         ],
         "green_mask": true,
