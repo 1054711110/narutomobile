@@ -7,10 +7,10 @@
     "mirrorchyan_multiplatform": true,
     "interface_version": 2,
     "agent": {
-        "child_exec": "{PROJECT_DIR}/../.venv/Scripts/python.exe",
+        "child_exec": "../.venv/Scripts/python.exe",
         "child_args": [
             "-u",
-            "{PROJECT_DIR}/../agent/main.py"
+            "../agent/main.py"
         ],
         "identifier": "3be2c931-9c0d-4d69-9ebd-eed2263e06fd"
     },
@@ -24,7 +24,7 @@
         {
             "name": "官服",
             "path": [
-                "{PROJECT_DIR}/resource/base"
+                "resource/base"
             ]
         }
     ],
