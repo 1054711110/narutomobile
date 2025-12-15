@@ -147,6 +147,15 @@ def install_chores():
             install_path / "deploy_python_env_linux.sh",
         )
 
+    shutil.copy2(
+        working_dir / "tools" / "get_cli.sh",
+        install_path / "get_cli.sh",
+    )
+    shutil.copy2(
+        working_dir / "tools" / "get_cli.bat",
+        install_path / "get_cli.bat",
+    )
+
 
 def install_agent():
     shutil.copytree(
