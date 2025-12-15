@@ -4,7 +4,7 @@
     "description": "本软件开源免费,受AGPL v3协议保护。",
     "license": "LICENSE",
     "mirrorchyan_rid": "MaaAutoNaruto",
-    "mirrorchyan_multiplatform": false,
+    "mirrorchyan_multiplatform": true,
     "agent": {
         "child_exec": "{PROJECT_DIR}/../.venv/Scripts/python.exe",
         "child_args": [
