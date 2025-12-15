@@ -5,6 +5,7 @@
     "license": "LICENSE",
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": true,
+    "interface_version": 2,
     "agent": {
         "child_exec": "{PROJECT_DIR}/../.venv/Scripts/python.exe",
         "child_args": [
