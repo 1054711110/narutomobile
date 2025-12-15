@@ -99,6 +99,24 @@ def install_maafw():
 
 def install_resource():
     configure_ocr_model()
+
+    pipeline_files = Path(
+        working_dir / "assets" / "resource" / "base" / "pipeline"
+    ).glob("*.json")
+    pipeline_merged = {}
+    for pipeline_file in pipeline_files:
+        with open(pipeline_file, "r", encoding="utf-8") as f:
+            pipeline_data = json.load(f)
+            pipeline_merged.update(pipeline_data)
+        os.remove(pipeline_file)
+
+    with open(
+        working_dir / "assets" / "resource" / "base" / "pipeline" / "merged.json",
+        "w",
+        encoding="utf-8",
+    ) as f:
+        json.dump(pipeline_merged, f, ensure_ascii=False, indent=4)
+
     shutil.copytree(
         working_dir / "assets" / "resource",
         install_path / "resource",
