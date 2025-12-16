@@ -142,7 +142,8 @@
         "inverse": true,
         "post_delay": 900,
         "next": [
-            "hundred_ninjia_selcet_ninjia"
+            "hundred_ninjia_selcet_ninjia",
+            "[JumpBack]wait_5_second"
         ],
         "focus": "[color:DeepSkyBlue]离开百忍进场动画[/color]"
     },
@@ -193,7 +194,7 @@
             327,
             145
         ],
-        "threshold": 0.8,
+        "threshold": 0.7,
         "green_mask": true,
         "action": "DoNothing",
         "next": [
@@ -212,7 +213,7 @@
             327,
             145
         ],
-        "threshold": 0.8,
+        "threshold": 0.7,
         "green_mask": true,
         "action": "DoNothing",
         "next": [
@@ -234,7 +235,7 @@
             327,
             145
         ],
-        "threshold": 0.8,
+        "threshold": 0.7,
         "inverse": true,
         "green_mask": true,
         "next": [
@@ -261,7 +262,7 @@
         "next": [
             "hundred_ninjia_entrance_animation",
             "[JumpBack]hundred_ninjia_windfall",
-            "[JumpBack]sleep_500ms"
+            "[JumpBack]wait_5_second"
         ],
         "focus": "[color:DeepSkyBlue]赢了![/color]"
     },
@@ -293,7 +294,7 @@
             145
         ],
         "green_mask": true,
-        "threshold": 0.8,
+        "threshold": 0.7,
         "action": "MultiSwipe",
         "swipes": [
             {
