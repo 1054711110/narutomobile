@@ -148,8 +148,9 @@
                 "打排位",
                 "何时退出",
                 "领取周胜奖励",
-                "清周胜宝箱"
-            ]
+                "清周胜过期宝箱"
+            ],
+            "description": "排位由于胜利界面出现时间短不好识别,建议无限打,不开领奖励。清周胜宝箱要有时间卡,且可能有bug"
         },
         {
             "name": "活跃宝箱",
@@ -189,10 +190,21 @@
             "entry": "asura_instance"
         },
         {
+            "name": "更多玩法(beta)",
+            "entry": "more_gameplay",
+            "option": [
+                "百忍",
+                "绝迹战场",
+                "大蛇丸试炼",
+                "百忍是否使用连点器战斗"
+            ],
+            "description": "百忍虽好,可是有开放时间限制的哦,大蛇丸试炼还没做好,别开"
+        },
+        {
             "name": "百忍大战",
             "entry": "hundred_ninjia",
             "option": [
-                "战斗时是否点击普攻"
+                "百忍是否使用连点器战斗"
             ]
         },
         {
@@ -289,22 +301,42 @@
                 }
             ]
         },
-        "战斗时是否点击普攻": {
-            "type": "select",
+        "百忍是否使用连点器战斗": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "否",
+                    "name": "Yes",
                     "pipeline_override": {
-                        "hundred_ninjia_check_fight": {
-                            "action": "DoNothing"
+                        "hundred_ninjia_selcet_ninjia": {
+                            "next": [
+                                "hundred_ninjia_confirm_selcet_ninjia",
+                                "[JumpBack]hundred_ninjia_selcet_ninjia",
+                                "hundred_ninjia_fight",
+                                "[JumpBack]sleep_500ms"
+                            ]
+                        },
+                        "hundred_ninjia_confirm_selcet_ninjia": {
+                            "next": [
+                                "hundred_ninjia_fight",
+                                "[JumpBack]hundred_ninjia_selcet_ninjia",
+                                "[JumpBack]sleep_500ms"
+                            ]
+                        },
+                        "hundred_ninjia_check_no_fight": {
+                            "next": [
+                                "hundred_ninjia_confirm_game_over",
+                                "hundred_ninjia_windfall",
+                                "hundred_ninjia_fight",
+                                "[JumpBack]wait_5_second"
+                            ]
                         }
                     }
                 },
                 {
-                    "name": "是",
+                    "name": "No",
                     "pipeline_override": {
                         "hundred_ninjia_check_fight": {
-                            "action": "Click"
+                            "action": "DoNothing"
                         }
                     }
                 }
@@ -455,7 +487,7 @@
                 }
             ]
         },
-        "清周胜宝箱(还没做好,不要开)": {
+        "清周胜过期宝箱": {
             "type": "switch",
             "cases": [
                 {
@@ -467,6 +499,19 @@
                     "pipeline_override": {
                         "weekly_win_without_success": {
                             "next": "weekly_win_duel_mission"
+                        },
+                        "weekly_win_in_duel_mission": {
+                            "next": [
+                                "weekly_win_check_no_daily_duel_mission_award",
+                                "weekly_win_check_daily_duel_mission_recover_award",
+                                "[JumpBack]weekly_win_get_duel_mission_award"
+                            ]
+                        },
+                        "weekly_win_check_no_daily_duel_mission_award": {
+                            "next": [
+                                "weekly_win_check_daily_duel_mission_recover_award",
+                                "back_main_screen_and_stop"
+                            ]
                         }
                     }
                 }
@@ -740,6 +785,69 @@
                             "next": [
                                 "secret_realm_yin_yang_to_place"
                             ]
+                        }
+                    }
+                }
+            ]
+        },
+        "百忍": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "more_gameplay_hundred_ninjia_gameplay": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "more_gameplay_hundred_ninjia_gameplay": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "绝迹战场": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "more_gameplay_trace_vanish": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "more_gameplay_trace_vanish": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "大蛇丸试炼": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "more_gameplay_orochimaru_trial": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "more_gameplay_orochimaru_trial": {
+                            "enabled": true
                         }
                     }
                 }
