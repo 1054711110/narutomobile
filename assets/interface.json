@@ -209,7 +209,8 @@
         },
         {
             "name": "agent Debug",
-            "entry": "use_agent"
+            "entry": "use_agent",
+            "description": "调试用,不开不开"
         },
         {
             "name": "小游戏",
@@ -271,12 +272,21 @@
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
                             "next": [
-                                "weekly_win_match"
+                                "weekly_win_match",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_mouthly_award",
+                                "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win"
                             ]
                         },
                         "weekly_win_entry": {
                             "next": [
-                                "weekly_win_match"
+                                "weekly_win_match",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_mouthly_award",
+                                "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win_entry",
+                                "[JumpBack]weekly_win"
                             ]
                         }
                     }
@@ -286,14 +296,20 @@
                     "pipeline_override": {
                         "weekly_win_in_duel_field": {
                             "next": [
-                                "weekly_win_rank"
+                                "weekly_win_rank",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_mouthly_award",
+                                "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win"
                             ]
                         },
                         "weekly_win_entry": {
                             "next": [
                                 "weekly_win_rank",
+                                "[JumpBack]weekly_win_weekly_award",
                                 "[JumpBack]weekly_win_mouthly_award",
                                 "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win_entry",
                                 "[JumpBack]weekly_win"
                             ]
                         }
@@ -456,7 +472,7 @@
                     "name": "赢一把",
                     "pipeline_override": {
                         "go_to_war_agian": {
-                            "max_hit": 1
+                            "max_hit": 0
                         }
                     }
                 },
@@ -464,7 +480,7 @@
                     "name": "赢10把",
                     "pipeline_override": {
                         "go_to_war_agian": {
-                            "max_hit": 10
+                            "max_hit": 9
                         }
                     }
                 }
@@ -480,8 +496,12 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "weekly_win_without_success": {
-                            "next": "weekly_win_duel_mission"
+                        "win_to_entry": {
+                            "next": [
+                                "go_to_war_agian",
+                                "weekly_win_duel_mission",
+                                "back_main_screen_and_stop"
+                            ]
                         }
                     }
                 }
@@ -497,8 +517,12 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "weekly_win_without_success": {
-                            "next": "weekly_win_duel_mission"
+                        "win_to_entry": {
+                            "next": [
+                                "go_to_war_agian",
+                                "weekly_win_duel_mission",
+                                "back_main_screen_and_stop"
+                            ]
                         },
                         "weekly_win_in_duel_mission": {
                             "next": [
@@ -606,7 +630,7 @@
                     "name": "胜利次数",
                     "pipeline_type": "int",
                     "default": "0",
-                    "verify": "^\\d+$"
+                    "verify": "^(0|[1-9]\\d*)$"
                 }
             ],
             "pipeline_override": {

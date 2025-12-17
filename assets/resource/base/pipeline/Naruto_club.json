@@ -56,7 +56,6 @@
             37
         ],
         "action": "Click",
-        "duration": 50,
         "next": [
             "club_like_mission"
         ],
