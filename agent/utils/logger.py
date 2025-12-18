@@ -18,8 +18,8 @@ def setup_logger(log_dir: Path = log_dir, console_level: str = "INFO"):
     Set up the logger with optional file logging.
 
     Args:
-        log_file (Path | None): The file path to log to. If None, file logging is disabled.
-        log_level (str): The logging level (e.g., "DEBUG", "INFO", "WARNING", "ERROR").
+        log_dir (Path): The directory where log files will be stored.
+        console_level (str): The logging level for console output (e.g., "DEBUG", "INFO", "WARNING", "ERROR").
     """
     _logger.remove()  # Remove default logger
 
