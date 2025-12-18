@@ -58,7 +58,8 @@
             88
         ],
         "next": [
-            "advanture_new_level_undone"
+            "advanture_new_level_undone",
+            "naruto_journey_new_level_undone"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]确定没有下一个章节[/color]"
@@ -93,10 +94,30 @@
         ],
         "action": "Click",
         "next": [
-            "advanture_go_fight"
+            "advanture_go_fight",
+            "[JumpBack]get_red_envelope",
+            "[JumpBack]advanture_new_level_undone"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]进入冒险副本新关卡[/color]"
+    },
+    "naruto_journey_new_level_undone": {
+        "recognition": "TemplateMatch",
+        "template": "Advanture/naruto_journey_new_level_undone.png",
+        "roi": [
+            286,
+            120,
+            279,
+            130
+        ],
+        "action": "Click",
+        "next": [
+            "advanture_go_fight",
+            "[JumpBack]get_red_envelope",
+            "[JumpBack]naruto_journey_new_level_undone"
+        ],
+        "post_delay": 900,
+        "focus": "[color:DeepSkyBlue]进入冒险副本鸣人征程新关卡[/color]"
     },
     "advanture_go_fight": {
         "recognition": "TemplateMatch",
@@ -113,10 +134,43 @@
             "advanture_anime",
             "advanture_confirm_advanced_option",
             "use_energy_not_enough_sign",
+            "[JumpBack]advanture_go_fight",
+            "[JumpBack]advanture_skip_dialogue",
             "[JumpBack]sleep_500ms"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
+    },
+    "advanture_skip_dialogue": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Advanture/dialogue.png"
+        ],
+        "roi": [
+            1120,
+            632,
+            79,
+            73
+        ],
+        "action": "Click",
+        "next": [
+            "advanture_in_fight",
+            "advanture_without_dialogue",
+            "[JumpBack]advanture_skip_dialogue"
+        ]
+    },
+    "advanture_without_dialogue": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Advanture/dialogue.png"
+        ],
+        "roi": [
+            1120,
+            632,
+            79,
+            73
+        ],
+        "inverse": true
     },
     "advanture_confirm_advanced_option": {
         "recognition": "OCR",
@@ -149,10 +203,59 @@
         "next": [
             "advanture_skip",
             "advanture_in_fight",
-            "[JumpBack]advanture_anime"
+            "[JumpBack]advanture_anime",
+            "[JumpBack]advanture_skip_dialogue"
         ],
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]剧情动画[/color]"
+    },
+    "advanture_end_anime": {
+        "recognition": "TemplateMatch",
+        "template": "Advanture/anime.png",
+        "roi": [
+            0,
+            0,
+            239,
+            105
+        ],
+        "action": "Click",
+        "next": [
+            "advanture_end_skip",
+            "[JumpBack]advanture_end_anime"
+        ],
+        "post_delay": 500,
+        "focus": "[color:DeepSkyBlue]剧情动画[/color]"
+    },
+    "advanture_end_skip": {
+        "recognition": "OCR",
+        "expected": [
+            "跳",
+            "过"
+        ],
+        "roi": [
+            1052,
+            0,
+            228,
+            119
+        ],
+        "action": "Click",
+        "next": [
+            "advanture_no_end_anime",
+            "[JumpBack]advanture_end_skip"
+        ],
+        "post_delay": 500,
+        "focus": "[color:DeepSkyBlue]跳过[/color]"
+    },
+    "advanture_no_end_anime": {
+        "recognition": "TemplateMatch",
+        "template": "Advanture/anime.png",
+        "roi": [
+            0,
+            0,
+            239,
+            105
+        ],
+        "inverse": true
     },
     "advanture_skip": {
         "recognition": "OCR",
@@ -278,7 +381,8 @@
             "advanture_win",
             "advanture_lost",
             "advanture_skip_revive",
-            "advanture_back_fight"
+            "advanture_back_fight",
+            "[JumpBack]advanture_end_anime"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]不在战斗[/color]"
@@ -309,6 +413,7 @@
         "action": "Click",
         "next": [
             "advanture_new_level_undone",
+            "naruto_journey_new_level_undone",
             "[JumpBack]advanture_win"
         ],
         "post_delay": 900,

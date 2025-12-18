@@ -56,7 +56,6 @@
             37
         ],
         "action": "Click",
-        "duration": 50,
         "next": [
             "club_like_mission"
         ],
@@ -573,7 +572,7 @@
         ],
         "next": [
             "check_club_all_submit",
-            "[JumpBACK]naruto_club_duplicate_claim",
+            "[JumpBack]naruto_club_duplicate_claim",
             "[JumpBack]club_submit"
         ],
         "on_error": [],
@@ -589,7 +588,9 @@
             "[JumpBack]club_first_award"
         ],
         "inverse": true,
-        "focus": "[color:DeepSkyBlue]检测任务是否已经全部提交[/color]"
+        "focus": "[color:DeepSkyBlue]检测任务是否已经全部提交[/color]",
+        "timeout": 15000,
+        "on_error": "award_kale"
     },
     "club_submit": {
         "recognition": "TemplateMatch",
@@ -729,7 +730,9 @@
             "confirm_club_second_award"
         ],
         "post_wait_freezes": 300,
-        "focus": "[color:DeepSkyBlue]领取第二个奖励[/color]"
+        "focus": "[color:DeepSkyBlue]领取第二个奖励[/color]",
+        "timeout": 15000,
+        "on_error": "award_kale"
     },
     "confirm_club_second_award": {
         "recognition": "TemplateMatch",
@@ -838,7 +841,6 @@
         ],
         "action": "Click",
         "next": [
-            "club_third_award_done",
             "[JumpBack]roger_club_third_award"
         ],
         "post_wait_freezes": 300,
@@ -885,5 +887,9 @@
         "next": [
             "shut_qq"
         ]
+    },
+    "award_kale": {
+        "action": "StopTask",
+        "focus": "[color:tomato]当前操作超时，疑似遇到真投入[/color]"
     }
 }

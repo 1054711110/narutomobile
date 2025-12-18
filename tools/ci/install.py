@@ -99,6 +99,24 @@ def install_maafw():
 
 def install_resource():
     configure_ocr_model()
+
+    pipeline_files = Path(
+        working_dir / "assets" / "resource" / "base" / "pipeline"
+    ).glob("*.json")
+    pipeline_merged = {}
+    for pipeline_file in pipeline_files:
+        with open(pipeline_file, "r", encoding="utf-8") as f:
+            pipeline_data = json.load(f)
+            pipeline_merged.update(pipeline_data)
+        os.remove(pipeline_file)
+
+    with open(
+        working_dir / "assets" / "resource" / "base" / "pipeline" / "merged.json",
+        "w",
+        encoding="utf-8",
+    ) as f:
+        json.dump(pipeline_merged, f, ensure_ascii=False, indent=4)
+
     shutil.copytree(
         working_dir / "assets" / "resource",
         install_path / "resource",
@@ -147,6 +165,15 @@ def install_chores():
             install_path / "deploy_python_env_linux.sh",
         )
 
+    shutil.copy2(
+        working_dir / "tools" / "get_cli.sh",
+        install_path / "get_cli.sh",
+    )
+    shutil.copy2(
+        working_dir / "tools" / "get_cli.bat",
+        install_path / "get_cli.bat",
+    )
+
 
 def install_agent():
     shutil.copytree(
@@ -159,13 +186,13 @@ def install_agent():
         interface = json.load(f)
 
     if sys.platform.startswith("win"):
-        interface["agent"]["child_exec"] = r"{PROJECT_DIR}/python/python.exe"
+        interface["agent"]["child_exec"] = r"python/python.exe"
     elif sys.platform.startswith("darwin"):
-        interface["agent"]["child_exec"] = r"{PROJECT_DIR}/python/bin/python3"
+        interface["agent"]["child_exec"] = r"python/bin/python3"
     elif sys.platform.startswith("linux"):
-        interface["agent"]["child_exec"] = r"{PROJECT_DIR}/.venv/bin/python3"
+        interface["agent"]["child_exec"] = r".venv/bin/python3"
 
-    interface["agent"]["child_args"] = ["-u", r"{PROJECT_DIR}/agent/main.py"]
+    interface["agent"]["child_args"] = ["-u", r"agent/main.py"]
 
     with open(install_path / "interface.json", "w", encoding="utf-8") as f:
         json.dump(interface, f, ensure_ascii=False, indent=4)
