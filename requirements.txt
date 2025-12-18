@@ -2,3 +2,4 @@ maafw==5.2.6
 loguru
 json-with-comments
 Pillow
+json-with-comments
