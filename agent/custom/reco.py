@@ -144,9 +144,7 @@ class FindPlantableFlower(CustomRecognition):
         # 遍历5种花,依次检查种子数量
         for flower_idx, (seed_roi, btn_roi) in enumerate(flower_config):
             flower_num = flower_idx + 1
-            logger.info(
-                f"正在检查第{flower_num}种花(种子ROI:{seed_roi},按钮ROI:{btn_roi})..."
-            )
+            logger.info(f"正在检查第{flower_num}种花...")
 
             current_seeds = self.get_seed_count(
                 context=context, image=argv.image, roi=seed_roi
@@ -161,9 +159,7 @@ class FindPlantableFlower(CustomRecognition):
                 continue
 
             # 种子充足,返回按钮位置
-            logger.info(
-                f"第{flower_num}种花:种子充足({current_seeds}/10),使用预设按钮ROI点击"
-            )
+            logger.info(f"第{flower_num}种花:种子充足({current_seeds}/10)")
             btn_box = Rect(btn_roi[0], btn_roi[1], btn_roi[2], btn_roi[3])
             return CustomRecognition.AnalyzeResult(
                 box=btn_box,
