@@ -14,5 +14,13 @@
                 "expected": ".*"
             }
         }
+    },
+    "GetEntry": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ""
+            }
+        }
     }
 }

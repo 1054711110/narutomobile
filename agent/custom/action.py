@@ -1,15 +1,26 @@
 import os
 import json
 from datetime import datetime
+import random
+from typing import Optional, Tuple
 
 from PIL import Image
 
 from maa.agent.agent_server import AgentServer, TaskDetail
 from maa.custom_action import CustomAction
 from maa.context import Context
+from maa.controller import Controller
+from maa.define import Rect
+from numpy import ndarray
 
 from utils.logger import logger, log_dir
 from utils import get_format_timestamp
+
+
+def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
+    context.tasker.controller.post_click(
+        random.randint(x, x + w - 1), random.randint(y, y + h - 1)
+    ).wait()
 
 
 @AgentServer.custom_action("MyAction111")
@@ -86,3 +97,80 @@ class Screenshot(CustomAction):
         )
 
         return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("GetEntry")
+class GetEntry(CustomAction):
+    """
+    从主界面获取功能功能入口
+    参数:
+    {
+        "template": "功能入口的匹配模板"
+    }
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        target = json.loads(argv.custom_action_param).get("template", "")
+        if (type(target) is not str) or (isinstance(target, list) is False):
+            logger.error("目标格式错误")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
+
+        found, box = self.rec_entry(context, target)
+        if found and box is not None:
+            logger.info("识别到功能入口")
+            click(context, box.x, box.y, box.w, box.h)
+            return CustomAction.RunResult(success=True)
+
+        # 右滑两次
+        for i in range(2):
+            logger.info(f"右滑第{i+1}次")
+            context.run_task("main_screen_swipe_to_right")
+            context.tasker.controller.post_screencap().wait()
+            found, box = self.rec_entry(context, target)
+            if found and box is not None:
+                logger.info("识别到功能入口")
+                click(context, box.x, box.y, box.w, box.h)
+                return CustomAction.RunResult(success=True)
+
+        # 左滑两次
+        for i in range(2):
+            logger.info(f"左滑第{i+1}次")
+            context.run_task("main_screen_swipe_to_left")
+            context.tasker.controller.post_screencap().wait()
+            found, box = self.rec_entry(context, target)
+            if found and box is not None:
+                logger.info("识别到功能入口")
+                click(context, box.x, box.y, box.w, box.h)
+                return CustomAction.RunResult(success=True)
+
+        logger.error("获取功能入口失败")
+        return CustomAction.RunResult(success=False)
+
+    def rec_entry(
+        self, context: Context, template: str | list[str]
+    ) -> Tuple[bool, Optional[Rect]]:
+        reco_detail = context.run_recognition(
+            "GetEntry",
+            context.tasker.controller.cached_image,
+            {
+                "GetEntry": {
+                    "param": {
+                        "template": template,
+                    }
+                },
+            },
+        )
+        if reco_detail is None or not reco_detail.hit:
+            logger.info("未识别到功能入口")
+            return False, None
+
+        if reco_detail.best_result is None:
+            logger.warning("识别到功能入口但解析失败(best_result为空)")
+            return False, None
+
+        return True, reco_detail.best_result.box
