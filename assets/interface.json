@@ -524,7 +524,14 @@
                                 "back_main_screen_and_stop"
                             ]
                         },
-                        "weekly_win_in_duel_mission": {
+                        "weekly_win_get_weekly_duel_mission_award_2_end": {
+                            "next": [
+                                "weekly_win_check_no_daily_duel_mission_award",
+                                "weekly_win_check_daily_duel_mission_recover_award",
+                                "[JumpBack]weekly_win_get_duel_mission_award"
+                            ]
+                        },
+                        "weekly_win_without_weekly_duel_mission_award_2": {
                             "next": [
                                 "weekly_win_check_no_daily_duel_mission_award",
                                 "weekly_win_check_daily_duel_mission_recover_award",
