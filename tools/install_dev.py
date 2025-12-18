@@ -5,7 +5,6 @@ from pathlib import Path
 import argparse
 import shutil
 import subprocess
-import traceback
 import urllib.request as request
 
 
@@ -44,6 +43,12 @@ parser.add_argument(
 )
 parser.add_argument("--install-python", type=bool, default=True, help="Install Python")
 parser.add_argument("--clean", type=bool, default=False, help="Clean install directory")
+parser.add_argument(
+    "--mfa_version",
+    type=str,
+    default=DEFAULT_MFA_VERSION,
+    help="MFA version to install",
+)
 
 args = parser.parse_args()
 
@@ -55,46 +60,57 @@ if args.clean:
     if Path(args.install_dir).exists():
         shutil.rmtree(args.install_dir)
 
+
 # setup python environment
-print(f"开始设置Python环境")
-TEMP_DIR.mkdir(exist_ok=True)
+def setup_python():
+    print(f"开始设置Python环境")
+    TEMP_DIR.mkdir(exist_ok=True)
 
-print(f"下载python并解压...")
-cmd = [
-    "python",
-    "tools/setup_full_python.py",
-    "--tmp_dir",
-    TEMP_DIR,
-]
+    print(f"下载python并解压...")
+    cmd = [
+        "python",
+        "tools/setup_full_python.py",
+        "--tmp_dir",
+        TEMP_DIR,
+    ]
 
-try:
-    subprocess.run(cmd, check=True)
-except (subprocess.CalledProcessError, OSError) as e:
-    print(f"Failed to install Python: {e}")
-    sys.exit(1)
+    try:
+        subprocess.run(cmd, check=True)
+    except (subprocess.CalledProcessError, OSError) as e:
+        print(f"Failed to install Python: {e}")
+        sys.exit(1)
 
+    # install Python dependents
+    print("开始安装python依赖")
+    cmd = [
+        "python",
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "./requirements.txt",
+        "-t",
+        "install/python/Lib/",
+    ]
 
-# install Python dependents
-print("开始安装python依赖")
-cmd = [
-    "python",
-    "-m",
-    "pip",
-    "install",
-    "-r",
-    "./requirements.txt",
-    "-t",
-    "install/python/Lib/",
-]
-
-try:
-    subprocess.run(cmd, check=True)
-except (subprocess.CalledProcessError, OSError) as e:
-    print(f"Failed to install Python: {e}")
-    sys.exit(1)
+    try:
+        subprocess.run(cmd, check=True)
+    except (subprocess.CalledProcessError, OSError) as e:
+        print(f"Failed to install Python: {e}")
+        sys.exit(1)
 
 
 # install MFA
+def download_mfa_release(version, archive_name, cache_path):
+    print(f"开始下载：{archive_name}")
+    url = f"https://github.com/SweetSmellFox/MFAAvalonia/releases/download/{version}/{archive_name}"
+    if args.ghproxy:
+        url = GHPROXY_URL + url
+
+    print(f"Downloading from {url}...")
+    download_file(url, cache_path)
+
+
 def install_mfa():
     arch = get_dotnet_platform_tag()
 
@@ -127,22 +143,41 @@ def install_mfa():
 
     archive_name = f"MFAAvalonia-{version}-{arch}.zip"
     cache_path = TEMP_DIR / archive_name
-    if cache_path.exists():
-        print(f"MFAAvalonia-{version}-{arch}.zip already exists.")
+    if not cache_path.exists():
+        download_mfa_release(version, archive_name, cache_path)
     else:
-        print(f"开始下载：{archive_name}")
-        url = f"https://github.com/SweetSmellFox/MFAAvalonia/releases/download/{version}/{archive_name}"
-        if args.ghproxy:
-            url = GHPROXY_URL + url
-
-        download_file(url, cache_path)
+        print(f"MFAAvalonia-{version}-{arch}.zip already exists.")
+        size = cache_path.stat().st_size
+        MB = 1024 * 1024
+        if size < 50 * MB:
+            print(f"文件大小为：{size / 1024 / 1024}MB")
+            print("文件大小小于50MB，可能下载不完整，重新下载...")
+            cache_path.unlink()
+            download_mfa_release(version, archive_name, cache_path)
+            size = cache_path.stat().st_size
+            MB = 1024 * 1024
+            if size < 50 * MB:
+                print(f"文件大小为：{size / 1024 / 1024}MB")
+                print("文件大小仍然小于50MB，下载失败，退出安装")
+                sys.exit(1)
 
     with ZipFile(cache_path, "r") as zip_ref:
         zip_ref.extractall(args.install_dir)
 
 
-# install MaaFramework
-install_mfa()
-install_maafw()
-install_resource()
-install_agent()
+def main():
+    print("开始本地构建流程")
+    print("设置Python环境...")
+    setup_python()
+    print("MFAA环境")
+    install_mfa()
+    print("安装MaaFramework...")
+    install_maafw()
+    print("安装资源文件...")
+    install_resource()
+    print("安装Agent...")
+    install_agent()
+
+
+if __name__ == "__main__":
+    main()
