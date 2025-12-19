@@ -135,7 +135,7 @@ jobs:
           
           python3 -m pip install -r requirements.txt
           cd tools/
-          python3 ./install.py ${{ needs.meta.outputs.tag }} ${{ matrix.os }} ${{ matrix.arch }}
+          python3 ci/install.py ${{ needs.meta.outputs.tag }} ${{ matrix.os }} ${{ matrix.arch }}
           cd ..
 
       - name: Download Python dependencies on Windows
