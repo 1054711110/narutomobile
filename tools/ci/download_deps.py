@@ -29,7 +29,7 @@ def get_platform_tag(os, arch):
     if os == "linux" and arch == "aarch64":
         platform_tag = "manylinux2014_aarch64"
     else:
-        print("不支持的操作系统或架构。")
+        print(f"不支持的操作系统或架构: {os}-{arch}")
         sys.exit(1)
 
     print(f"使用平台标签: {platform_tag}")
