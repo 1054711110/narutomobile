@@ -15,52 +15,22 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
 
 
-def get_platform_tag():
-    """自动检测当前平台并返回对应的平台标签"""
-    os_type = platform.system()
-    os_arch = platform.machine()
-
-    print(f"检测到操作系统: {os_type}, 架构: {os_arch}")
-
-    if os_type == "Windows":
-        # 在Windows ARM64环境中，platform.machine()可能错误返回AMD64
-        # 我们需要检查处理器标识符来确定真实架构
-        processor_identifier = os.environ.get("PROCESSOR_IDENTIFIER", "")
-
-        # 检查是否为ARM64处理器
-        if "ARMv8" in processor_identifier or "ARM64" in processor_identifier:
-            print(f"检测到ARM64处理器: {processor_identifier}")
-            os_arch = "ARM64"
-
-        # 映射platform.machine()到pip的平台标签
-        arch_mapping = {
-            "AMD64": "win_amd64",
-            "x86_64": "win_amd64",
-            "ARM64": "win_arm64",
-            "aarch64": "win_arm64",
-        }
-        platform_tag = arch_mapping.get(os_arch, f"win_{os_arch.lower()}")
-
-    elif os_type == "Darwin":  # macOS
-        # 映射platform.machine()到pip的平台标签
-        arch_mapping = {
-            "x86_64": "macosx_10_9_x86_64",
-            "arm64": "macosx_11_0_arm64",
-            "aarch64": "macosx_11_0_arm64",
-        }
-        platform_tag = arch_mapping.get(os_arch, f"macosx_10_9_{os_arch}")
-
-    elif os_type == "Linux":
-        # 映射platform.machine()到pip的平台标签
-        arch_mapping = {
-            "x86_64": "linux_x86_64",
-            "aarch64": "linux_aarch64",
-            "arm64": "linux_aarch64",
-        }
-        platform_tag = arch_mapping.get(os_arch, f"linux_{os_arch}")
-
+def get_platform_tag(os, arch):
+    if os == "win" and arch == "x86_64":
+        platform_tag = "win_amd64"
+    if os == "win" and arch == "aarch64":
+        platform_tag = "win_arm64"
+    if os == "macos" and arch == "x86_64":
+        platform_tag = "macosx_13_0_x86_64"
+    if os == "macos" and arch == "aarch64":
+        platform_tag = "macosx_13_0_arm64"
+    if os == "linux" and arch == "x86_64":
+        platform_tag = "manylinux2014_x86_64"
+    if os == "linux" and arch == "aarch64":
+        platform_tag = "manylinux2014_aarch64"
     else:
-        raise ValueError(f"不支持的操作系统: {os_type}")
+        print("不支持的操作系统或架构。")
+        sys.exit(1)
 
     print(f"使用平台标签: {platform_tag}")
     return platform_tag
@@ -124,12 +94,13 @@ def download_dependencies(deps_dir, platform_tag):
 def main():
     parser = argparse.ArgumentParser(description="下载Python依赖到deps目录")
     parser.add_argument("--deps-dir", default="deps", help="依赖下载目录 (默认: deps)")
+    parser.add_argument("--os", help="下载的系统")
+    parser.add_argument("--arch", help="下载的架构")
 
     args = parser.parse_args()
 
     try:
-        # 自动检测平台
-        platform_tag = get_platform_tag()
+        platform_tag = get_platform_tag(args.os, args.arch)
 
         # 下载依赖
         success = download_dependencies(args.deps_dir, platform_tag)
