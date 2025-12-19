@@ -620,7 +620,7 @@
             "[JumpBack]get_ninjia_book_award",
             "[JumpBack]ninjia_book_award_swip_to_right"
         ],
-        "focus": "[color:DeepSkyBlue]滑动领取忍法帖奖励[/color]"
+        "focus": "[color:DeepSkyBlue]左滑动到忍法帖奖励前部[/color]"
     },
     "top_level_award": {
         "recognition": "OCR",
@@ -633,7 +633,8 @@
         ],
         "next": [
             "back_main_screen_and_stop"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]滑动到忍法帖165级[/color]"
     },
     "ninjia_book_award_swip_to_right": {
         "recognition": "TemplateMatch",
@@ -662,7 +663,7 @@
             86
         ],
         "duration": 500,
-        "focus": "[color:DeepSkyBlue]滑动领取忍法帖奖励[/color]"
+        "focus": "[color:DeepSkyBlue]右滑领取忍法帖奖励[/color]"
     },
     "check_no_ninjia_book_award_red_point": {
         "recognition": "TemplateMatch",
