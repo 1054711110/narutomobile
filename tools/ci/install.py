@@ -148,7 +148,7 @@ def install_chores():
     )
 
 
-def install_agent():
+def install_agent(os_name):
     shutil.copytree(
         working_dir / "agent",
         install_path / "agent",
@@ -158,12 +158,15 @@ def install_agent():
     with open(install_path / "interface.json", "r", encoding="utf-8") as f:
         interface = jsonc.load(f)
 
-    if sys.platform.startswith("win"):
+    if os_name == "win":
         interface["agent"]["child_exec"] = r"python/python.exe"
-    elif sys.platform.startswith("darwin"):
+    elif os_name == "darwin":
         interface["agent"]["child_exec"] = r"python/bin/python3"
-    elif sys.platform.startswith("linux"):
+    elif os_name == "linux":
         interface["agent"]["child_exec"] = r".venv/bin/python3"
+    else:
+        print(f"Unsupported OS: {os_name}")
+        sys.exit(1)
 
     interface["agent"]["child_args"] = ["-u", r"agent/main.py"]
 
@@ -185,6 +188,6 @@ if __name__ == "__main__":
     install_maafw(os_name, arch)
     install_resource(version)
     install_chores()
-    install_agent()
+    install_agent(os_name)
 
     print(f"Install to {install_path} successfully.")
