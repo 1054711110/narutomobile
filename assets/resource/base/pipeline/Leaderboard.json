@@ -53,28 +53,18 @@
             1269,
             720
         ],
-        "action": "Swipe",
-        "begin": [
-            1015,
-            334,
-            1,
-            1
-        ],
-        "end": [
-            273,
-            336,
-            1,
-            1
-        ],
-        "threshold": 0.95,
-        "green_mask": true,
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "GetEntry",
+                "custom_action_param": {
+                    "template": "home/排行榜"
+                }
+            }
+        },
         "next": [
-            "leaderboard_entry",
-            "leaderboard_entry_by_ocr",
-            "[JumpBack]swipe_for_left_entries"
-        ],
-        "post_delay": 500,
-        "focus": "[color:DeepSkyBlue]检测是否在主页面[/color]"
+            "click_thumb"
+        ]
     },
     "leaderboard_entry": {
         "recognition": "TemplateMatch",
