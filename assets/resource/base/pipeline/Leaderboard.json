@@ -43,16 +43,15 @@
         "focus": "[color:DeepSkyBlue]进入排行榜[/color]"
     },
     "leaderboard_check_in_main_screen": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Startup/main_green_masked.png"
-        ],
-        "roi": [
-            11,
-            0,
-            1269,
-            720
-        ],
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "Startup/main_green_masked.png"
+                ],
+                "green_mask": true
+            }
+        },
         "action": {
             "type": "Custom",
             "param": {

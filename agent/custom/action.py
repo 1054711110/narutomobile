@@ -1,7 +1,9 @@
+import asyncio
 import os
 import json
 from datetime import datetime
 import random
+from time import sleep
 from typing import Optional, Tuple
 
 from PIL import Image
@@ -115,8 +117,8 @@ class GetEntry(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
         target = json.loads(argv.custom_action_param).get("template", "")
-        if (type(target) is not str) or (isinstance(target, list) is False):
-            logger.error("目标格式错误")
+        if (type(target) is not str) and (isinstance(target, list) is False):
+            logger.error(f"目标格式错误: {target}")
             context.tasker.post_stop()
             return CustomAction.RunResult(success=False)
 
@@ -130,6 +132,7 @@ class GetEntry(CustomAction):
         for i in range(2):
             logger.info(f"右滑第{i+1}次")
             context.run_task("main_screen_swipe_to_right")
+            sleep(1)
             context.tasker.controller.post_screencap().wait()
             found, box = self.rec_entry(context, target)
             if found and box is not None:
@@ -141,6 +144,7 @@ class GetEntry(CustomAction):
         for i in range(2):
             logger.info(f"左滑第{i+1}次")
             context.run_task("main_screen_swipe_to_left")
+            sleep(1)
             context.tasker.controller.post_screencap().wait()
             found, box = self.rec_entry(context, target)
             if found and box is not None:
