@@ -16,21 +16,23 @@ sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
 
 
 def get_platform_tag(os, arch):
-    if os == "win" and arch == "x86_64":
-        platform_tag = "win_amd64"
-    if os == "win" and arch == "aarch64":
-        platform_tag = "win_arm64"
-    if os == "macos" and arch == "x86_64":
-        platform_tag = "macosx_13_0_x86_64"
-    if os == "macos" and arch == "aarch64":
-        platform_tag = "macosx_13_0_arm64"
-    if os == "linux" and arch == "x86_64":
-        platform_tag = "manylinux2014_x86_64"
-    if os == "linux" and arch == "aarch64":
-        platform_tag = "manylinux2014_aarch64"
-    else:
-        print(f"不支持的操作系统或架构: {os}-{arch}")
-        sys.exit(1)
+    target = (os, arch)
+    match target:
+        case ("win", "x86_64"):
+            platform_tag = "win_amd64"
+        case ("win", "aarch64"):
+            platform_tag = "win_arm64"
+        case ("macos", "x86_64"):
+            platform_tag = "macosx_13_0_x86_64"
+        case ("macos", "aarch64"):
+            platform_tag = "macosx_13_0_arm64"
+        case ("linux", "x86_64"):
+            platform_tag = "manylinux2014_x86_64"
+        case ("linux", "aarch64"):
+            platform_tag = "manylinux2014_aarch64"
+        case _:
+            print(f"不支持的操作系统或架构: {os}-{arch}")
+            sys.exit(1)
 
     print(f"使用平台标签: {platform_tag}")
     return platform_tag
