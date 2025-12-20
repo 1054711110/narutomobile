@@ -99,7 +99,7 @@ class Screenshot(CustomAction):
 @AgentServer.custom_action("GoIntoEntry")
 class GoIntoEntry(CustomAction):
     """
-    从主界面获取功能功能入口
+    从主界面获取功能入口
     参数:
     {
         "template": "功能入口的匹配模板"
@@ -114,6 +114,13 @@ class GoIntoEntry(CustomAction):
         target = json.loads(argv.custom_action_param).get("template", "")
         if (type(target) is not str) and (isinstance(target, list) is False):
             logger.error(f"目标格式错误: {target}")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
+        # 检查目标是否为空字符串或空列表
+        if (isinstance(target, str) and not target.strip()) or (
+            isinstance(target, list) and len(target) == 0
+        ):
+            logger.error(f"目标为空: {target}")
             context.tasker.post_stop()
             return CustomAction.RunResult(success=False)
 
