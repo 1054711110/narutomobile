@@ -104,7 +104,7 @@ class Screenshot(CustomAction):
 @AgentServer.custom_action("GoIntoEntry")
 class GoIntoEntry(CustomAction):
     """
-    从主界面获取功能功能入口
+    从主界面获取功能入口
     参数:
     {
         "template": "功能入口的匹配模板"
