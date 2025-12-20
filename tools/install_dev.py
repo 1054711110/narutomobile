@@ -235,7 +235,6 @@ def main():
     arch_mapping = {
         "amd64": "x86_64",
         "x86_64": "x86_64",
-        "win32": "aarch64",
         "aarch64": "aarch64",
         "arm64": "aarch64",
     }
