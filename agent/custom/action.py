@@ -8,7 +8,7 @@ from PIL import Image
 from maa.agent.agent_server import AgentServer, TaskDetail
 from maa.custom_action import CustomAction
 from maa.context import Context
-from maa.define import Rect
+from maa.define import RectType
 
 from utils.logger import logger, log_dir
 from utils import get_format_timestamp
@@ -167,7 +167,7 @@ class GoIntoEntry(CustomAction):
 
     def rec_entry(
         self, context: Context, template: str | list[str]
-    ) -> Tuple[bool, Optional[Rect]]:
+    ) -> Tuple[bool, Optional[RectType]]:
         reco_detail = context.run_recognition(
             "click_entry",
             context.tasker.controller.cached_image,
