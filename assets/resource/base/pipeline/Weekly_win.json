@@ -223,6 +223,7 @@
         "post_delay": 500,
         "next": [
             "weekly_win_success",
+            "[JumpBack]weekly_win_rank_up",
             "win_to_entry"
         ],
         "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
@@ -244,6 +245,37 @@
     "go_to_war_agian": {
         "action": "DoNothing",
         "focus": "再来一把！"
+    },
+    "weekly_win_rank_up": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            637,
+            545,
+            350,
+            174
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_rank_up_done",
+            "[JumpBack]weekly_win_rank_up"
+        ],
+        "post_delay": 900
+    },
+    "weekly_win_rank_up_done": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            637,
+            545,
+            350,
+            174
+        ],
+        "inverse": true
     },
     "weekly_win_fail": {
         "recognition": "TemplateMatch",
