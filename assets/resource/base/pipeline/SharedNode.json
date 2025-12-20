@@ -301,7 +301,7 @@
     "duration": 400,
     "post_delay": 500,
     "green_mask": true,
-    "focus": "[color:darkgray]在主界面向右滑动[/color]"
+    "focus": "[color:darkgray]在主界面向左滑动[/color]"
   },
   "naruto_club_x": {
     "recognition": "TemplateMatch",
