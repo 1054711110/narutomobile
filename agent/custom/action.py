@@ -112,7 +112,7 @@ class GoIntoEntry(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
         target = json.loads(argv.custom_action_param).get("template", "")
-        if (type(target) is not str) and (isinstance(target, list) is False):
+        if not isinstance(target, str) and not isinstance(target, list):
             logger.error(f"目标格式错误: {target}")
             context.tasker.post_stop()
             return CustomAction.RunResult(success=False)
