@@ -28,12 +28,11 @@
             }
         },
         "next": [
-            "point_race_chanllenge_enter"
+            "[JumpBack]enter_point_race"
         ],
         "post_delay": 500,
         "focus": [
             "[color:DeepSkyBlue]进入积分赛[/color]",
-            "[JumpBack]enter_point_race"
         ]
     },
     "point_race_in_center_enter": {
@@ -91,7 +90,7 @@
             -114
         ],
         "next": [
-            "point_race_chanllenge_enter"
+            "point_race_challenge_enter"
         ],
         "action": "Click",
         "post_wait_freezes": 500,
@@ -111,14 +110,14 @@
         ],
         "focus": "[color:DeepSkyBlue]积分赛已完成[/color]"
     },
-    "point_race_chanllenge_enter": {
+    "point_race_challenge_enter": {
         "recognition": "TemplateMatch",
         "template": "SharedNode/chanllenge_rhombus.png",
         "action": "Click",
         "post_wait_freezes": 400,
         "next": [
             "point_race_chanllenge_limit",
-            "point_race_chanllenge_enter",
+            "point_race_challenge_enter",
             "wait_for_select_opponent"
         ]
     },
