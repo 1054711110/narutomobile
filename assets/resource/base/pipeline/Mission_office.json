@@ -249,7 +249,6 @@
             37
         ],
         "action": "Click",
-        "duration": 50,
         "next": [
             "mission_office_recommended_team_check",
             "[JumpBack]mission_office_recommended_team"

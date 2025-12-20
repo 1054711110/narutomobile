@@ -591,7 +591,6 @@
                             "next": [
                                 "secret_realm_in_secret_realm",
                                 "secret_realm_main_page_entry",
-                                "secret_realm_check_in_main_screen",
                                 "[JumpBack]back_main_screen"
                             ]
                         }

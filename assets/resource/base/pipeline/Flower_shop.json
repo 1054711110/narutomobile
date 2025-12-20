@@ -139,8 +139,7 @@
             }
         },
         "action": {
-            "type": "Swipe",
-            "duration": 40
+            "type": "Click"
         },
         "next": [
             "flower_shop_check_select_flower",
