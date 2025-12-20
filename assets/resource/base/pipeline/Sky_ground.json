@@ -245,7 +245,7 @@
     "sky_ground_select_summon": {
         "recognition": "TemplateMatch",
         "template": [
-            "home/通灵"
+            "battle/通灵"
         ],
         "roi": [
             790,
@@ -295,7 +295,7 @@
     "sky_ground_select_roll": {
         "recognition": "TemplateMatch",
         "template": [
-            "home/秘卷"
+            "battle/秘卷"
         ],
         "roi": [
             797,
