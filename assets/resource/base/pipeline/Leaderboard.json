@@ -55,7 +55,7 @@
         "action": {
             "type": "Custom",
             "param": {
-                "custom_action": "GetEntry",
+                "custom_action": "GoIntoEntry",
                 "custom_action_param": {
                     "template": "home/排行榜"
                 }

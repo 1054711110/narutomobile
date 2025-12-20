@@ -101,8 +101,8 @@ class Screenshot(CustomAction):
         return CustomAction.RunResult(success=True)
 
 
-@AgentServer.custom_action("GetEntry")
-class GetEntry(CustomAction):
+@AgentServer.custom_action("GoIntoEntry")
+class GoIntoEntry(CustomAction):
     """
     从主界面获取功能功能入口
     参数:
@@ -125,8 +125,12 @@ class GetEntry(CustomAction):
         found, box = self.rec_entry(context, target)
         if found and box is not None:
             logger.info("识别到功能入口")
-            click(context, box.x, box.y, box.w, box.h)
+            click(context, *box)
             return CustomAction.RunResult(success=True)
+
+        if context.tasker.stopping:
+            logger.info("任务停止，提前退出")
+            return CustomAction.RunResult(success=False)
 
         # 右滑两次
         for i in range(2):
@@ -137,8 +141,11 @@ class GetEntry(CustomAction):
             found, box = self.rec_entry(context, target)
             if found and box is not None:
                 logger.info("识别到功能入口")
-                click(context, box.x, box.y, box.w, box.h)
+                click(context, *box)
                 return CustomAction.RunResult(success=True)
+            if context.tasker.stopping:
+                logger.info("任务停止，提前退出")
+                return CustomAction.RunResult(success=False)
 
         # 左滑两次
         for i in range(2):
@@ -149,8 +156,11 @@ class GetEntry(CustomAction):
             found, box = self.rec_entry(context, target)
             if found and box is not None:
                 logger.info("识别到功能入口")
-                click(context, box.x, box.y, box.w, box.h)
+                click(context, *box)
                 return CustomAction.RunResult(success=True)
+            if context.tasker.stopping:
+                logger.info("任务停止，提前退出")
+                return CustomAction.RunResult(success=False)
 
         logger.error("获取功能入口失败")
         return CustomAction.RunResult(success=False)
@@ -159,12 +169,14 @@ class GetEntry(CustomAction):
         self, context: Context, template: str | list[str]
     ) -> Tuple[bool, Optional[Rect]]:
         reco_detail = context.run_recognition(
-            "GetEntry",
+            "click_entry",
             context.tasker.controller.cached_image,
             {
-                "GetEntry": {
-                    "param": {
-                        "template": template,
+                "click_entry": {
+                    "recognition": {
+                        "param": {
+                            "template": template,
+                        }
                     }
                 },
             },
