@@ -2,6 +2,7 @@
     "stronghold": {
         "next": [
             "stronghold_entry",
+            "stronghold_in_stronghold",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入要塞子任务[/color]"
