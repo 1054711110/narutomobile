@@ -6,28 +6,6 @@
         ],
         "focus": "[color:DeepSkyBlue]进入排行榜子任务[/color]"
     },
-    "swipe_for_left_entries": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Startup/main_green_masked.png"
-        ],
-        "threshold": 0.8,
-        "green_mask": true,
-        "action": "Swipe",
-        "begin": [
-            150,
-            150,
-            50,
-            50
-        ],
-        "end": [
-            850,
-            150,
-            50,
-            50
-        ],
-        "focus": "[color:DeepSkyBlue]滑动寻找左边的功能入口[/color]"
-    },
     "leaderboard_entry_by_ocr": {
         "recognition": "OCR",
         "expected": [
@@ -44,38 +22,27 @@
         "focus": "[color:DeepSkyBlue]进入排行榜[/color]"
     },
     "leaderboard_check_in_main_screen": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Startup/main_green_masked.png"
-        ],
-        "roi": [
-            11,
-            0,
-            1269,
-            720
-        ],
-        "action": "Swipe",
-        "begin": [
-            1015,
-            334,
-            1,
-            1
-        ],
-        "end": [
-            273,
-            336,
-            1,
-            1
-        ],
-        "threshold": 0.95,
-        "green_mask": true,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "Startup/main_green_masked.png"
+                ],
+                "green_mask": true
+            }
+        },
+        "action": {
+            "type": "Custom",
+            "param": {
+                "custom_action": "GoIntoEntry",
+                "custom_action_param": {
+                    "template": "home/排行榜"
+                }
+            }
+        },
         "next": [
-            "leaderboard_entry",
-            "leaderboard_entry_by_ocr",
-            "[JumpBack]swipe_for_left_entries"
-        ],
-        "post_delay": 500,
-        "focus": "[color:DeepSkyBlue]检测是否在主页面[/color]"
+            "click_thumb"
+        ]
     },
     "leaderboard_entry": {
         "recognition": "TemplateMatch",

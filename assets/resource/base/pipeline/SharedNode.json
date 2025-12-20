@@ -26,6 +26,7 @@
       "[JumpBack]click_next_step",
       "[JumpBack]naruto_club_x",
       "[JumpBack]christmas_stocking",
+      "[JumpBack]close_notice",
       "check_main_screen",
       "[JumpBack]try_x",
       "[JumpBack]shut_wechat"
@@ -263,17 +264,19 @@
     ],
     "action": "Swipe",
     "begin": [
-      1015,
-      334,
-      1,
-      1
+      817,
+      336,
+      70,
+      69
     ],
     "end": [
-      273,
-      336,
-      1,
-      1
+      446,
+      335,
+      75,
+      79
     ],
+    "duration": 400,
+    "post_delay": 500,
     "green_mask": true,
     "focus": "[color:darkgray]在主界面向右滑动[/color]"
   },
@@ -284,19 +287,21 @@
     ],
     "action": "Swipe",
     "begin": [
-      273,
-      336,
-      1,
-      1
+      446,
+      335,
+      75,
+      79
     ],
     "end": [
-      1015,
-      334,
-      1,
-      1
+      817,
+      336,
+      70,
+      69
     ],
+    "duration": 400,
+    "post_delay": 500,
     "green_mask": true,
-    "focus": "[color:darkgray]在主界面向右滑动[/color]"
+    "focus": "[color:darkgray]在主界面向左滑动[/color]"
   },
   "naruto_club_x": {
     "recognition": "TemplateMatch",
@@ -357,5 +362,60 @@
     ],
     "action": "Click",
     "focus": "获得格斗称号"
+  },
+  "close_notice": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": "SharedNode/notice_x.png"
+      }
+    },
+    "action": "Click",
+    "next": "ensure_to_close",
+    "timeout": 1000
+  },
+  "ensure_to_close": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          593,
+          381,
+          151,
+          44
+        ],
+        "expected": "关闭所有"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [
+          554,
+          390,
+          26,
+          27
+        ]
+      }
+    },
+    "focus": "[color:darkgray]确认关闭所有气泡[/color]",
+    "next": "click_ensure_close"
+  },
+  "click_ensure_close": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [
+          455,
+          441,
+          111,
+          51
+        ],
+        "expected": "确定"
+      }
+    },
+    "action": {
+      "type": "Click"
+    }
   }
 }
