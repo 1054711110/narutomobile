@@ -3,12 +3,11 @@
         "next": [
             "weekly_win_in_duel_field",
             "[JumpBack]weekly_win_entry",
-            "[JumpBack]go_into_duel_field",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]开始周胜任务[/color]"
     },
-    "go_into_duel_field": {
+    "weekly_win_entry": {
         "recognition": "TemplateMatch",
         "template": "Startup/main_green_masked.png",
         "green_mask": true,
@@ -16,7 +15,16 @@
         "custom_action": "GoIntoEntry",
         "custom_action_param": {
             "template": "home/决斗场"
-        }
+        },
+        "post_delay": 1500,
+        "focus": "[color:DeepSkyBlue]进入决斗场[/color]",
+        "next": [
+            "weekly_win_match",
+            "[JumpBack]weekly_win_mouthly_award",
+            "[JumpBack]weekly_win_mouthly_reset_award",
+            "[JumpBack]weekly_win_entry",
+            "[JumpBack]weekly_win"
+        ]
     },
     "weekly_win_mouthly_award": {
         "recognition": "OCR",
@@ -69,23 +77,6 @@
         ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]已在决斗场界面[/color]"
-    },
-    "weekly_win_entry": {
-        "recognition": "TemplateMatch",
-        "template": "home/决斗场",
-        "threshold": 0.7,
-        "action": "Swipe",
-        "duration": 30,
-        "next": [
-            "weekly_win_match",
-            "[JumpBack]weekly_win_mouthly_award",
-            "[JumpBack]weekly_win_mouthly_reset_award",
-            "[JumpBack]weekly_win_entry",
-            "[JumpBack]weekly_win"
-        ],
-        "green_mask": true,
-        "post_delay": 1500,
-        "focus": "[color:DeepSkyBlue]进入决斗场[/color]"
     },
     "weekly_win_match": {
         "recognition": "OCR",
