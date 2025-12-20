@@ -292,7 +292,8 @@
             "train_road_unsweep",
             "train_road_done",
             "train_road_sweeping"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]在修行之路中[/color]"
     },
     "train_road_unsweep": {
         "recognition": "TemplateMatch",
@@ -314,7 +315,8 @@
             "confirm_train_road_sweep",
             "[JumpBack]train_road_unsweep"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]修行之路未扫荡[/color]"
     },
     "train_road_sweeping": {
         "recognition": "TemplateMatch",

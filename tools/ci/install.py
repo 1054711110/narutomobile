@@ -4,7 +4,7 @@ import os
 import shutil
 import sys
 
-import json
+import jsonc
 
 from configure import configure_ocr_model  # type: ignore
 from utils import working_dir  # type: ignore
@@ -100,22 +100,28 @@ def install_maafw():
 def install_resource():
     configure_ocr_model()
 
-    pipeline_files = Path(
-        working_dir / "assets" / "resource" / "base" / "pipeline"
-    ).glob("*.json")
-    pipeline_merged = {}
-    for pipeline_file in pipeline_files:
-        with open(pipeline_file, "r", encoding="utf-8") as f:
-            pipeline_data = json.load(f)
-            pipeline_merged.update(pipeline_data)
-        os.remove(pipeline_file)
+    def merge_pipeline_files():
+        pipeline_files = Path(
+            working_dir / "assets" / "resource" / "base" / "pipeline"
+        ).glob("*.json")
+        pipeline_merged = {}
+        for pipeline_file in pipeline_files:
+            with open(pipeline_file, "r", encoding="utf-8") as f:
+                pipeline_data = jsonc.load(f)
+                pipeline_merged.update(pipeline_data)
+            os.remove(pipeline_file)
 
-    with open(
-        working_dir / "assets" / "resource" / "base" / "pipeline" / "merged.json",
-        "w",
-        encoding="utf-8",
-    ) as f:
-        json.dump(pipeline_merged, f, ensure_ascii=False, indent=4)
+        with open(
+            working_dir / "assets" / "resource" / "base" / "pipeline" / "merged.json",
+            "w",
+            encoding="utf-8",
+        ) as f:
+            jsonc.dump(pipeline_merged, f, ensure_ascii=False, indent=4)
+
+    if Path(".vscode").exists() or Path(".venv").exists() or Path(".nicegui").exists():
+        print("开发环境安装，跳过资源合并")
+    else:
+        merge_pipeline_files()
 
     shutil.copytree(
         working_dir / "assets" / "resource",
@@ -129,7 +135,7 @@ def install_resource():
     )
 
     with open(install_path / "interface.json", "r", encoding="utf-8") as f:
-        interface = json.load(f)
+        interface = jsonc.load(f)
 
     interface["version"] = version
     if "beta" in version:
@@ -138,7 +144,7 @@ def install_resource():
         interface["welcome"] = "欢迎使用内部测试版本，包含最不稳定但是最新的功能。"
 
     with open(install_path / "interface.json", "w", encoding="utf-8") as f:
-        json.dump(interface, f, ensure_ascii=False, indent=4)
+        jsonc.dump(interface, f, ensure_ascii=False, indent=4)
 
 
 def install_chores():
@@ -183,7 +189,7 @@ def install_agent():
     )
 
     with open(install_path / "interface.json", "r", encoding="utf-8") as f:
-        interface = json.load(f)
+        interface = jsonc.load(f)
 
     if sys.platform.startswith("win"):
         interface["agent"]["child_exec"] = r"python/python.exe"
@@ -195,7 +201,7 @@ def install_agent():
     interface["agent"]["child_args"] = ["-u", r"agent/main.py"]
 
     with open(install_path / "interface.json", "w", encoding="utf-8") as f:
-        json.dump(interface, f, ensure_ascii=False, indent=4)
+        jsonc.dump(interface, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":

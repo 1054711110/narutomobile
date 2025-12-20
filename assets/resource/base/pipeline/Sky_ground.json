@@ -20,7 +20,7 @@
         "next": [
             "sky_ground_gameplay",
             "no_group",
-            "[JumpBack]group_entry",
+            "[JumpBack]sky_ground_entry",
             "[JumpBack]back_main_screen"
         ],
         "post_delay": 1500,
@@ -73,7 +73,8 @@
             "sky_ground_battlefield_selection",
             "[JumpBack]sky_ground_mode"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]进入天地模式[/color]"
     },
     "swipe_for_sky_ground_mode": {
         "recognition": "TemplateMatch",
@@ -98,7 +99,8 @@
             96
         ],
         "duration": 300,
-        "post_delay": 800
+        "post_delay": 800,
+        "focus": "[color:DeepSkyBlue]寻找天地模式[/color]"
     },
     "sky_ground_battlefield_selection": {
         "recognition": "OCR",
@@ -117,7 +119,8 @@
         "next": [
             "sky_battlefield"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]选择战场[/color]"
     },
     "sky_battlefield": {
         "recognition": "TemplateMatch",
@@ -133,7 +136,8 @@
             "sky_ground_confrim_battlefield_selection",
             "[JumpBack]sky_battlefield"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]选择天战场[/color]"
     },
     "ground_battlefield": {
         "recognition": "TemplateMatch",
@@ -149,7 +153,8 @@
             "sky_ground_confrim_battlefield_selection",
             "[JumpBack]ground_battlefield"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]选择地战场[/color]"
     },
     "sky_ground_confrim_battlefield_selection": {
         "recognition": "TemplateMatch",
@@ -166,7 +171,8 @@
             "sky_ground_select_nijia",
             "[JumpBack]sky_ground_confrim_battlefield_selection"
         ],
-        "post_wait_freezes": 800
+        "post_wait_freezes": 800,
+        "focus": "[color:DeepSkyBlue]确认战场选择[/color]"
     },
     "sky_ground_select_nijia": {
         "recognition": "TemplateMatch",
@@ -182,7 +188,8 @@
             "sky_ground_selected_ninjia",
             "[JumpBack]sky_ground_select_nijia"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]选择忍者[/color]"
     },
     "sky_ground_recommended_ninja": {
         "recognition": "TemplateMatch",
@@ -198,7 +205,8 @@
             "sky_ground_selected_ninjia",
             "[JumpBack]sky_ground_recommended_ninja"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]选择推荐忍者[/color]"
     },
     "sky_ground_selected_ninjia": {
         "recognition": "TemplateMatch",
@@ -214,7 +222,8 @@
             "sky_ground_to_select_summon",
             "sky_ground_in_select_summon"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]确认选中忍者[/color]"
     },
     "sky_ground_to_select_summon": {
         "recognition": "TemplateMatch",
@@ -229,7 +238,8 @@
         "next": [
             "sky_ground_in_select_summon",
             "[JumpBack]sky_ground_to_select_summon"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]选择通灵[/color]"
     },
     "sky_ground_in_select_summon": {
         "recognition": "TemplateMatch",
@@ -243,7 +253,8 @@
         "next": [
             "sky_ground_summon_done",
             "[JumpBack]sky_ground_select_summon"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]开始选择通灵[/color]"
     },
     "sky_ground_select_summon": {
         "recognition": "TemplateMatch",
@@ -256,7 +267,8 @@
             439,
             407
         ],
-        "action": "Click"
+        "action": "Click",
+        "focus": "[color:DeepSkyBlue]识别通灵[/color]"
     },
     "sky_ground_summon_done": {
         "recognition": "OCR",
@@ -271,7 +283,8 @@
         "next": [
             "sky_ground_to_select_roll",
             "sky_ground_in_select_roll"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]完成选择通灵[/color]"
     },
     "sky_ground_to_select_roll": {
         "recognition": "TemplateMatch",
@@ -286,14 +299,16 @@
         "next": [
             "sky_ground_in_select_roll",
             "[JumpBack]sky_ground_to_select_roll"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]选择秘卷[/color]"
     },
     "sky_ground_in_select_roll": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/roll_selected.png",
         "next": [
             "sky_ground_select_roll"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]开始选择密卷[/color]"
     },
     "sky_ground_select_roll": {
         "recognition": "TemplateMatch",
@@ -309,7 +324,8 @@
         "action": "Click",
         "next": [
             "sky_ground_selected_roll"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]识别密卷[/color]"
     },
     "sky_ground_selected_roll": {
         "recognition": "OCR",
@@ -323,7 +339,8 @@
         "inverse": true,
         "next": [
             "sky_ground_confirm_set"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]完成选择密卷[/color]"
     },
     "sky_ground_confirm_set": {
         "recognition": "OCR",
@@ -340,7 +357,8 @@
         "next": [
             "sky_ground_group_encouragement",
             "[JumpBack]sky_ground_confirm_set"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]确认配置[/color]"
     },
     "sky_ground_group_encouragement": {
         "recognition": "OCR",
@@ -359,17 +377,32 @@
             "right_swipe_for_empty_column",
             "left_swipe_for_empty_column",
             "up_swipe_for_empty_column"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]组织激励[/color]"
     },
     "sky_ground_to_column": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/empty_column.png",
         "action": "Click",
         "next": [
-            "[JumpBack]sky_ground_get_bead"
-        ]
+            "[JumpBack]sky_ground_to_column",
+            "[JumpBack]sky_ground_in_fight",
+            "right_swipe_for_empty_column",
+            "left_swipe_for_empty_column",
+            "up_swipe_for_empty_column",
+            "sky_ground_in_main"
+        ],
+        "focus": "[color:DeepSkyBlue]前往空柱子[/color]"
     },
     "right_swipe_for_empty_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/rule_book.png",
+        "roi": [
+            1014,
+            377,
+            265,
+            342
+        ],
         "action": "Swipe",
         "begin": [
             955,
@@ -388,11 +421,19 @@
         "post_delay": 900,
         "next": [
             "sky_ground_to_column",
-            "[JumpBack]sky_ground_get_bead",
             "down_swipe_for_empty_column"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]右滑选择空柱子[/color]"
     },
     "left_swipe_for_empty_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/rule_book.png",
+        "roi": [
+            1014,
+            377,
+            265,
+            342
+        ],
         "action": "Swipe",
         "begin": [
             251,
@@ -411,11 +452,19 @@
         "post_delay": 900,
         "next": [
             "sky_ground_to_column",
-            "[JumpBack]sky_ground_get_bead",
             "up_swipe_for_empty_column"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]左滑选择空柱子[/color]"
     },
     "down_swipe_for_empty_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/rule_book.png",
+        "roi": [
+            1014,
+            377,
+            265,
+            342
+        ],
         "action": "Swipe",
         "begin": [
             566,
@@ -434,11 +483,19 @@
         "post_delay": 900,
         "next": [
             "sky_ground_to_column",
-            "[JumpBack]sky_ground_get_bead",
             "left_swipe_for_empty_column"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]下滑选择空柱子[/color]"
     },
     "up_swipe_for_empty_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/rule_book.png",
+        "roi": [
+            1014,
+            377,
+            265,
+            342
+        ],
         "action": "Swipe",
         "begin": [
             581,
@@ -457,18 +514,328 @@
         "post_delay": 900,
         "next": [
             "sky_ground_to_column",
-            "[JumpBack]sky_ground_get_bead",
             "down_swipe_for_empty_column"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]上滑选择空柱子[/color]"
     },
     "sky_ground_get_bead": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/bead.png",
-        "action": "Click"
+        "action": "Click",
+        "threshold": [
+            0.9
+        ],
+        "focus": "[color:DeepSkyBlue]抢经验球[/color]"
     },
     "sky_ground_check_no_bead": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/bead.png",
-        "inverse": true
+        "inverse": true,
+        "threshold": [
+            0.9
+        ],
+        "focus": "[color:DeepSkyBlue]确认没有经验求[/color]"
+    },
+    "sky_ground_in_main": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/rule_book.png",
+        "roi": [
+            1014,
+            377,
+            265,
+            342
+        ],
+        "post_delay": 2000,
+        "next": [
+            "[JumpBack]sky_ground_to_column",
+            "[JumpBack]sky_ground_get_bead",
+            "[JumpBack]sky_ground_in_fight"
+        ]
+    },
+    "sky_ground_in_fight": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/battle_emoji.png",
+        "green_mask": true,
+        "threshold": 0.5,
+        "roi": [
+            5,
+            267,
+            79,
+            68
+        ],
+        "next": [
+            "[JumpBack]sky_ground_click_All_skill",
+            "sky_ground_success",
+            "sky_ground_fail",
+            "sky_ground_in_main"
+        ]
+    },
+    "sky_ground_success": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Weekly_win/victory.png",
+            "Weekly_win/complete_victory.png"
+        ],
+        "roi": [
+            480,
+            328,
+            341,
+            240
+        ],
+        "action": "Click",
+        "threshold": 0.8,
+        "post_delay": 500,
+        "next": [
+            "sky_ground_in_main",
+            "win_to_entry"
+        ],
+        "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
+    },
+    "sky_ground_fail": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/fail.png",
+        "roi": [
+            480,
+            328,
+            341,
+            240
+        ],
+        "action": "Click",
+        "threshold": 0.9,
+        "post_delay": 500,
+        "next": [
+            "sky_ground_confirm_new_set",
+            "[JumpBack]sky_ground_fail"
+        ],
+        "focus": "[color:DeepSkyBlue]战斗失败[/color]"
+    },
+    "sky_ground_confirm_new_set": {
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            804,
+            471,
+            328,
+            209
+        ],
+        "action": "Click",
+        "next": [
+            "sky_ground_in_main",
+            "[JumpBack]sky_ground_confirm_new_set"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]确认配置[/color]"
+    },
+    "sky_ground_end": {
+        "recognition": "OCR",
+        "expected": [
+            "天地活动已结束"
+        ],
+        "roi": [
+            459,
+            293,
+            390,
+            155
+        ],
+        "next": [
+            "sky_ground_end_back_main_screen"
+        ]
+    },
+    "sky_ground_end_back_main_screen": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/back.png",
+        "roi": [
+            1160,
+            0,
+            119,
+            91
+        ],
+        "green_mask": true,
+        "action": "Click",
+        "next": [
+            "sky_ground_end_confirm_back_main_screen",
+            "[JumpBack]sky_ground_end_back_main_screen"
+        ],
+        "post_delay": 400,
+        "focus": "[color:DeepSkyBlue]天地开始回主页面[/color]"
+    },
+    "sky_ground_end_confirm_back_main_screen": {
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
+        "roi": [
+            484,
+            372,
+            296,
+            155
+        ],
+        "next": [
+            "sky_ground_end_not_in_main",
+            "[JumpBack]sky_ground_end_confirm_back_main_screen"
+        ],
+        "post_delay": 400,
+        "focus": "[color:DeepSkyBlue]天地确认回主页面[/color]"
+    },
+    "sky_ground_end_not_in_main": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/rule_book.png",
+        "roi": [
+            1014,
+            377,
+            265,
+            342
+        ],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
+        ]
+    },
+    "sky_ground_click_All_skill": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/battle_emoji.png",
+        "green_mask": true,
+        "threshold": 0.5,
+        "roi": [
+            5,
+            267,
+            79,
+            68
+        ],
+        "action": "MultiSwipe",
+        "swipes": [
+            {
+                "$doc": "replace",
+                "begin": [
+                    793,
+                    564,
+                    142,
+                    154
+                ],
+                "end": [
+                    793,
+                    564,
+                    142,
+                    154
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "summon",
+                "begin": [
+                    1128,
+                    153,
+                    54,
+                    51
+                ],
+                "end": [
+                    1128,
+                    153,
+                    54,
+                    51
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "roll",
+                "begin": [
+                    1127,
+                    268,
+                    56,
+                    55
+                ],
+                "end": [
+                    1127,
+                    268,
+                    56,
+                    55
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "attack",
+                "begin": [
+                    1099,
+                    548,
+                    92,
+                    92
+                ],
+                "end": [
+                    1099,
+                    548,
+                    92,
+                    92
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "ultimate",
+                "begin": [
+                    1120,
+                    400,
+                    71,
+                    65
+                ],
+                "end": [
+                    1120,
+                    400,
+                    71,
+                    65
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "skill1",
+                "begin": [
+                    970,
+                    613,
+                    62,
+                    54
+                ],
+                "end": [
+                    970,
+                    613,
+                    62,
+                    54
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "skill2",
+                "begin": [
+                    985,
+                    471,
+                    65,
+                    59
+                ],
+                "end": [
+                    985,
+                    471,
+                    65,
+                    59
+                ],
+                "duration": 100
+            },
+            {
+                "$doc": "sub_skill1",
+                "begin": [
+                    875,
+                    472,
+                    53,
+                    44
+                ],
+                "end": [
+                    875,
+                    472,
+                    53,
+                    44
+                ],
+                "duration": 100
+            }
+        ],
+        "pre_delay": 0,
+        "post_delay": 0
     }
 }
