@@ -121,6 +121,13 @@ class GoIntoEntry(CustomAction):
             logger.error(f"目标格式错误: {target}")
             context.tasker.post_stop()
             return CustomAction.RunResult(success=False)
+        # 检查目标是否为空字符串或空列表
+        if (isinstance(target, str) and not target.strip()) or (
+            isinstance(target, list) and len(target) == 0
+        ):
+            logger.error(f"目标为空: {target}")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
 
         found, box = self.rec_entry(context, target)
         if found and box is not None:
