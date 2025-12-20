@@ -112,16 +112,16 @@
     },
     "point_race_challenge_enter": {
         "recognition": "TemplateMatch",
-        "template": "SharedNode/chanllenge_rhombus.png",
+        "template": "SharedNode/challenge_rhombus.png",
         "action": "Click",
         "post_wait_freezes": 400,
         "next": [
-            "point_race_chanllenge_limit",
+            "point_race_challenge_limit",
             "point_race_challenge_enter",
             "wait_for_select_opponent"
         ]
     },
-    "point_race_chanllenge_limit": {
+    "point_race_challenge_limit": {
         "recognition": "TemplateMatch",
         "template": "Point_race/tip_of_buy.png",
         "roi": [
@@ -145,12 +145,12 @@
             185
         ],
         "next": [
-            "point_race_chanllenge",
+            "point_race_challenge",
             "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]开始选择对手[/color]"
     },
-    "point_race_chanllenge": {
+    "point_race_challenge": {
         "recognition": {
             "type": "Custom",
             "param": {
@@ -162,7 +162,7 @@
         },
         "next": [
             "point_race_skip",
-            "point_race_chanllenge_finished",
+            "point_race_challenge_finished",
             "[JumpBack]sleep_500ms"
         ],
         "timeout": 60000,
@@ -173,11 +173,11 @@
         "expected": "跳过",
         "action": "Click",
         "next": [
-            "point_race_chanllenge_finished",
+            "point_race_challenge_finished",
             "[JumpBack]sleep_500ms"
         ]
     },
-    "point_race_chanllenge_finished": {
+    "point_race_challenge_finished": {
         "recognition": "OCR",
         "expected": "确定",
         "roi": [
@@ -188,12 +188,12 @@
         ],
         "action": "Click",
         "next": [
-            "point_race_chanllenge_finished",
+            "point_race_challenge_finished",
             "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]积分赛战斗结束[/color]"
     },
-    "point_race_get_chanllenge_button": {
+    "point_race_get_challenge_button": {
         "recognition": "OCR",
         "expected": "挑战",
         "roi": [

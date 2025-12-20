@@ -82,10 +82,10 @@ class FindToChallenge(CustomRecognition):
 
             logger.info(f"可以挑战敌队{idx + 1}!")
             reco_detail = context.run_recognition(
-                "point_race_get_chanllenge_button",
+                "point_race_get_challenge_button",
                 argv.image,
                 {
-                    "point_race_get_chanllenge_button": {
+                    "point_race_get_challenge_button": {
                         "index": idx,
                     }
                 },
