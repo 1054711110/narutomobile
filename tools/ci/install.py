@@ -160,7 +160,7 @@ def install_agent(os_name):
 
     if os_name == "win":
         interface["agent"]["child_exec"] = r"python/python.exe"
-    elif os_name == "darwin":
+    elif os_name == "macos":
         interface["agent"]["child_exec"] = r"python/bin/python3"
     elif os_name == "linux":
         interface["agent"]["child_exec"] = r".venv/bin/python3"
