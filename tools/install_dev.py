@@ -250,7 +250,7 @@ def main():
     print("安装资源文件...")
     install_resource("v0.0.0")
     print("安装Agent...")
-    install_agent()
+    install_agent(os_name)
     print("本地测试包已于install文件夹内安装完成!")
 
 
