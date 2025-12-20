@@ -26,6 +26,38 @@
             "[JumpBack]weekly_win"
         ]
     },
+    "weekly_win_weekly_award": {
+        "recognition": "OCR",
+        "expected": [
+            "下一",
+            "步"
+        ],
+        "roi": [
+            521,
+            589,
+            237,
+            130
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_confirm_weekly_award",
+            "[JumpBack]weekly_win_weekly_award"
+        ],
+        "post_wait_freezes": 400
+    },
+    "weekly_win_confirm_weekly_award": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            277,
+            577,
+            343,
+            142
+        ],
+        "action": "Click"
+    },
     "weekly_win_mouthly_award": {
         "recognition": "OCR",
         "expected": [
