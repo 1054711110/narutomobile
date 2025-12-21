@@ -43,31 +43,33 @@
         "recognition": "TemplateMatch",
         "template": "Group/group_gameplay_undone.png",
         "roi": [
-            88,
-            393,
-            80,
-            66
+            44,
+            382,
+            177,
+            118
         ],
         "action": "Click",
         "next": [
-            "check_selected_group_gameplay"
+            "[JumpBack]group_close_group_notice",
+            "check_selected_group_gameplay",
+            "[JumpBack]group_gameplay_undone"
         ],
         "threshold": 0.9,
-        "post_wait_freezes": 300,
+        "post_delay": 400,
         "focus": "[color:DeepSkyBlue]组织玩法未完成[/color]"
     },
     "group_gameplay_done": {
         "recognition": "TemplateMatch",
         "template": "Group/group_gameplay_done.png",
         "roi": [
-            85,
-            393,
-            101,
-            69
+            44,
+            382,
+            177,
+            118
         ],
         "threshold": 0.9,
-        "action": "Click",
         "next": [
+            "[JumpBack]group_close_group_notice",
             "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]组织玩法已完成[/color]"
@@ -76,19 +78,53 @@
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "DoNothing",
-        "threshold": 0.2,
+        "threshold": 0.8,
         "next": [
+            "[JumpBack]group_close_group_notice",
             "check_group_pray_undone",
             "check_group_pray_done"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确认选中组织玩法按钮[/color]"
+    },
+    "group_close_group_notice": {
+        "recognition": "TemplateMatch",
+        "template": "Group/notice_x.png",
+        "roi": [
+            706,
+            157,
+            274,
+            172
+        ],
+        "threshold": [
+            0.9
+        ],
+        "action": "Click",
+        "next": [
+            "group_without_group_notice",
+            "[JumpBack]group_close_group_notice"
+        ],
+        "post_delay": 700
+    },
+    "group_without_group_notice": {
+        "recognition": "TemplateMatch",
+        "template": "Group/notice_x.png",
+        "roi": [
+            706,
+            157,
+            274,
+            172
+        ],
+        "threshold": [
+            0.9
+        ],
+        "inverse": true
     },
     "check_group_pray_done": {
         "recognition": "TemplateMatch",

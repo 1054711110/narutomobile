@@ -28,6 +28,7 @@
             }
         },
         "next": [
+            "point_race_challenge_enter",
             "[JumpBack]enter_point_race"
         ],
         "post_delay": 500,
