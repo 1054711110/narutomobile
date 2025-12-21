@@ -25,8 +25,6 @@
 | JSON/Yaml | [prettier](https://prettier.io/) |
 | Markdown | [MarkdownLint](https://github.com/DavidAnson/markdownlint-cli2) |
 
-另外还有 `oxipng` 无损压缩 PNG 图片。
-
 ### 利用 Pre-commit Hooks 自动进行代码格式化
 
 1. 确保你的电脑上有 Python 与 Node 环境
