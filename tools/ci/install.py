@@ -129,7 +129,7 @@ def install_chores():
     )
 
     shutil.copy2(
-        working_dir / "docs" / "logo.ico", install_path / "Assets" / "logo.ico"
+        working_dir / "docs" / "imgs" / "logo.ico", install_path / "Assets" / "logo.ico"
     )
 
     if platform.system() == "Linux":
