@@ -371,10 +371,45 @@
         "action": "Click",
         "next": [
             "close_second_group_award_box",
+            "[JumpBack]second_group_award_box_not_open",
             "[JumpBack]second_group_award_box"
         ],
-        "post_wait_freezes": 300,
+        "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]20人签到奖励开箱[/color]"
+    },
+    "second_group_award_box_not_open": {
+        "recognition": "OCR",
+        "expected": [
+            "尚未",
+            "未达"
+        ],
+        "roi": [
+            417,
+            278,
+            474,
+            195
+        ],
+        "next": [
+            "close_second_group_award_box"
+        ],
+        "post_wait_freezes": 400
+    },
+    "second_group_award_box_closed": {
+        "recognition": "TemplateMatch",
+        "template": "Group/group_pray_red_packet_text.png",
+        "roi": [
+            555,
+            124,
+            170,
+            48
+        ],
+        "inverse": true,
+        "post_wait_freezes": 800,
+        "next": [
+            "third_group_award",
+            "third_group_award_done"
+        ],
+        "focus": "[color:DeepSkyBlue]20人签到奖励界面已关闭[/color]"
     },
     "close_second_group_award_box": {
         "recognition": "TemplateMatch",
@@ -392,11 +427,11 @@
             79,
             71
         ],
-        "post_wait_freezes": 800,
         "next": [
-            "third_group_award",
-            "third_group_award_done"
+            "second_group_award_box_closed",
+            "[JumpBack]close_second_group_award_box"
         ],
+        "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]关闭20人签到奖励[/color]"
     },
     "third_group_award_entry": {
