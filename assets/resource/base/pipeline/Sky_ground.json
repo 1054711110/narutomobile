@@ -29,6 +29,12 @@
     "sky_ground_gameplay": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/gameplay.png",
+        "roi": [
+            44,
+            382,
+            177,
+            118
+        ],
         "action": "Click",
         "next": [
             "sky_ground_gameplay_slected",
@@ -40,10 +46,10 @@
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "DoNothing",
         "next": [
