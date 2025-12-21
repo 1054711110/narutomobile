@@ -423,6 +423,11 @@
                             "next": [
                                 "back_main_screen_and_stop"
                             ]
+                        },
+                        "ninjia_book_award_selected": {
+                            "next": [
+                                "back_main_screen_and_stop"
+                            ]
                         }
                     }
                 }

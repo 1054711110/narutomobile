@@ -611,7 +611,6 @@
         "threshold": [
             0.8
         ],
-        "action": "Click",
         "inverse": true,
         "next": [
             "weekly_win_check_no_daily_duel_mission_award",
