@@ -524,7 +524,14 @@
                                 "back_main_screen_and_stop"
                             ]
                         },
-                        "weekly_win_in_duel_mission": {
+                        "weekly_win_get_weekly_duel_mission_award_2_end": {
+                            "next": [
+                                "weekly_win_check_no_daily_duel_mission_award",
+                                "weekly_win_check_daily_duel_mission_recover_award",
+                                "[JumpBack]weekly_win_get_duel_mission_award"
+                            ]
+                        },
+                        "weekly_win_without_weekly_duel_mission_award_2": {
                             "next": [
                                 "weekly_win_check_no_daily_duel_mission_award",
                                 "weekly_win_check_daily_duel_mission_recover_award",
@@ -574,7 +581,7 @@
                     "pipeline_override": {
                         "point_race": {
                             "next": [
-                                "point_race_check_in_main_screen",
+                                "enter_point_race",
                                 "[JumpBack]back_main_screen"
                             ]
                         }
@@ -615,7 +622,6 @@
                             "next": [
                                 "secret_realm_in_secret_realm",
                                 "secret_realm_main_page_entry",
-                                "secret_realm_check_in_main_screen",
                                 "[JumpBack]back_main_screen"
                             ]
                         }

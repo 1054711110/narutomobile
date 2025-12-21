@@ -3,65 +3,60 @@
         "next": [
             "weekly_win_in_duel_field",
             "[JumpBack]weekly_win_entry",
-            "swipe_to_left_to_find_duel_field",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]开始周胜任务[/color]"
     },
-    "swipe_to_left_to_find_duel_field": {
+    "weekly_win_entry": {
         "recognition": "TemplateMatch",
         "template": "Startup/main_green_masked.png",
-        "action": "Swipe",
-        "begin": [
-            218,
-            288,
-            82,
-            81
-        ],
-        "end": [
-            589,
-            305,
-            93,
-            85
-        ],
-        "next": [
-            "weekly_win_entry",
-            "swipe_to_right_to_find_duel_field"
-        ],
         "green_mask": true,
-        "post_delay": 500,
-        "focus": "[color:darkgray]往左滑找决斗场[/color]"
-    },
-    "swipe_to_right_to_find_duel_field": {
-        "recognition": "TemplateMatch",
-        "template": "Startup/main_green_masked.png",
-        "action": "Swipe",
-        "begin": [
-            589,
-            305,
-            93,
-            85
-        ],
-        "end": [
-            218,
-            288,
-            82,
-            81
-        ],
+        "action": "Custom",
+        "custom_action": "GoIntoEntry",
+        "custom_action_param": {
+            "template": "home/决斗场"
+        },
+        "post_delay": 1500,
+        "focus": "[color:DeepSkyBlue]进入决斗场[/color]",
         "next": [
-            "weekly_win_entry"
-        ],
-        "timeout": 3000,
-        "on_error": [
-            "abattoir_not_found"
-        ],
-        "green_mask": true,
-        "post_delay": 500,
-        "focus": "[color:darkgray]往右滑找决斗场[/color]"
+            "weekly_win_match",
+            "[JumpBack]weekly_win_mouthly_award",
+            "[JumpBack]weekly_win_mouthly_reset_award",
+            "[JumpBack]weekly_win_entry",
+            "[JumpBack]weekly_win"
+        ]
     },
-    "abattoir_not_found": {
-        "action": "StopTask",
-        "focus": "[color:tomato]无法找到角斗场！[/color]"
+    "weekly_win_weekly_award": {
+        "recognition": "OCR",
+        "expected": [
+            "下一",
+            "步"
+        ],
+        "roi": [
+            521,
+            589,
+            237,
+            130
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_confirm_weekly_award",
+            "[JumpBack]weekly_win_weekly_award"
+        ],
+        "post_wait_freezes": 400
+    },
+    "weekly_win_confirm_weekly_award": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            277,
+            577,
+            343,
+            142
+        ],
+        "action": "Click"
     },
     "weekly_win_mouthly_award": {
         "recognition": "OCR",
@@ -115,56 +110,6 @@
         ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]已在决斗场界面[/color]"
-    },
-    "weekly_win_entry": {
-        "recognition": "TemplateMatch",
-        "template": "home/决斗场",
-        "threshold": 0.7,
-        "action": "Swipe",
-        "duration": 30,
-        "next": [
-            "weekly_win_match",
-            "[JumpBack]weekly_win_weekly_award",
-            "[JumpBack]weekly_win_mouthly_award",
-            "[JumpBack]weekly_win_mouthly_reset_award",
-            "[JumpBack]weekly_win_entry",
-            "[JumpBack]weekly_win"
-        ],
-        "green_mask": true,
-        "post_delay": 1500,
-        "focus": "[color:DeepSkyBlue]进入决斗场[/color]"
-    },
-    "weekly_win_weekly_award": {
-        "recognition": "OCR",
-        "expected": [
-            "下一",
-            "步"
-        ],
-        "roi": [
-            521,
-            589,
-            237,
-            130
-        ],
-        "action": "Click",
-        "next": [
-            "weekly_win_confirm_weekly_award",
-            "[JumpBack]weekly_win_weekly_award"
-        ],
-        "post_wait_freezes": 400
-    },
-    "weekly_win_confirm_weekly_award": {
-        "recognition": "OCR",
-        "expected": [
-            "确定"
-        ],
-        "roi": [
-            277,
-            577,
-            343,
-            142
-        ],
-        "action": "Click"
     },
     "weekly_win_match": {
         "recognition": "OCR",
@@ -278,6 +223,7 @@
         "post_delay": 500,
         "next": [
             "weekly_win_success",
+            "[JumpBack]weekly_win_rank_up",
             "win_to_entry"
         ],
         "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
@@ -299,6 +245,37 @@
     "go_to_war_agian": {
         "action": "DoNothing",
         "focus": "再来一把！"
+    },
+    "weekly_win_rank_up": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            637,
+            545,
+            350,
+            174
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_rank_up_done",
+            "[JumpBack]weekly_win_rank_up"
+        ],
+        "post_delay": 900
+    },
+    "weekly_win_rank_up_done": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            637,
+            545,
+            350,
+            174
+        ],
+        "inverse": true
     },
     "weekly_win_fail": {
         "recognition": "TemplateMatch",
@@ -654,6 +631,7 @@
         "threshold": [
             0.8
         ],
+        "order_by": "Horizontal",
         "action": "Click",
         "post_wait_freezes": 200
     },
@@ -721,19 +699,38 @@
         "action": "Click",
         "next": [
             "weekly_win_check_daily_duel_mission_free_recover_award",
-            "[JumpBack]weekly_win_check_daily_duel_mission_recover_award"
+            "[JumpBack]weekly_win_check_daily_duel_mission_recover_award",
+            "weekly_win_check_daily_duel_mission_without_recover_award"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]追回过期决斗任务奖励[/color]"
     },
-    "weekly_win_check_daily_duel_mission_free_recover_award": {
+    "weekly_win_check_daily_duel_mission_without_recover_award": {
         "recognition": "TemplateMatch",
-        "template": "Weekly_win/free_recover.png",
+        "template": "Weekly_win/duel_mission_award_waiting.png",
         "roi": [
-            523,
-            404,
-            234,
-            123
+            1002,
+            122,
+            239,
+            417
+        ],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]没有可追回过期决斗任务奖励[/color]"
+    },
+    "weekly_win_check_daily_duel_mission_free_recover_award": {
+        "recognition": "OCR",
+        "expected": [
+            "追回"
+        ],
+        "roi": [
+            551,
+            411,
+            182,
+            125
         ],
         "action": "Click",
         "next": [
@@ -747,8 +744,7 @@
     "weekly_win_check_daily_duel_mission_without_time_card": {
         "recognition": "OCR",
         "expected": [
-            "道具不足",
-            "时光逆转卡"
+            "道具不足"
         ],
         "roi": [
             444,

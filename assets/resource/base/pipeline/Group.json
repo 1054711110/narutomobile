@@ -2,18 +2,19 @@
     "group": {
         "next": [
             "group_entry",
-            "[JumpBack]swipe_for_left_entries",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入组织子任务[/color]"
     },
     "group_entry": {
         "recognition": "TemplateMatch",
-        "template": [
-            "home/组织"
-        ],
-        "threshold": 0.7,
-        "action": "Click",
+        "template": "Startup/main_green_masked.png",
+        "green_mask": true,
+        "action": "Custom",
+        "custom_action": "GoIntoEntry",
+        "custom_action_param": {
+            "template": "home/组织"
+        },
         "next": [
             "group_gameplay_undone",
             "group_gameplay_done",
@@ -155,7 +156,6 @@
             80
         ],
         "action": "Click",
-        "duration": 50,
         "next": [
             "confirm_chopper_group_pray",
             "close_chopper_group_pray",

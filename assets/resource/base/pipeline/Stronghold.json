@@ -2,18 +2,20 @@
     "stronghold": {
         "next": [
             "stronghold_entry",
-            "[JumpBack]swipe_for_left_entries",
+            "stronghold_in_stronghold",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入要塞子任务[/color]"
     },
     "stronghold_entry": {
         "recognition": "TemplateMatch",
-        "template": [
-            "home/组织"
-        ],
-        "threshold": 0.7,
-        "action": "Click",
+        "template": "Startup/main_green_masked.png",
+        "green_mask": true,
+        "action": "Custom",
+        "custom_action": "GoIntoEntry",
+        "custom_action_param": {
+            "template": "home/组织"
+        },
         "next": [
             "stronghold_gameplay",
             "no_group",

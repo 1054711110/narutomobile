@@ -2,18 +2,21 @@
     "sky_ground": {
         "next": [
             "sky_ground_entry",
-            "[JumpBack]swipe_for_left_entries",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入天地子任务[/color]"
     },
     "sky_ground_entry": {
         "recognition": "TemplateMatch",
-        "template": [
-            "home/组织"
-        ],
-        "threshold": 0.7,
-        "action": "Click",
+        "template": "Startup/main_green_masked.png",
+        "green_mask": true,
+        "action": "Custom",
+        "custom_action": "GoIntoEntry",
+        "custom_action_param": {
+            "template": [
+                "home/组织"
+            ]
+        },
         "next": [
             "sky_ground_gameplay",
             "no_group",
@@ -256,7 +259,7 @@
     "sky_ground_select_summon": {
         "recognition": "TemplateMatch",
         "template": [
-            "home/通灵"
+            "battle/通灵"
         ],
         "roi": [
             790,
@@ -310,7 +313,7 @@
     "sky_ground_select_roll": {
         "recognition": "TemplateMatch",
         "template": [
-            "home/秘卷"
+            "battle/秘卷"
         ],
         "roi": [
             797,
@@ -655,7 +658,8 @@
             "sky_ground_end_confirm_back_main_screen",
             "[JumpBack]sky_ground_end_back_main_screen"
         ],
-        "post_delay": 400
+        "post_delay": 400,
+        "focus": "[color:DeepSkyBlue]天地开始回主页面[/color]"
     },
     "sky_ground_end_confirm_back_main_screen": {
         "recognition": "OCR",
@@ -672,7 +676,8 @@
             "sky_ground_end_not_in_main",
             "[JumpBack]sky_ground_end_confirm_back_main_screen"
         ],
-        "post_delay": 400
+        "post_delay": 400,
+        "focus": "[color:DeepSkyBlue]天地确认回主页面[/color]"
     },
     "sky_ground_end_not_in_main": {
         "recognition": "TemplateMatch",
