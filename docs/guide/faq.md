@@ -14,7 +14,6 @@
     <!-- 每日找到火影的，找了个差不多类型的 -->
     A: 最低配置：CPU i5 9400 及以上，显卡 GTX 1650 Super 4G 独显及以上，内存8G及以上。
 
-
 2. Q: 可以在手机上用吗？
 
     A: 不可以。
@@ -31,7 +30,7 @@
 
     已经完全看不见字了！
 
-    ![kurotsuchi](./imgs/kurotsuchi.png)
+    ![kurotsuchi](../imgs/kurotsuchi.png)
 
 2. MaaAutoNaruto不喜欢特殊轮盘忍者的查克拉
 
