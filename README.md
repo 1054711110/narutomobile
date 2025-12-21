@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
-  <img alt="LOGO" src="docs/cover.ico" width="128"  />
+  <img alt="LOGO" src="docs/logo.ico" width="128"  />
 </p>
 
 <p align="center">
@@ -32,7 +32,7 @@
 
 ## 常见问题
 
-请见 [FAQ文档](docs/faq.md)
+请见 [FAQ文档](docs/guide/faq.md)
 
 ## 主要功能
 
@@ -64,7 +64,7 @@
 
 ## 如何参与开发
 
-请阅读[开发文档](docs/development.md)
+请阅读[开发文档](docs/develop/index.md)
 
 ## 鸣谢
 

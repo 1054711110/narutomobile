@@ -44,6 +44,6 @@
 
 本项目目前紧缺人手，你可以先阅读文档自行尝试寻找解决方案。欢迎可以提交pr。
 
-### 3. OCR 文字识别一直没有识别结果，报错 "Failed to load det or rec", "ocrer_ is null"
+### 3. OCR 文字识别一直没有识别结果，报错 "Failed to load det or rec", "ocrer is null"
 
 你不但没有仔细阅读MFA的开发文档，还无视了前面步骤的报错。我不想解释了，请再把文档仔细阅读一遍！
