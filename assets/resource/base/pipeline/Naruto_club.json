@@ -498,7 +498,7 @@
         ],
         "pre_wait_freezes": 1000,
         "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]上滑动提交任务[/color]"
+        "focus": "[color:DeepSkyBlue]上滑动去金币助手[/color]"
     },
     "glod_helper_not_found": {
         "next": [
@@ -548,6 +548,7 @@
             "swipe_for_club_submit",
             "[JumpBack]close_gold_helper"
         ],
+        "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭金币助手[/color]"
     },
     "swipe_for_club_submit": {
