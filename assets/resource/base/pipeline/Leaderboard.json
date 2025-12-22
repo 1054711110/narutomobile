@@ -1,31 +1,12 @@
 {
     "leaderboard": {
         "next": [
-            "leaderboard_check_in_main_screen",
+            "find_leaderboard_in_main_screen",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入排行榜子任务[/color]"
     },
-    "leaderboard_entry_by_ocr": {
-        "recognition": "OCR",
-        "expected": [
-            "排",
-            "行",
-            "榜"
-        ],
-        "action": "Click",
-        "next": [
-            "click_thumb",
-            "click_thumb_done",
-            "[JumpBack]ensure_to_close",
-            "[JumpBack]close_notice",
-            "[JumpBack]leaderboard_entry",
-            "[JumpBack]leaderboard_entry_by_ocr"
-        ],
-        "post_delay": 400,
-        "focus": "[color:DeepSkyBlue]进入排行榜[/color]"
-    },
-    "leaderboard_check_in_main_screen": {
+    "find_leaderboard_in_main_screen": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -45,28 +26,10 @@
             }
         },
         "next": [
-            "click_thumb",
             "click_thumb_done",
-            "[JumpBack]ensure_to_close",
-            "[JumpBack]close_notice",
-            "[JumpBack]leaderboard_entry",
-            "[JumpBack]leaderboard_entry_by_ocr"
+            "click_thumb",
+            "[JumpBack]find_leaderboard_in_main_screen"
         ]
-    },
-    "leaderboard_entry": {
-        "recognition": "TemplateMatch",
-        "template": "home/排行榜",
-        "threshold": 0.8,
-        "green_mask": true,
-        "action": "Click",
-        "next": [
-            "click_thumb",
-            "click_thumb_done",
-            "[JumpBack]leaderboard_entry",
-            "[JumpBack]leaderboard_entry_by_ocr"
-        ],
-        "post_delay": 400,
-        "focus": "[color:DeepSkyBlue]进入排行榜[/color]"
     },
     "click_thumb": {
         "recognition": "TemplateMatch",
@@ -91,25 +54,9 @@
             409
         ],
         "next": [
-            "close_board"
+            "back_main_screen_and_stop"
         ],
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]点赞完成[/color]"
-    },
-    "close_board": {
-        "recognition": "TemplateMatch",
-        "template": "Leaderboard/x.png",
-        "roi": [
-            1173,
-            0,
-            94,
-            80
-        ],
-        "action": "Click",
-        "next": [
-            "check_main_screen_and_stop"
-        ],
-        "post_wait_freezes": 200,
-        "focus": "[color:DeepSkyBlue]关闭排行榜[/color]"
     }
 }
