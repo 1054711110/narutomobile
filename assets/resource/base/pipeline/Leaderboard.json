@@ -16,7 +16,11 @@
         "action": "Click",
         "next": [
             "click_thumb",
-            "click_thumb_done"
+            "click_thumb_done",
+            "[JumpBack]ensure_to_close",
+            "[JumpBack]close_notice",
+            "[JumpBack]leaderboard_entry",
+            "[JumpBack]leaderboard_entry_by_ocr"
         ],
         "post_delay": 400,
         "focus": "[color:DeepSkyBlue]进入排行榜[/color]"
@@ -41,7 +45,12 @@
             }
         },
         "next": [
-            "click_thumb"
+            "click_thumb",
+            "click_thumb_done",
+            "[JumpBack]ensure_to_close",
+            "[JumpBack]close_notice",
+            "[JumpBack]leaderboard_entry",
+            "[JumpBack]leaderboard_entry_by_ocr"
         ]
     },
     "leaderboard_entry": {

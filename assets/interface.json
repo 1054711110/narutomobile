@@ -51,7 +51,7 @@
             "name": "排行榜",
             "entry": "leaderboard",
             "default_check": true,
-            "description": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
+            "description": "[size:15][color:tomato]该功能会关闭公告气泡且需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
             "name": "送体力",
