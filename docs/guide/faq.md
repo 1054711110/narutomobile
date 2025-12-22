@@ -36,6 +36,10 @@
 
     A: 将MAN目录下的文件全部删除，然后重新下载最新版的MAN。
 
+2. Q: 拖到桌面后启动不了
+
+    A: 请看[如何创建快捷方式](https://www.bilibili.com/video/BV1oGwfedEGS)
+
 ## 使用相关
 
 1. Q: 推荐什么模拟器
