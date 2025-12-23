@@ -32,13 +32,19 @@
 
     A: 运行目录内的依赖安装脚本并重启即可。
 
-    Q: 脚本成功运行并重启后还是出现上述弹窗怎么办？
+    ![dependence_script](../imgs/dependence_script.png)
+
+    Q: 脚本成功运行并重启后还是出现这个该弹窗怎么办？
 
     A: 将MAN目录下的文件全部删除，然后重新下载最新版的MAN。
 
 2. Q: 拖到桌面后启动不了
 
     A: 请看[如何创建快捷方式](https://www.bilibili.com/video/BV1oGwfedEGS)
+
+3. Q: 如果是 MAC / Linux 用户，该如何使用？
+
+    A: 请移步[M9A的用户手册](https://1999.fan/zh_cn/manual/newbie.html)自行学习相关解决方案。
 
 ## 使用相关
 
