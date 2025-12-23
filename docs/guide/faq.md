@@ -30,7 +30,7 @@
 
     ![dotnet](../imgs/dotnet.png)
 
-    A: 运行目录内的依赖安装脚本并重启即可。
+    A: 运行目录内的依赖安装脚本并重启即可。（如果脚本无法运行，可以在QQ群的群文件中下载`运行依赖`中的两个文件并手动运行。）
 
     ![dependence_script](../imgs/dependence_script.png)
 

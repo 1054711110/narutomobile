@@ -3,7 +3,7 @@
 :::warning
 本项目目前的开发文档尚未完善！
 
-你可以先学习[M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)以了解如何在本地以开发模式运行项目（本项目与M9A的项目结构类似，可以作为学习参考）。更多内容请自行阅读MaaFramework的[开发文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)。
+你可以先阅读[M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)以了解如何在本地以开发模式运行项目（本项目与M9A的项目结构类似，可以作为学习参考）。更多内容请自行学习MaaFramework的[开发文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)的内容。
 :::
 
 ## 环境配置
