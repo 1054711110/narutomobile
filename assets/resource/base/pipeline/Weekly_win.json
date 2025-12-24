@@ -210,7 +210,9 @@
         "recognition": "TemplateMatch",
         "template": [
             "Weekly_win/victory.png",
-            "Weekly_win/complete_victory.png"
+            "Weekly_win/victory_10th.png",
+            "Weekly_win/complete_victory.png",
+            "Weekly_win/complete_victory_10th.png"
         ],
         "roi": [
             480,
@@ -279,7 +281,10 @@
     },
     "weekly_win_fail": {
         "recognition": "TemplateMatch",
-        "template": "Weekly_win/fail.png",
+        "template": [
+            "Weekly_win/fail.png",
+            "Weekly_win/fail_10th.png"
+        ],
         "roi": [
             480,
             328,
@@ -310,7 +315,10 @@
     },
     "weekly_win_substitution": {
         "recognition": "TemplateMatch",
-        "template": "Weekly_win/substitution.png",
+        "template": [
+            "Weekly_win/substitution.png",
+            "Weekly_win/substitution_10th.png"
+        ],
         "roi": [
             550,
             441,

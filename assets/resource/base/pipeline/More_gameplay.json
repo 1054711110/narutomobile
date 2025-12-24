@@ -189,6 +189,17 @@
             "[JumpBack]sleep_500ms"
         ]
     },
+    "more_gameplay_go_fight": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/go_to_war.png",
+        "roi": [
+            1069,
+            506,
+            190,
+            190
+        ],
+        "action": "Click"
+    },
     "more_gameplay_trace_vanish_in_match": {
         "recognition": "OCR",
         "expected": [
@@ -222,6 +233,8 @@
         "action": "Click",
         "next": [
             "more_gameplay_trace_vanish_choose_ninja",
+            "more_gameplay_trace_vanish_confirm_fight",
+            "[JumpBack]more_gameplay_go_fight",
             "[JumpBack]sleep_500ms"
         ],
         "post_delay": 400
@@ -239,11 +252,54 @@
         "green_mask": true,
         "action": "Click",
         "next": [
+            "more_gameplay_match_win",
             "more_gameplay_trace_vanish_confirm_selcet_ninjia",
             "more_gameplay_trace_vanish_check_fight",
             "[JumpBack]more_gameplay_trace_vanish_choose_ninja",
             "[JumpBack]sleep_500ms"
         ]
+    },
+    "more_gameplay_match_win": {
+        "recognition": "OCR",
+        "expected": [
+            "确",
+            "定"
+        ],
+        "roi": [
+            472,
+            342,
+            325,
+            209
+        ],
+        "action": "Click",
+        "next": [
+            "more_gameplay_without_match_win",
+            "[JumpBack]more_gameplay_match_win"
+        ],
+        "post_delay": 500,
+        "focus": "[color:DeepSkyBlue]敌人退出了,你获胜[/color]"
+    },
+    "more_gameplay_without_match_win": {
+        "recognition": "OCR",
+        "expected": [
+            "确",
+            "定"
+        ],
+        "roi": [
+            472,
+            342,
+            325,
+            209
+        ],
+        "inverse": true,
+        "next": [
+            "more_gameplay_trace_vanish_choose_ninja",
+            "more_gameplay_trace_vanish_confirm_fight",
+            "[JumpBack]more_gameplay_go_fight",
+            "[JumpBack]sleep_500ms"
+        ],
+        "post_delay": 500,
+        "focus": "[color:DeepSkyBlue]回到战斗[/color]"
     },
     "more_gameplay_trace_vanish_confirm_selcet_ninjia": {
         "recognition": "OCR",
@@ -278,6 +334,7 @@
         ],
         "action": "DoNothing",
         "next": [
+            "more_gameplay_match_win",
             "more_gameplay_trace_vanish_check_no_fight",
             "[JumpBack]more_gameplay_All_skill",
             "more_gameplay_in_trace_vanish"
