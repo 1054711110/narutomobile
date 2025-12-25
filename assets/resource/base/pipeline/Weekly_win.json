@@ -189,8 +189,10 @@
         ]
     },
     "battle_end": {
-        "recognition": "TemplateMatch",
-        "template": "Weekly_win/battle_detail.png",
+        "recognition": "OCR",
+        "expected": [
+            "战斗详情"
+        ],
         "roi": [
             1061,
             0,
@@ -220,6 +222,7 @@
             341,
             240
         ],
+        "green_mask": true,
         "action": "Click",
         "threshold": 0.8,
         "post_delay": 500,
@@ -291,6 +294,7 @@
             341,
             240
         ],
+        "green_mask": true,
         "action": "Click",
         "threshold": 0.9,
         "post_delay": 500,
