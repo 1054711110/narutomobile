@@ -389,14 +389,22 @@
     "sky_ground_to_column": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/empty_column.png",
+        "roi": [
+            354,
+            0,
+            796,
+            718
+        ],
         "action": "Click",
         "next": [
+            "sky_ground_end",
             "[JumpBack]sky_ground_to_column",
             "[JumpBack]sky_ground_in_fight",
             "right_swipe_for_empty_column",
             "left_swipe_for_empty_column",
             "up_swipe_for_empty_column",
-            "sky_ground_in_main"
+            "sky_ground_in_main",
+            "[JumpBack]sleep_500ms"
         ],
         "focus": "[color:DeepSkyBlue]前往空柱子[/color]"
     },
@@ -553,6 +561,7 @@
         ],
         "post_delay": 2000,
         "next": [
+            "sky_ground_end",
             "[JumpBack]sky_ground_to_column",
             "[JumpBack]sky_ground_get_bead",
             "[JumpBack]sky_ground_in_fight"
@@ -637,7 +646,7 @@
     "sky_ground_end": {
         "recognition": "OCR",
         "expected": [
-            "天地活动已结束"
+            "天地战场活动已结束"
         ],
         "roi": [
             459,
@@ -678,6 +687,7 @@
             296,
             155
         ],
+        "action": "Click",
         "next": [
             "sky_ground_end_not_in_main",
             "[JumpBack]sky_ground_end_confirm_back_main_screen"
