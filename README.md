@@ -36,7 +36,7 @@
 
 ## 主要功能
 
-## 日常
+### 日常
 
 - [x] 启动游戏
 
@@ -98,5 +98,3 @@
 - **图像：** `MaaAutoNaruto 图标` 并不适用开源协议，著作权归 [duorua (@duorua)](https://github.com/duorua) 所有，商业使用权归 [duorua (@duorua)](https://github.com/duorua) 所有，软件用户仅拥有非商业使用权。不得以开源协议已授权为由在未经授权的情况下使用 `MaaAutoNaruto 图标`，不得在未经授权的情况下将 `MaaAutoNaruto` 用于任何商业用途。
 
 以上细则是本项目对GPL的相关补充与强调。未提及的以 GPL 为准，发生冲突的以本细则为准。如有不清楚的部分，请发 Issues 询问。若发生纠纷，相关内容也没有在 Issues 上提及的，MaaAutoNaruto-DevGroup 拥有最终解释权。
-
-以上细则从AUTO-MAS项目的README.md修改，已经过AUTO-MAS Team同意，在此鸣谢。
