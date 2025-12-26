@@ -36,15 +36,15 @@
 
 1. Q: 双击exe后无反应或出现以下弹窗怎么办？
 
-    ![dotnet](../imgs/dotnet.png)
+    <img src="../imgs/dotnet.png" alt="dotnet" style="zoom: 80%;" />
 
-    A: 运行目录内的依赖安装脚本并重启电脑即可。（如果脚本无法运行，可以在QQ群的群文件中下载`运行依赖`中的两个文件并手动运行。）
+    A: 运行目录内的依赖安装脚本并重启电脑即可。
 
-    ![dependence_script](../imgs/dependence_script.png)
+    <img src="../imgs/dependence_script.png" alt="dependence_script" style="zoom:80%;" />
 
     Q: 脚本运行失败或者无法运行怎么办？
 
-    A: QQ群的群文件中有个名为`运行依赖`的文件夹，请手动下载并安装里面的**所有**程序。
+    A: [QQ群](1047724031)的群文件中有个名为`运行依赖`的文件夹，请手动下载并安装里面的**所有**程序。
 
     Q: 安装成功并重启后还是出现这个该弹窗怎么办？
 
@@ -96,7 +96,7 @@
 
     已经完全看不见字了！
 
-    ![kurotsuchi](../imgs/kurotsuchi.png)
+    <img src="../imgs/kurotsuchi.png" alt="kurotsuchi" style="zoom:50%;" />
 
 2. MaaAutoNaruto不喜欢特殊轮盘忍者的查克拉
 
