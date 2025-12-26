@@ -36,11 +36,11 @@
 
 1. Q: 双击exe后无反应或出现以下弹窗怎么办？
 
-    <img src="../imgs/dotnet.png" alt="dotnet" style="zoom: 80%;" />
+    ![dotnet_missing](../imgs/dotnet_missing.png)
 
     A: 运行目录内的依赖安装脚本并重启电脑即可。
 
-    <img src="../imgs/dependence_script.png" alt="dependence_script" style="zoom:80%;" />
+    ![dependence_script](../imgs/dependence_script.png)
 
     Q: 脚本运行失败或者无法运行怎么办？
 
