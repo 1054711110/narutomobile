@@ -2,7 +2,7 @@
 
 遇到问题时请先查询[常见问题](./faq.md)中是否有可用的解决方案。
 
-<img src="../imgs/export_log.png" alt="export_log" style="zoom:50%;" />
+![export_log](../imgs/export_log.png)
 
 如果你的问题不在常见问题当中，请导出日志并将日志文件发送给 QQ 群管理员，并提供出现问题时的MAN截图和火影当前界面截图，最好描述一下复现这个问题的方法，比如“在执行时候在什么情况下会在某个页面卡住”。当然，也可以开一个[issue](https://github.com/duorua/narutomobile/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen)。
 
