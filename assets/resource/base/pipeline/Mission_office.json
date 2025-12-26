@@ -251,10 +251,29 @@
         "action": "Click",
         "next": [
             "mission_office_recommended_team_check",
+            "mission_office_no_recommended_team",
             "[JumpBack]mission_office_recommended_team"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]使用推荐配队[/color]"
+    },
+    "mission_office_no_recommended_team": {
+        "recognition": "OCR",
+        "expected": [
+            "推荐",
+            "已经没有",
+            "可用忍者",
+            "请选择忍者"
+        ],
+        "roi": [
+            286,
+            256,
+            624,
+            214
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "mission_office_recommended_team_check": {
         "recognition": "OCR",
