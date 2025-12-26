@@ -15,9 +15,9 @@ Maa Auto Naruto 是一款基于opencv图像识别技术的`火影忍者手游`�
 
 ## 使用说明
 
-- [常见问题](https://github.com/duorua/narutomobile/blob/main/docs/faq.md)
-- [新手上路](https://1999.fan/docs/zh_cn/manual/新手上路.html)(**使用前必看**)（转自MAA1999/M9A）
-- [Mirror酱使用说明](https://1999.fan/docs/zh_cn/manual/Mirror酱.html)（转自MAA1999/M9A）
+- [常见问题](https://naruto.natsuu.top/guide/faq.html)
+- [新手上路](https://1999.fan/zh_cn/manual/newbie.html)(**使用前必看**)（转自MAA1999/M9A）
+- [Mirror酱使用说明](https://1999.fan/zh_cn/manual/MirrorChyan.html)（转自MAA1999/M9A）
 
 ## 常见问题速解
 
@@ -39,3 +39,6 @@ MaaAutoNaruto 原则上允许传播者自由传播本软件，但无论在何种
 
 - 交流（用户）群：[1047724031](https://qm.qq.com/q/KnowNWxNIs)
 - 开发群：[984076079](https://qm.qq.com/q/rJqesYyJws)
+
+> 本项目GitHub链接：[duorua/narutomobile](https://github.com/duorua/narutomobile)  
+> 软件本体完全免费，若您有付费购买请立即退款并举报！
