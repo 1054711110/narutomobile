@@ -178,7 +178,8 @@
         },
         {
             "name": "要塞(beta)",
-            "entry": "stronghold"
+            "entry": "stronghold",
+            "description": "默认前往火要塞,进其他要塞在对应要塞内开始任务"
         },
         {
             "name": "天地(beta)",

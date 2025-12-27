@@ -134,7 +134,7 @@
             "stronghold_to_fight",
             "[JumpBack]stronghold_to_fire_stronghold"
         ],
-        "post_delay": 400,
+        "post_delay": 700,
         "focus": "[color:DeepSkyBlue]点击火要塞[/color]"
     },
     "stronghold_to_fight": {
