@@ -230,6 +230,17 @@
                 "选择小游戏"
             ],
             "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进"
+        },
+        {
+            "name": "叛忍",
+            "entry": "rebel_ninja",
+            "option": [
+                "叛忍难度",
+                "叛忍开双倍",
+                "叛忍敌人等级",
+                "叛忍二级密码"
+            ],
+            "description": "还没做好,不要使用,二级密码仅作为测试，不要输自己的"
         }
     ],
     "option": {
@@ -1021,6 +1032,105 @@
                     }
                 }
             ]
+        },
+        "叛忍难度": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "困难",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "普通",
+                    "pipeline_override": {
+                        "rebel_ninja_double_mode_checked": {
+                            "next": [
+                                "rebel_ninja_easy_mode",
+                                "rebel_ninja_easy_mode_checked"
+                            ]
+                        },
+                        "rebel_ninja_single_mode_checked": {
+                            "next": [
+                                "rebel_ninja_easy_mode",
+                                "rebel_ninja_easy_mode_checked"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍开双倍": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "rebel_ninja_double_mode": {
+                            "next": [
+                                "rebel_ninja_single_mode",
+                                "rebel_ninja_single_mode_checked",
+                                "rebel_ninja_summon_member"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍敌人等级": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "高级",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "中级",
+                    "pipeline_override": {
+                        "rebel_ninja_in_battlefield": {
+                            "next": [
+                                "rebel_ninja_mid_enemy",
+                                "[JumpBack]rebel_ninja_find_enemy"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "低级",
+                    "pipeline_override": {
+                        "rebel_ninja_in_battlefield": {
+                            "next": [
+                                "rebel_ninja_low_enemy",
+                                "[JumpBack]rebel_ninja_find_enemy"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍二级密码": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "二级密码",
+                    "pipeline_type": "string",
+                    "default": "0",
+                    "verify": "^(0|[1-9]\\d*)$"
+                }
+            ],
+            "pipeline_override": {
+                "rebel_ninja_input_secondary_password": {
+                    "input_text": "{二级密码}"
+                },
+                "rebel_ninja_check_secondary_password": {
+                    "expected": [
+                        "{二级密码}"
+                    ]
+                }
+            }
         }
     }
 }
