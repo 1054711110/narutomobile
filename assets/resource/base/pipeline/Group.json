@@ -88,7 +88,8 @@
         "next": [
             "[JumpBack]group_close_group_notice",
             "check_group_pray_undone",
-            "check_group_pray_done"
+            "check_group_pray_done",
+            "check_selected_group_gameplay"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确认选中组织玩法按钮[/color]"
