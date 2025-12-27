@@ -79,11 +79,13 @@
             "default_check": true
         },
         {
+            "name": "生存挑战",
+            "entry": "survival_challenge",
+            "default_check": true
+        },
+        {
             "name": "试炼",
-            "entry": "practice_place",
-            "option": [
-                "不做修行"
-            ],
+            "entry": "shugyou_no_michi",
             "default_check": true
         },
         {
@@ -244,34 +246,6 @@
                 {
                     "name": "苹果",
                     "pipeline_override": {}
-                }
-            ]
-        },
-        "不做修行": {
-            "type": "select",
-            "default_case": "做修行",
-            "cases": [
-                {
-                    "name": "做修行",
-                    "pipeline_override": {
-                        "practice_place_undone": {
-                            "next": [
-                                "train_road"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "不做修行",
-                    "pipeline_override": {
-                        "practice_place": {
-                            "next": [
-                                "survival_challenge_in_center_enter",
-                                "survival_challenge_ac_entry",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
                 }
             ]
         },
