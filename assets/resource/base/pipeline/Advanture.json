@@ -92,10 +92,23 @@
         "next": [
             "advanture_go_fight",
             "[JumpBack]get_red_envelope",
-            "[JumpBack]advanture_new_level_undone"
+            "level_not_enough",
+            "advanture_new_level_undone"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]进入冒险副本新关卡[/color]"
+    },
+    "level_not_enough": {
+        "recognition": "TemplateMatch",
+        "template": "Advanture/level_not_enough.png",
+        "roi": [
+            515,
+            145,
+            249,
+            151
+        ],
+        "next": "back_main_screen_and_stop",
+        "focus": "等级不足"
     },
     "naruto_journey_new_level_undone": {
         "recognition": "TemplateMatch",
@@ -130,7 +143,7 @@
             "[JumpBack]advanture_anime",
             "advanture_confirm_advanced_option",
             "use_energy_not_enough_sign",
-            "[JumpBack]advanture_go_fight",
+            "advanture_go_fight",
             "[JumpBack]advanture_skip_dialogue"
         ],
         "post_delay": 900,
