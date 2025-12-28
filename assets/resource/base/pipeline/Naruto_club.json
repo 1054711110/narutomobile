@@ -21,7 +21,8 @@
             "click_club_icon",
             "check_surf_post",
             "[JumpBack]surf_post",
-            "[JumpBack]swipe_for_comments"
+            "[JumpBack]swipe_for_comments",
+            "unknow_error"
         ],
         "timeout": 10000,
         "post_wait_freezes": 300,
@@ -44,6 +45,7 @@
             50
         ],
         "post_delay": 1000,
+        "max_hit": 30,
         "focus": "[color:DeepSkyBlue]滑动寻找评论[/color]"
     },
     "check_surf_post": {
