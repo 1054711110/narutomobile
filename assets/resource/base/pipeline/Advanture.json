@@ -253,7 +253,9 @@
         "next": [
             "[JumpBack]has_stop_button",
             "[JumpBack]advanture_end_anime",
-            "advanture_not_in_fight"
+            "advanture_win",
+            "advanture_lost",
+            "advanture_skip_revive"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]进入战斗[/color]"
@@ -301,50 +303,19 @@
             130
         ],
         "action": "Click",
-        "post_delay": 900,
-        "focus": "[color:DeepSkyBlue]正在自动战斗[/color]",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]开启自动战斗[/color]",
         "timeout": 30000
-    },
-    "advanture_not_in_fight": {
-        "recognition": "OCR",
-        "expected": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "挑",
-            "战"
-        ],
-        "roi": [
-            491,
-            0,
-            306,
-            133
-        ],
-        "inverse": true,
-        "next": [
-            "advanture_win",
-            "advanture_lost",
-            "advanture_skip_revive"
-        ],
-        "post_delay": 900,
-        "rate_limit": 5000,
-        "focus": "[color:DeepSkyBlue]不在战斗[/color]"
     },
     "advanture_win": {
         "recognition": "TemplateMatch",
         "template": "Advanture/win.png",
         "roi": [
-            669,
-            24,
-            128,
-            103
+            493,
+            9,
+            334,
+            190
         ],
         "action": "Click",
         "next": [
