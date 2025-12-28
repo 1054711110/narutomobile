@@ -17,7 +17,7 @@
             177
         ],
         "action": "Click",
-        "post_delay": 400,
+        "post_delay": 3000,
         "focus": "[color:DeepSkyBlue]进入冒险副本入口[/color]"
     },
     "advanture_in_level_roll": {
@@ -182,69 +182,53 @@
         "focus": "[color:tomato]高级任务无法自动战斗[/color]"
     },
     "advanture_anime": {
-        "recognition": "TemplateMatch",
-        "template": "Advanture/anime.png",
+        "recognition": "ColorMatch",
+        "upper": [
+            0,
+            0,
+            0
+        ],
+        "lower": [
+            0,
+            0,
+            0
+        ],
         "roi": [
-            0,
-            0,
-            239,
-            105
+            1096,
+            36,
+            95,
+            50
         ],
+        "count": 1000,
+        "pre_delay": 0,
         "action": "Click",
-        "next": [
-            "advanture_skip"
-        ],
-        "post_delay": 500,
+        "post_delay": 3000,
         "focus": "[color:DeepSkyBlue]剧情动画[/color]"
     },
     "advanture_end_anime": {
-        "recognition": "TemplateMatch",
-        "template": "Advanture/anime.png",
+        "recognition": "ColorMatch",
+        "upper": [
+            0,
+            0,
+            0
+        ],
+        "lower": [
+            0,
+            0,
+            0
+        ],
         "roi": [
-            0,
-            0,
-            239,
-            105
+            1096,
+            36,
+            95,
+            50
         ],
+        "count": 1000,
+        "pre_delay": 0,
         "action": "Click",
-        "next": [
-            "advanture_end_skip"
-        ],
-        "post_delay": 500,
-        "focus": "[color:DeepSkyBlue]剧情动画[/color]",
+        "post_delay": 3000,
+        "focus": "[color:DeepSkyBlue]过场动画[/color]",
         "timeout": 5000
-    },
-    "advanture_end_skip": {
-        "recognition": "OCR",
-        "expected": [
-            "跳",
-            "过"
-        ],
-        "roi": [
-            1052,
-            0,
-            228,
-            119
-        ],
-        "action": "Click",
-        "post_delay": 500,
-        "focus": "[color:DeepSkyBlue]跳过[/color]"
-    },
-    "advanture_skip": {
-        "recognition": "OCR",
-        "expected": [
-            "跳",
-            "过"
-        ],
-        "roi": [
-            1052,
-            0,
-            228,
-            119
-        ],
-        "action": "Click",
-        "post_delay": 500,
-        "focus": "[color:DeepSkyBlue]跳过[/color]"
     },
     "advanture_in_fight": {
         "recognition": "OCR",
@@ -267,10 +251,42 @@
             133
         ],
         "next": [
-            "advanture_auto_fight"
+            "[JumpBack]has_stop_button",
+            "[JumpBack]advanture_end_anime",
+            "advanture_not_in_fight"
         ],
         "post_delay": 900,
-        "focus": "[color:DeepSkyBlue]战斗中[/color]"
+        "focus": "[color:DeepSkyBlue]进入战斗[/color]"
+    },
+    "has_stop_button": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Advanture/stop_button.png"
+        ],
+        "roi": [
+            1120,
+            0,
+            160,
+            127
+        ],
+        "focus": "正在战斗中",
+        "next": [
+            "check_not_in_auto_fight"
+        ]
+    },
+    "check_not_in_auto_fight": {
+        "recognition": "OCR",
+        "expected": "自动战斗中",
+        "inverse": true,
+        "roi": [
+            551,
+            94,
+            188,
+            62
+        ],
+        "next": "advanture_auto_fight",
+        "focus": "检查自动战斗状态",
+        "timeout": 3000
     },
     "advanture_auto_fight": {
         "recognition": "OCR",
@@ -285,9 +301,6 @@
             130
         ],
         "action": "Click",
-        "next": [
-            "advanture_not_in_fight"
-        ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]正在自动战斗[/color]",
         "timeout": 30000
@@ -318,10 +331,10 @@
         "next": [
             "advanture_win",
             "advanture_lost",
-            "advanture_skip_revive",
-            "advanture_end_anime"
+            "advanture_skip_revive"
         ],
         "post_delay": 900,
+        "rate_limit": 5000,
         "focus": "[color:DeepSkyBlue]不在战斗[/color]"
     },
     "advanture_win": {
