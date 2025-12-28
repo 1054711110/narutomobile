@@ -357,5 +357,9 @@
     ],
     "action": "Click",
     "focus": "获得格斗称号"
+  },
+  "unknow_error": {
+    "action": "StopTask",
+    "focus": "[color:tomato]未知原因导致卡死。[/color]"
   }
 }

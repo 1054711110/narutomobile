@@ -21,7 +21,8 @@
             "click_club_icon",
             "check_surf_post",
             "[JumpBack]surf_post",
-            "[JumpBack]swipe_for_comments"
+            "[JumpBack]swipe_for_comments",
+            "unknow_error"
         ],
         "timeout": 10000,
         "post_wait_freezes": 300,
@@ -44,6 +45,7 @@
             50
         ],
         "post_delay": 1000,
+        "max_hit": 30,
         "focus": "[color:DeepSkyBlue]滑动寻找评论[/color]"
     },
     "check_surf_post": {
@@ -56,7 +58,6 @@
             37
         ],
         "action": "Click",
-        "duration": 50,
         "next": [
             "club_like_mission"
         ],
@@ -812,7 +813,7 @@
         ],
         "timeout": 3000,
         "post_wait_freezes": 800,
-        "focus": "[color:DeepSkyBlue]领取第三个奖励[/color]",
+        "focus": "[color:DeepSkyBlue]领取第三个奖励[/color]"
     },
     "confirm_club_third_award": {
         "recognition": "TemplateMatch",
