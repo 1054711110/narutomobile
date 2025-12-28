@@ -289,9 +289,34 @@
         "next": [
             "train_road_award",
             "train_road_unreset",
+            "train_road_unsweep",
             "train_road_done",
-            "[JumpBack]train_road_sweeping"
-        ]
+            "train_road_sweeping"
+        ],
+        "focus": "[color:DeepSkyBlue]在修行之路中[/color]"
+    },
+    "train_road_unsweep": {
+        "recognition": "TemplateMatch",
+        "template": "Practice_place/train_road_unsweep.png",
+        "roi": [
+            807,
+            570,
+            155,
+            149
+        ],
+        "action": "Click",
+        "target": [
+            867,
+            639,
+            39,
+            34
+        ],
+        "next": [
+            "confirm_train_road_sweep",
+            "[JumpBack]train_road_unsweep"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]修行之路未扫荡[/color]"
     },
     "train_road_sweeping": {
         "recognition": "TemplateMatch",
@@ -748,7 +773,9 @@
         ],
         "post_wait_freezes": 200,
         "timeout": 60000,
-        "on_error": ["back_main_screen_and_stop"],
+        "on_error": [
+            "back_main_screen_and_stop"
+        ],
         "focus": "[color:DeepSkyBlue]确认生存挑战挑战卷提示[/color]"
     },
     "survival_challenge_sweep_ticket_used_up": {
@@ -760,7 +787,9 @@
             217
         ],
         "template": "Practice_place/sweep_ticket_used_up.png",
-        "next": ["back_main_screen_and_stop"],
+        "next": [
+            "back_main_screen_and_stop"
+        ],
         "focus": "[color:DeepSkyBlue]生存挑战卷用完了[/color]"
     },
     "wait_for_survival_challenge_sweep_complete": {
@@ -769,7 +798,9 @@
             "Practice_place/survival_no_ninjia.png",
             "Practice_place/final_reward.png"
         ],
-        "next": ["back_main_screen_and_stop"],
+        "next": [
+            "back_main_screen_and_stop"
+        ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]生存挑战扫荡完成[/color]"
     }

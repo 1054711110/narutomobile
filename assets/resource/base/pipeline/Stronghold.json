@@ -2,18 +2,21 @@
     "stronghold": {
         "next": [
             "stronghold_entry",
-            "[JumpBack]swipe_for_left_entries",
+            "stronghold_in_stronghold",
+            "stronghold_in_map",
             "[JumpBack]back_main_screen"
         ],
-        "focus": "[color:DeepSkyBlue]进入天地子任务[/color]"
+        "focus": "[color:DeepSkyBlue]进入要塞子任务[/color]"
     },
     "stronghold_entry": {
         "recognition": "TemplateMatch",
-        "template": [
-            "home/组织"
-        ],
-        "threshold": 0.7,
-        "action": "Click",
+        "template": "Startup/main_green_masked.png",
+        "green_mask": true,
+        "action": "Custom",
+        "custom_action": "GoIntoEntry",
+        "custom_action_param": {
+            "template": "home/组织"
+        },
         "next": [
             "stronghold_gameplay",
             "no_group",
@@ -37,10 +40,10 @@
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "DoNothing",
         "next": [
@@ -70,7 +73,8 @@
             "stronghold_in_map",
             "[JumpBack]stronghold_mode"
         ],
-        "post_wait_freezes": 400
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]进入要塞[/color]"
     },
     "stronghold_in_map": {
         "recognition": "TemplateMatch",
@@ -85,16 +89,17 @@
         ],
         "next": [
             "stronghold_to_fire_stronghold"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]在要塞地图[/color]"
     },
     "swipe_for_stronghold_mode": {
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "Swipe",
         "begin": [
@@ -110,7 +115,8 @@
             96
         ],
         "duration": 300,
-        "post_delay": 800
+        "post_delay": 800,
+        "focus": "[color:DeepSkyBlue]寻找要塞[/color]"
     },
     "stronghold_to_fire_stronghold": {
         "recognition": "TemplateMatch",
@@ -128,7 +134,8 @@
             "stronghold_to_fight",
             "[JumpBack]stronghold_to_fire_stronghold"
         ],
-        "post_delay": 400
+        "post_delay": 700,
+        "focus": "[color:DeepSkyBlue]点击火要塞[/color]"
     },
     "stronghold_to_fight": {
         "recognition": "OCR",
@@ -146,7 +153,8 @@
         "next": [
             "stronghold_in_stronghold",
             "[JumpBack]stronghold_to_fight"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]进入火要塞[/color]"
     },
     "stronghold_in_stronghold": {
         "recognition": "OCR",
@@ -175,7 +183,7 @@
         "duration": 3000,
         "pre_delay": 0,
         "post_delay": 0,
-        "focus": "[color:darkgray]向右走[/color]",
+        "focus": "[color:darkgray]在要塞中，向右走[/color]",
         "next": [
             "stronghold_in_match",
             "[JumpBack]stronghold_in_stronghold",
@@ -204,7 +212,8 @@
             "[JumpBack]stronghold_match_win",
             "stronghold_finished",
             "[JumpBack]sleep_500ms"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]匹配中[/color]"
     },
     "stronghold_match_win": {
         "recognition": "OCR",
@@ -224,7 +233,8 @@
             "[JumpBack]stronghold_match_win",
             "stronghold_finished"
         ],
-        "post_delay": 500
+        "post_delay": 500,
+        "focus": "[color:DeepSkyBlue]敌人退出了,你获胜[/color]"
     },
     "stronghold_without_match_win": {
         "recognition": "OCR",
@@ -243,7 +253,8 @@
             "stronghold_in_stronghold",
             "stronghold_finished"
         ],
-        "post_delay": 500
+        "post_delay": 500,
+        "focus": "[color:DeepSkyBlue]回到战斗[/color]"
     },
     "stronghold_fighting": {
         "recognition": "OCR",
@@ -285,7 +296,8 @@
         ],
         "next": [
             "back_main_screen_and_stop"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]要塞到时间了[/color]"
     },
     "stronghold_battle_end": {
         "recognition": "OCR",
@@ -309,7 +321,8 @@
             "stronghold_in_stronghold",
             "stronghold_end",
             "[JumpBack]stronghold_battle_end"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]战斗结束[/color]"
     },
     "stronghold_substitution": {
         "recognition": "TemplateMatch",
@@ -339,7 +352,8 @@
         ],
         "next": [
             "back_main_screen_and_stop"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]进入要塞结算[/color]"
     },
     "stronghold_click_All_skill": {
         "recognition": "OCR",
@@ -485,6 +499,7 @@
             }
         ],
         "pre_delay": 0,
-        "post_delay": 0
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]连点器战斗[/color]"
     }
 }

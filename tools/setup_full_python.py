@@ -1,9 +1,8 @@
 from pathlib import Path
-import tempfile
 import argparse
 from zipfile import ZipFile
 from urllib import request
-import shutil
+from tqdm import tqdm
 
 default_version = "3.12.9"
 default_arch = "amd64"
@@ -33,9 +32,23 @@ def get_args():
     return parser.parse_args()
 
 
-def download_file(url, dest_path):
+def download_file(url, dest_path, chunk_size=8192):
     with request.urlopen(url) as response, open(dest_path, "wb") as out_file:
-        shutil.copyfileobj(response, out_file)
+        # 获取文件大小（如果可用）
+        total_size = int(response.headers.get("Content-Length", 0))
+
+        # 创建进度条
+        with tqdm(
+            total=total_size, unit="B", unit_scale=True, desc="Downloading"
+        ) as pbar:
+            downloaded = 0
+            while True:
+                chunk = response.read(chunk_size)
+                if not chunk:
+                    break
+                out_file.write(chunk)
+                downloaded += len(chunk)
+                pbar.update(len(chunk))
 
 
 def main():

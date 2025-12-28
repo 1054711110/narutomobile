@@ -1,6 +1,5 @@
 import os
 import sys
-import platform
 import shutil
 import subprocess
 from urllib.error import HTTPError, URLError
@@ -9,7 +8,7 @@ import zipfile
 import tarfile
 import stat  # 用于在 macOS/Linux 上设置文件权限
 
-sys.stdout.reconfigure(encoding="utf-8") # type: ignore
+sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
 print(os.getcwd())
 # --- 配置 ---
 # 可以根据需要修改这些值
@@ -119,8 +118,13 @@ def ensure_pip(python_executable, python_install_dir):
 
 # --- 主逻辑 ---
 def main():
-    os_type = platform.system()
-    os_arch = platform.machine()
+    if len(sys.argv) < 3:
+        print("用法: python setup_embed_python.py <操作系统> <架构>")
+        print("示例: python setup_embed_python.py Windows AMD64")
+        sys.exit(1)
+
+    os_type = sys.argv[1]
+    os_arch = sys.argv[2]
 
     print(f"操作系统: {os_type}, 架构: {os_arch}")
     print(f"目标 Python 版本: {PYTHON_VERSION_TARGET}")
@@ -149,17 +153,7 @@ def main():
 
     python_executable_final_path = None
 
-    if os_type == "Windows":
-        # 在Windows ARM64环境中，platform.machine()可能错误返回AMD64
-        # 我们需要检查处理器标识符来确定真实架构
-        processor_identifier = os.environ.get("PROCESSOR_IDENTIFIER", "")
-
-        # 检查是否为ARM64处理器
-        if "ARMv8" in processor_identifier or "ARM64" in processor_identifier:
-            print(f"检测到ARM64处理器: {processor_identifier}")
-            os_arch = "ARM64"
-
-        # 映射platform.machine()到Python官网的命名
+    if os_type == "win":
         arch_mapping = {
             "AMD64": "amd64",
             "x86_64": "amd64",
@@ -232,7 +226,7 @@ def main():
             return
         python_executable_final_path = get_python_executable_path(DEST_DIR, os_type)
 
-    elif os_type == "Darwin":  # macOS
+    elif os_type == "macos":
         # 映射platform.machine()到python-build-standalone的架构名称
         arch_mapping = {"x86_64": "x86_64", "arm64": "aarch64", "aarch64": "aarch64"}
         pbs_arch = arch_mapping.get(os_arch, os_arch)

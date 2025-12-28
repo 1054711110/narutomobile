@@ -88,7 +88,7 @@
         "focus": "[color:DeepSkyBlue]确认同意信息[/color]"
     },
     "click_start_game": {
-        "recognition": "ocr",
+        "recognition": "OCR",
         "expected": "开始游戏",
         "roi": [
             494,
