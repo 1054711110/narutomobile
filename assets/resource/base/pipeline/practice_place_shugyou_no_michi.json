@@ -3,14 +3,17 @@
         "next": [
             "enter_shugyou_no_michi",
             "[JumpBack]enter_practice_place",
-            "[Jumpback]back_main_screen"
-        ],
+            "[JumpBack]back_main_screen"
+        ]
     },
     "enter_shugyou_no_michi": {
         "recognition": "TemplateMatch",
         "template": "Practice_place/train_road.png",
         "action": "Click",
-        "next": "train_road_entry",
+        "next": [
+            "enter_shugyou_no_michi",
+            "train_road_entry"
+        ],
         "focus": "进入修行之路"
     },
     "train_road_entry": {
@@ -208,6 +211,119 @@
         ],
         "post_delay": 1000,
         "post_wait_freezes": 200,
-        "focus": "[color:DeepSkyBlue]修行之路已完成[/color]"
+        "focus": "[color:DeepSkyBlue]修行之路扫荡已完成[/color]"
+    },
+    "shugyou_no_michi_auto_push": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/go_to_war.png",
+        "roi": [
+            1104,
+            541,
+            149,
+            153
+        ],
+        "threshold": 0.3,
+        "action": "DoNothing",
+        "next": [
+            "[JumpBack]shugyou_no_michi_level_teleportation",
+            "[JumpBack]shugyou_no_michi_level_award",
+            "[JumpBack]shugyou_no_michi_go_to_war"
+        ]
+    },
+    "shugyou_no_michi_level_award": {
+        "recognition": "TemplateMatch",
+        "template": "Practice_place/enter_shugyou_no_michi_award.png",
+        "roi": [
+            537,
+            177,
+            203,
+            212
+        ],
+        "action": "Click"
+    },
+    "shugyou_no_michi_level_teleportation": {
+        "recognition": "OCR",
+        "expected": [
+            "传送"
+        ],
+        "roi": [
+            851,
+            472,
+            105,
+            64
+        ],
+        "action": "Click",
+        "focus": "传送到前方关卡"
+    },
+    "shugyou_no_michi_go_to_war": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/go_to_war.png",
+        "roi": [
+            1104,
+            541,
+            149,
+            153
+        ],
+        "threshold": 0.3,
+        "action": "Click",
+        "post_delay": 3000,
+        "next": [
+            "shugyou_no_michi_go_to_war",
+            "win_in_shugyou_no_michi",
+            "fail_in_shugyou_no_michi",
+            "[JumpBack]not_in_auto_battle"
+        ],
+        "rate_limit": 5000,
+        "timeout": 60000,
+        "focus": "进入战斗"
+    },
+    "not_in_auto_battle": {
+        "recognition": "OCR",
+        "expected": "自动",
+        "roi": [
+            556,
+            99,
+            177,
+            59
+        ],
+        "inverse": true,
+        "next": "click_auto_battle",
+        "timeout": 1000,
+        "focus": "没有检测到自动战斗"
+    },
+    "click_auto_battle": {
+        "recognition": "OCR",
+        "expected": "自动",
+        "roi": [
+            44,
+            56,
+            72,
+            42
+        ],
+        "action": "Click",
+        "focus": "开启自动战斗"
+    },
+    "fail_in_shugyou_no_michi": {
+        "recognition": "OCR",
+        "expected": "变强",
+        "roi": [
+            475,
+            222,
+            338,
+            141
+        ],
+        "action": "StopTask",
+        "focus": "战斗失败"
+    },
+    "win_in_shugyou_no_michi": {
+        "recognition": "OCR",
+        "expected": "点击任意位置",
+        "roi": [
+            514,
+            652,
+            283,
+            59
+        ],
+        "action": "Click"
     }
 }

@@ -3,7 +3,7 @@
         "next": [
             "enter_survival_challenge",
             "[JumpBack]enter_practice_place",
-            "[Jumpback]back_main_screen"
+            "[JumpBack]back_main_screen"
         ]
     },
     "enter_survival_challenge": {
@@ -158,7 +158,7 @@
             "survival_challenge_sweep_ready",
             "check_survival_challenge_done",
             "survival_challenge_ticket_used_up",
-            "start_survival_challenge_sweep",
+            "start_survival_challenge_sweep"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]进入生存挑战扫荡任务[/color]"

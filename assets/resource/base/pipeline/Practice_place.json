@@ -1,10 +1,14 @@
 {
     "enter_practice_place": {
+        "recognition": "TemplateMatch",
+        "template": "Startup/main_green_masked.png",
+        "green_mask": true,
         "action": "Custom",
         "custom_action": "GoIntoEntry",
         "custom_action_param": {
             "template": "home/试炼之地"
         },
-        "focus": "进入试炼之地"
+        "focus": "进入试炼之地",
+        "post_delay": 3000
     }
 }

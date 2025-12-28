@@ -84,9 +84,12 @@
             "default_check": true
         },
         {
-            "name": "试炼",
+            "name": "修行之路",
             "entry": "shugyou_no_michi",
-            "default_check": true
+            "default_check": true,
+            "option": [
+                "打新关卡"
+            ]
         },
         {
             "name": "小队突袭",
@@ -991,6 +994,22 @@
                                     "duration": 100
                                 }
                             ]
+                        }
+                    }
+                }
+            ]
+        },
+        "打新关卡": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No"
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "train_road_entry": {
+                            "next": "shugyou_no_michi_auto_push"
                         }
                     }
                 }
