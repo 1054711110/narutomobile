@@ -65,6 +65,7 @@
             "try_share",
             "[JumpBack]share_close_weekly_ninjia_title_next_step",
             "[JumpBack]share_close_weekly_ninjia_title",
+            "[JumpBack]weekly_win_weekly_award",
             "[JumpBack]share_entry",
             "[JumpBack]share_to_qq"
         ],
@@ -109,6 +110,7 @@
             "try_share",
             "[JumpBack]share_close_weekly_ninjia_title_next_step",
             "[JumpBack]share_close_weekly_ninjia_title",
+            "[JumpBack]weekly_win_weekly_award",
             "[JumpBack]share_entry",
             "[JumpBack]share_to_qq",
             "[JumpBack]get_title"
@@ -130,7 +132,8 @@
             "share_to_qq",
             "share_to_wechat",
             "[JumpBack]share_close_weekly_ninjia_title_next_step",
-            "[JumpBack]share_close_weekly_ninjia_title"
+            "[JumpBack]share_close_weekly_ninjia_title",
+            "[JumpBack]weekly_win_weekly_award"
         ],
         "pre_wait_freezes": 200,
         "post_delay": 1200,
@@ -149,7 +152,8 @@
         "next": [
             "close_qq_app",
             "[JumpBack]share_close_weekly_ninjia_title_next_step",
-            "[JumpBack]share_close_weekly_ninjia_title"
+            "[JumpBack]share_close_weekly_ninjia_title",
+            "[JumpBack]weekly_win_weekly_award"
         ],
         "action": "Click",
         "pre_wait_freezes": 200,
@@ -170,7 +174,8 @@
         "next": [
             "close_wechat_app",
             "[JumpBack]share_close_weekly_ninjia_title_next_step",
-            "[JumpBack]share_close_weekly_ninjia_title"
+            "[JumpBack]share_close_weekly_ninjia_title",
+            "[JumpBack]weekly_win_weekly_award"
         ],
         "action": "Click",
         "pre_wait_freezes": 200,

@@ -21,7 +21,8 @@
             "click_club_icon",
             "check_surf_post",
             "[JumpBack]surf_post",
-            "[JumpBack]swipe_for_comments"
+            "[JumpBack]swipe_for_comments",
+            "unknow_error"
         ],
         "timeout": 10000,
         "post_wait_freezes": 300,
@@ -44,6 +45,7 @@
             50
         ],
         "post_delay": 1000,
+        "max_hit": 30,
         "focus": "[color:DeepSkyBlue]滑动寻找评论[/color]"
     },
     "check_surf_post": {
@@ -56,7 +58,6 @@
             37
         ],
         "action": "Click",
-        "duration": 50,
         "next": [
             "club_like_mission"
         ],
@@ -499,7 +500,7 @@
         ],
         "pre_wait_freezes": 1000,
         "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]上滑动提交任务[/color]"
+        "focus": "[color:DeepSkyBlue]上滑动去金币助手[/color]"
     },
     "glod_helper_not_found": {
         "next": [
@@ -549,6 +550,7 @@
             "swipe_for_club_submit",
             "[JumpBack]close_gold_helper"
         ],
+        "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭金币助手[/color]"
     },
     "swipe_for_club_submit": {

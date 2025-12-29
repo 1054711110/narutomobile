@@ -133,9 +133,25 @@
         ],
         "action": "Click",
         "next": [
-            "rich_room_peace",
-            "back_main_screen_and_stop",
+            "rich_room_without_confirm_above_kage_sweep",
             "[JumpBack]rich_room_confirm_above_kage_sweep"
+        ]
+    },
+    "rich_room_without_confirm_above_kage_sweep": {
+        "recognition": "OCR",
+        "expected": [
+            "免费"
+        ],
+        "roi": [
+            380,
+            362,
+            528,
+            219
+        ],
+        "inverse": true,
+        "next": [
+            "rich_room_peace",
+            "back_main_screen_and_stop"
         ]
     },
     "rich_room_ac_done": {

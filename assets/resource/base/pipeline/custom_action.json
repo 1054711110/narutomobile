@@ -1,0 +1,20 @@
+{
+    "click_entry": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "",
+                "roi": [
+                    345,
+                    87,
+                    723,
+                    505
+                ],
+                "threshold": 0.7
+            }
+        },
+        "action": {
+            "type": "Click"
+        }
+    }
+}
