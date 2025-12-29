@@ -204,7 +204,7 @@
             "Activity/headhunt.png"
         ],
         "threshold": 0.9,
-        "post_delay": 500,
+        "post_delay": 300,
         "next": [
             "back_main_screen_and_stop"
         ],
@@ -223,8 +223,25 @@
             158
         ],
         "next": [
-            "rich_room_peace",
+            "rich_room_not_in_fight",
             "[JumpBack]rich_room_combo"
+        ]
+    },
+    "rich_room_not_in_fight": {
+        "recognition": "OCR",
+        "expected": [
+            "掘",
+            "金"
+        ],
+        "roi": [
+            471,
+            91,
+            330,
+            158
+        ],
+        "inverse": true,
+        "next": [
+            "rich_room_peace"
         ]
     },
     "rich_room_combo": {

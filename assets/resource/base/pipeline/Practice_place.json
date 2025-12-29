@@ -5,6 +5,7 @@
         "custom_action_param": {
             "template": "home/试炼之地"
         },
-        "focus": "进入试炼之地"
+        "focus": "进入试炼之地",
+        "post_delay": 500
     }
 }

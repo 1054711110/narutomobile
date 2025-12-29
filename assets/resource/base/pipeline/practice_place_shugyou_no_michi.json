@@ -4,16 +4,31 @@
             "enter_shugyou_no_michi",
             "[JumpBack]enter_practice_place",
             "[Jumpback]back_main_screen"
-        ],
+        ]
     },
     "enter_shugyou_no_michi": {
         "recognition": "TemplateMatch",
         "template": "Practice_place/train_road.png",
         "action": "Click",
-        "next": "train_road_entry",
-        "focus": "进入修行之路"
+        "next": [
+            "train_road_entry",
+            "enter_shugyou_no_michi"
+        ],
+        "focus": "进入修行之路",
+        "post_wait_freezes": 400
     },
     "train_road_entry": {
+        "recognition": "OCR",
+        "expected": [
+            "修行",
+            "之路"
+        ],
+        "roi": [
+            91,
+            9,
+            395,
+            143
+        ],
         "next": [
             "train_road_award",
             "train_road_unreset",
@@ -189,9 +204,24 @@
         ],
         "action": "Click",
         "next": [
-            "back_main_screen_and_stop"
+            "without_confirm_train_road_sweep"
         ],
+        "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确认修行之路扫荡[/color]"
+    },
+    "without_confirm_train_road_sweep": {
+        "recognition": "TemplateMatch",
+        "template": "Practice_place/confirm_train_road_sweep.png",
+        "roi": [
+            557,
+            513,
+            164,
+            61
+        ],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "train_road_done": {
         "recognition": "TemplateMatch",
