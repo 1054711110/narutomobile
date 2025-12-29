@@ -266,7 +266,9 @@
             360,
             111
         ],
-        "next": ["close_team_desh"],
+        "next": [
+            "close_team_desh"
+        ],
         "focus": "[color:darkgray]达到今日收益上限[/color]"
     },
     "team_dash_auto_fight": {
@@ -281,11 +283,13 @@
             107,
             107
         ],
+        "max_hit": 20,
         "action": "Click",
         "next": [
             "check_in_team_dash_sweep",
             "team_dash_do_not_remind_gold",
-            "team_dash_auto_fight"
+            "team_dash_auto_fight",
+            "unknow_error"
         ],
         "post_wait_freezes": 500,
         "rate_limit": 3000,
@@ -302,7 +306,9 @@
         ],
         "action": "Click",
         "threshold": 0.5,
-        "next": ["check_in_team_dash_sweep"],
+        "next": [
+            "check_in_team_dash_sweep"
+        ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]点击继续战斗[/color]"
     },
