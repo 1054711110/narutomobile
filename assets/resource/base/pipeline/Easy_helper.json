@@ -100,7 +100,8 @@
         ],
         "next": [
             "easy_helper_log_on_award_undone",
-            "easy_helper_log_on_award_done"
+            "easy_helper_log_on_award_done",
+            "[JumpBack]confirm_easy_helper_one_key"
         ],
         "post_wait_freezes": 500
     },
@@ -155,7 +156,7 @@
             42,
             50
         ],
-        "threshold": 0.99999,
+        "threshold": 0.8,
         "next": [
             "easy_helper_log_on_award_undone",
             "easy_helper_log_on_award_done"

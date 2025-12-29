@@ -397,7 +397,8 @@
                                 "Ninjia_book/soul_waiting.png",
                                 "Ninjia_book/box_waiting.png",
                                 "Ninjia_book/wooden_spike_roll_waiting.png",
-                                "Ninjia_book/title_waiting.png"
+                                "Ninjia_book/title_waiting.png",
+                                "Ninjia_book/exchange_token_waiting.png"
                             ]
                         }
                     }
@@ -415,7 +416,8 @@
                                 "Ninjia_book/energe_waiting.png",
                                 "Ninjia_book/soul_waiting.png",
                                 "Ninjia_book/wooden_spike_roll_waiting.png",
-                                "Ninjia_book/title_waiting.png"
+                                "Ninjia_book/title_waiting.png",
+                                "Ninjia_book/exchange_token_waiting.png"
                             ]
                         }
                     }
