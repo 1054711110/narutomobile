@@ -229,9 +229,10 @@
             "name": "小游戏",
             "entry": "mini_game",
             "option": [
-                "选择小游戏"
+                "选择小游戏",
+                "羁绊追寻自动退出"
             ],
-            "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进"
+            "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进,羁绊追寻剩余数字离图片太近不好识别,建议关闭自动退出"
         },
         {
             "name": "叛忍(beta)",
@@ -457,6 +458,44 @@
                             "next": "red_envelope"
                         }
                     }
+                },
+                {
+                    "name": "羁绊追寻",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "find_bonds"
+                        }
+                    }
+                }
+            ]
+        },
+        "羁绊追寻自动退出": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "find_bonds_card_flip_loop": {
+                            "next": [
+                                "find_bonds_card_flip_win",
+                                "[JumpBack]find_bonds_card_flip_loop"
+                            ]
+                        },
+                        "find_bonds_card_flip_start": {
+                            "next": [
+                                "find_bonds_card_flip_loop"
+                            ]
+                        },
+                        "find_bonds_without_card_flip_win": {
+                            "next": [
+                                "find_bonds_card_flip_loop"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
                 }
             ]
         },

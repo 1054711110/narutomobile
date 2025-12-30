@@ -169,6 +169,14 @@
         "timeout": 60000,
         "focus": "[color:DeepSkyBlue]进入积分赛战斗[/color]"
     },
+    "point_race_quit": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/challenge_rhombus.png",
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "focus": "[color:DeepSkyBlue]忍者无法挑战[/color]"
+    },
     "point_race_skip": {
         "recognition": "OCR",
         "expected": "跳过",
