@@ -18,16 +18,68 @@
         "action": "Swipe",
         "duration": 50,
         "next": [
-            "click_club_icon",
             "check_surf_post",
             "[JumpBack]surf_post",
+            "click_club_icon",
             "[JumpBack]swipe_for_comments",
+            "[JumpBack]surf_post_try_reflash",
             "unknow_error"
         ],
         "timeout": 10000,
         "post_wait_freezes": 300,
         "post_delay": 2000,
         "focus": "[color:DeepSkyBlue]点击情报社[/color]"
+    },
+    "surf_post_try_reflash": {
+        "recognition": "OCR",
+        "expected": [
+            "推荐",
+            "忍者"
+        ],
+        "roi": [
+            172,
+            0,
+            207,
+            64
+        ],
+        "next": [
+            "surf_post_try_reflash_to_follow"
+        ]
+    },
+    "surf_post_try_reflash_to_follow": {
+        "recognition": "OCR",
+        "expected": [
+            "关注"
+        ],
+        "roi": [
+            0,
+            0,
+            170,
+            86
+        ],
+        "action": "Click",
+        "next": [
+            "surf_post_try_reflash_in_follow",
+            "[JumpBack]surf_post_try_reflash_to_follow"
+        ],
+        "post_wait_freezes": 300,
+        "focus": "[color:DarkGoldenRod]从没有话题的地狱回来了[/color]"
+    },
+    "surf_post_try_reflash_in_follow": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/follow_select.png",
+        "roi": [
+            0,
+            0,
+            170,
+            86
+        ],
+        "next": [
+            "check_surf_post",
+            "[JumpBack]surf_post",
+            "unknow_error"
+        ],
+        "post_wait_freezes": 300
     },
     "swipe_for_comments": {
         "recognition": "DirectHit",
@@ -45,7 +97,7 @@
             50
         ],
         "post_delay": 1000,
-        "max_hit": 30,
+        "max_hit": 10,
         "focus": "[color:DeepSkyBlue]滑动寻找评论[/color]"
     },
     "check_surf_post": {
@@ -83,6 +135,7 @@
             56,
             662
         ],
+        "max_hit": 8,
         "action": "Click",
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]选择有评论话题[/color]"
@@ -91,6 +144,7 @@
         "next": [
             "first_like",
             "[JumpBack]cancel_club_follow",
+            "no_comment_now",
             "[JumpBack]swipe_for_club_like"
         ]
     },
@@ -142,13 +196,14 @@
         "recognition": "OCR",
         "expected": "暂无评论",
         "roi": [
-            1282,
-            134,
-            311,
-            205
+            728,
+            49,
+            508,
+            670
         ],
         "next": [
-            "close_surf_post"
+            "surf_post_try_reflash_comment",
+            "unknow_error"
         ],
         "focus": "[color:red]暂无评论可供点赞[/color]"
     },
@@ -190,6 +245,27 @@
             "close_surf_post"
         ],
         "focus": "[color:DeepSkyBlue]第四个点赞任务[/color]"
+    },
+    "surf_post_try_reflash_comment": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/back_button.png",
+        "roi": [
+            59,
+            5,
+            75,
+            36
+        ],
+        "action": "Click",
+        "max_hit": 3,
+        "next": [
+            "check_surf_post",
+            "[JumpBack]surf_post",
+            "surf_post_try_reflash_comment",
+            "surf_post_try_reflash",
+            "unknow_error"
+        ],
+        "post_wait_freezes": 700,
+        "focus": "[color:DarkGoldenRod]没有评论的世界还有什么意义[/color]"
     },
     "close_surf_post": {
         "recognition": "TemplateMatch",
@@ -617,7 +693,7 @@
             "naruto_club_back_post"
         ],
         "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]土豆[/color]"
+        "focus": "[color:DarkGoldenRod]土豆[/color]"
     },
     "naruto_club_back_post": {
         "action": "ClickKey",
@@ -707,17 +783,17 @@
     },
     "naruto_club_in_loop_wheel": {
         "recognition": "TemplateMatch",
+        "template": "Naruto_club/loop_wheel.png",
         "roi": [
             464,
             190,
             387,
             370
         ],
-        "template": "Naruto_club/loop_wheel.png",
         "next": [
             "naruto_club_back_post"
         ],
-        "focus": "[color:DeepSkyBlue]意志坚定[/color]"
+        "focus": "[color:DarkGoldenRod]意志坚定[/color]"
     },
     "club_second_award": {
         "recognition": "TemplateMatch",
@@ -893,6 +969,6 @@
     },
     "award_kale": {
         "action": "StopTask",
-        "focus": "[color:tomato]当前操作超时，疑似遇到真投入[/color]"
+        "focus": "[color:DarkGoldenRod]当前操作超时，疑似遇到真投入[/color]"
     }
 }

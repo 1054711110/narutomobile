@@ -289,7 +289,7 @@
             "second_group_award_entry",
             "second_group_award"
         ],
-        "post_wait_freezes": 300,
+        "post_wait_freezes": 700,
         "focus": "[color:DeepSkyBlue]领取15人签到奖励[/color]"
     },
     "second_group_award_entry": {
@@ -330,11 +330,29 @@
         "action": "Click",
         "next": [
             "second_group_award_box",
+            "second_group_award_done_sign",
             "second_group_award_box_done",
             "[JumpBack]second_group_award"
         ],
-        "post_wait_freezes": 900,
+        "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]领取20人签到奖励[/color]"
+    },
+    "second_group_award_done_sign": {
+        "recognition": "OCR",
+        "expected": [
+            "已经领取"
+        ],
+        "roi": [
+            415,
+            224,
+            449,
+            232
+        ],
+        "next": [
+            "third_group_award",
+            "third_group_award_done"
+        ],
+        "focus": "[color:DarkGoldenRod]20人签到结束通知[/color]"
     },
     "second_group_award_box_done": {
         "recognition": "TemplateMatch",

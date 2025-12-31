@@ -132,23 +132,30 @@
         ],
         "action": "Click",
         "next": [
-            "check_mouthly_signature_title",
-            "back_main_screen_and_stop"
+            "mouthly_signature_done",
+            "[JumpBack]mouthly_signature"
         ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]进行月度签到[/color]"
     },
-    "check_mouthly_signature_title": {
-        "recognition": "TemplateMatch",
-        "template": "Activity/title.png",
-        "roi": [
-            508,
-            523,
-            135,
-            121
+    "mouthly_signature_done": {
+        "recognition": "OCR",
+        "expected": [
+            "已签到"
         ],
+        "roi": [
+            1104,
+            532,
+            158,
+            98
+        ],
+        "next": [
+            "check_mouthly_signature_title",
+            "back_main_screen_and_stop"
+        ]
+    },
+    "check_mouthly_signature_title": {
         "action": "Click",
-        "threshold": 0.68,
         "target": [
             525,
             527,
