@@ -187,7 +187,9 @@
             "name": "天地(beta)",
             "entry": "sky_ground",
             "option": [
-                "天地选择战场"
+                "天地选择战场",
+                "天地选择额外奖励柱子",
+                "天地挑战"
             ]
         },
         {
@@ -947,6 +949,40 @@
                             ]
                         }
                     }
+                }
+            ]
+        },
+        "天地选择额外奖励柱子": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "sky_ground_to_award_column": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "天地挑战": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "sky_ground_to_award_column": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
                 }
             ]
         },

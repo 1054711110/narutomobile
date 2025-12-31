@@ -2,6 +2,7 @@
     "sky_ground": {
         "next": [
             "sky_ground_entry",
+            "sky_ground_to_column",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入天地子任务[/color]"
@@ -140,6 +141,7 @@
         "action": "Click",
         "next": [
             "sky_ground_confrim_battlefield_selection",
+            "sky_ground_confirm_set",
             "[JumpBack]sky_battlefield"
         ],
         "post_wait_freezes": 400,
@@ -157,6 +159,7 @@
         "action": "Click",
         "next": [
             "sky_ground_confrim_battlefield_selection",
+            "sky_ground_confirm_set",
             "[JumpBack]ground_battlefield"
         ],
         "post_wait_freezes": 400,
@@ -194,7 +197,7 @@
             "sky_ground_selected_ninjia",
             "[JumpBack]sky_ground_select_nijia"
         ],
-        "post_wait_freezes": 400,
+        "post_wait_freezes": 800,
         "focus": "[color:DeepSkyBlue]选择忍者[/color]"
     },
     "sky_ground_recommended_ninja": {
@@ -211,7 +214,7 @@
             "sky_ground_selected_ninjia",
             "[JumpBack]sky_ground_recommended_ninja"
         ],
-        "post_wait_freezes": 400,
+        "post_wait_freezes": 800,
         "focus": "[color:DeepSkyBlue]选择推荐忍者[/color]"
     },
     "sky_ground_selected_ninjia": {
@@ -362,6 +365,7 @@
         "action": "Click",
         "next": [
             "sky_ground_group_encouragement",
+            "sky_ground_to_column",
             "[JumpBack]sky_ground_confirm_set"
         ],
         "focus": "[color:DeepSkyBlue]确认配置[/color]"
@@ -398,7 +402,9 @@
         "action": "Click",
         "next": [
             "sky_ground_end",
-            "[JumpBack]sky_ground_to_column",
+            "[JumpBack]sky_ground_to_award_column",
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_to_fight_column",
             "[JumpBack]sky_ground_in_fight",
             "right_swipe_for_empty_column",
             "left_swipe_for_empty_column",
@@ -407,6 +413,43 @@
             "[JumpBack]sleep_500ms"
         ],
         "focus": "[color:DeepSkyBlue]前往空柱子[/color]"
+    },
+    "sky_ground_to_award_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/group_coin_award_column.png",
+        "roi": [
+            354,
+            0,
+            796,
+            718
+        ],
+        "action": "Click",
+        "target_offset": [
+            0,
+            -100,
+            0,
+            0
+        ]
+    },
+    "sky_ground_to_fight_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/fight_column.png",
+        "roi": [
+            354,
+            0,
+            796,
+            718
+        ],
+        "threshold": [
+            0.8
+        ],
+        "action": "Click",
+        "target_offset": [
+            10,
+            -100,
+            0,
+            0
+        ]
     },
     "right_swipe_for_empty_column": {
         "recognition": "TemplateMatch",

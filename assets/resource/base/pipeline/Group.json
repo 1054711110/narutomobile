@@ -333,7 +333,7 @@
             "second_group_award_box_done",
             "[JumpBack]second_group_award"
         ],
-        "post_wait_freezes": 700,
+        "post_wait_freezes": 900,
         "focus": "[color:DeepSkyBlue]领取20人签到奖励[/color]"
     },
     "second_group_award_box_done": {
@@ -357,7 +357,7 @@
             "third_group_award",
             "third_group_award_done"
         ],
-        "focus": "[color:DeepSkyBlue]20人签到奖励已领取[/color]"
+        "focus": "[color:DeepSkyBlue]20人签到奖励金币已到账[/color]"
     },
     "second_group_award_box": {
         "recognition": "TemplateMatch",
