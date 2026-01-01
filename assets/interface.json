@@ -45,7 +45,7 @@
             "name": "招财",
             "entry": "get_chopper",
             "default_check": true,
-            "description": "使用每日免费招财次数。"
+            "description": "使用每日免费招财次数"
         },
         {
             "name": "排行榜",
@@ -67,6 +67,9 @@
             "name": "组织",
             "entry": "group",
             "default_check": true,
+            "option": [
+                "组织从奖励中心进入"
+            ],
             "description": "[size:15][color:tomato]包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
@@ -79,13 +82,19 @@
             "default_check": true
         },
         {
-            "name": "生存挑战",
-            "entry": "survival_challenge",
+            "name": "修行之路",
+            "entry": "shugyou_no_michi",
+            "option": [
+                "修行之路从奖励中心进入"
+            ],
             "default_check": true
         },
         {
-            "name": "试炼",
-            "entry": "shugyou_no_michi",
+            "name": "生存挑战",
+            "entry": "survival_challenge",
+            "option": [
+                "生存挑战从奖励中心进入"
+            ],
             "default_check": true
         },
         {
@@ -128,11 +137,11 @@
         {
             "name": "忍法帖",
             "entry": "ninjia_book",
-            "description": "[size:15][color:tomato]开启后会领取忍法帖升级的全部奖励，需要攒体验卡的不要用！[/color][/size]",
             "option": [
                 "是否领取体验卡宝箱",
                 "是否领取奖励"
             ],
+            "description": "[size:15][color:tomato]开启后会领取忍法帖升级的全部奖励，需要攒体验卡的不要用！[/color][/size]",
             "default_check": true
         },
         {
@@ -153,9 +162,10 @@
                 "打排位",
                 "何时退出",
                 "领取周胜奖励",
-                "清周胜过期宝箱"
+                "清周胜过期宝箱",
+                "周胜从奖励中心进入"
             ],
-            "description": "排位由于胜利界面出现时间短不好识别,建议无限打,不开领奖励。清周胜过期宝箱要有时间卡,且可能有bug"
+            "description": "排位由于胜利界面出现时间短不好识别,建议无限打(输999),不开领奖励"
         },
         {
             "name": "活跃宝箱",
@@ -167,7 +177,7 @@
             "entry": "secret_realm",
             "option": [
                 "秘境从奖励中心进入",
-                "秘境打几把",
+                "秘境赢几次",
                 "烈炎秘境",
                 "罡体秘境",
                 "水牢秘境",
@@ -176,7 +186,7 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
-            "description": "会胜利输入次数+1次,输0的时候为打一次,由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
+            "description": "由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
         },
         {
             "name": "要塞(beta)",
@@ -241,7 +251,7 @@
                 "羁绊追寻自动退出",
                 "木叶小吃店不选普通蓝红色奖励"
             ],
-            "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进,羁绊追寻剩余数字离图片太近不好识别,建议关闭自动退出"
+            "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进"
         },
         {
             "name": "叛忍(beta)",
@@ -487,6 +497,7 @@
             ]
         },
         "羁绊追寻自动退出": {
+            "description": "羁绊追寻剩余数字离图片太近不好识别,建议关闭自动退出",
             "type": "switch",
             "cases": [
                 {
@@ -537,33 +548,21 @@
             ]
         },
         "何时退出": {
-            "type": "select",
-            "cases": [
+            "type": "input",
+            "description": "会胜利输入次数+1次,输0的时候为打一次",
+            "inputs": [
                 {
-                    "name": "赢一把",
-                    "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 0
-                        }
-                    }
-                },
-                {
-                    "name": "一直打",
-                    "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 648
-                        }
-                    }
-                },
-                {
-                    "name": "赢10把",
-                    "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 9
-                        }
-                    }
+                    "name": "周胜胜利次数减一",
+                    "pipeline_type": "int",
+                    "default": "0",
+                    "verify": "^(0|[1-9]\\d*)$"
                 }
-            ]
+            ],
+            "pipeline_override": {
+                "go_to_war_agian": {
+                    "max_hit": "{周胜胜利次数减一}"
+                }
+            }
         },
         "领取周胜奖励": {
             "type": "switch",
@@ -587,6 +586,7 @@
             ]
         },
         "清周胜过期宝箱": {
+            "description": "清周胜过期宝箱要有时间卡,且可能有bug",
             "type": "switch",
             "cases": [
                 {
@@ -621,6 +621,28 @@
                             "next": [
                                 "weekly_win_check_daily_duel_mission_recover_award",
                                 "back_main_screen_and_stop"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "周胜从奖励中心进入": {
+            "description": "用于适配部分主题,不能打排位,一天只能运行一次",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "weekly_win": {
+                            "next": [
+                                "weekly_win_ac_entry",
+                                "weekly_win_in_center_enter",
+                                "[JumpBack]back_main_screen"
                             ]
                         }
                     }
@@ -708,11 +730,12 @@
                 }
             ]
         },
-        "秘境打几把": {
+        "秘境赢几次": {
+            "description": "会胜利输入次数+1次,输0的时候为打一次",
             "type": "input",
             "inputs": [
                 {
-                    "name": "胜利次数",
+                    "name": "秘境胜利次数减一",
                     "pipeline_type": "int",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d*)$"
@@ -720,7 +743,7 @@
             ],
             "pipeline_override": {
                 "secret_realm_celebreate": {
-                    "max_hit": "{胜利次数}"
+                    "max_hit": "{秘境胜利次数减一}"
                 }
             }
         },
@@ -1236,6 +1259,70 @@
                 {
                     "name": "No",
                     "pipeline_override": {}
+                }
+            ]
+        },
+        "修行之路从奖励中心进入": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "shugyou_no_michi": {
+                            "next": [
+                                "practice_place_ac_entry",
+                                "practice_place_in_center_enter",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "生存挑战从奖励中心进入": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "survival_challenge": {
+                            "next": [
+                                "survival_challenge_in_center_enter",
+                                "survival_challenge_ac_entry",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "组织从奖励中心进入": {
+            "description": "用于适配特殊主题,一天只能运行一次",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "group": {
+                            "next": [
+                                "group_ac_entry",
+                                "group_in_center_enter",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
                 }
             ]
         }
