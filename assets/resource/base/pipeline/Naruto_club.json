@@ -417,10 +417,9 @@
             83,
             39
         ],
-        "action": "Click",
         "next": [
             "feed_pig",
-            "sign_done"
+            "without_feed_pig"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]签到已经完成[/color]"
@@ -470,10 +469,21 @@
         ],
         "action": "Click",
         "next": [
-            "feed_pig"
+            "feed_pig",
+            "without_feed_pig"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]收到签到提醒[/color]"
+    },
+    "without_feed_pig": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/feed_pig.png",
+        "inverse": true,
+        "threshold": 0.8,
+        "next": [
+            "check_club_mission_done"
+        ],
+        "focus": "[color:DarkGoldenRod]大事不妙雷霆猪[/color]"
     },
     "feed_pig": {
         "recognition": "TemplateMatch",
@@ -654,7 +664,9 @@
             "[JumpBack]naruto_club_duplicate_claim",
             "[JumpBack]club_submit"
         ],
-        "on_error": [],
+        "on_error": [
+            "unknow_error"
+        ],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]滑动提交任务[/color]"
     },
@@ -664,7 +676,9 @@
         "threshold": 0.6,
         "next": [
             "club_first_award_done",
-            "[JumpBack]club_first_award"
+            "[JumpBack]club_first_award",
+            "naruto_club_in_loop_wheel",
+            "[JumpBack]club_first_award_on_error"
         ],
         "inverse": true,
         "focus": "[color:DeepSkyBlue]检测任务是否已经全部提交[/color]",
@@ -740,12 +754,32 @@
         ],
         "action": "Click",
         "threshold": 0.9,
+        "max_hit": 3,
         "next": [
             "confirm_club_first_award"
         ],
         "pre_wait_freezes": 300,
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]领取第一个奖励[/color]"
+    },
+    "club_first_award_on_error": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/first_award.png",
+        "roi": [
+            231,
+            385,
+            140,
+            75
+        ],
+        "action": "Click",
+        "threshold": 0.9,
+        "max_hit": 3,
+        "next": [
+            "confirm_club_first_award"
+        ],
+        "pre_wait_freezes": 300,
+        "post_wait_freezes": 300,
+        "focus": "[color:DeepSkyBlue]第二次领取第一个奖励[/color]"
     },
     "confirm_club_first_award": {
         "recognition": "TemplateMatch",
@@ -759,6 +793,10 @@
         "action": "Click",
         "next": [
             "roger_club_first_award"
+        ],
+        "timeout": 8000,
+        "on_error": [
+            "naruto_club_in_loop_wheel"
         ],
         "post_wait_freezes": 300,
         "post_delay": 5000,
