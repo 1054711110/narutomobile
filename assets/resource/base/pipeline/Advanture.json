@@ -296,7 +296,9 @@
             "advanture_auto_fight",
             "advanture_win",
             "advanture_lost",
-            "advanture_skip_revive"
+            "advanture_skip_revive",
+            "[JumpBack]advanture_anime",
+            "[JumpBack]advanture_skip_dialogue"
         ],
         "focus": "检查自动战斗状态",
         "post_delay": 500

@@ -199,17 +199,16 @@
             "option": [
                 "冒险副本一直推关"
             ],
-            "description": "尽量不要使用特殊技能轮盘的忍者,开一直推关可能会在开荒时因为功能更新卡住"
+            "description": "开一直推关可能会在开荒时因为功能更新卡住"
         },
         {
             "name": "精英副本",
             "entry": "elite_instance",
-            "description": "尽量不要使用特殊技能轮盘的忍者,不是体力刷碎片的功能,这个用来开荒的"
+            "description": "不是体力刷碎片的功能,这个用来开荒的"
         },
         {
             "name": "修罗副本(beta)",
-            "entry": "asura_instance",
-            "description": "尽量不要使用特殊技能轮盘的忍者"
+            "entry": "asura_instance"
         },
         {
             "name": "更多玩法(beta)",

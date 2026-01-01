@@ -251,7 +251,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "DoNothing",
     "green_mask": true,
     "post_delay": 500,

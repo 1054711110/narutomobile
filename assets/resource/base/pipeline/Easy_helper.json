@@ -90,7 +90,8 @@
     "easy_helper_one_key_done": {
         "recognition": "OCR",
         "expected": [
-            "所有奖励"
+            "所有奖励",
+            "当前没有"
         ],
         "roi": [
             486,
@@ -176,7 +177,8 @@
         "threshold": 0.85,
         "action": "Click",
         "next": [
-            "get_easy_helper_log_on_award",
+            "get_easy_helper_without_log_on_award",
+            "[JumpBack]get_easy_helper_log_on_award",
             "[JumpBack]easy_helper_log_on_award_undone"
         ],
         "post_wait_freezes": 100,
@@ -200,6 +202,22 @@
         "post_wait_freezes": 100,
         "focus": "[color:DeepSkyBlue]轻松助手奖励已领取[/color]"
     },
+    "get_easy_helper_without_log_on_award": {
+        "recognition": "TemplateMatch",
+        "template": "Easy_helper/log_on_award.png",
+        "roi": [
+            329,
+            523,
+            951,
+            89
+        ],
+        "inverse": true,
+        "next": [
+            "easy_helper_privilege_undone",
+            "easy_helper_privilege_done"
+        ],
+        "post_wait_freezes": 400
+    },
     "get_easy_helper_log_on_award": {
         "recognition": "TemplateMatch",
         "template": "Easy_helper/log_on_award.png",
@@ -210,11 +228,7 @@
             89
         ],
         "action": "Click",
-        "next": [
-            "easy_helper_privilege_undone",
-            "easy_helper_privilege_done"
-        ],
-        "post_wait_freezes": 100,
+        "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]领取签到奖励[/color]"
     },
     "easy_helper_privilege_done": {
