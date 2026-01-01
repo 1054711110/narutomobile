@@ -326,7 +326,9 @@
         "action": "Click",
         "next": [
             "easy_helper_celebrate_sweep",
-            "[JumpBack]easy_helper_back_to_sweep"
+            "[JumpBack]easy_helper_back_to_sweep",
+            "check_no_easy_helper_sweep",
+            "[JumpBack]get_easy_helper_sweep"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]返回扫荡界面[/color]"

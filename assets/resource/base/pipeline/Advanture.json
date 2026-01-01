@@ -166,8 +166,7 @@
     "advanture_confirm_advanced_option": {
         "recognition": "OCR",
         "expected": [
-            "确",
-            "任"
+            "确定"
         ],
         "roi": [
             483,
@@ -175,7 +174,6 @@
             323,
             170
         ],
-        "action": "Click",
         "next": [
             "back_main_screen_and_stop"
         ],
@@ -255,7 +253,10 @@
             "[JumpBack]advanture_end_anime",
             "advanture_win",
             "advanture_lost",
-            "advanture_skip_revive"
+            "advanture_skip_revive",
+            "[JumpBack]advanture_in_level_roll",
+            "[JumpBack]advanture_entry",
+            "[JumpBack]back_main_screen"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]进入战斗[/color]"
@@ -265,6 +266,7 @@
         "template": [
             "Advanture/stop_button.png"
         ],
+        "green_mask": true,
         "roi": [
             1120,
             0,
@@ -278,7 +280,10 @@
     },
     "check_not_in_auto_fight": {
         "recognition": "OCR",
-        "expected": "自动战斗中",
+        "expected": [
+            "自动",
+            "战斗中"
+        ],
         "inverse": true,
         "roi": [
             551,
@@ -286,9 +291,28 @@
             188,
             62
         ],
-        "next": "advanture_auto_fight",
+        "next": [
+            "check_in_auto_fight",
+            "advanture_auto_fight",
+            "advanture_win",
+            "advanture_lost",
+            "advanture_skip_revive"
+        ],
         "focus": "检查自动战斗状态",
-        "timeout": 3000
+        "post_delay": 500
+    },
+    "check_in_auto_fight": {
+        "recognition": "OCR",
+        "expected": [
+            "自动",
+            "战斗中"
+        ],
+        "roi": [
+            551,
+            94,
+            188,
+            62
+        ]
     },
     "advanture_auto_fight": {
         "recognition": "OCR",
@@ -312,10 +336,10 @@
         "recognition": "TemplateMatch",
         "template": "Advanture/win.png",
         "roi": [
-            493,
-            9,
-            334,
-            190
+            341,
+            0,
+            600,
+            413
         ],
         "action": "Click",
         "next": [
@@ -329,10 +353,10 @@
         "recognition": "TemplateMatch",
         "template": "Advanture/win.png",
         "roi": [
-            669,
-            24,
-            128,
-            103
+            341,
+            0,
+            600,
+            413
         ],
         "inverse": true,
         "action": "DoNothing",
