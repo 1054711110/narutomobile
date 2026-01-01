@@ -93,7 +93,7 @@
             "free_headhunt_check_cancel"
         ],
         "post_delay": 400,
-        "focus": "[color:DeepSkyBlue]什么,情报是假的[/color]"
+        "focus": "[color:DarkGoldenRod]什么,情报是假的[/color]"
     },
     "free_headhunt_check_cancel": {
         "recognition": "OCR",

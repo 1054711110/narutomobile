@@ -155,7 +155,7 @@
                 "领取周胜奖励",
                 "清周胜过期宝箱"
             ],
-            "description": "排位由于胜利界面出现时间短不好识别,建议无限打,不开领奖励。清周胜宝箱要有时间卡,且可能有bug"
+            "description": "排位由于胜利界面出现时间短不好识别,建议无限打,不开领奖励。清周胜过期宝箱要有时间卡,且可能有bug"
         },
         {
             "name": "活跃宝箱",
@@ -238,7 +238,8 @@
             "entry": "mini_game",
             "option": [
                 "选择小游戏",
-                "羁绊追寻自动退出"
+                "羁绊追寻自动退出",
+                "木叶小吃店不选普通蓝红色奖励"
             ],
             "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进,羁绊追寻剩余数字离图片太近不好识别,建议关闭自动退出"
         },
@@ -474,6 +475,14 @@
                             "next": "find_bonds"
                         }
                     }
+                },
+                {
+                    "name": "木叶小吃店",
+                    "pipeline_override": {
+                        "mini_game": {
+                            "next": "konoha_snack_shop"
+                        }
+                    }
                 }
             ]
         },
@@ -507,22 +516,42 @@
                 }
             ]
         },
-        "何时退出": {
-            "type": "select",
+        "木叶小吃店不选普通蓝红色奖励": {
+            "type": "switch",
             "cases": [
                 {
-                    "name": "一直打",
+                    "name": "Yes",
                     "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 648
+                        "konoha_snack_mid": {
+                            "enabled": false
+                        },
+                        "konoha_snack_high": {
+                            "enabled": false
                         }
                     }
                 },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "何时退出": {
+            "type": "select",
+            "cases": [
                 {
                     "name": "赢一把",
                     "pipeline_override": {
                         "go_to_war_agian": {
                             "max_hit": 0
+                        }
+                    }
+                },
+                {
+                    "name": "一直打",
+                    "pipeline_override": {
+                        "go_to_war_agian": {
+                            "max_hit": 648
                         }
                     }
                 },
@@ -540,10 +569,6 @@
             "type": "switch",
             "cases": [
                 {
-                    "name": "No",
-                    "pipeline_override": {}
-                },
-                {
                     "name": "Yes",
                     "pipeline_override": {
                         "win_to_entry": {
@@ -554,6 +579,10 @@
                             ]
                         }
                     }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
                 }
             ]
         },
