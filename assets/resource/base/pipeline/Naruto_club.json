@@ -265,8 +265,10 @@
         "focus": "[color:DeepSkyBlue]第四个点赞任务[/color]"
     },
     "surf_post_try_reflash_comment": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/back_button.png",
+        "recognition": "OCR",
+        "expected": [
+            "后退"
+        ],
         "roi": [
             59,
             5,

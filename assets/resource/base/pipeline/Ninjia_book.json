@@ -161,15 +161,23 @@
         ]
     },
     "close_ninjia_book_level_up_page": {
-        "recognition": "TemplateMatch",
-        "template": "Ninjia_book/level_up_page.png",
+        "recognition": "OCR",
+        "expected": [
+            "前往领取"
+        ],
         "roi": [
-            445,
-            553,
-            169,
-            58
+            335,
+            375,
+            340,
+            344
         ],
         "action": "Click",
+        "target": [
+            46,
+            552,
+            74,
+            64
+        ],
         "focus": "[color:DeepSkyBlue]关闭升级界面[/color]"
     },
     "check_no_ninjia_book_mission_award": {
@@ -431,8 +439,10 @@
         "focus": "[color:DeepSkyBlue]一键领取机械宝盒奖励[/color]"
     },
     "close_ninjia_book_level_up_page_when_liveness": {
-        "recognition": "TemplateMatch",
-        "template": "Ninjia_book/level_up_page.png",
+        "recognition": "OCR",
+        "expected": [
+            "前往领取"
+        ],
         "roi": [
             445,
             553,
@@ -441,10 +451,10 @@
         ],
         "action": "Click",
         "target": [
-            1245,
-            69,
-            11,
-            11
+            46,
+            552,
+            74,
+            64
         ],
         "post_wait_freezes": 600,
         "focus": "[color:darkgray]关闭领取活跃度奖励时的升级界面[/color]"
@@ -461,7 +471,8 @@
         "action": "Click",
         "next": [
             "ninjia_book_leaderboard_like_undone",
-            "ninjia_book_leaderboard_like_done"
+            "ninjia_book_leaderboard_like_done",
+            "[JumpBack]ninjia_book_leaderboard"
         ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]进入忍法帖排行榜界面[/color]"
@@ -498,8 +509,10 @@
         "focus": "[color:DeepSkyBlue]忍法帖排行榜点赞[/color]"
     },
     "close_ninjia_book_level_up_page_when_like": {
-        "recognition": "TemplateMatch",
-        "template": "Ninjia_book/level_up_page.png",
+        "recognition": "OCR",
+        "expected": [
+            "前往领取"
+        ],
         "roi": [
             445,
             553,
@@ -507,12 +520,20 @@
             58
         ],
         "action": "Click",
+        "target": [
+            46,
+            552,
+            74,
+            64
+        ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]关闭出现在排行榜点赞后的升级界面[/color]"
     },
     "ninjia_book_share": {
-        "recognition": "TemplateMatch",
-        "template": "Ninjia_book/share_v2.png",
+        "recognition": "OCR",
+        "expected": [
+            "分享"
+        ],
         "roi": [
             955,
             522,

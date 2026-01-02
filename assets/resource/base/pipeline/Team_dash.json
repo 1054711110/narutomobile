@@ -299,8 +299,10 @@
         "focus": "[color:DeepSkyBlue]小队突袭自动战斗[/color]"
     },
     "team_dash_keep_fight": {
-        "recognition": "TemplateMatch",
-        "template": "Team_dash/keep_fight.png",
+        "recognition": "OCR",
+        "expected": [
+            "继续出战"
+        ],
         "roi": [
             442,
             381,
@@ -395,8 +397,10 @@
         "focus": "[color:DeepSkyBlue]关闭小队突袭[/color]"
     },
     "close_team_desh_out_team_sign": {
-        "recognition": "TemplateMatch",
-        "template": "Team_dash/confirm_quit_team.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             535,
             418,

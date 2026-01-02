@@ -166,8 +166,10 @@
         "focus": "[color:DeepSkyBlue]选择地战场[/color]"
     },
     "sky_ground_confrim_battlefield_selection": {
-        "recognition": "TemplateMatch",
-        "template": "Sky_ground/confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
         "roi": [
             384,
             382,

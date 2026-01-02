@@ -92,8 +92,10 @@
         "focus": "[color:DeepSkyBlue]生存挑战未重置[/color]"
     },
     "confirm_survival_challenge_reset": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/survival_challenge_sweep_confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             535,
             415,
@@ -206,8 +208,10 @@
         "focus": "[color:DeepSkyBlue]扫荡券不足[/color]"
     },
     "survival_challenge_sweep_ready": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/survival_challenge_sweep_ready.png",
+        "recognition": "OCR",
+        "expected": [
+            "准备就绪"
+        ],
         "roi": [
             535,
             548,
@@ -222,8 +226,10 @@
         "focus": "[color:DeepSkyBlue]确认生存挑战准备就绪[/color]"
     },
     "survival_challenge_sweep_confirm": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/survival_challenge_sweep_confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             535,
             415,
@@ -238,8 +244,10 @@
         "focus": "[color:DeepSkyBlue]确认进行生存挑战[/color]"
     },
     "survival_challenge_sweep_ticket_confirm": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/survival_challenge_sweep_ticket_confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             418,
             415,

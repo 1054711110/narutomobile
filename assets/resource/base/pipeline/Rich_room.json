@@ -185,8 +185,10 @@
         "focus": "[color:DeepSkyBlue]丰饶之间完成[/color]"
     },
     "challenge_rich_room": {
-        "recognition": "TemplateMatch",
-        "template": "Rich_room/challenge.png",
+        "recognition": "OCR",
+        "expected": [
+            "挑战"
+        ],
         "action": "Click",
         "next": [
             "rich_room_ac_done",

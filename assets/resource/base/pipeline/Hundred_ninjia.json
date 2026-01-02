@@ -19,8 +19,10 @@
         "focus": "[color:DeepSkyBlue]进入决斗场[/color]"
     },
     "hundred_ninjia_more_game_entry": {
-        "recognition": "TemplateMatch",
-        "template": "Hundred_ninjia/more_game_entry.png",
+        "recognition": "OCR",
+        "expected": [
+            "更多玩法"
+        ],
         "roi": [
             953,
             605,
@@ -169,8 +171,10 @@
         "focus": "[color:DeepSkyBlue]进入百忍选忍者[/color]"
     },
     "hundred_ninjia_confirm_selcet_ninjia": {
-        "recognition": "TemplateMatch",
-        "template": "Hundred_ninjia/confrim_ninjia.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             538,
             634,
@@ -267,8 +271,10 @@
         "focus": "[color:DeepSkyBlue]赢了![/color]"
     },
     "hundred_ninjia_confirm_game_over": {
-        "recognition": "TemplateMatch",
-        "template": "Hundred_ninjia/confrim_gg.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             650,
             613,

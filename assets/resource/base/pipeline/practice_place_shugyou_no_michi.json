@@ -77,8 +77,10 @@
         "focus": "[color:DeepSkyBlue]修行之路扫荡中[/color]"
     },
     "train_road_award": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/train_road_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "领取奖励"
+        ],
         "roi": [
             817,
             431,
@@ -93,9 +95,9 @@
         "focus": "[color:DeepSkyBlue]领取修行之路奖励[/color]"
     },
     "confirm_train_road_award": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Practice_place/confirm_train_road_award.png"
+        "recognition": "OCR",
+        "expected": [
+            "恭喜你"
         ],
         "roi": [
             461,
@@ -177,8 +179,10 @@
         "focus": "[color:DeepSkyBlue]确认修行之路超影重置[/color]"
     },
     "confirm_train_road_reset": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/confirm_train_road_reset.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             532,
             409,
