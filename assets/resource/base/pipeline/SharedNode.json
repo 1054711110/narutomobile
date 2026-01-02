@@ -367,7 +367,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "SharedNode/notice_x.png"
+        "template": "SharedNode/notice_x.png",
+        "threshold": 0.85
       }
     },
     "action": "Click",

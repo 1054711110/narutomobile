@@ -288,7 +288,10 @@
         "next": [
             "check_in_team_dash_sweep",
             "team_dash_do_not_remind_gold",
-            "team_dash_auto_fight",
+            "team_dash_auto_fight"
+        ],
+        "timeout": 50000,
+        "on_error": [
             "unknow_error"
         ],
         "post_wait_freezes": 500,
@@ -340,7 +343,8 @@
         ],
         "timeout": 60000,
         "next": [
-            "check_not_in_team_dash_sweep"
+            "check_not_in_team_dash_sweep",
+            "[JumpBack]check_in_team_dash_sweep"
         ],
         "rate_limit": 5000,
         "focus": "[color:DeepSkyBlue]正在进行小队突袭战斗[/color]"
