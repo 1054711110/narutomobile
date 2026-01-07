@@ -2,10 +2,8 @@
     "mission_office": {
         "next": [
             "mission_office_in_center_enter",
-            "mission_office_ac_entry"
-        ],
-        "interrupt": [
-            "back_main_screen"
+            "mission_office_ac_entry",
+            "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入任务集会所子任务[/color]"
     },
@@ -24,10 +22,8 @@
         "action": "Click",
         "next": [
             "mission_office_ac_undone",
-            "mission_office_ac_done"
-        ],
-        "interrupt": [
-            "Swipe_for_award_center_find"
+            "mission_office_ac_done",
+            "[JumpBack]swipe_for_award_center_find"
         ],
         "post_delay": 400,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
@@ -66,10 +62,8 @@
             -114
         ],
         "next": [
-            "check_no_mission_office_award"
-        ],
-        "interrupt": [
-            "get_mission_office_award"
+            "check_no_mission_office_award",
+            "[JumpBack]get_mission_office_award"
         ],
         "action": "Click",
         "post_wait_freezes": 400,
@@ -110,10 +104,8 @@
         "threshold": 0.8,
         "green_mask": true,
         "next": [
-            "check_no_mission_office_award"
-        ],
-        "interrupt": [
-            "get_mission_office_award"
+            "check_no_mission_office_award",
+            "[JumpBack]get_mission_office_award"
         ],
         "action": "Click",
         "post_wait_freezes": 500
@@ -130,10 +122,8 @@
         "threshold": 0.8,
         "inverse": true,
         "next": [
-            "mission_office_get_mission"
-        ],
-        "interrupt": [
-            "celebrate_mission_office_award"
+            "mission_office_get_mission",
+            "[JumpBack]celebrate_mission_office_award"
         ],
         "focus": "[color:DeepSkyBlue]检测有没有任务集会所奖励可领取[/color]"
     },
@@ -148,17 +138,17 @@
         ],
         "action": "Click",
         "next": [
-            "confirm_mission_office_award"
-        ],
-        "interrupt": [
-            "celebrate_mission_office_award"
+            "confirm_mission_office_award",
+            "[JumpBack]celebrate_mission_office_award"
         ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]领取任务集会所奖励[/color]"
     },
     "confirm_mission_office_award": {
-        "recognition": "TemplateMatch",
-        "template": "Mission_office/confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             411,
             412,
@@ -168,10 +158,8 @@
         "action": "Click",
         "next": [
             "celebrate_mission_office_award",
-            "check_no_mission_office_award"
-        ],
-        "interrupt": [
-            "get_mission_office_award"
+            "check_no_mission_office_award",
+            "[JumpBack]get_mission_office_award"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]确认领取任务集会所奖励[/color]"
@@ -187,10 +175,8 @@
         ],
         "action": "Click",
         "next": [
-            "check_no_mission_office_award"
-        ],
-        "interrupt": [
-            "get_mission_office_award"
+            "check_no_mission_office_award",
+            "[JumpBack]get_mission_office_award"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭任务集会所奖励界面[/color]"
@@ -209,17 +195,17 @@
             "mission_office_3_mission",
             "mission_office_solo_mission",
             "mission_office_relation_mission",
-            "mission_office_3_advance_mission"
-        ],
-        "interrupt": [
-            "mission_office_complete",
-            "take_mission_done"
+            "mission_office_3_advance_mission",
+            "[JumpBack]mission_office_complete",
+            "[JumpBack]take_mission_done"
         ],
         "focus": "[color:DeepSkyBlue]接任务[/color]"
     },
     "mission_office_complete": {
-        "recognition": "TemplateMatch",
-        "template": "Mission_office/complete.png",
+        "recognition": "OCR",
+        "expected": [
+            "明天再来"
+        ],
         "roi": [
             760,
             367,
@@ -266,16 +252,57 @@
             155,
             37
         ],
-        "action": "Swipe",
-        "duration": 50,
+        "action": "Click",
+        "next": [
+            "mission_office_recommended_team_check",
+            "mission_office_no_recommended_team",
+            "[JumpBack]mission_office_recommended_team"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]使用推荐配队[/color]"
+    },
+    "mission_office_no_recommended_team": {
+        "recognition": "OCR",
+        "expected": [
+            "推荐",
+            "已经没有",
+            "可用忍者",
+            "请选择忍者"
+        ],
+        "roi": [
+            286,
+            256,
+            624,
+            214
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ]
+    },
+    "mission_office_recommended_team_check": {
+        "recognition": "OCR",
+        "expected": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "需要"
+        ],
+        "roi": [
+            20,
+            505,
+            390,
+            165
+        ],
         "next": [
             "take_mission_office_mission"
         ],
-        "interrupt": [
-            "mission_office_get_mission"
-        ],
-        "post_wait_freezes": 200,
-        "focus": "[color:DeepSkyBlue]使用推荐配队[/color]"
+        "post_wait_freezes": 400
     },
     "mission_office_3_mission": {
         "recognition": "TemplateMatch",
@@ -353,22 +380,18 @@
         "threshold": 0.85,
         "green_mask": true,
         "next": [
-            "mission_office_recommended_team"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "mission_office_recommended_team",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]接羁绊任务[/color]"
     },
     "take_mission_office_relation_mission": {
         "next": [
-            "select_b_for_relation_mission"
-        ],
-        "interrupt": [
-            "select_c_for_relation_mission",
-            "select_a_for_relation_mission",
-            "select_s_for_relation_mission"
+            "select_b_for_relation_mission",
+            "[JumpBack]select_c_for_relation_mission",
+            "[JumpBack]select_a_for_relation_mission",
+            "[JumpBack]select_s_for_relation_mission"
         ]
     },
     "select_s_for_relation_mission": {
@@ -454,10 +477,8 @@
         "action": "Click",
         "next": [
             "take_mission_office_mission_covered",
-            "take_mission_office_mission"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "take_mission_office_mission",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 200
     },
@@ -473,10 +494,8 @@
         "threshold": 0.99999,
         "action": "Click",
         "next": [
-            "mission_office_unselect_ninjia_for_relation"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "mission_office_unselect_ninjia_for_relation",
+            "[JumpBack]mission_office_get_mission"
         ]
     },
     "mission_office_unselect_ninjia_for_relation": {
@@ -491,10 +510,8 @@
         "green_mask": true,
         "action": "Click",
         "next": [
-            "select_other_b_for_relation_mission"
-        ],
-        "interrupt": [
-            "left_swipe_for_relation_ninjia"
+            "select_other_b_for_relation_mission",
+            "[JumpBack]left_swipe_for_relation_ninjia"
         ]
     },
     "left_swipe_for_relation_ninjia": {
@@ -561,10 +578,8 @@
         "green_mask": true,
         "order_by": "Vertical",
         "next": [
-            "select_relation_ninjia_for_mission"
-        ],
-        "interrupt": [
-            "left_swipe_for_relation_ninjia"
+            "select_relation_ninjia_for_mission",
+            "[JumpBack]left_swipe_for_relation_ninjia"
         ],
         "post_wait_freezes": 200
     },
@@ -593,12 +608,10 @@
     },
     "take_mission_office_3_man_mission": {
         "next": [
-            "select_a_for_mission_1"
-        ],
-        "interrupt": [
-            "select_b_for_mission_1",
-            "select_s_for_mission_1",
-            "select_c_for_mission_1"
+            "select_a_for_mission_1",
+            "[JumpBack]select_b_for_mission_1",
+            "[JumpBack]select_s_for_mission_1",
+            "[JumpBack]select_c_for_mission_1"
         ]
     },
     "mission_office_b_mission": {
@@ -620,10 +633,8 @@
         "threshold": 0.9,
         "green_mask": true,
         "next": [
-            "select_ninjia_for_mission_by_frame"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "select_ninjia_for_mission_by_frame",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 500
     },
@@ -646,10 +657,8 @@
         "threshold": 0.9,
         "green_mask": true,
         "next": [
-            "select_ninjia_for_mission_by_frame"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "select_ninjia_for_mission_by_frame",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 500
     },
@@ -672,22 +681,18 @@
         "threshold": 0.85,
         "green_mask": true,
         "next": [
-            "select_ninjia_for_solo_mission_by_frame"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "select_ninjia_for_solo_mission_by_frame",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]接单人任务[/color]"
     },
     "tack_mission_office_solo_mission": {
         "next": [
-            "select_a_for_mission"
-        ],
-        "interrupt": [
-            "select_s_for_mission",
-            "select_b_for_mission",
-            "select_c_for_mission"
+            "select_a_for_mission",
+            "[JumpBack]select_s_for_mission",
+            "[JumpBack]select_b_for_mission",
+            "[JumpBack]select_c_for_mission"
         ]
     },
     "select_s_for_mission": {
@@ -766,12 +771,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_2"
-        ],
-        "interrupt": [
-            "select_b_for_mission_2",
-            "select_c_for_mission_2",
-            "select_s_for_mission_2"
+            "select_a_for_mission_2",
+            "[JumpBack]select_b_for_mission_2",
+            "[JumpBack]select_c_for_mission_2",
+            "[JumpBack]select_s_for_mission_2"
         ],
         "post_wait_freezes": 200
     },
@@ -787,12 +790,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_2"
-        ],
-        "interrupt": [
-            "select_b_for_mission_2",
-            "select_c_for_mission_2",
-            "select_s_for_mission_2"
+            "select_a_for_mission_2",
+            "[JumpBack]select_b_for_mission_2",
+            "[JumpBack]select_c_for_mission_2",
+            "[JumpBack]select_s_for_mission_2"
         ],
         "post_wait_freezes": 200
     },
@@ -808,12 +809,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_2"
-        ],
-        "interrupt": [
-            "select_b_for_mission_2",
-            "select_c_for_mission_2",
-            "select_s_for_mission_2"
+            "select_a_for_mission_2",
+            "[JumpBack]select_b_for_mission_2",
+            "[JumpBack]select_c_for_mission_2",
+            "[JumpBack]select_s_for_mission_2"
         ],
         "post_wait_freezes": 200
     },
@@ -829,12 +828,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_2"
-        ],
-        "interrupt": [
-            "select_b_for_mission_2",
-            "select_c_for_mission_2",
-            "select_s_for_mission_2"
+            "select_a_for_mission_2",
+            "[JumpBack]select_b_for_mission_2",
+            "[JumpBack]select_c_for_mission_2",
+            "[JumpBack]select_s_for_mission_2"
         ],
         "post_wait_freezes": 200
     },
@@ -850,12 +847,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_3"
-        ],
-        "interrupt": [
-            "select_b_for_mission_3",
-            "select_c_for_mission_3",
-            "select_s_for_mission_3"
+            "select_a_for_mission_3",
+            "[JumpBack]select_b_for_mission_3",
+            "[JumpBack]select_c_for_mission_3",
+            "[JumpBack]select_s_for_mission_3"
         ],
         "post_wait_freezes": 200
     },
@@ -871,12 +866,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_3"
-        ],
-        "interrupt": [
-            "select_b_for_mission_3",
-            "select_c_for_mission_3",
-            "select_s_for_mission_3"
+            "select_a_for_mission_3",
+            "[JumpBack]select_b_for_mission_3",
+            "[JumpBack]select_c_for_mission_3",
+            "[JumpBack]select_s_for_mission_3"
         ],
         "post_wait_freezes": 200
     },
@@ -892,12 +885,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_3"
-        ],
-        "interrupt": [
-            "select_b_for_mission_3",
-            "select_c_for_mission_3",
-            "select_s_for_mission_3"
+            "select_a_for_mission_3",
+            "[JumpBack]select_b_for_mission_3",
+            "[JumpBack]select_c_for_mission_3",
+            "[JumpBack]select_s_for_mission_3"
         ],
         "post_wait_freezes": 200
     },
@@ -913,12 +904,10 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_a_for_mission_3"
-        ],
-        "interrupt": [
-            "select_b_for_mission_3",
-            "select_c_for_mission_3",
-            "select_s_for_mission_3"
+            "select_a_for_mission_3",
+            "[JumpBack]select_b_for_mission_3",
+            "[JumpBack]select_c_for_mission_3",
+            "[JumpBack]select_s_for_mission_3"
         ],
         "post_wait_freezes": 200
     },
@@ -1000,10 +989,8 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_relation_ninjia_for_mission"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "select_relation_ninjia_for_mission",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 200
     },
@@ -1021,10 +1008,8 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "take_mission_office_mission"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "take_mission_office_mission",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 200
     },
@@ -1042,10 +1027,8 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "select_ninjia_for_mission_by_frame_1"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "select_ninjia_for_mission_by_frame_1",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 200
     },
@@ -1063,10 +1046,8 @@
         "green_mask": true,
         "index": 1,
         "next": [
-            "select_ninjia_for_mission_by_frame_2"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "select_ninjia_for_mission_by_frame_2",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 200
     },
@@ -1084,10 +1065,8 @@
         "action": "Click",
         "green_mask": true,
         "next": [
-            "take_mission_office_mission"
-        ],
-        "interrupt": [
-            "mission_office_get_mission"
+            "take_mission_office_mission",
+            "[JumpBack]mission_office_get_mission"
         ],
         "post_wait_freezes": 200
     },
@@ -1103,10 +1082,8 @@
         "action": "Click",
         "next": [
             "take_mission_done",
-            "mission_office_get_mission"
-        ],
-        "interrupt": [
-            "back_main_screen_and_stop"
+            "mission_office_get_mission",
+            "[JumpBack]back_main_screen_and_stop"
         ],
         "post_wait_freezes": 200
     },

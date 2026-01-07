@@ -1,11 +1,9 @@
 {
     "give_energy": {
         "next": [
-            "energy_entry"
-        ],
-        "interrupt": [
-            "give_energy_done",
-            "back_main_screen"
+            "energy_entry",
+            "[JumpBack]give_energy_done",
+            "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入送体力子任务[/color]"
     },
@@ -21,12 +19,12 @@
             55
         ],
         "green_mask": true,
-        "action": "Swipe",
-        "duration": 100,
+        "action": "Click",
         "next": [
-            "sent_energy"
+            "sent_energy",
+            "energy_entry"
         ],
-        "post_delay": 700,
+        "post_delay": 800,
         "focus": "[color:DeepSkyBlue]进入送体力界面[/color]"
     },
     "give_energy_done": {
@@ -60,6 +58,7 @@
         "next": [
             "get_energy"
         ],
+        "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]送体力[/color]"
     },
     "get_energy": {
@@ -79,9 +78,7 @@
         ],
         "action": "Click",
         "next": [
-            "confirm_get_energy"
-        ],
-        "interrupt": [
+            "confirm_get_energy",
             "close_energy"
         ],
         "post_wait_freezes": 500,
@@ -96,9 +93,10 @@
         ],
         "action": "Click",
         "next": [
+            "confirm_get_energy",
             "close_energy"
         ],
-        "post_wait_freezes": 200,
+        "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]确认送体力[/color]"
     },
     "close_energy": {
@@ -112,10 +110,7 @@
         ],
         "action": "Click",
         "next": [
-            "check_main_screen_and_stop"
-        ],
-        "interrupt": [
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭送体力[/color]"

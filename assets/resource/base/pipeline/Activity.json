@@ -1,10 +1,8 @@
 {
     "activity": {
         "next": [
-            "activity_entry"
-        ],
-        "interrupt": [
-            "back_main_screen"
+            "activity_entry",
+            "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入活动子任务[/color]"
     },
@@ -25,10 +23,8 @@
             45
         ],
         "next": [
-            "check_no_energy"
-        ],
-        "interrupt": [
-            "get_ramen"
+            "check_no_energy",
+            "[JumpBack]get_ramen"
         ],
         "post_wait_freezes": 700,
         "focus": "[color:DeepSkyBlue]进入活动[/color]"
@@ -53,7 +49,7 @@
         "action": "Swipe",
         "begin": [
             80,
-            700,
+            300,
             10,
             10
         ],
@@ -64,11 +60,12 @@
             10
         ],
         "next": [
+            "mouthly_sign_undone",
             "mouthly_sign_done",
-            "mouthly_sign_undone"
+            "[JumpBack]swipes_for_monthly_sign"
         ],
-        "duration": 100,
-        "post_delay": 500,
+        "duration": 200,
+        "post_delay": 900,
         "focus": "[color:DeepSkyBlue]前往月度签到[/color]"
     },
     "get_ramen": {
@@ -91,21 +88,18 @@
         ],
         "roi": [
             0,
-            197,
-            176,
-            523
+            100,
+            210,
+            620
         ],
-        "threshold": 0.9,
-        "action": "Swipe",
-        "duration": 100,
+        "threshold": 0.85,
+        "action": "Click",
         "next": [
             "mouthly_signature",
-            "check_mouthly_signature_title"
+            "check_mouthly_signature_title",
+            "[JumpBack]mouthly_sign_undone"
         ],
-        "interrupt": [
-            "mouthly_sign_undone"
-        ],
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]月度签到未完成[/color]"
     },
     "mouthly_sign_done": {
@@ -117,13 +111,13 @@
         ],
         "roi": [
             0,
-            201,
-            178,
-            519
+            100,
+            210,
+            620
         ],
         "threshold": 0.9,
         "next": [
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]月度签到已完成[/color]"
     },
@@ -138,22 +132,30 @@
         ],
         "action": "Click",
         "next": [
-            "check_mouthly_signature_title",
-            "back_main_screen"
+            "mouthly_signature_done",
+            "[JumpBack]mouthly_signature"
         ],
+        "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]进行月度签到[/color]"
     },
-    "check_mouthly_signature_title": {
-        "recognition": "TemplateMatch",
-        "template": "Activity/title.png",
+    "mouthly_signature_done": {
+        "recognition": "OCR",
+        "expected": [
+            "已签到"
+        ],
         "roi": [
-            525,
-            527,
-            101,
+            1104,
+            532,
+            158,
             98
         ],
+        "next": [
+            "check_mouthly_signature_title",
+            "back_main_screen_and_stop"
+        ]
+    },
+    "check_mouthly_signature_title": {
         "action": "Click",
-        "threshold": 0.68,
         "target": [
             525,
             527,
@@ -161,8 +163,8 @@
             98
         ],
         "next": [
-            "back_main_screen"
+            "back_main_screen_and_stop"
         ],
-        "focus": "[color:DeepSkyBlue]检查月度签到称号是否可以领取[/color]"
+        "focus": "[color:DeepSkyBlue]检查月度签到称号是否可以领取,这个节点可能因为页面更新问题而领取不到[/color]"
     }
 }

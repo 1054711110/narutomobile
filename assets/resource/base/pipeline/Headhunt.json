@@ -1,10 +1,8 @@
 {
     "headhunt": {
         "next": [
-            "headhunt_entry"
-        ],
-        "interrupt": [
-            "back_main_screen"
+            "headhunt_entry",
+            "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入招募子任务[/color]"
     },
@@ -19,13 +17,43 @@
         ],
         "action": "Click",
         "next": [
-            "no_free_headhunt"
-        ],
-        "interrupt": [
-            "free_headhunt_waiting"
+            "headhunt_selected_advanced_recruit",
+            "headhunt_to_advanced_recruit"
         ],
         "post_delay": 3000,
         "focus": "[color:DeepSkyBlue]进入招募[/color]"
+    },
+    "headhunt_to_advanced_recruit": {
+        "recognition": "TemplateMatch",
+        "template": "Headhunt/headhunt.png",
+        "roi": [
+            4,
+            108,
+            210,
+            456
+        ],
+        "action": "Click",
+        "next": [
+            "headhunt_selected_advanced_recruit",
+            "[JumpBack]headhunt_to_advanced_recruit"
+        ],
+        "post_delay": 300
+    },
+    "headhunt_selected_advanced_recruit": {
+        "recognition": "TemplateMatch",
+        "template": "Headhunt/headhunt_selected.png",
+        "roi": [
+            0,
+            110,
+            224,
+            247
+        ],
+        "threshold": 0.9,
+        "next": [
+            "no_free_headhunt",
+            "[JumpBack]free_headhunt_waiting"
+        ],
+        "post_delay": 400
     },
     "no_free_headhunt": {
         "recognition": "TemplateMatch",
@@ -42,10 +70,43 @@
         "threshold": 0.97,
         "action": "Click",
         "next": [
-            "confrim_free_headhunt"
+            "confrim_free_headhunt",
+            "free_headhunt_fake",
+            "[JumpBack]free_headhunt_waiting"
         ],
         "post_delay": 700,
         "focus": "[color:DeepSkyBlue]有免费高级招募[/color]"
+    },
+    "free_headhunt_fake": {
+        "recognition": "OCR",
+        "expected": [
+            "取消"
+        ],
+        "roi": [
+            639,
+            385,
+            274,
+            153
+        ],
+        "action": "Click",
+        "next": [
+            "free_headhunt_check_cancel"
+        ],
+        "post_delay": 400,
+        "focus": "[color:DarkGoldenRod]什么,情报是假的[/color]"
+    },
+    "free_headhunt_check_cancel": {
+        "recognition": "OCR",
+        "expected": [
+            "取消"
+        ],
+        "roi": [
+            639,
+            385,
+            274,
+            153
+        ],
+        "inverse": true
     },
     "confrim_free_headhunt": {
         "recognition": "TemplateMatch",
@@ -73,9 +134,9 @@
         "threshold": 0.85,
         "post_delay": 3000,
         "next": [
-            "headhunt_recruit_no_free"
+            "headhunt_recruit_no_free",
+            "[JumpBack]headhunt_recruit"
         ],
-        "interrupt": "headhunt_recruit",
         "focus": "[color:DeepSkyBlue]进入普通招募[/color]"
     },
     "headhunt_recruit_no_free": {
@@ -88,10 +149,10 @@
             138
         ],
         "next": [
-            "top_secret_treasure_box_done"
+            "top_secret_treasure_box_done",
+            "[JumpBack]top_secret_treasure_box_undone"
         ],
         "threshold": 0.5,
-        "interrupt": "top_secret_treasure_box_undone",
         "focus": "[color:DeepSkyBlue]免费普通招募已使用[/color]"
     },
     "headhunt_recruit": {
@@ -105,25 +166,31 @@
         ],
         "threshold": 0.6,
         "action": "Click",
-        "next": "confrim_headhunt_recruit",
+        "next": [
+            "confrim_headhunt_recruit"
+        ],
         "post_delay": 700,
         "focus": "[color:DeepSkyBlue]进行免费普通招募[/color]"
     },
     "confrim_headhunt_recruit": {
-        "recognition": "TemplateMatch",
-        "template": "Headhunt/confirm_free_headhunt.png",
+        "recognition": "OCR",
+        "expected": [
+            "确",
+            "认"
+        ],
         "roi": [
-            430,
-            523,
-            202,
-            75
+            353,
+            352,
+            614,
+            368
         ],
         "action": "Click",
         "next": [
             "top_secret_treasure_box_undone",
-            "top_secret_treasure_box_done"
+            "top_secret_treasure_box_done",
+            "[JumpBack]confrim_headhunt_recruit"
         ],
-        "post_delay": 300,
+        "post_delay": 400,
         "focus": "[color:DeepSkyBlue]确认免费普通招募[/color]"
     },
     "top_secret_treasure_box_undone": {
@@ -136,11 +203,11 @@
             523
         ],
         "threshold": 0.9,
-        "action": "Swipe",
-        "duration": 100,
+        "action": "Click",
         "post_delay": 2000,
         "next": [
-            "top_secret_treasure_box_log"
+            "top_secret_treasure_box_log",
+            "[JumpBack]top_secret_treasure_box_undone"
         ],
         "timeout": 2000,
         "focus": "[color:DeepSkyBlue]绝密宝匣未完成[/color]"
@@ -157,7 +224,9 @@
         "threshold": 0.9,
         "inverse": true,
         "post_delay": 300,
-        "next": "back_main_screen_and_stop",
+        "next": [
+            "back_main_screen_and_stop"
+        ],
         "focus": "[color:DeepSkyBlue]绝密宝匣已完成[/color]"
     },
     "top_secret_treasure_box_log": {
