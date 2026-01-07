@@ -3,7 +3,7 @@
         "next": [
             "enter_survival_challenge",
             "[JumpBack]enter_practice_place",
-            "[Jumpback]back_main_screen"
+            "[JumpBack]back_main_screen"
         ]
     },
     "enter_survival_challenge": {

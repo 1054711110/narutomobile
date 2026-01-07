@@ -1,5 +1,8 @@
 {
     "enter_practice_place": {
+        "recognition": "TemplateMatch",
+        "template": "Startup/main_green_masked.png",
+        "green_mask": true,
         "action": "Custom",
         "custom_action": "GoIntoEntry",
         "custom_action_param": {
