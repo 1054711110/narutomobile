@@ -725,11 +725,12 @@
             ]
         },
         "秘境赢几次": {
-            "description": "会胜利输入次数+1次,输0的时候为打一次",
+            "description": "秘境设立次数设置",
             "type": "input",
             "inputs": [
                 {
                     "name": "秘境胜利次数减一",
+                    "description": "会胜利输入次数+1次,输0的时候为打一次",
                     "pipeline_type": "int",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d*)$"
