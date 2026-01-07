@@ -232,13 +232,6 @@
             "description": "百忍虽好,可是有开放时间限制的哦"
         },
         {
-            "name": "百忍大战",
-            "entry": "hundred_ninjia",
-            "option": [
-                "百忍是否使用连点器战斗"
-            ]
-        },
-        {
             "name": "agent Debug",
             "entry": "use_agent",
             "description": "调试用,不开不开"
@@ -549,10 +542,11 @@
         },
         "何时退出": {
             "type": "input",
-            "description": "会胜利输入次数+1次,输0的时候为打一次",
+            "description": "周胜胜利次数设置",
             "inputs": [
                 {
                     "name": "周胜胜利次数减一",
+                    "description": "会胜利输入次数+1次,输0的时候为打一次",
                     "pipeline_type": "int",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d*)$"
@@ -1245,6 +1239,10 @@
             "type": "switch",
             "cases": [
                 {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
                     "name": "Yes",
                     "pipeline_override": {
                         "advanture_win": {
@@ -1255,10 +1253,6 @@
                             ]
                         }
                     }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {}
                 }
             ]
         },

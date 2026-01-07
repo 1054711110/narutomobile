@@ -390,7 +390,10 @@
         ],
         "action": "Click",
         "next": [
-            "close_team_desh_out_team_sign",
+            "close_team_desh_out_team_sign"
+        ],
+        "timeout": 5000,
+        "on_error": [
             "back_main_screen_and_stop"
         ],
         "post_delay": 1000,
@@ -409,8 +412,26 @@
         ],
         "action": "Click",
         "next": [
-            "back_main_screen_and_stop"
+            "close_team_desh_without_out_team_sign",
+            "close_team_desh_out_team_sign"
         ],
+        "post_delay": 800,
         "focus": "[color:DeepSkyBlue]确认退队[/color]"
+    },
+    "close_team_desh_without_out_team_sign": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            535,
+            418,
+            205,
+            74
+        ],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     }
 }
