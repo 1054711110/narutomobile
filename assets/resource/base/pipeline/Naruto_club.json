@@ -18,15 +18,68 @@
         "action": "Swipe",
         "duration": 50,
         "next": [
-            "click_club_icon",
             "check_surf_post",
             "[JumpBack]surf_post",
-            "[JumpBack]swipe_for_comments"
+            "click_club_icon",
+            "[JumpBack]swipe_for_comments",
+            "[JumpBack]surf_post_try_reflash",
+            "unknow_error"
         ],
         "timeout": 10000,
         "post_wait_freezes": 300,
         "post_delay": 2000,
         "focus": "[color:DeepSkyBlue]点击情报社[/color]"
+    },
+    "surf_post_try_reflash": {
+        "recognition": "OCR",
+        "expected": [
+            "推荐",
+            "忍者"
+        ],
+        "roi": [
+            172,
+            0,
+            207,
+            64
+        ],
+        "next": [
+            "surf_post_try_reflash_to_follow"
+        ]
+    },
+    "surf_post_try_reflash_to_follow": {
+        "recognition": "OCR",
+        "expected": [
+            "关注"
+        ],
+        "roi": [
+            0,
+            0,
+            170,
+            86
+        ],
+        "action": "Click",
+        "next": [
+            "surf_post_try_reflash_in_follow",
+            "[JumpBack]surf_post_try_reflash_to_follow"
+        ],
+        "post_wait_freezes": 300,
+        "focus": "[color:DarkGoldenRod]从没有话题的地狱回来了[/color]"
+    },
+    "surf_post_try_reflash_in_follow": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/follow_select.png",
+        "roi": [
+            0,
+            0,
+            170,
+            86
+        ],
+        "next": [
+            "check_surf_post",
+            "[JumpBack]surf_post",
+            "unknow_error"
+        ],
+        "post_wait_freezes": 300
     },
     "swipe_for_comments": {
         "recognition": "DirectHit",
@@ -43,17 +96,21 @@
             50,
             50
         ],
+        "duration": 400,
         "post_delay": 1000,
+        "max_hit": 10,
         "focus": "[color:DeepSkyBlue]滑动寻找评论[/color]"
     },
     "check_surf_post": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/entry_post.png",
+        "recognition": "OCR",
+        "expected": [
+            "评论区"
+        ],
         "roi": [
-            743,
-            58,
-            32,
-            37
+            716,
+            0,
+            145,
+            113
         ],
         "action": "Click",
         "next": [
@@ -62,18 +119,9 @@
         "focus": "[color:DeepSkyBlue]检测是否开始话题冲浪[/color]"
     },
     "surf_post": {
-        "recognition": "OCR",
-        "expected": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"
+        "recognition": "TemplateMatch",
+        "template": [
+            "Naruto_club/surf_post.png"
         ],
         "roi": [
             583,
@@ -81,6 +129,10 @@
             56,
             662
         ],
+        "threshold": [
+            0.9
+        ],
+        "max_hit": 8,
         "action": "Click",
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]选择有评论话题[/color]"
@@ -89,20 +141,42 @@
         "next": [
             "first_like",
             "[JumpBack]cancel_club_follow",
+            "no_comment_now",
             "[JumpBack]swipe_for_club_like"
         ]
     },
     "cancel_club_follow": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/cancel_follow.png",
+        "recognition": "OCR",
+        "expected": [
+            "已关注"
+        ],
         "roi": [
-            677,
-            372,
-            107,
-            50
+            320,
+            19,
+            138,
+            98
         ],
         "action": "Click",
+        "next": [
+            "cancel_club_has_follow",
+            "cancel_club_follow"
+        ],
+        "post_delay": 700,
         "focus": "[color:DeepSkyBlue]取消误关注[/color]"
+    },
+    "cancel_club_has_follow": {
+        "recognition": "OCR",
+        "expected": [
+            "取消关注"
+        ],
+        "roi": [
+            646,
+            345,
+            190,
+            142
+        ],
+        "action": "Click",
+        "post_delay": 900
     },
     "first_like": {
         "recognition": "TemplateMatch",
@@ -140,13 +214,14 @@
         "recognition": "OCR",
         "expected": "暂无评论",
         "roi": [
-            1282,
-            134,
-            311,
-            205
+            728,
+            49,
+            508,
+            670
         ],
         "next": [
-            "close_surf_post"
+            "surf_post_try_reflash_comment",
+            "unknow_error"
         ],
         "focus": "[color:red]暂无评论可供点赞[/color]"
     },
@@ -189,9 +264,34 @@
         ],
         "focus": "[color:DeepSkyBlue]第四个点赞任务[/color]"
     },
+    "surf_post_try_reflash_comment": {
+        "recognition": "OCR",
+        "expected": [
+            "后退"
+        ],
+        "roi": [
+            59,
+            5,
+            75,
+            36
+        ],
+        "action": "Click",
+        "max_hit": 3,
+        "next": [
+            "check_surf_post",
+            "[JumpBack]surf_post",
+            "surf_post_try_reflash_comment",
+            "surf_post_try_reflash",
+            "unknow_error"
+        ],
+        "post_wait_freezes": 700,
+        "focus": "[color:DarkGoldenRod]没有评论的世界还有什么意义[/color]"
+    },
     "close_surf_post": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/back_button.png",
+        "recognition": "OCR",
+        "expected": [
+            "后退"
+        ],
         "roi": [
             59,
             5,
@@ -207,8 +307,10 @@
         "focus": "[color:DeepSkyBlue]关闭话题[/color]"
     },
     "scroll": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/scroll.png",
+        "recognition": "OCR",
+        "expected": [
+            "卷轴"
+        ],
         "roi": [
             1154,
             263,
@@ -225,8 +327,10 @@
         "focus": "[color:DeepSkyBlue]进入卷轴[/color]"
     },
     "close_scroll": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/back_button_2.png",
+        "recognition": "OCR",
+        "expected": [
+            "后退"
+        ],
         "roi": [
             1029,
             0,
@@ -243,8 +347,10 @@
         "focus": "[color:DeepSkyBlue]关闭卷轴[/color]"
     },
     "ninja_station": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/ninja_station.png",
+        "recognition": "OCR",
+        "expected": [
+            "忍者"
+        ],
         "roi": [
             271,
             0,
@@ -260,8 +366,10 @@
         "focus": "[color:DeepSkyBlue]进入忍者站[/color]"
     },
     "close_ninja_station": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/recommendation.png",
+        "recognition": "OCR",
+        "expected": [
+            "推荐"
+        ],
         "roi": [
             166,
             0,
@@ -278,8 +386,10 @@
         "focus": "[color:DeepSkyBlue]关闭忍者站[/color]"
     },
     "village_entry": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/village_entry.png",
+        "recognition": "OCR",
+        "expected": [
+            "村口"
+        ],
         "roi": [
             1151,
             423,
@@ -295,8 +405,10 @@
         "focus": "[color:DeepSkyBlue]进入村口[/color]"
     },
     "close_village_entry": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/main_page.png",
+        "recognition": "OCR",
+        "expected": [
+            "首页"
+        ],
         "roi": [
             1154,
             95,
@@ -331,25 +443,28 @@
         "focus": "[color:DeepSkyBlue]进入福利站[/color]"
     },
     "sign_done": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/sign_done.png",
+        "recognition": "OCR",
+        "expected": [
+            "今日已签"
+        ],
         "roi": [
             581,
             73,
             83,
             39
         ],
-        "action": "Click",
         "next": [
             "feed_pig",
-            "sign_done"
+            "without_feed_pig"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]签到已经完成[/color]"
     },
     "naruto_club_sign": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/sign.png",
+        "recognition": "OCR",
+        "expected": [
+            "一键签到"
+        ],
         "roi": [
             579,
             73,
@@ -365,8 +480,10 @@
         "focus": "[color:DeepSkyBlue]进行签到[/color]"
     },
     "confirm_naruto_club_sign": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/sign_now.png",
+        "recognition": "OCR",
+        "expected": [
+            "立即签到"
+        ],
         "roi": [
             578,
             528,
@@ -382,8 +499,10 @@
         "focus": "[color:DeepSkyBlue]确认签到[/color]"
     },
     "roger_naruto_club_sign": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/i_known.png",
+        "recognition": "OCR",
+        "expected": [
+            "我知道了"
+        ],
         "roi": [
             348,
             271,
@@ -392,15 +511,57 @@
         ],
         "action": "Click",
         "next": [
-            "feed_pig"
+            "feed_pig",
+            "without_feed_pig"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]收到签到提醒[/color]"
     },
-    "feed_pig": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/feed_pig.png",
+    "without_feed_pig": {
+        "recognition": "OCR",
+        "expected": [
+            "去参与"
+        ],
+        "inverse": true,
         "threshold": 0.8,
+        "next": [
+            "check_club_mission_done"
+        ],
+        "focus": "[color:DarkGoldenRod]大事不妙雷霆猪[/color]"
+    },
+    "feed_pig": {
+        "recognition": "OCR",
+        "expected": [
+            "去参与"
+        ],
+        "roi": [
+            681,
+            54,
+            466,
+            436
+        ],
+        "threshold": 0.8,
+        "action": "Click",
+        "next": [
+            "feed_pig_work",
+            "feed_pig"
+        ],
+        "post_delay": 1500,
+        "focus": "[color:DeepSkyBlue]喂豚豚[/color]"
+    },
+    "feed_pig_work": {
+        "recognition": "OCR",
+        "expected": [
+            "去参与"
+        ],
+        "roi": [
+            681,
+            54,
+            466,
+            436
+        ],
+        "threshold": 0.8,
+        "inverse": true,
         "action": "Click",
         "next": [
             "weekly_feed_pig",
@@ -410,8 +571,7 @@
         "on_error": [
             "feed_pig_not_found"
         ],
-        "post_delay": 1500,
-        "focus": "[color:DeepSkyBlue]喂豚豚[/color]"
+        "focus": "[color:DeepSkyBlue]已进入喂豚豚[/color]"
     },
     "feed_pig_not_found": {
         "next": [
@@ -420,8 +580,10 @@
         "focus": "[color:DeepSkyBlue]无法找到喂豚豚按钮[/color]"
     },
     "weekly_feed_pig": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/feed.png",
+        "recognition": "OCR",
+        "expected": [
+            "喂豚豚"
+        ],
         "threshold": 0.8,
         "action": "Click",
         "next": [
@@ -432,8 +594,10 @@
         "focus": "[color:DeepSkyBlue]每周喂豚豚[/color]"
     },
     "feed_pig_done": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/feed_pig_done.png",
+        "recognition": "OCR",
+        "expected": [
+            "本周已参与"
+        ],
         "threshold": 0.8,
         "action": "Click",
         "next": [
@@ -443,8 +607,10 @@
         "focus": "[color:DeepSkyBlue]喂豚豚已完成[/color]"
     },
     "confirm_feed_pig": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/comfirm_feed_pig.png",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
         "threshold": 0.8,
         "action": "Click",
         "next": [
@@ -469,8 +635,10 @@
         ]
     },
     "swipe_for_mission": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/mission.png",
+        "recognition": "OCR",
+        "expected": [
+            "活跃任务"
+        ],
         "roi": [
             78,
             338,
@@ -576,7 +744,9 @@
             "[JumpBack]naruto_club_duplicate_claim",
             "[JumpBack]club_submit"
         ],
-        "on_error": [],
+        "on_error": [
+            "unknow_error"
+        ],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]滑动提交任务[/color]"
     },
@@ -586,7 +756,9 @@
         "threshold": 0.6,
         "next": [
             "club_first_award_done",
-            "[JumpBack]club_first_award"
+            "[JumpBack]club_first_award",
+            "naruto_club_in_loop_wheel",
+            "[JumpBack]club_first_award_on_error"
         ],
         "inverse": true,
         "focus": "[color:DeepSkyBlue]检测任务是否已经全部提交[/color]",
@@ -615,13 +787,17 @@
             "naruto_club_back_post"
         ],
         "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]土豆[/color]"
+        "focus": "[color:DarkGoldenRod]土豆[/color]"
     },
     "naruto_club_back_post": {
-        "action": "ClickKey",
-        "key": 4,
+        "recognition": "OCR",
+        "expected": [
+            "后退"
+        ],
+        "action": "Click",
         "next": [
-            "benefit_station"
+            "benefit_station",
+            "naruto_club_back_post"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]退回话题[/color]"
@@ -662,6 +838,7 @@
         ],
         "action": "Click",
         "threshold": 0.9,
+        "max_hit": 3,
         "next": [
             "confirm_club_first_award"
         ],
@@ -669,9 +846,30 @@
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]领取第一个奖励[/color]"
     },
-    "confirm_club_first_award": {
+    "club_first_award_on_error": {
         "recognition": "TemplateMatch",
-        "template": "Naruto_club/confirm_club_first_award.png",
+        "template": "Naruto_club/first_award.png",
+        "roi": [
+            231,
+            385,
+            140,
+            75
+        ],
+        "action": "Click",
+        "threshold": 0.9,
+        "max_hit": 3,
+        "next": [
+            "confirm_club_first_award"
+        ],
+        "pre_wait_freezes": 300,
+        "post_wait_freezes": 300,
+        "focus": "[color:DeepSkyBlue]第二次领取第一个奖励[/color]"
+    },
+    "confirm_club_first_award": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             658,
             390,
@@ -682,13 +880,19 @@
         "next": [
             "roger_club_first_award"
         ],
+        "timeout": 8000,
+        "on_error": [
+            "naruto_club_in_loop_wheel"
+        ],
         "post_wait_freezes": 300,
         "post_delay": 5000,
         "focus": "[color:DeepSkyBlue]确认领取第一个奖励[/color]"
     },
     "roger_club_first_award": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/roger_club_first_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "我知道了"
+        ],
         "roi": [
             579,
             441,
@@ -705,17 +909,17 @@
     },
     "naruto_club_in_loop_wheel": {
         "recognition": "TemplateMatch",
+        "template": "Naruto_club/loop_wheel.png",
         "roi": [
             464,
             190,
             387,
             370
         ],
-        "template": "Naruto_club/loop_wheel.png",
         "next": [
             "naruto_club_back_post"
         ],
-        "focus": "[color:DeepSkyBlue]意志坚定[/color]"
+        "focus": "[color:DarkGoldenRod]意志坚定[/color]"
     },
     "club_second_award": {
         "recognition": "TemplateMatch",
@@ -736,8 +940,10 @@
         "on_error": "award_kale"
     },
     "confirm_club_second_award": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/confirm_club_second_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "我知道了"
+        ],
         "roi": [
             579,
             428,
@@ -754,8 +960,10 @@
         "focus": "[color:DeepSkyBlue]确认领取第二个奖励[/color]"
     },
     "roger_club_second_award": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/roger_club_first_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "我知道了"
+        ],
         "roi": [
             578,
             428,
@@ -815,8 +1023,10 @@
         "focus": "[color:DeepSkyBlue]领取第三个奖励[/color]"
     },
     "confirm_club_third_award": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/confirm_club_first_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             658,
             390,
@@ -832,8 +1042,10 @@
         "focus": "[color:DeepSkyBlue]确认领取第三个奖励[/color]"
     },
     "roger_club_third_award": {
-        "recognition": "TemplateMatch",
-        "template": "Naruto_club/roger_club_second_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "我知道了"
+        ],
         "roi": [
             579,
             441,
@@ -842,7 +1054,8 @@
         ],
         "action": "Click",
         "next": [
-            "[JumpBack]roger_club_third_award"
+            "club_third_award_done",
+            "roger_club_third_award"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]收到第三个奖励领取通知[/color]"
@@ -891,6 +1104,6 @@
     },
     "award_kale": {
         "action": "StopTask",
-        "focus": "[color:tomato]当前操作超时，疑似遇到真投入[/color]"
+        "focus": "[color:DarkGoldenRod]当前操作超时，疑似遇到真投入[/color]"
     }
 }

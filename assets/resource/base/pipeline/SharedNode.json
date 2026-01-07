@@ -12,7 +12,7 @@
       "Startup/main_green_masked.png"
     ],
     "inverse": true,
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "DoNothing",
     "green_mask": true,
     "next": [
@@ -240,7 +240,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "StopTask",
     "green_mask": true,
     "post_delay": 500,
@@ -251,7 +251,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "DoNothing",
     "green_mask": true,
     "post_delay": 500,
@@ -367,7 +367,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "SharedNode/notice_x.png"
+        "template": "SharedNode/notice_x.png",
+        "threshold": 0.85
       }
     },
     "action": "Click",
@@ -417,5 +418,9 @@
     "action": {
       "type": "Click"
     }
+  },
+  "unknow_error": {
+    "action": "StopTask",
+    "focus": "[color:tomato]未知原因导致卡死。[/color]"
   }
 }

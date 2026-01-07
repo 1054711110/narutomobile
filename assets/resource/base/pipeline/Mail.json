@@ -41,8 +41,10 @@
         "focus": "[color:DeepSkyBlue]打开邮箱[/color]"
     },
     "get_mail_award": {
-        "recognition": "TemplateMatch",
-        "template": "Mail/get_mail_award.png",
+        "recognition": "OCR",
+        "expected": [
+            "一键提取"
+        ],
         "roi": [
             362,
             594,

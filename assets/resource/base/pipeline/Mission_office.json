@@ -145,8 +145,10 @@
         "focus": "[color:DeepSkyBlue]领取任务集会所奖励[/color]"
     },
     "confirm_mission_office_award": {
-        "recognition": "TemplateMatch",
-        "template": "Mission_office/confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             411,
             412,
@@ -200,8 +202,10 @@
         "focus": "[color:DeepSkyBlue]接任务[/color]"
     },
     "mission_office_complete": {
-        "recognition": "TemplateMatch",
-        "template": "Mission_office/complete.png",
+        "recognition": "OCR",
+        "expected": [
+            "明天再来"
+        ],
         "roi": [
             760,
             367,

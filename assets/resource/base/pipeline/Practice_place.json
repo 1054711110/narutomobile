@@ -9,6 +9,6 @@
             "template": "home/试炼之地"
         },
         "focus": "进入试炼之地",
-        "post_delay": 3000
+        "post_delay": 500
     }
 }

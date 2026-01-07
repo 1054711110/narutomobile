@@ -266,7 +266,9 @@
             360,
             111
         ],
-        "next": ["close_team_desh"],
+        "next": [
+            "close_team_desh"
+        ],
         "focus": "[color:darkgray]达到今日收益上限[/color]"
     },
     "team_dash_auto_fight": {
@@ -281,19 +283,26 @@
             107,
             107
         ],
+        "max_hit": 20,
         "action": "Click",
         "next": [
             "check_in_team_dash_sweep",
             "team_dash_do_not_remind_gold",
             "team_dash_auto_fight"
         ],
+        "timeout": 50000,
+        "on_error": [
+            "unknow_error"
+        ],
         "post_wait_freezes": 500,
         "rate_limit": 3000,
         "focus": "[color:DeepSkyBlue]小队突袭自动战斗[/color]"
     },
     "team_dash_keep_fight": {
-        "recognition": "TemplateMatch",
-        "template": "Team_dash/keep_fight.png",
+        "recognition": "OCR",
+        "expected": [
+            "继续出战"
+        ],
         "roi": [
             442,
             381,
@@ -302,7 +311,9 @@
         ],
         "action": "Click",
         "threshold": 0.5,
-        "next": ["check_in_team_dash_sweep"],
+        "next": [
+            "check_in_team_dash_sweep"
+        ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]点击继续战斗[/color]"
     },
@@ -334,7 +345,8 @@
         ],
         "timeout": 60000,
         "next": [
-            "check_not_in_team_dash_sweep"
+            "check_not_in_team_dash_sweep",
+            "[JumpBack]check_in_team_dash_sweep"
         ],
         "rate_limit": 5000,
         "focus": "[color:DeepSkyBlue]正在进行小队突袭战斗[/color]"
@@ -385,8 +397,10 @@
         "focus": "[color:DeepSkyBlue]关闭小队突袭[/color]"
     },
     "close_team_desh_out_team_sign": {
-        "recognition": "TemplateMatch",
-        "template": "Team_dash/confirm_quit_team.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             535,
             418,

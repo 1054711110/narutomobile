@@ -14,5 +14,23 @@
                 "expected": ".*"
             }
         }
+    },
+    "card_wait": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Find_bonds/未翻开.png"
+        ]
+    },
+    "card_0": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Find_bonds/紫色牌.png"
+        ]
+    },
+    "card_1": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Find_bonds/橙色牌.png"
+        ]
     }
 }
