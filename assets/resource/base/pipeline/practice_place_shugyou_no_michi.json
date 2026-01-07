@@ -3,7 +3,7 @@
         "next": [
             "enter_shugyou_no_michi",
             "[JumpBack]enter_practice_place",
-            "[Jumpback]back_main_screen"
+            "[JumpBack]back_main_screen"
         ]
     },
     "enter_shugyou_no_michi": {
