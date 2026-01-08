@@ -45,7 +45,7 @@
             "name": "招财",
             "entry": "get_chopper",
             "default_check": true,
-            "description": "使用每日免费招财次数"
+            "description": "[size:15][color:tomato]使用每日免费招财次数,需要开启二级密码,否则可能因为页面更新卡顿,消耗10金币[/color][/size]"
         },
         {
             "name": "排行榜",
@@ -70,7 +70,7 @@
             "option": [
                 "组织从奖励中心进入"
             ],
-            "description": "[size:15][color:tomato]包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
+            "description": "包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
         {
             "name": "积分赛",
@@ -87,7 +87,8 @@
             "option": [
                 "修行之路从奖励中心进入"
             ],
-            "default_check": true
+            "default_check": true,
+            "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
         {
             "name": "生存挑战",
@@ -95,7 +96,8 @@
             "option": [
                 "生存挑战从奖励中心进入"
             ],
-            "default_check": true
+            "default_check": true,
+            "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
         {
             "name": "小队突袭",
