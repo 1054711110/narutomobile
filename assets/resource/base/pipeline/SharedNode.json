@@ -424,7 +424,7 @@
     "action": "StopTask",
     "focus": "[color:tomato]未知原因导致卡死。[/color]"
   },
-  "retry_faild": {
+  "retry_failed": {
     "next": "back_main_screen_and_stop",
     "focus": "[color:tomato]超过重试次数！返回主页并结束任务。[/color]"
   }
