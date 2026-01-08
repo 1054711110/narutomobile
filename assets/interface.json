@@ -524,6 +524,10 @@
             "type": "switch",
             "cases": [
                 {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
                     "name": "Yes",
                     "pipeline_override": {
                         "konoha_snack_mid": {
@@ -533,10 +537,6 @@
                             "enabled": false
                         }
                     }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {}
                 }
             ]
         },
