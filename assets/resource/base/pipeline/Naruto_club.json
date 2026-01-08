@@ -463,7 +463,8 @@
     "naruto_club_sign": {
         "recognition": "OCR",
         "expected": [
-            "一键签到"
+            "一",
+            "键签到"
         ],
         "roi": [
             579,
@@ -631,6 +632,7 @@
     "check_club_mission_done": {
         "next": [
             "club_third_award_done",
+            "benefit_station",
             "[JumpBack]swipe_for_mission"
         ]
     },

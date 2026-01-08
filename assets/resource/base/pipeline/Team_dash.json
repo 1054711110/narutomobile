@@ -392,7 +392,7 @@
         "next": [
             "close_team_desh_out_team_sign"
         ],
-        "timeout": 5000,
+        "timeout": 2000,
         "on_error": [
             "back_main_screen_and_stop"
         ],
