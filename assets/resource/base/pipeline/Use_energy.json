@@ -80,9 +80,10 @@
             "use_energy_not_enough_sign",
             "use_energy_finish",
             "[JumpBack]use_energy_ez_sweep",
-            "[JumpBack]sleep_500ms"
+            "retry_failed"
         ],
-        "post_wait_freezes": 300,
+        "max_hit": 20,
+        "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]确定便捷扫荡[/color]"
     },
     "use_energy_confirm_ez_sweep": {
