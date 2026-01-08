@@ -90,10 +90,10 @@
         "recognition": "TemplateMatch",
         "template": "Elite_instance/new_level.png",
         "roi": [
-            772,
-            311,
-            39,
-            47
+            751,
+            290,
+            83,
+            96
         ],
         "next": [
             "elite_instance_go_fight"
@@ -214,10 +214,10 @@
         "recognition": "TemplateMatch",
         "template": "Advanture/win.png",
         "roi": [
-            669,
-            24,
-            128,
-            103
+            257,
+            0,
+            834,
+            577
         ],
         "action": "Click",
         "next": [

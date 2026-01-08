@@ -45,13 +45,13 @@
             "name": "招财",
             "entry": "get_chopper",
             "default_check": true,
-            "description": "使用每日免费招财次数。"
+            "description": "使用每日免费招财次数"
         },
         {
             "name": "排行榜",
             "entry": "leaderboard",
             "default_check": true,
-            "description": "[size:15][color:tomato]该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
+            "description": "[size:15][color:tomato]该功能会关闭公告气泡且需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
             "name": "送体力",
@@ -67,6 +67,9 @@
             "name": "组织",
             "entry": "group",
             "default_check": true,
+            "option": [
+                "组织从奖励中心进入"
+            ],
             "description": "[size:15][color:tomato]包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
         {
@@ -79,10 +82,18 @@
             "default_check": true
         },
         {
-            "name": "试炼",
-            "entry": "practice_place",
+            "name": "修行之路",
+            "entry": "shugyou_no_michi",
             "option": [
-                "不做修行"
+                "修行之路从奖励中心进入"
+            ],
+            "default_check": true
+        },
+        {
+            "name": "生存挑战",
+            "entry": "survival_challenge",
+            "option": [
+                "生存挑战从奖励中心进入"
             ],
             "default_check": true
         },
@@ -118,16 +129,19 @@
         {
             "name": "丰饶之间",
             "entry": "rich_room",
+            "option": [
+                "丰饶开大"
+            ],
             "default_check": true
         },
         {
             "name": "忍法帖",
             "entry": "ninjia_book",
-            "description": "[size:15][color:tomato]开启后会领取忍法帖升级的全部奖励，需要攒体验卡的不要用！[/color][/size]",
             "option": [
                 "是否领取体验卡宝箱",
                 "是否领取奖励"
             ],
+            "description": "[size:15][color:tomato]开启后会领取忍法帖升级的全部奖励，需要攒体验卡的不要用！[/color][/size]",
             "default_check": true
         },
         {
@@ -148,9 +162,10 @@
                 "打排位",
                 "何时退出",
                 "领取周胜奖励",
-                "清周胜过期宝箱"
+                "清周胜过期宝箱",
+                "周胜从奖励中心进入"
             ],
-            "description": "排位由于胜利界面出现时间短不好识别,建议无限打,不开领奖励。清周胜宝箱要有时间卡,且可能有bug"
+            "description": "排位由于胜利界面出现时间短不好识别,建议无限打(输999),不开领奖励"
         },
         {
             "name": "活跃宝箱",
@@ -162,7 +177,7 @@
             "entry": "secret_realm",
             "option": [
                 "秘境从奖励中心进入",
-                "秘境打几把",
+                "秘境赢几次",
                 "烈炎秘境",
                 "罡体秘境",
                 "水牢秘境",
@@ -171,19 +186,35 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
-            "description": "会胜利输入次数+1次,输0的时候为打一次,由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
+            "description": "由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
         },
         {
             "name": "要塞(beta)",
-            "entry": "stronghold"
+            "entry": "stronghold",
+            "description": "默认前往火要塞,进其他要塞在对应要塞内开始任务"
+        },
+        {
+            "name": "天地(beta)",
+            "entry": "sky_ground",
+            "option": [
+                "天地选择战场",
+                "天地选择额外奖励柱子",
+                "天地挑战"
+            ],
+            "description": "非常建议不要开挑战和额外奖励柱子,如果人多会很超雄,可能导致巨大压力"
         },
         {
             "name": "冒险副本(beta)",
-            "entry": "advanture"
+            "entry": "advanture",
+            "option": [
+                "冒险副本一直推关"
+            ],
+            "description": "开一直推关可能会在开荒时因为功能更新卡住"
         },
         {
             "name": "精英副本",
-            "entry": "elite_instance"
+            "entry": "elite_instance",
+            "description": "不是体力刷碎片的功能,这个用来开荒的"
         },
         {
             "name": "修罗副本(beta)",
@@ -198,14 +229,7 @@
                 "大蛇丸试炼",
                 "百忍是否使用连点器战斗"
             ],
-            "description": "百忍虽好,可是有开放时间限制的哦,大蛇丸试炼还没做好,别开"
-        },
-        {
-            "name": "百忍大战",
-            "entry": "hundred_ninjia",
-            "option": [
-                "百忍是否使用连点器战斗"
-            ]
+            "description": "百忍虽好,可是有开放时间限制的哦"
         },
         {
             "name": "agent Debug",
@@ -216,9 +240,22 @@
             "name": "小游戏",
             "entry": "mini_game",
             "option": [
-                "选择小游戏"
+                "选择小游戏",
+                "羁绊追寻自动退出",
+                "木叶小吃店不选普通蓝红色奖励"
             ],
             "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进"
+        },
+        {
+            "name": "叛忍(beta)",
+            "entry": "rebel_ninja",
+            "option": [
+                "叛忍难度",
+                "叛忍开双倍",
+                "叛忍敌人等级",
+                "叛忍二级密码"
+            ],
+            "description": "还没做好,不要使用,二级密码仅作为测试，不要输自己的"
         }
     ],
     "option": {
@@ -233,34 +270,6 @@
                 {
                     "name": "苹果",
                     "pipeline_override": {}
-                }
-            ]
-        },
-        "不做修行": {
-            "type": "select",
-            "default_case": "做修行",
-            "cases": [
-                {
-                    "name": "做修行",
-                    "pipeline_override": {
-                        "practice_place_undone": {
-                            "next": [
-                                "train_road"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "不做修行",
-                    "pipeline_override": {
-                        "practice_place": {
-                            "next": [
-                                "survival_challenge_in_center_enter",
-                                "survival_challenge_ac_entry",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
                 }
             ]
         },
@@ -375,7 +384,8 @@
                                 "Ninjia_book/soul_waiting.png",
                                 "Ninjia_book/box_waiting.png",
                                 "Ninjia_book/wooden_spike_roll_waiting.png",
-                                "Ninjia_book/title_waiting.png"
+                                "Ninjia_book/title_waiting.png",
+                                "Ninjia_book/exchange_token_waiting.png"
                             ]
                         }
                     }
@@ -393,7 +403,8 @@
                                 "Ninjia_book/energe_waiting.png",
                                 "Ninjia_book/soul_waiting.png",
                                 "Ninjia_book/wooden_spike_roll_waiting.png",
-                                "Ninjia_book/title_waiting.png"
+                                "Ninjia_book/title_waiting.png",
+                                "Ninjia_book/exchange_token_waiting.png"
                             ]
                         }
                     }
@@ -420,6 +431,11 @@
                     "name": "否",
                     "pipeline_override": {
                         "ninjia_book_award_undone": {
+                            "next": [
+                                "back_main_screen_and_stop"
+                            ]
+                        },
+                        "ninjia_book_award_selected": {
                             "next": [
                                 "back_main_screen_and_stop"
                             ]
@@ -454,45 +470,97 @@
                             "next": "red_envelope"
                         }
                     }
-                }
-            ]
-        },
-        "何时退出": {
-            "type": "select",
-            "cases": [
+                },
                 {
-                    "name": "一直打",
+                    "name": "羁绊追寻",
                     "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 648
+                        "mini_game": {
+                            "next": "find_bonds"
                         }
                     }
                 },
                 {
-                    "name": "赢一把",
+                    "name": "木叶小吃店",
                     "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 0
-                        }
-                    }
-                },
-                {
-                    "name": "赢10把",
-                    "pipeline_override": {
-                        "go_to_war_agian": {
-                            "max_hit": 9
+                        "mini_game": {
+                            "next": "konoha_snack_shop"
                         }
                     }
                 }
             ]
         },
-        "领取周胜奖励": {
+        "羁绊追寻自动退出": {
+            "description": "羁绊追寻剩余数字离图片太近不好识别,建议关闭自动退出",
             "type": "switch",
             "cases": [
                 {
                     "name": "No",
-                    "pipeline_override": {}
+                    "pipeline_override": {
+                        "find_bonds_card_flip_loop": {
+                            "next": [
+                                "find_bonds_card_flip_win",
+                                "[JumpBack]find_bonds_card_flip_loop"
+                            ]
+                        },
+                        "find_bonds_card_flip_start": {
+                            "next": [
+                                "find_bonds_card_flip_loop"
+                            ]
+                        },
+                        "find_bonds_without_card_flip_win": {
+                            "next": [
+                                "find_bonds_card_flip_loop"
+                            ]
+                        }
+                    }
                 },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "木叶小吃店不选普通蓝红色奖励": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "konoha_snack_mid": {
+                            "enabled": false
+                        },
+                        "konoha_snack_high": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "何时退出": {
+            "type": "input",
+            "description": "周胜胜利次数设置",
+            "inputs": [
+                {
+                    "name": "周胜胜利次数减一",
+                    "description": "会胜利输入次数+1次,输0的时候为打一次",
+                    "pipeline_type": "int",
+                    "default": "0",
+                    "verify": "^(0|[1-9]\\d*)$"
+                }
+            ],
+            "pipeline_override": {
+                "go_to_war_agian": {
+                    "max_hit": "{周胜胜利次数减一}"
+                }
+            }
+        },
+        "领取周胜奖励": {
+            "type": "switch",
+            "cases": [
                 {
                     "name": "Yes",
                     "pipeline_override": {
@@ -504,10 +572,15 @@
                             ]
                         }
                     }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
                 }
             ]
         },
         "清周胜过期宝箱": {
+            "description": "清周胜过期宝箱要有时间卡,且可能有bug",
             "type": "switch",
             "cases": [
                 {
@@ -542,6 +615,28 @@
                             "next": [
                                 "weekly_win_check_daily_duel_mission_recover_award",
                                 "back_main_screen_and_stop"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "周胜从奖励中心进入": {
+            "description": "用于适配部分主题,不能打排位,一天只能运行一次",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "weekly_win": {
+                            "next": [
+                                "weekly_win_ac_entry",
+                                "weekly_win_in_center_enter",
+                                "[JumpBack]back_main_screen"
                             ]
                         }
                     }
@@ -629,11 +724,13 @@
                 }
             ]
         },
-        "秘境打几把": {
+        "秘境赢几次": {
+            "description": "秘境设立次数设置",
             "type": "input",
             "inputs": [
                 {
-                    "name": "胜利次数",
+                    "name": "秘境胜利次数减一",
+                    "description": "会胜利输入次数+1次,输0的时候为打一次",
                     "pipeline_type": "int",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d*)$"
@@ -641,7 +738,7 @@
             ],
             "pipeline_override": {
                 "secret_realm_celebreate": {
-                    "max_hit": "{胜利次数}"
+                    "max_hit": "{秘境胜利次数减一}"
                 }
             }
         },
@@ -866,18 +963,359 @@
             "type": "switch",
             "cases": [
                 {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "more_gameplay_orochimaru_trial": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
                     "name": "No",
                     "pipeline_override": {
                         "more_gameplay_orochimaru_trial": {
                             "enabled": false
                         }
                     }
+                }
+            ]
+        },
+        "天地选择战场": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "天战场",
+                    "pipeline_override": {
+                        "sky_ground_battlefield_selection": {
+                            "next": [
+                                "sky_battlefield"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "地战场",
+                    "pipeline_override": {
+                        "sky_ground_battlefield_selection": {
+                            "next": [
+                                "ground_battlefield"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "天地选择额外奖励柱子": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "sky_ground_to_award_column": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "天地挑战": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "sky_ground_to_award_column": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "丰饶开大": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
                 },
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "more_gameplay_orochimaru_trial": {
-                            "enabled": true
+                        "rich_room_combo": {
+                            "swipes": [
+                                {
+                                    "$doc": "attack",
+                                    "begin": [
+                                        1099,
+                                        548,
+                                        92,
+                                        92
+                                    ],
+                                    "end": [
+                                        1099,
+                                        548,
+                                        92,
+                                        92
+                                    ],
+                                    "duration": 100
+                                },
+                                {
+                                    "$doc": "ultimate",
+                                    "begin": [
+                                        1120,
+                                        400,
+                                        71,
+                                        65
+                                    ],
+                                    "end": [
+                                        1120,
+                                        400,
+                                        71,
+                                        65
+                                    ],
+                                    "duration": 100
+                                },
+                                {
+                                    "$doc": "skill1",
+                                    "begin": [
+                                        970,
+                                        613,
+                                        62,
+                                        54
+                                    ],
+                                    "end": [
+                                        970,
+                                        613,
+                                        62,
+                                        54
+                                    ],
+                                    "duration": 100
+                                },
+                                {
+                                    "$doc": "skill2",
+                                    "begin": [
+                                        985,
+                                        471,
+                                        65,
+                                        59
+                                    ],
+                                    "end": [
+                                        985,
+                                        471,
+                                        65,
+                                        59
+                                    ],
+                                    "duration": 100
+                                },
+                                {
+                                    "$doc": "sub_skill1",
+                                    "begin": [
+                                        875,
+                                        472,
+                                        53,
+                                        44
+                                    ],
+                                    "end": [
+                                        875,
+                                        472,
+                                        53,
+                                        44
+                                    ],
+                                    "duration": 100
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍难度": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "困难",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "普通",
+                    "pipeline_override": {
+                        "rebel_ninja_double_mode_checked": {
+                            "next": [
+                                "rebel_ninja_easy_mode",
+                                "rebel_ninja_easy_mode_checked"
+                            ]
+                        },
+                        "rebel_ninja_single_mode_checked": {
+                            "next": [
+                                "rebel_ninja_easy_mode",
+                                "rebel_ninja_easy_mode_checked"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍开双倍": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "rebel_ninja_double_mode": {
+                            "next": [
+                                "rebel_ninja_single_mode",
+                                "rebel_ninja_single_mode_checked",
+                                "rebel_ninja_summon_member"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍敌人等级": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "高级",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "中级",
+                    "pipeline_override": {
+                        "rebel_ninja_in_battlefield": {
+                            "next": [
+                                "rebel_ninja_mid_enemy",
+                                "[JumpBack]rebel_ninja_find_enemy"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "低级",
+                    "pipeline_override": {
+                        "rebel_ninja_in_battlefield": {
+                            "next": [
+                                "rebel_ninja_low_enemy",
+                                "[JumpBack]rebel_ninja_find_enemy"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "叛忍二级密码": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "二级密码",
+                    "pipeline_type": "string",
+                    "default": "0",
+                    "verify": "^(0|[1-9]\\d*)$"
+                }
+            ],
+            "pipeline_override": {
+                "rebel_ninja_input_secondary_password": {
+                    "input_text": "{二级密码}"
+                },
+                "rebel_ninja_check_secondary_password": {
+                    "expected": [
+                        "{二级密码}"
+                    ]
+                }
+            }
+        },
+        "冒险副本一直推关": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "advanture_win": {
+                            "next": [
+                                "advanture_new_level_undone",
+                                "naruto_journey_new_level_undone",
+                                "advanture_win"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "修行之路从奖励中心进入": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "shugyou_no_michi": {
+                            "next": [
+                                "practice_place_ac_entry",
+                                "practice_place_in_center_enter",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "生存挑战从奖励中心进入": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "survival_challenge": {
+                            "next": [
+                                "survival_challenge_in_center_enter",
+                                "survival_challenge_ac_entry",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "组织从奖励中心进入": {
+            "description": "用于适配特殊主题,一天只能运行一次",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "group": {
+                            "next": [
+                                "group_ac_entry",
+                                "group_in_center_enter",
+                                "[JumpBack]back_main_screen"
+                            ]
                         }
                     }
                 }

@@ -145,8 +145,10 @@
         "focus": "[color:DeepSkyBlue]领取任务集会所奖励[/color]"
     },
     "confirm_mission_office_award": {
-        "recognition": "TemplateMatch",
-        "template": "Mission_office/confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
         "roi": [
             411,
             412,
@@ -200,8 +202,10 @@
         "focus": "[color:DeepSkyBlue]接任务[/color]"
     },
     "mission_office_complete": {
-        "recognition": "TemplateMatch",
-        "template": "Mission_office/complete.png",
+        "recognition": "OCR",
+        "expected": [
+            "明天再来"
+        ],
         "roi": [
             760,
             367,
@@ -251,10 +255,29 @@
         "action": "Click",
         "next": [
             "mission_office_recommended_team_check",
+            "mission_office_no_recommended_team",
             "[JumpBack]mission_office_recommended_team"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]使用推荐配队[/color]"
+    },
+    "mission_office_no_recommended_team": {
+        "recognition": "OCR",
+        "expected": [
+            "推荐",
+            "已经没有",
+            "可用忍者",
+            "请选择忍者"
+        ],
+        "roi": [
+            286,
+            256,
+            624,
+            214
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "mission_office_recommended_team_check": {
         "recognition": "OCR",
