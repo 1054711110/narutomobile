@@ -208,11 +208,6 @@
             ]
         },
         {
-            "name": "agent Debug",
-            "entry": "use_agent",
-            "description": "调试用,不开不开"
-        },
-        {
             "name": "小游戏",
             "entry": "mini_game",
             "option": [
