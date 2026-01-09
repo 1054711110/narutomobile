@@ -18,6 +18,10 @@
         {
             "name": "连接模拟器",
             "type": "Adb"
+        },
+        {
+            "name": "PlayCover on macOS",
+            "type": "PlayCover"
         }
     ],
     "resource": [
