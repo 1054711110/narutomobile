@@ -93,7 +93,7 @@
             "free_headhunt_check_cancel"
         ],
         "post_delay": 400,
-        "focus": "[color:DeepSkyBlue]什么,情报是假的[/color]"
+        "focus": "[color:DarkGoldenRod]什么,情报是假的[/color]"
     },
     "free_headhunt_check_cancel": {
         "recognition": "OCR",
@@ -149,8 +149,8 @@
             138
         ],
         "next": [
-            "top_secret_treasure_box_done",
-            "[JumpBack]top_secret_treasure_box_undone"
+            "top_secret_treasure_box_undone",
+            "top_secret_treasure_box_done"
         ],
         "threshold": 0.5,
         "focus": "[color:DeepSkyBlue]免费普通招募已使用[/color]"
@@ -202,7 +202,7 @@
             174,
             523
         ],
-        "threshold": 0.9,
+        "threshold": 0.85,
         "action": "Click",
         "post_delay": 2000,
         "next": [
@@ -221,7 +221,7 @@
             174,
             523
         ],
-        "threshold": 0.9,
+        "threshold": 0.85,
         "inverse": true,
         "post_delay": 300,
         "next": [

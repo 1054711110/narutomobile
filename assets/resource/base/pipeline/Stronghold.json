@@ -2,6 +2,8 @@
     "stronghold": {
         "next": [
             "stronghold_entry",
+            "stronghold_in_stronghold",
+            "stronghold_in_map",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入要塞子任务[/color]"
@@ -38,10 +40,10 @@
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "DoNothing",
         "next": [
@@ -94,10 +96,10 @@
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "Swipe",
         "begin": [
@@ -132,7 +134,7 @@
             "stronghold_to_fight",
             "[JumpBack]stronghold_to_fire_stronghold"
         ],
-        "post_delay": 400,
+        "post_delay": 700,
         "focus": "[color:DeepSkyBlue]点击火要塞[/color]"
     },
     "stronghold_to_fight": {

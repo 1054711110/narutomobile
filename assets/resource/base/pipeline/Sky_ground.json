@@ -2,6 +2,7 @@
     "sky_ground": {
         "next": [
             "sky_ground_entry",
+            "sky_ground_to_column",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入天地子任务[/color]"
@@ -29,6 +30,12 @@
     "sky_ground_gameplay": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/gameplay.png",
+        "roi": [
+            44,
+            382,
+            177,
+            118
+        ],
         "action": "Click",
         "next": [
             "sky_ground_gameplay_slected",
@@ -40,10 +47,10 @@
         "recognition": "TemplateMatch",
         "template": "Group/selected_group_gameplay.png",
         "roi": [
-            80,
-            417,
-            93,
-            48
+            44,
+            382,
+            177,
+            118
         ],
         "action": "DoNothing",
         "next": [
@@ -134,6 +141,7 @@
         "action": "Click",
         "next": [
             "sky_ground_confrim_battlefield_selection",
+            "sky_ground_confirm_set",
             "[JumpBack]sky_battlefield"
         ],
         "post_wait_freezes": 400,
@@ -151,14 +159,17 @@
         "action": "Click",
         "next": [
             "sky_ground_confrim_battlefield_selection",
+            "sky_ground_confirm_set",
             "[JumpBack]ground_battlefield"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]选择地战场[/color]"
     },
     "sky_ground_confrim_battlefield_selection": {
-        "recognition": "TemplateMatch",
-        "template": "Sky_ground/confirm.png",
+        "recognition": "OCR",
+        "expected": [
+            "确认"
+        ],
         "roi": [
             384,
             382,
@@ -188,7 +199,7 @@
             "sky_ground_selected_ninjia",
             "[JumpBack]sky_ground_select_nijia"
         ],
-        "post_wait_freezes": 400,
+        "post_wait_freezes": 800,
         "focus": "[color:DeepSkyBlue]选择忍者[/color]"
     },
     "sky_ground_recommended_ninja": {
@@ -205,7 +216,7 @@
             "sky_ground_selected_ninjia",
             "[JumpBack]sky_ground_recommended_ninja"
         ],
-        "post_wait_freezes": 400,
+        "post_wait_freezes": 800,
         "focus": "[color:DeepSkyBlue]选择推荐忍者[/color]"
     },
     "sky_ground_selected_ninjia": {
@@ -356,7 +367,11 @@
         "action": "Click",
         "next": [
             "sky_ground_group_encouragement",
-            "[JumpBack]sky_ground_confirm_set"
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_confirm_set",
+            "right_swipe_for_empty_column",
+            "left_swipe_for_empty_column",
+            "up_swipe_for_empty_column"
         ],
         "focus": "[color:DeepSkyBlue]确认配置[/color]"
     },
@@ -383,16 +398,63 @@
     "sky_ground_to_column": {
         "recognition": "TemplateMatch",
         "template": "Sky_ground/empty_column.png",
+        "roi": [
+            354,
+            0,
+            796,
+            718
+        ],
         "action": "Click",
         "next": [
-            "[JumpBack]sky_ground_to_column",
+            "sky_ground_end",
+            "[JumpBack]sky_ground_to_award_column",
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_to_fight_column",
             "[JumpBack]sky_ground_in_fight",
             "right_swipe_for_empty_column",
             "left_swipe_for_empty_column",
             "up_swipe_for_empty_column",
-            "sky_ground_in_main"
+            "sky_ground_in_main",
+            "[JumpBack]sleep_500ms"
         ],
         "focus": "[color:DeepSkyBlue]前往空柱子[/color]"
+    },
+    "sky_ground_to_award_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/group_coin_award_column.png",
+        "roi": [
+            354,
+            0,
+            796,
+            718
+        ],
+        "action": "Click",
+        "target_offset": [
+            0,
+            -100,
+            0,
+            0
+        ]
+    },
+    "sky_ground_to_fight_column": {
+        "recognition": "TemplateMatch",
+        "template": "Sky_ground/fight_column.png",
+        "roi": [
+            354,
+            0,
+            796,
+            718
+        ],
+        "threshold": [
+            0.8
+        ],
+        "action": "Click",
+        "target_offset": [
+            10,
+            -100,
+            0,
+            0
+        ]
     },
     "right_swipe_for_empty_column": {
         "recognition": "TemplateMatch",
@@ -482,7 +544,9 @@
         "max_hit": 1,
         "post_delay": 900,
         "next": [
+            "[JumpBack]sky_ground_to_award_column",
             "sky_ground_to_column",
+            "[JumpBack]sky_ground_to_fight_column",
             "left_swipe_for_empty_column"
         ],
         "focus": "[color:DeepSkyBlue]下滑选择空柱子[/color]"
@@ -513,7 +577,9 @@
         "max_hit": 1,
         "post_delay": 900,
         "next": [
+            "[JumpBack]sky_ground_to_award_column",
             "sky_ground_to_column",
+            "[JumpBack]sky_ground_to_fight_column",
             "down_swipe_for_empty_column"
         ],
         "focus": "[color:DeepSkyBlue]上滑选择空柱子[/color]"
@@ -547,9 +613,15 @@
         ],
         "post_delay": 2000,
         "next": [
-            "[JumpBack]sky_ground_to_column",
+            "sky_ground_end",
+            "[JumpBack]sky_ground_to_award_column",
+            "sky_ground_to_column",
+            "[JumpBack]sky_ground_to_fight_column",
             "[JumpBack]sky_ground_get_bead",
-            "[JumpBack]sky_ground_in_fight"
+            "sky_ground_in_fight",
+            "right_swipe_for_empty_column",
+            "left_swipe_for_empty_column",
+            "up_swipe_for_empty_column"
         ]
     },
     "sky_ground_in_fight": {
@@ -631,7 +703,7 @@
     "sky_ground_end": {
         "recognition": "OCR",
         "expected": [
-            "天地活动已结束"
+            "天地战场活动已结束"
         ],
         "roi": [
             459,
@@ -672,6 +744,7 @@
             296,
             155
         ],
+        "action": "Click",
         "next": [
             "sky_ground_end_not_in_main",
             "[JumpBack]sky_ground_end_confirm_back_main_screen"

@@ -1,3 +1,5 @@
+import os
+import platform
 from zipfile import ZipFile
 import json
 import sys
@@ -12,7 +14,6 @@ sys.path.insert(0, Path(__file__).parent.__str__())
 sys.path.insert(0, (Path(__file__).parent / "ci").__str__())
 
 from ci.install import (
-    get_dotnet_platform_tag,
     install_maafw,
     install_resource,
     install_agent,
@@ -20,7 +21,7 @@ from ci.install import (
 from ci.setup_embed_python import PYTHON_VERSION_TARGET
 from setup_full_python import download_file
 
-DEFAULT_MFA_VERSION = "v2.2.2"
+DEFAULT_MFA_VERSION = "v2.5.0"
 GHPROXY_URL = "https://gh-proxy.natsuu.top/"
 
 parser = argparse.ArgumentParser(
@@ -111,8 +112,65 @@ def download_mfa_release(version, archive_name, cache_path):
     download_file(url, cache_path)
 
 
+# modified from download_deps.py of M9A
+def detect_dotnet_platform_tag():
+    """自动检测当前平台并返回对应的dotnet平台标签"""
+
+    os_type = platform.system()
+    os_arch = platform.machine()
+
+    print(f"检测到操作系统: {os_type}, 架构: {os_arch}")
+
+    if os_type == "Windows":
+
+        # 在Windows ARM64环境中，platform.machine()可能错误返回AMD64
+        # 我们需要检查处理器标识符来确定真实架构
+        processor_identifier = os.environ.get("PROCESSOR_IDENTIFIER", "")
+
+        # 检查是否为ARM64处理器
+        if "ARMv8" in processor_identifier or "ARM64" in processor_identifier:
+            print(f"检测到ARM64处理器: {processor_identifier}")
+            os_arch = "ARM64"
+
+        # 映射platform.machine()到dotnet的平台标签
+        arch_mapping = {
+            "AMD64": "win-x64",
+            "x86_64": "win-x64",
+            "ARM64": "win-arm64",
+            "aarch64": "win-arm64",
+        }
+
+        platform_tag = arch_mapping.get(os_arch, f"win-{os_arch.lower()}")
+
+    elif os_type == "Darwin":  # macOS
+        # 映射platform.machine()到dotnet的平台标签
+        arch_mapping = {
+            "x86_64": "osx-x64",
+            "arm64": "osx-arm64",
+            "aarch64": "osx-arm64",
+        }
+
+        platform_tag = arch_mapping.get(os_arch, f"osx-{os_arch.lower()}")
+
+    elif os_type == "Linux":
+        # 映射platform.machine()到dotnet的平台标签
+        arch_mapping = {
+            "x86_64": "linux-x64",
+            "aarch64": "linux-arm64",
+            "arm64": "linux-arm64",
+        }
+
+        platform_tag = arch_mapping.get(os_arch, f"linux-{os_arch.lower()}")
+
+    else:
+        raise ValueError(f"不支持的操作系统: {os_type}")
+
+    print(f"使用平台标签: {platform_tag}")
+    return platform_tag
+
+
 def install_mfa():
-    arch = get_dotnet_platform_tag()
+    arch = detect_dotnet_platform_tag()
 
     if args.mfa_version:
         version = args.mfa_version
@@ -166,17 +224,34 @@ def install_mfa():
 
 
 def main():
+    os_name = platform.system().lower()
+    arch = platform.machine().lower()
+    os_mapping = {
+        "windows": "win",
+        "darwin": "macos",
+        "linux": "linux",
+    }
+    os_name = os_mapping.get(os_name, os_name)
+    arch_mapping = {
+        "amd64": "x86_64",
+        "x86_64": "x86_64",
+        "aarch64": "aarch64",
+        "arm64": "aarch64",
+    }
+    arch = arch_mapping.get(arch, arch)
+
     print("开始本地构建流程")
     print("设置Python环境...")
     setup_python()
     print("MFAA环境")
     install_mfa()
     print("安装MaaFramework...")
-    install_maafw()
+    install_maafw(os_name, arch)
     print("安装资源文件...")
-    install_resource()
+    install_resource("v0.0.0")
     print("安装Agent...")
-    install_agent()
+    install_agent(os_name)
+    print("本地测试包已于install文件夹内安装完成!")
 
 
 if __name__ == "__main__":

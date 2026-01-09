@@ -12,7 +12,7 @@
       "Startup/main_green_masked.png"
     ],
     "inverse": true,
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "DoNothing",
     "green_mask": true,
     "next": [
@@ -59,7 +59,8 @@
       "SharedNode/x.png",
       "SharedNode/rich_room_x.png",
       "SharedNode/big_is_coming_x.png",
-      "SharedNode/competition_announcement_x.png"
+      "SharedNode/competition_announcement_x.png",
+      "SharedNode/weekly_win_duel_mission_x.png"
     ],
     "roi": [
       0,
@@ -240,7 +241,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "StopTask",
     "green_mask": true,
     "post_delay": 500,
@@ -251,7 +252,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
-    "threshold": 0.95,
+    "threshold": 0.9,
     "action": "DoNothing",
     "green_mask": true,
     "post_delay": 500,
@@ -367,7 +368,8 @@
     "recognition": {
       "type": "TemplateMatch",
       "param": {
-        "template": "SharedNode/notice_x.png"
+        "template": "SharedNode/notice_x.png",
+        "threshold": 0.85
       }
     },
     "action": "Click",
@@ -417,5 +419,18 @@
     "action": {
       "type": "Click"
     }
+  },
+  "unknow_error": {
+    "action": "StopTask",
+    "focus": "[color:tomato]未知原因导致卡死。[/color]"
+  },
+  "retry_failed": {
+    "next": "back_main_screen_and_stop",
+    "focus": "[color:tomato]超过重试次数！返回主页并结束任务。[/color]"
+  },
+  "exit_naruto": {
+    "action": "StopApp",
+    "package": "com.tencent.KiHan",
+    "focus": "[color:DeepSkyBlue]关闭火影忍者手游APP[/color]"
   }
 }

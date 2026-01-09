@@ -87,10 +87,7 @@
     "start_chooper": {
         "recognition": "OCR",
         "expected": [
-            "免",
-            "费",
-            "一",
-            "次"
+            "免费一次"
         ],
         "roi": [
             648,

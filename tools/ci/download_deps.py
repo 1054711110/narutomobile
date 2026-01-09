@@ -5,62 +5,32 @@
 自动检测当前平台并下载对应架构的wheel文件
 """
 
-import os
 import sys
 import subprocess
 import argparse
-import platform
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")  # type: ignore
 
 
-def get_platform_tag():
-    """自动检测当前平台并返回对应的平台标签"""
-    os_type = platform.system()
-    os_arch = platform.machine()
-
-    print(f"检测到操作系统: {os_type}, 架构: {os_arch}")
-
-    if os_type == "Windows":
-        # 在Windows ARM64环境中，platform.machine()可能错误返回AMD64
-        # 我们需要检查处理器标识符来确定真实架构
-        processor_identifier = os.environ.get("PROCESSOR_IDENTIFIER", "")
-
-        # 检查是否为ARM64处理器
-        if "ARMv8" in processor_identifier or "ARM64" in processor_identifier:
-            print(f"检测到ARM64处理器: {processor_identifier}")
-            os_arch = "ARM64"
-
-        # 映射platform.machine()到pip的平台标签
-        arch_mapping = {
-            "AMD64": "win_amd64",
-            "x86_64": "win_amd64",
-            "ARM64": "win_arm64",
-            "aarch64": "win_arm64",
-        }
-        platform_tag = arch_mapping.get(os_arch, f"win_{os_arch.lower()}")
-
-    elif os_type == "Darwin":  # macOS
-        # 映射platform.machine()到pip的平台标签
-        arch_mapping = {
-            "x86_64": "macosx_10_9_x86_64",
-            "arm64": "macosx_11_0_arm64",
-            "aarch64": "macosx_11_0_arm64",
-        }
-        platform_tag = arch_mapping.get(os_arch, f"macosx_10_9_{os_arch}")
-
-    elif os_type == "Linux":
-        # 映射platform.machine()到pip的平台标签
-        arch_mapping = {
-            "x86_64": "linux_x86_64",
-            "aarch64": "linux_aarch64",
-            "arm64": "linux_aarch64",
-        }
-        platform_tag = arch_mapping.get(os_arch, f"linux_{os_arch}")
-
-    else:
-        raise ValueError(f"不支持的操作系统: {os_type}")
+def get_platform_tag(os, arch):
+    target = (os, arch)
+    match target:
+        case ("win", "x86_64"):
+            platform_tag = "win_amd64"
+        case ("win", "aarch64"):
+            platform_tag = "win_arm64"
+        case ("macos", "x86_64"):
+            platform_tag = "macosx_13_0_x86_64"
+        case ("macos", "aarch64"):
+            platform_tag = "macosx_13_0_arm64"
+        case ("linux", "x86_64"):
+            platform_tag = "manylinux2014_x86_64"
+        case ("linux", "aarch64"):
+            platform_tag = "manylinux2014_aarch64"
+        case _:
+            print(f"不支持的操作系统或架构: {os}-{arch}")
+            sys.exit(1)
 
     print(f"使用平台标签: {platform_tag}")
     return platform_tag
@@ -80,7 +50,6 @@ def download_dependencies(deps_dir, platform_tag):
         print("错误: requirements.txt 文件不存在")
         return False
 
-    # 通用下载策略（不指定平台）
     try:
         cmd_fallback = [
             sys.executable,
@@ -89,6 +58,9 @@ def download_dependencies(deps_dir, platform_tag):
             "install",
             "-r",
             str(requirements_file),
+            "--platform",
+            str(platform_tag),
+            "--no-deps",
             "--target",
             str(deps_path),
         ]
@@ -109,11 +81,11 @@ def download_dependencies(deps_dir, platform_tag):
         for whl_file in whl_files:
             print(f"  {whl_file.name}")
 
-        print(f"通用策略下载完成到: {deps_path}")
+        print(f"依赖已经下载到目录: {deps_path}")
         return True
 
     except subprocess.CalledProcessError as e2:
-        print(f"通用策略也失败: {e2}")
+        print(f"依赖下载失败: {e2}")
         if e2.stdout:
             print("stdout:", e2.stdout)
         if e2.stderr:
@@ -124,12 +96,13 @@ def download_dependencies(deps_dir, platform_tag):
 def main():
     parser = argparse.ArgumentParser(description="下载Python依赖到deps目录")
     parser.add_argument("--deps-dir", default="deps", help="依赖下载目录 (默认: deps)")
+    parser.add_argument("--os", help="下载的系统")
+    parser.add_argument("--arch", help="下载的架构")
 
     args = parser.parse_args()
 
     try:
-        # 自动检测平台
-        platform_tag = get_platform_tag()
+        platform_tag = get_platform_tag(args.os, args.arch)
 
         # 下载依赖
         success = download_dependencies(args.deps_dir, platform_tag)

@@ -90,16 +90,14 @@
     "weekly_win_in_duel_field": {
         "recognition": "OCR",
         "expected": [
-            "忍",
-            "术",
-            "对",
-            "战"
+            "忍术",
+            "对战"
         ],
         "roi": [
-            254,
-            609,
-            123,
-            47
+            17,
+            535,
+            382,
+            184
         ],
         "next": [
             "weekly_win_match",
@@ -135,8 +133,10 @@
         "focus": "[color:DeepSkyBlue]匹配模式[/color]"
     },
     "weekly_win_rank": {
-        "recognition": "TemplateMatch",
-        "template": "Weekly_win/rank_mode.png",
+        "recognition": "OCR",
+        "expected": [
+            "段位"
+        ],
         "roi": [
             336,
             520,
@@ -189,8 +189,10 @@
         ]
     },
     "battle_end": {
-        "recognition": "TemplateMatch",
-        "template": "Weekly_win/battle_detail.png",
+        "recognition": "OCR",
+        "expected": [
+            "战斗详情"
+        ],
         "roi": [
             1061,
             0,
@@ -210,7 +212,9 @@
         "recognition": "TemplateMatch",
         "template": [
             "Weekly_win/victory.png",
-            "Weekly_win/complete_victory.png"
+            "Weekly_win/victory_10th.png",
+            "Weekly_win/complete_victory.png",
+            "Weekly_win/complete_victory_10th.png"
         ],
         "roi": [
             480,
@@ -218,11 +222,13 @@
             341,
             240
         ],
+        "green_mask": true,
         "action": "Click",
         "threshold": 0.8,
         "post_delay": 500,
         "next": [
             "weekly_win_success",
+            "[JumpBack]weekly_win_rank_up",
             "win_to_entry"
         ],
         "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
@@ -245,15 +251,50 @@
         "action": "DoNothing",
         "focus": "再来一把！"
     },
+    "weekly_win_rank_up": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            637,
+            545,
+            350,
+            174
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_rank_up_done",
+            "[JumpBack]weekly_win_rank_up"
+        ],
+        "post_delay": 900
+    },
+    "weekly_win_rank_up_done": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            637,
+            545,
+            350,
+            174
+        ],
+        "inverse": true
+    },
     "weekly_win_fail": {
         "recognition": "TemplateMatch",
-        "template": "Weekly_win/fail.png",
+        "template": [
+            "Weekly_win/fail.png",
+            "Weekly_win/fail_10th.png"
+        ],
         "roi": [
             480,
             328,
             341,
             240
         ],
+        "green_mask": true,
         "action": "Click",
         "threshold": 0.9,
         "post_delay": 500,
@@ -278,7 +319,10 @@
     },
     "weekly_win_substitution": {
         "recognition": "TemplateMatch",
-        "template": "Weekly_win/substitution.png",
+        "template": [
+            "Weekly_win/substitution.png",
+            "Weekly_win/substitution_10th.png"
+        ],
         "roi": [
             550,
             441,
@@ -579,7 +623,6 @@
         "threshold": [
             0.8
         ],
-        "action": "Click",
         "inverse": true,
         "next": [
             "weekly_win_check_no_daily_duel_mission_award",
@@ -757,5 +800,84 @@
         ],
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]回到战斗[/color]"
+    },
+    "weekly_win_in_center_enter": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "SharedNode/check_not_in_daily_award.png",
+            "SharedNode/check_in_daily_award.png"
+        ],
+        "roi": [
+            37,
+            172,
+            130,
+            47
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_ac_entry_undone",
+            "weekly_win_ac_done",
+            "[JumpBack]swipe_for_award_center_find"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
+    },
+    "weekly_win_ac_entry": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/center_entry.png",
+        "roi": [
+            1200,
+            348,
+            42,
+            39
+        ],
+        "action": "Click",
+        "next": [
+            "weekly_win_in_center_enter"
+        ],
+        "post_wait_freezes": 1000,
+        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
+    },
+    "weekly_win_ac_entry_undone": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/weekly_win_ac_undone.png",
+        "roi": [
+            180,
+            288,
+            1100,
+            225
+        ],
+        "threshold": 0.9,
+        "green_mask": true,
+        "target_offset": [
+            12,
+            116,
+            -40,
+            -114
+        ],
+        "next": [
+            "go_to_war",
+            "weekly_win_match",
+            "[JumpBack]weekly_win_weekly_award",
+            "[JumpBack]weekly_win_mouthly_award",
+            "[JumpBack]weekly_win_mouthly_reset_award"
+        ],
+        "action": "Click",
+        "post_wait_freezes": 500,
+        "focus": "[color:DeepSkyBlue]进入决斗场[/color]"
+    },
+    "weekly_win_ac_done": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/center_entry_end.png",
+        "roi": [
+            180,
+            384,
+            1100,
+            118
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "focus": "[color:DeepSkyBlue]周胜已完成[/color]"
     }
 }
