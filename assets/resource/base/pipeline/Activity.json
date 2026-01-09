@@ -8,6 +8,7 @@
     },
     "activity_entry": {
         "recognition": "TemplateMatch",
+        "method": 10001,
         "template": "Activity/headhunt.png",
         "roi": [
             1194,
@@ -16,6 +17,7 @@
             42
         ],
         "action": "Click",
+        "$doc": "活动的图标会变，所以识别用的是招募的图标",
         "target": [
             1196,
             32,
@@ -113,7 +115,8 @@
     "mouthly_signature_done": {
         "recognition": "OCR",
         "expected": [
-            "已签到"
+            "已签到",
+            "可补签一次"
         ],
         "roi": [
             1104,
