@@ -70,8 +70,9 @@
     ],
     "order_by": "Score",
     "action": "Click",
-    "threshold": 0.7,
+    "threshold": 0.75,
     "post_wait_freezes": 500,
+    "post_delay": 500,
     "green_mask": true,
     "focus": "[color:darkgray]关闭当前窗口[/color]"
   },
@@ -314,7 +315,7 @@
       58
     ],
     "action": "Click",
-    "post_delay": 700,
+    "post_delay": 1000,
     "focus": "[color:DeepSkyBlue]关闭情报社[/color]"
   },
   "debug_stop": {
