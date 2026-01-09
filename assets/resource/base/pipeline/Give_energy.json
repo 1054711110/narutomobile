@@ -27,6 +27,31 @@
         "post_delay": 800,
         "focus": "[color:DeepSkyBlue]进入送体力界面[/color]"
     },
+    "give_energy_account_friend": {
+        "recognition": "OCR",
+        "roi": [
+            143,
+            169,
+            197,
+            143
+        ],
+        "expected": [
+            "游戏好友"
+        ],
+        "action": "Click",
+        "target_offset": [
+            0,
+            100,
+            0,
+            0
+        ],
+        "post_delay": 800,
+        "next": [
+            "sent_energy",
+            "energy_entry"
+        ],
+        "focus": "[color:DeepSkyBlue]选择账号好友[/color]"
+    },
     "give_energy_done": {
         "recognition": "TemplateMatch",
         "template": "Give_energy/give_energy_done_masked.png",

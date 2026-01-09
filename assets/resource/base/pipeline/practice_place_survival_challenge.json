@@ -170,13 +170,8 @@
     "check_survival_challenge_done": {
         "recognition": "OCR",
         "expected": [
-            "已",
-            "通",
-            "过",
-            "所",
-            "有",
-            "关",
-            "卡"
+            "已通过",
+            "所有关卡"
         ],
         "roi": [
             515,

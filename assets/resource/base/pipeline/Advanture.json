@@ -2,6 +2,8 @@
     "advanture": {
         "next": [
             "[JumpBack]advanture_in_level_roll",
+            "[JumpBack]advanture_daily_award_unlock",
+            "[JumpBack]advanture_new_level_undone",
             "[JumpBack]advanture_entry",
             "[JumpBack]back_main_screen"
         ],
@@ -140,9 +142,11 @@
         "action": "Click",
         "next": [
             "advanture_in_fight",
+            "[JumpBack]advanture_anime_skip",
             "[JumpBack]advanture_anime",
             "advanture_confirm_advanced_option",
             "use_energy_not_enough_sign",
+            "use_energy_difficulty_hint",
             "advanture_go_fight",
             "[JumpBack]advanture_skip_dialogue"
         ],
@@ -161,7 +165,8 @@
             79,
             73
         ],
-        "action": "Click"
+        "action": "Click",
+        "post_delay": 500
     },
     "advanture_confirm_advanced_option": {
         "recognition": "OCR",
@@ -192,16 +197,30 @@
             0
         ],
         "roi": [
-            1096,
-            36,
-            95,
-            50
+            617,
+            29,
+            46,
+            37
         ],
         "count": 1000,
         "pre_delay": 0,
         "action": "Click",
-        "post_delay": 3000,
+        "post_delay": 300,
         "focus": "[color:DeepSkyBlue]剧情动画[/color]"
+    },
+    "advanture_anime_skip": {
+        "recognition": "OCR",
+        "expected": [
+            "跳过"
+        ],
+        "roi": [
+            1047,
+            1,
+            177,
+            103
+        ],
+        "action": "Click",
+        "post_delay": 300
     },
     "advanture_end_anime": {
         "recognition": "ColorMatch",
@@ -216,15 +235,15 @@
             0
         ],
         "roi": [
-            1096,
-            36,
-            95,
-            50
+            617,
+            29,
+            46,
+            37
         ],
         "count": 1000,
         "pre_delay": 0,
         "action": "Click",
-        "post_delay": 3000,
+        "post_delay": 300,
         "focus": "[color:DeepSkyBlue]过场动画[/color]",
         "timeout": 5000
     },
@@ -250,6 +269,7 @@
         ],
         "next": [
             "[JumpBack]has_stop_button",
+            "[JumpBack]advanture_anime_skip",
             "[JumpBack]advanture_end_anime",
             "advanture_win",
             "advanture_lost",
@@ -351,6 +371,24 @@
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]胜利啦[/color]"
     },
+    "advanture_new_function_unlock": {
+        "recognition": "OCR",
+        "expected": [
+            "开启新功能"
+        ],
+        "roi": [
+            425,
+            179,
+            456,
+            274
+        ],
+        "action": "Click",
+        "post_delay": 300,
+        "next": [
+            "advanture"
+        ],
+        "focus": "新功能解锁"
+    },
     "quit_advanture_battle_from_win": {
         "recognition": "TemplateMatch",
         "template": "Advanture/win.png",
@@ -362,6 +400,14 @@
         ],
         "inverse": true,
         "action": "DoNothing",
+        "next": [
+            "advanture_new_function_unlock",
+            "advanture_daily_award_unlock",
+            "advanture_new_level_undone",
+            "naruto_journey_new_level_undone",
+            "advanture_rank_up"
+        ],
+        "post_delay": 300,
         "focus": "返回主页检查是否有新功能"
     },
     "advanture_lost": {
@@ -415,5 +461,94 @@
             "back_main_screen_and_stop"
         ],
         "focus": "[color:tomato]胜败乃兵家常事[/color]"
+    },
+    "advanture_daily_award_unlock": {
+        "recognition": "OCR",
+        "expected": [
+            "每日任务开启"
+        ],
+        "roi": [
+            982,
+            234,
+            296,
+            291
+        ],
+        "action": "Click",
+        "target": [
+            1202,
+            342,
+            37,
+            37
+        ],
+        "next": [
+            "[JumpBack]advanture_in_level_roll",
+            "[JumpBack]advanture_daily_award_unlock",
+            "[JumpBack]advanture_entry",
+            "[JumpBack]back_main_screen"
+        ],
+        "post_delay": 300
+    },
+    "advanture_rank_up": {
+        "recognition": "OCR",
+        "roi": [
+            472,
+            502,
+            279,
+            120
+        ],
+        "expected": [
+            "等级达到"
+        ],
+        "action": "Click",
+        "next": [
+            "advanture_daily_award_unlock",
+            "[JumpBack]advanture_in_level_roll",
+            "[JumpBack]advanture_rank_up",
+            "[JumpBack]advanture_entry",
+            "[JumpBack]back_main_screen"
+        ],
+        "post_delay": 500
+    },
+    "use_energy_difficulty_hint": {
+        "recognition": "OCR",
+        "expected": [
+            "继续挑战"
+        ],
+        "roi": [
+            372,
+            360,
+            271,
+            172
+        ],
+        "action": "Click",
+        "next": [
+            "use_energy_without_difficulty_hint",
+            "use_energy_difficulty_hint"
+        ],
+        "post_delay": 600
+    },
+    "use_energy_without_difficulty_hint": {
+        "recognition": "OCR",
+        "expected": [
+            "继续挑战"
+        ],
+        "roi": [
+            372,
+            360,
+            271,
+            172
+        ],
+        "inverse": true,
+        "next": [
+            "advanture_in_fight",
+            "[JumpBack]advanture_anime_skip",
+            "[JumpBack]advanture_anime",
+            "advanture_confirm_advanced_option",
+            "use_energy_not_enough_sign",
+            "use_energy_difficulty_hint",
+            "advanture_go_fight",
+            "[JumpBack]advanture_skip_dialogue"
+        ],
+        "post_delay": 600
     }
 }
