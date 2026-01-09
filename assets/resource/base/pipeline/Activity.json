@@ -8,6 +8,7 @@
     },
     "activity_entry": {
         "recognition": "TemplateMatch",
+        "method": 10001,
         "template": "Activity/headhunt.png",
         "roi": [
             1194,
@@ -16,6 +17,7 @@
             42
         ],
         "action": "Click",
+        "$doc": "活动的图标会变，所以识别用的是招募的图标",
         "target": [
             1196,
             32,
@@ -45,6 +47,18 @@
         "post_delay": 200,
         "focus": "[color:DeepSkyBlue]检测有没有一乐拉面可领取[/color]"
     },
+    "get_ramen": {
+        "recognition": "TemplateMatch",
+        "template": "Activity/ramen.png",
+        "roi": [
+            190,
+            108,
+            1077,
+            395
+        ],
+        "action": "Click",
+        "focus": "[color:DeepSkyBlue]领取一乐拉面[/color]"
+    },
     "swipes_for_monthly_sign": {
         "action": "Swipe",
         "begin": [
@@ -59,67 +73,31 @@
             10,
             10
         ],
+        "duration": 500,
+        "max_hit": 10,
         "next": [
-            "mouthly_sign_undone",
-            "mouthly_sign_done",
-            "[JumpBack]swipes_for_monthly_sign"
+            "mouthly_sign_tab",
+            "swipes_for_monthly_sign",
+            "retry_failed"
         ],
-        "duration": 200,
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]前往月度签到[/color]"
     },
-    "get_ramen": {
-        "recognition": "TemplateMatch",
-        "template": "Activity/ramen.png",
+    "mouthly_sign_tab": {
+        "recognition": "OCR",
+        "expected": "每月签到",
         "roi": [
-            190,
-            108,
-            1077,
-            395
+            19,
+            130,
+            143,
+            572
         ],
         "action": "Click",
-        "focus": "[color:DeepSkyBlue]领取一乐拉面[/color]"
-    },
-    "mouthly_sign_undone": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Activity/monthly_sign_undone.png",
-            "Activity/monthly_sign_undone_activity.png"
-        ],
-        "roi": [
-            0,
-            100,
-            210,
-            620
-        ],
-        "threshold": 0.85,
-        "action": "Click",
         "next": [
-            "mouthly_signature",
-            "check_mouthly_signature_title",
-            "[JumpBack]mouthly_sign_undone"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]月度签到未完成[/color]"
-    },
-    "mouthly_sign_done": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Activity/monthly_sign_done.png",
-            "Activity/monthly_sign_done_1.png",
-            "Activity/monthly_sign_done_activity.png"
-        ],
-        "roi": [
-            0,
-            100,
-            210,
-            620
-        ],
-        "threshold": 0.9,
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]月度签到已完成[/color]"
+            "[JumpBack]mouthly_signature",
+            "mouthly_signature_done",
+            "mouthly_sign_tab"
+        ]
     },
     "mouthly_signature": {
         "recognition": "TemplateMatch",
@@ -131,17 +109,14 @@
             61
         ],
         "action": "Click",
-        "next": [
-            "mouthly_signature_done",
-            "[JumpBack]mouthly_signature"
-        ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]进行月度签到[/color]"
     },
     "mouthly_signature_done": {
         "recognition": "OCR",
         "expected": [
-            "已签到"
+            "已签到",
+            "可补签一次"
         ],
         "roi": [
             1104,
@@ -149,12 +124,10 @@
             158,
             98
         ],
-        "next": [
-            "check_mouthly_signature_title",
-            "back_main_screen_and_stop"
-        ]
+        "next": "check_mouthly_signature_title"
     },
     "check_mouthly_signature_title": {
+        "$doc": "点一下也没啥坏处",
         "action": "Click",
         "target": [
             525,
@@ -162,9 +135,7 @@
             101,
             98
         ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]检查月度签到称号是否可以领取,这个节点可能因为页面更新问题而领取不到[/color]"
+        "next": "back_main_screen_and_stop",
+        "focus": "[color:DarkGray]检查月度签到称号[/color]"
     }
 }
