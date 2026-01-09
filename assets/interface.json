@@ -243,11 +243,6 @@
             "description": "百忍虽好,可是有开放时间限制的哦"
         },
         {
-            "name": "agent Debug",
-            "entry": "use_agent",
-            "description": "调试用,不开不开"
-        },
-        {
             "name": "小游戏",
             "entry": "mini_game",
             "option": [
