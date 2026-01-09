@@ -72,7 +72,15 @@
         ],
         "action": "Click",
         "post_delay": 500,
+        "next": "empty_number",
+        "timeout": 1000,
         "focus": "[color:DeepSkyBlue]确认登录[/color]"
+    },
+    "empty_number": {
+        "recognition": "OCR",
+        "expected": "位数不足",
+        "focus": "[color:tomato]当前没有可登录的账号[/color]",
+        "next": "stop_task_list"
     },
     "agree_info": {
         "recognition": "OCR",
