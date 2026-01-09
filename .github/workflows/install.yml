@@ -102,6 +102,26 @@ jobs:
           rm -f "${ARCHIVE_FILE_PATH}"
           echo "Archive cleanup command executed for MFAAvalonia."
 
+      - name: Convert PNG to ICO
+        if: matrix.arch == 'x86_64'
+        shell: bash
+        run: |
+          # 安装 ImageMagick
+          choco install imagemagick -y
+
+          # 转换 PNG 到 ICO
+          magick convert docs/imgs/logo.png -define icon:auto-resize=256,128,64,48,32,24,16 man.ico
+
+      - name: Modify MFAAvalonia exe icon
+        if: matrix.arch == 'x86_64'
+        shell: bash
+        run: |
+          # 下载 rcedit
+          curl -L https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe -o rcedit.exe
+
+          # 修改 exe 图标
+          ./rcedit.exe "MFA/MFAAvalonia.exe" --set-icon "man.ico"
+
       - name: Setup Embed Python
         if: matrix.os != 'linux' && matrix.os != 'android'
         shell: bash
@@ -132,7 +152,7 @@ jobs:
           else
             echo "Skipping copy MFA for Android."
           fi
-          
+
           python3 -m pip install -r requirements.txt
           cd tools/
           python3 ci/install.py ${{ needs.meta.outputs.tag }} ${{ matrix.os }} ${{ matrix.arch }}
