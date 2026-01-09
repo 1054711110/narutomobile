@@ -81,7 +81,7 @@ jobs:
         with:
           repository: SweetSmellFox/MFAAvalonia
           fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
-          tag: "v2.2.7"
+          tag: "v2.5.0"
           out-file-path: "MFA"
           extract: true
 
@@ -90,7 +90,7 @@ jobs:
         with:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
-          tag: "v5.2.6"
+          tag: "v5.3.2"
           out-file-path: "deps"
           extract: true
 
@@ -132,7 +132,7 @@ jobs:
           else
             echo "Skipping copy MFA for Android."
           fi
-          
+
           python3 -m pip install -r requirements.txt
           cd tools/
           python3 ci/install.py ${{ needs.meta.outputs.tag }} ${{ matrix.os }} ${{ matrix.arch }}
