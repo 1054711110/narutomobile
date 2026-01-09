@@ -62,17 +62,38 @@ jobs:
 
   install:
     needs: meta
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runner }}
     strategy:
       matrix:
-        os: [win, macos, linux]
-        arch: [aarch64, x86_64]
+        include:
+          - os: win
+            arch: x86_64
+            runner: windows-latest
+          - os: win
+            arch: aarch64
+            runner: windows-11-arm
+          - os: macos
+            arch: x86_64
+            runner: ubuntu-latest
+          - os: macos
+            arch: aarch64
+            runner: ubuntu-latest
+          - os: linux
+            arch: x86_64
+            runner: ubuntu-latest
+          - os: linux
+            arch: aarch64
+            runner: ubuntu-latest
       fail-fast: false
 
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
 
       - name: Download MFAAvalonia
         if: matrix.os != 'android'
@@ -102,6 +123,26 @@ jobs:
           rm -f "${ARCHIVE_FILE_PATH}"
           echo "Archive cleanup command executed for MFAAvalonia."
 
+      - name: Convert PNG to ICO
+        if: matrix.os == 'win' && matrix.arch == 'x86_64'
+        shell: bash
+        run: |
+          # 安装 ImageMagick
+          choco install imagemagick -y
+
+          # 转换 PNG 到 ICO
+          magick convert docs/imgs/logo.png -define icon:auto-resize=256,128,64,48,32,24,16 man.ico
+
+      - name: Modify MFAAvalonia exe icon
+        if: matrix.os == 'win' && matrix.arch == 'x86_64'
+        shell: bash
+        run: |
+          # 下载 rcedit
+          curl -L https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe -o rcedit.exe
+
+          # 修改 exe 图标
+          ./rcedit.exe "MFA/MFAAvalonia.exe" --set-icon "man.ico"
+
       - name: Setup Embed Python
         if: matrix.os != 'linux' && matrix.os != 'android'
         shell: bash
@@ -117,7 +158,8 @@ jobs:
             fi
           fi
 
-      - name: Install
+      - name: Install on unix
+        if: matrix.os != 'win'
         shell: bash
         run: |
           if [[ "${{ matrix.os }}" != "android" ]]; then
@@ -138,11 +180,33 @@ jobs:
           python3 ci/install.py ${{ needs.meta.outputs.tag }} ${{ matrix.os }} ${{ matrix.arch }}
           cd ..
 
+      - name: Install on windows
+        if: matrix.os == 'win'
+        shell: bash
+        run: |
+          if [[ "${{ matrix.os }}" != "android" ]]; then
+            if [ -d "MFA" ]; then
+              echo "Copying MFA files to install directory..."
+              mkdir -p install
+              cp -r MFA/* install/
+              echo "MFA files copied successfully."
+            else
+              echo "MFA directory not found, skipping copy."
+            fi
+          else
+            echo "Skipping copy MFA for Android."
+          fi
+
+          python -m pip install -r requirements.txt
+          cd tools/
+          python ci/install.py ${{ needs.meta.outputs.tag }} ${{ matrix.os }} ${{ matrix.arch }}
+          cd ..
+
       - name: Download Python dependencies on Windows
         if: matrix.os == 'win'
         shell: bash
         run: |
-          python3 tools/ci/download_deps.py --deps-dir ./install/python/Lib/site-packages --os ${{ matrix.os }} --arch ${{ matrix.arch }}
+          python tools/ci/download_deps.py --deps-dir ./install/python/Lib/site-packages --os ${{ matrix.os }} --arch ${{ matrix.arch }}
 
       - name: Download Python dependencies on macOS
         if: matrix.os == 'macos'
