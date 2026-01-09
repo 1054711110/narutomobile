@@ -175,6 +175,11 @@
             "default_check": true
         },
         {
+            "name": "关闭游戏",
+            "entry": "exit_naruto",
+            "default_check": true
+        },
+        {
             "name": "秘境(beta)",
             "entry": "secret_realm",
             "option": [
