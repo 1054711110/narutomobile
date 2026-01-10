@@ -179,7 +179,7 @@
             "default_check": true
         },
         {
-            "name": "关闭游戏",
+            "name": "关闭火影手游APP",
             "entry": "exit_naruto",
             "default_check": true
         },
