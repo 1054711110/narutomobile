@@ -136,7 +136,107 @@
             101,
             98
         ],
-        "next": "back_main_screen_and_stop",
-        "focus": "[color:DarkGray]检查月度签到称号[/color]"
+        "focus": "[color:DarkGray]检查月度签到称号[/color]",
+        "next": [
+            "[JumpBack]back_main_screen",
+            "store_enter"
+        ]
+    },
+    "store_enter": {
+        "recognition": "TemplateMatch",
+        "template": "Shop/shop_entry.png",
+        "roi": [
+            1157,
+            180,
+            123,
+            129
+        ],
+        "action": "Click",
+        "focus": "[color:DarkGray]进入商店[/color]",
+        "post_delay": 500,
+        "next": [
+            "click_privilege_store",
+            "[JumpBack]click_normal_store",
+            "store_enter"
+        ]
+    },
+    "click_normal_store": {
+        "recognition": "OCR",
+        "expected": "^商店$",
+        "roi": [
+            30,
+            145,
+            162,
+            470
+        ],
+        "action": "Click",
+        "post_delay": 500
+    },
+    "click_privilege_store": {
+        "recognition": "OCR",
+        "expected": "特权商店",
+        "roi": [
+            30,
+            145,
+            162,
+            470
+        ],
+        "post_delay": 500,
+        "action": "Click",
+        "focus": "[color:DarkGray]进入特权商店[/color]",
+        "next": [
+            "privilege_points",
+            "click_privilege_store"
+        ]
+    },
+    "privilege_points": {
+        "$doc": "这玩意会被全区广播挡住，所以用了半张图的模板检测",
+        "recognition": "TemplateMatch",
+        "template": "Shop/privilege_points.png",
+        "roi": [
+            594,
+            60,
+            206,
+            115
+        ],
+        "action": "Click",
+        "focus": "[color:DarkGray]进入特权积分[/color]",
+        "next": [
+            "get_copper_in_privilege_points_done",
+            "[JumpBack]get_copper_in_privilege_points",
+            "privilege_points"
+        ]
+    },
+    "get_copper_in_privilege_points_done": {
+        "recognition": "OCR",
+        "$doc": "图标为立即充值的领不了",
+        "expected": [
+            "已",
+            "充值"
+        ],
+        "replace": [
+            "己",
+            "已"
+        ],
+        "roi": [
+            906,
+            659,
+            323,
+            48
+        ],
+        "focus": "[color:DarkGray]铜币已领取[/color]",
+        "next": "back_main_screen_and_stop"
+    },
+    "get_copper_in_privilege_points": {
+        "recognition": "OCR",
+        "expected": "领取",
+        "roi": [
+            1120,
+            659,
+            109,
+            48
+        ],
+        "action": "Click",
+        "focus": "[color:DeepSkyBlue]领取铜币[/color]"
     }
 }
