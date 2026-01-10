@@ -25,21 +25,24 @@
                 }
             }
         },
+        "post_delay": 500,
         "next": [
             "click_thumb_done",
-            "click_thumb",
-            "[JumpBack]find_leaderboard_in_main_screen"
+            "[JumpBack]click_thumb",
+            "find_leaderboard_in_main_screen"
         ]
     },
     "click_thumb": {
         "recognition": "TemplateMatch",
         "template": "Leaderboard/thumb.png",
-        "action": "Click",
-        "next": [
-            "click_thumb_done",
-            "[JumpBack]click_thumb"
+        "roi": [
+            1121,
+            139,
+            148,
+            98
         ],
-        "post_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]点赞[/color]"
     },
     "click_thumb_done": {
@@ -48,10 +51,10 @@
             "已"
         ],
         "roi": [
-            1123,
-            147,
-            133,
-            409
+            1121,
+            139,
+            148,
+            98
         ],
         "next": [
             "back_main_screen_and_stop"
