@@ -11,7 +11,8 @@
         "template": "Practice_place/survival_challenge.png",
         "action": "Click",
         "next": [
-            "survival_challenge_yesterday_award"
+            "survival_challenge_yesterday_award",
+            "enter_survival_challenge"
         ],
         "focus": "进入生存挑战"
     },
@@ -170,13 +171,8 @@
     "check_survival_challenge_done": {
         "recognition": "OCR",
         "expected": [
-            "已",
-            "通",
-            "过",
-            "所",
-            "有",
-            "关",
-            "卡"
+            "已通过",
+            "所有关卡"
         ],
         "roi": [
             515,

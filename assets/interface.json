@@ -60,6 +60,9 @@
         {
             "name": "送体力",
             "entry": "give_energy",
+            "option": [
+                "选择账号好友送体力"
+            ],
             "default_check": true
         },
         {
@@ -179,11 +182,6 @@
             "default_check": true
         },
         {
-            "name": "关闭火影手游APP",
-            "entry": "exit_naruto",
-            "default_check": true
-        },
-        {
             "name": "秘境(beta)",
             "entry": "secret_realm",
             "option": [
@@ -198,6 +196,11 @@
                 "阴阳秘境"
             ],
             "description": "由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
+        },
+        {
+            "name": "关闭火影手游APP",
+            "entry": "exit_naruto",
+            "default_check": true
         },
         {
             "name": "要塞(beta)",
@@ -1244,6 +1247,7 @@
         },
         "冒险副本一直推关": {
             "type": "switch",
+            "description": "在不开荒的时候用这个会快一点,不过差别其实很小",
             "cases": [
                 {
                     "name": "No",
@@ -1256,6 +1260,9 @@
                             "next": [
                                 "advanture_new_level_undone",
                                 "naruto_journey_new_level_undone",
+                                "advanture_new_function_unlock",
+                                "advanture_daily_award_unlock",
+                                "advanture_rank_up",
                                 "advanture_win"
                             ]
                         }
@@ -1321,6 +1328,27 @@
                                 "group_ac_entry",
                                 "group_in_center_enter",
                                 "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "选择账号好友送体力": {
+            "description": "在没有游戏好友的时候,给qq或者微信好友送体力",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "energy_entry": {
+                            "next": [
+                                "give_energy_account_friend",
+                                "energy_entry"
                             ]
                         }
                     }

@@ -21,7 +21,7 @@ from ci.install import (
 from ci.setup_embed_python import PYTHON_VERSION_TARGET
 from setup_full_python import download_file
 
-DEFAULT_MFA_VERSION = "v2.5.0"
+DEFAULT_MFA_VERSION = "v2.5.1"
 GHPROXY_URL = "https://gh-proxy.natsuu.top/"
 
 parser = argparse.ArgumentParser(

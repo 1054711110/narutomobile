@@ -63,8 +63,8 @@
         ],
         "next": [
             "check_chopper_done",
-            "[JumpBack]start_chooper",
-            "[JumpBack]get_chopper_ac_entry_undone"
+            "[JumpBack]start_chopper",
+            "get_chopper_ac_entry_undone"
         ],
         "action": "Click",
         "post_wait_freezes": 1000,
@@ -84,7 +84,7 @@
         ],
         "focus": "[color:DeepSkyBlue]铜币招财已完成[/color]"
     },
-    "start_chooper": {
+    "start_chopper": {
         "recognition": "OCR",
         "expected": [
             "免费一次"
@@ -96,7 +96,7 @@
             48
         ],
         "action": "Click",
-        "post_wait_freezes": 100,
+        "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]进行招财[/color]"
     },
     "check_chopper_done": {
