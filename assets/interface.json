@@ -198,7 +198,7 @@
             "description": "由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
         },
         {
-            "name": "关闭游戏",
+            "name": "关闭火影手游APP",
             "entry": "exit_naruto",
             "default_check": true
         },
