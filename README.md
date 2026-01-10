@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
-  <img alt="LOGO" src="docs/imgs/logo.ico" width="128"  />
+  <img alt="LOGO" src="docs/imgs/logo.png" width="256"  />
 </p>
 
 <p align="center">

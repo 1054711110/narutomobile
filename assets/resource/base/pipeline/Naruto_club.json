@@ -524,7 +524,6 @@
             "去参与"
         ],
         "inverse": true,
-        "threshold": 0.8,
         "next": [
             "check_club_mission_done"
         ],
@@ -536,18 +535,17 @@
             "去参与"
         ],
         "roi": [
-            681,
-            54,
-            466,
-            436
+            693,
+            157,
+            456,
+            232
         ],
-        "threshold": 0.8,
         "action": "Click",
         "next": [
             "feed_pig_work",
             "feed_pig"
         ],
-        "post_delay": 1500,
+        "post_delay": 500,
         "focus": "[color:DeepSkyBlue]喂豚豚[/color]"
     },
     "feed_pig_work": {
@@ -561,17 +559,16 @@
             466,
             436
         ],
-        "threshold": 0.8,
         "inverse": true,
-        "action": "Click",
         "next": [
             "weekly_feed_pig",
             "feed_pig_done"
         ],
-        "timeout": 10000,
+        "timeout": 7000,
         "on_error": [
             "feed_pig_not_found"
         ],
+        "post_delay": 1500,
         "focus": "[color:DeepSkyBlue]已进入喂豚豚[/color]"
     },
     "feed_pig_not_found": {
@@ -581,17 +578,20 @@
         "focus": "[color:DeepSkyBlue]无法找到喂豚豚按钮[/color]"
     },
     "weekly_feed_pig": {
-        "recognition": "OCR",
-        "expected": [
-            "喂豚豚"
-        ],
-        "threshold": 0.8,
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/feed_pig.png",
         "action": "Click",
+        "threshold": [
+            0.8
+        ],
+        "max_hit": 5,
         "next": [
             "confirm_feed_pig",
+            "weekly_feed_pig",
+            "feed_pig_done",
             "close_feed_pig"
         ],
-        "post_wait_freezes": 500,
+        "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]每周喂豚豚[/color]"
     },
     "feed_pig_done": {

@@ -164,7 +164,8 @@
     "use_energy_finish_1": {
         "recognition": "OCR",
         "expected": [
-            "扫荡完毕"
+            "扫荡完毕",
+            "需要扫荡"
         ],
         "roi": [
             232,
@@ -174,6 +175,7 @@
         ],
         "next": [
             "back_main_screen_and_stop"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]扫荡完成或者没有选中扫荡副本[/color]"
     }
 }

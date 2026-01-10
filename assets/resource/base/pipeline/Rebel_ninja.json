@@ -1,6 +1,7 @@
 {
     "rebel_ninja": {
         "next": [
+            "rebel_ninja_in_battlefield",
             "rebel_ninja_entry",
             "[JumpBack]back_main_screen"
         ],
@@ -179,7 +180,7 @@
     "rebel_ninja_go_fight": {
         "recognition": "OCR",
         "expected": [
-            "参站",
+            "参战",
             "前往"
         ],
         "roi": [
@@ -206,7 +207,12 @@
             182,
             74
         ],
-        "action": "Click"
+        "action": "Click",
+        "next": [
+            "rebel_ninja_in_battlefield",
+            "[JumpBack]rebel_ninja_confirm_nijia"
+        ],
+        "post_delay": 300
     },
     "rebel_ninja_single_mode": {
         "recognition": "TemplateMatch",
@@ -528,16 +534,16 @@
         ],
         "action": "Swipe",
         "begin": [
-            200,
-            535,
-            39,
-            32
+            227,
+            545,
+            1,
+            1
         ],
         "end": [
-            274,
-            527,
-            27,
-            37
+            461,
+            545,
+            1,
+            1
         ],
         "duration": 800,
         "post_delay": 1500
@@ -548,6 +554,9 @@
             "Rebel_ninja/low.png"
         ],
         "action": "Click",
+        "threshold": [
+            0.9
+        ],
         "next": [
             "rebel_ninja_confirm_enemy",
             "[JumpBack]rebel_ninja_low_enemy"
@@ -560,6 +569,9 @@
             "Rebel_ninja/mid.png"
         ],
         "action": "Click",
+        "threshold": [
+            0.9
+        ],
         "next": [
             "rebel_ninja_confirm_enemy",
             "[JumpBack]rebel_ninja_mid_enemy"
@@ -570,6 +582,9 @@
         "recognition": "TemplateMatch",
         "template": [
             "Rebel_ninja/high.png"
+        ],
+        "threshold": [
+            0.9
         ],
         "action": "Click",
         "next": [
@@ -589,6 +604,7 @@
             120,
             69
         ],
+        "action": "Click",
         "next": [
             "rebel_ninja_without_confirm_enemy",
             "[JumpBack]rebel_ninja_confirm_enemy"
@@ -628,6 +644,7 @@
         "next": [
             "rebel_ninja_direct_hit_quit",
             "[JumpBack]rebel_ninja_not_in_auto_fight",
+            "rebel_ninja_end",
             "[JumpBack]wait_5_second"
         ],
         "post_delay": 900,
@@ -653,10 +670,10 @@
             "点击"
         ],
         "roi": [
-            480,
-            572,
-            316,
-            135
+            486,
+            654,
+            325,
+            65
         ],
         "action": "Click",
         "next": [
@@ -682,5 +699,17 @@
             "rebel_ninja_in_battlefield"
         ],
         "post_delay": 300
+    },
+    "rebel_ninja_end": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Startup/main_green_masked.png"
+        ],
+        "threshold": 0.9,
+        "method": 10001,
+        "action": "StopTask",
+        "green_mask": true,
+        "post_delay": 500,
+        "focus": "[color:darkgray]叛忍结束[/color]"
     }
 }
