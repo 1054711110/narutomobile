@@ -89,11 +89,8 @@
     "get_energy": {
         "recognition": "OCR",
         "expected": [
-            "一键领取",
-            "键领取",
-            "领取",
             "一键",
-            "取"
+            "领取"
         ],
         "roi": [
             519,
@@ -104,40 +101,29 @@
         "action": "Click",
         "next": [
             "confirm_get_energy",
-            "close_energy"
+            "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]领取好友送的体力[/color]"
     },
     "confirm_get_energy": {
         "recognition": "OCR",
+        "roi": [
+            524,
+            394,
+            229,
+            113
+        ],
         "expected": [
-            "确认",
             "确",
             "认"
         ],
         "action": "Click",
         "next": [
             "confirm_get_energy",
-            "close_energy"
+            "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]确认送体力[/color]"
-    },
-    "close_energy": {
-        "recognition": "TemplateMatch",
-        "template": "Give_energy/x.png",
-        "roi": [
-            1046,
-            86,
-            99,
-            83
-        ],
-        "action": "Click",
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]关闭送体力[/color]"
     }
 }

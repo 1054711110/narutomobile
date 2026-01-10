@@ -69,7 +69,6 @@
       1279,
       334
     ],
-    "order_by": "Score",
     "action": "Click",
     "threshold": 0.75,
     "post_wait_freezes": 500,

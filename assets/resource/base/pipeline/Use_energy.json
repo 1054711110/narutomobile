@@ -82,7 +82,7 @@
             "[JumpBack]use_energy_ez_sweep",
             "retry_failed"
         ],
-        "max_hit": 20,
+        "max_hit": 5,
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]确定便捷扫荡[/color]"
     },
