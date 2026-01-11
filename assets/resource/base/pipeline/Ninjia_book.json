@@ -254,11 +254,12 @@
             "Ninjia_book/liveness_undone_selected.png"
         ],
         "roi": [
-            101,
-            315,
-            83,
-            74
+            135,
+            297,
+            64,
+            61
         ],
+        "green_mask": true,
         "threshold": 0.8,
         "action": "Click",
         "next": [
@@ -312,11 +313,12 @@
             "Ninjia_book/liveness_undone_selected.png"
         ],
         "roi": [
-            41,
-            311,
-            170,
-            168
+            118,
+            289,
+            83,
+            111
         ],
+        "green_mask": true,
         "inverse": true,
         "threshold": 0.9,
         "action": "Click",
@@ -594,10 +596,10 @@
             "Ninjia_book/has_award_selected.png"
         ],
         "roi": [
-            89,
-            98,
             111,
-            108
+            76,
+            93,
+            106
         ],
         "max_hit": 3,
         "next": [

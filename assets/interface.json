@@ -187,6 +187,9 @@
             "option": [
                 "秘境从奖励中心进入",
                 "秘境赢几次",
+                "秘境翻饰品牌",
+                "秘境翻忍具牌",
+                "秘境忍具每次只翻一张",
                 "烈炎秘境",
                 "罡体秘境",
                 "水牢秘境",
@@ -195,7 +198,7 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
-            "description": "由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境开战页面开启此任务"
+            "description": "由于主页位置特殊,建议从奖励中心进,一天多次打时,关闭从奖励中心进,或者在秘境出战页面开启此任务"
         },
         {
             "name": "关闭火影手游APP",
@@ -734,7 +737,7 @@
             ]
         },
         "秘境赢几次": {
-            "description": "秘境设立次数设置",
+            "description": "秘境胜利次数设置",
             "type": "input",
             "inputs": [
                 {
@@ -750,6 +753,92 @@
                     "max_hit": "{秘境胜利次数减一}"
                 }
             }
+        },
+        "秘境翻饰品牌": {
+            "description": "秘境翻牌,不要关闭二级密码,否则这个选项会消耗大量金币",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "secret_realm_win": {
+                            "action": "DoNothing"
+                        },
+                        "secret_realm_flip_without_card": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "secret_realm_flip_accessory_card": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "秘境翻忍具牌": {
+            "description": "秘境翻牌,不要关闭二级密码,否则这个选项会消耗大量金币",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "secret_realm_win": {
+                            "action": "DoNothing"
+                        },
+                        "secret_realm_flip_without_card": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "secret_realm_flip_gear_card": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
+        },
+        "秘境忍具每次只翻一张": {
+            "description": "性价比选项",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "secret_realm_win": {
+                            "next": [
+                                "secret_realm_flip_without_card",
+                                "[JumpBack]secret_realm_flip_accessory_card",
+                                "secret_realm_flip_gear_card",
+                                "secret_realm_celebreate",
+                                "secret_realm_last_celebreate",
+                                "[JumpBack]secret_realm_win"
+                            ]
+                        },
+                        "secret_realm_flip_gear_card": {
+                            "next": [
+                                "secret_realm_win_back_secret_realm",
+                                "secret_realm_celebreate",
+                                "secret_realm_last_celebreate"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "secret_realm_flip_gear_card": {
+                            "enabled": false
+                        }
+                    }
+                }
+            ]
         },
         "烈炎秘境": {
             "type": "switch",
