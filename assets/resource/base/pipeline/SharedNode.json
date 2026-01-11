@@ -243,6 +243,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
+    "method": 10001,
     "threshold": 0.9,
     "action": "StopTask",
     "green_mask": true,
