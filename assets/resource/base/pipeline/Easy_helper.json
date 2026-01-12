@@ -1,8 +1,8 @@
 {
     "easy_helper": {
         "next": [
-            "easy_helper_entry",
-            "[JumpBack]back_main_screen"
+            "[JumpBack]back_main_screen",
+            "easy_helper_entry"
         ],
         "focus": "[color:DeepSkyBlue]进入轻松助手任务[/color]"
     },
