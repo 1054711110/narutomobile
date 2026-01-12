@@ -558,10 +558,10 @@
             "inputs": [
                 {
                     "name": "周胜胜利次数减一",
-                    "description": "会胜利输入次数+1次,输0的时候为打一次",
+                    "description": "会胜利输入次数+1次,输0的时候为打一次,最大999",
                     "pipeline_type": "int",
                     "default": "0",
-                    "verify": "^(0|[1-9]\\d*)$"
+                    "verify": "^(0|[1-9]\\d{0,2})$"
                 }
             ],
             "pipeline_override": {
@@ -742,10 +742,10 @@
             "inputs": [
                 {
                     "name": "秘境胜利次数减一",
-                    "description": "会胜利输入次数+1次,输0的时候为打一次",
+                    "description": "会胜利输入次数+1次,输0的时候为打一次,最大999",
                     "pipeline_type": "int",
                     "default": "0",
-                    "verify": "^(0|[1-9]\\d*)$"
+                    "verify": "^(0|[1-9]\\d{0,2})$"
                 }
             ],
             "pipeline_override": {
@@ -755,7 +755,7 @@
             }
         },
         "秘境翻饰品牌": {
-            "description": "秘境翻牌,不要关闭二级密码,否则这个选项会消耗大量金币",
+            "description": "确认有足够的秘境饰品翻牌卷,不要关闭二级密码,否则这个选项会消耗大量金币",
             "type": "switch",
             "cases": [
                 {
@@ -780,7 +780,7 @@
             ]
         },
         "秘境翻忍具牌": {
-            "description": "秘境翻牌,不要关闭二级密码,否则这个选项会消耗大量金币",
+            "description": "确认有足够的秘境忍具翻牌卷,不要关闭二级密码,否则这个选项会消耗巨量金币",
             "type": "switch",
             "cases": [
                 {
