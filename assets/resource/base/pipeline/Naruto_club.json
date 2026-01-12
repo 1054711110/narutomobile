@@ -455,7 +455,8 @@
         ],
         "next": [
             "feed_pig",
-            "without_feed_pig"
+            "without_feed_pig",
+            "check_club_mission_done"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]签到已经完成[/color]"
@@ -513,7 +514,8 @@
         "action": "Click",
         "next": [
             "feed_pig",
-            "without_feed_pig"
+            "without_feed_pig",
+            "check_club_mission_done"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]收到签到提醒[/color]"
@@ -716,6 +718,7 @@
         "key": 4,
         "next": [
             "swipe_for_club_submit",
+            "benefit_station",
             "[JumpBack]close_gold_helper"
         ],
         "post_wait_freezes": 500,

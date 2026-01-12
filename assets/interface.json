@@ -147,8 +147,9 @@
             "name": "忍法帖",
             "entry": "ninjia_book",
             "option": [
-                "是否领取体验卡宝箱",
-                "是否领取奖励"
+                "领取体验卡宝箱",
+                "是否领取奖励",
+                "宝匣挑战"
             ],
             "description": "[size:15][color:tomato]开启后会领取忍法帖升级的全部奖励，需要攒体验卡的不要用！[/color][/size]",
             "default_check": true
@@ -379,7 +380,7 @@
                 }
             ]
         },
-        "是否领取体验卡宝箱": {
+        "领取体验卡宝箱": {
             "type": "switch",
             "cases": [
                 {
@@ -450,6 +451,25 @@
                         "ninjia_book_award_selected": {
                             "next": [
                                 "back_main_screen_and_stop"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "宝匣挑战": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "check_no_treasure_box_award": {
+                            "next": [
+                                "treasure_box_challenge"
                             ]
                         }
                     }
