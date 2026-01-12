@@ -139,7 +139,8 @@
         ],
         "action": "Click",
         "next": [
-            "confirm_train_road_reset"
+            "confirm_train_road_reset",
+            "train_road_reset"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]修行之路重置[/color]"
@@ -192,35 +193,41 @@
         "action": "Click",
         "next": [
             "confirm_train_road_sweep",
-            "above_kage_confirm_train_road_reset"
+            "above_kage_confirm_train_road_reset",
+            "confirm_train_road_reset"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确认修行之路重置[/color]"
     },
     "confirm_train_road_sweep": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/confirm_train_road_sweep.png",
+        "recognition": "OCR",
+        "expected": [
+            "扫荡"
+        ],
         "roi": [
-            557,
-            513,
-            164,
-            61
+            499,
+            402,
+            280,
+            204
         ],
         "action": "Click",
         "next": [
-            "without_confirm_train_road_sweep"
+            "without_confirm_train_road_sweep",
+            "confirm_train_road_sweep"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]确认修行之路扫荡[/color]"
     },
     "without_confirm_train_road_sweep": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/confirm_train_road_sweep.png",
+        "recognition": "OCR",
+        "expected": [
+            "扫荡"
+        ],
         "roi": [
-            557,
-            513,
-            164,
-            61
+            499,
+            402,
+            280,
+            204
         ],
         "inverse": true,
         "next": [
