@@ -779,6 +779,14 @@
             "type": "switch",
             "cases": [
                 {
+                    "name": "No",
+                    "pipeline_override": {
+                        "secret_realm_flip_accessory_card": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
                     "name": "Yes",
                     "pipeline_override": {
                         "secret_realm_win": {
@@ -786,14 +794,6 @@
                         },
                         "secret_realm_flip_without_card": {
                             "enabled": true
-                        }
-                    }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {
-                        "secret_realm_flip_accessory_card": {
-                            "enabled": false
                         }
                     }
                 }
@@ -804,6 +804,14 @@
             "type": "switch",
             "cases": [
                 {
+                    "name": "No",
+                    "pipeline_override": {
+                        "secret_realm_flip_gear_card": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
                     "name": "Yes",
                     "pipeline_override": {
                         "secret_realm_win": {
@@ -811,14 +819,6 @@
                         },
                         "secret_realm_flip_without_card": {
                             "enabled": true
-                        }
-                    }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {
-                        "secret_realm_flip_gear_card": {
-                            "enabled": false
                         }
                     }
                 }
