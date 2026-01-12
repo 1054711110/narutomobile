@@ -36,25 +36,23 @@
         "recognition": "TemplateMatch",
         "template": "Leaderboard/thumb.png",
         "roi": [
-            1121,
-            139,
-            148,
-            98
+            1027,
+            79,
+            252,
+            493
         ],
         "action": "Click",
-        "post_delay": 1000,
+        "post_delay": 700,
         "focus": "[color:DeepSkyBlue]点赞[/color]"
     },
     "click_thumb_done": {
-        "recognition": "OCR",
-        "expected": [
-            "已"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Leaderboard/thumb_done.png",
         "roi": [
-            1121,
-            139,
-            148,
-            98
+            1027,
+            79,
+            252,
+            493
         ],
         "next": [
             "back_main_screen_and_stop"
