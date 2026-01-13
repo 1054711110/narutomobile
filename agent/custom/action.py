@@ -189,4 +189,4 @@ class GoIntoEntry(CustomAction):
             logger.warning("识别到功能入口但解析失败(best_result为空)")
             return False, None
 
-        return True, reco_detail.best_result.box
+        return True, reco_detail.best_result.box  # type: ignore

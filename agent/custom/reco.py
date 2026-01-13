@@ -2,9 +2,8 @@ from maa.define import Rect
 from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
 from maa.context import Context
-import time
-from numpy import ndarray, log
-from typing import List, Tuple, Set, Dict, Optional, Any
+from numpy import ndarray
+from typing import List, Tuple, Dict, Optional, Any
 import re
 
 from utils.logger import logger
@@ -104,7 +103,7 @@ class FindToChallenge(CustomRecognition):
                 detail={},
             )
 
-        logger.info(f"没一个打得过的，溜了溜了。")
+        logger.info("没一个打得过的，溜了溜了。")
         return CustomRecognition.AnalyzeResult(
             box=None,
             detail={},
@@ -419,7 +418,7 @@ class FlipCard(CustomRecognition):
 
     def _calc_single_dir_score(
         self, pos: Tuple[int, int], card_state_grid: List[List[int]], orange_info: Dict
-    ) -> Dict[str, int]:
+    ) -> Dict[str, int | str]:
         """
         计算单一方向的分数（非叠加）：行/列/对角线各自的分数
         return: {"row_score": 行分数, "col_score": 列分数, "diag_score": 对角线分数, "max_score": 最高分}
@@ -483,7 +482,7 @@ class FlipCard(CustomRecognition):
         pos_data = []
         for pos in all_unflip:
             dir_scores = self._calc_single_dir_score(pos, card_state_grid, orange_info)
-            max_score = dir_scores["max_score"]
+            max_score: int = dir_scores["max_score"]  # type: ignore
             max_dir = dir_scores["max_dir"]
             # 排序权重：1. 最高分降序 → 2. 最高分方向（行>列>对角线）→ 3. 对角线优先 → 4. 行列号升序
             dir_priority = 0 if max_dir == "row" else (1 if max_dir == "col" else 2)
@@ -504,7 +503,7 @@ class FlipCard(CustomRecognition):
         best_score = -pos_data[0][0]
 
         # 日志输出单一方向分数
-        logger.info(f"未翻牌评分详情（优先同方向生长，行>列>对角线）：")
+        logger.info("未翻牌评分详情（优先同方向生长，行>列>对角线）：")
         for idx, item in enumerate(pos_data[:3]):
             max_score = -item[0]
             dir_priority = item[1]
@@ -652,7 +651,7 @@ def get_token_count(context: Context, image: ndarray, roi: list[int]) -> int | N
         return None
 
     # 提取并清洗识别文本（仅保留数字）
-    source_text = str(reco_detail.best_result.text).strip()
+    source_text = str(reco_detail.best_result.text).strip()  # type: ignore
     logger.debug(
         f"[find_bonds_without_enough_token] ROI{roi} 原始识别文本：{source_text}"
     )
