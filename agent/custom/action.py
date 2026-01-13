@@ -192,15 +192,15 @@ class GoIntoEntryByGuide(CustomAction):
             logger.info("任务停止，提前退出")
             return CustomAction.RunResult(success=False)
 
-        box = fast_ocr(context=context, expected=["倒计时"], roi=(676, 15, 411, 134))
+        box = fast_ocr(context=context, expected=["倒计时"], roi=(450, 31, 250, 54))
         if box is None:
             logger.debug("该账号不为回归账号")
             start = [170, 600]
             end = [170, 200]
         else:
             logger.debug("该账号为回归账号")
-            start = [480, 730]
-            end = [480, 350]
+            start = [300, 600]
+            end = [300, 200]
             box = fast_ocr(context, expected=["忍界指引"], roi=(6, 886, 249, 173))
             if box is None:
                 return CustomAction.RunResult(success=False)
