@@ -406,6 +406,24 @@
       "type": "Click"
     }
   },
+  "open_ninjia_guide": {
+    "recognition": "TemplateMatch",
+    "$doc": "这里的图标在等级较低的账号可能显示为忍具，但由于有roi所以不会误判",
+    "template": [
+      "SharedNode/guide.png",
+      "SharedNode/back_to_konoha.png",
+      "SharedNode/ninjia_tools.png"
+    ],
+    "roi": [
+      934,
+      597,
+      178,
+      123
+    ],
+    "action": "Click",
+    "post_wait_freezes": 500,
+    "post_delay": 500
+  },
   "unknow_error": {
     "action": "StopTask",
     "focus": "[color:tomato]未知原因导致卡死。[/color]"

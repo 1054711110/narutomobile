@@ -64,7 +64,7 @@
             "properties": {
                 "entry_name": {
                     "title": "Entry Name Property",
-                    "description": "功能入口的文本名称，支持单个名称（字符串）或多个名称（字符串数组）",
+                    "description": "功能入口的文本名称，支持单个名。必须写入功能对应的全称，而非简称。必填。",
                     "anyOf": [
                         {
                             "type": "string"
@@ -74,7 +74,8 @@
                             "items": {
                                 "type": "string"
                             },
-                            "minItems": 1
+                            "minItems": 1,
+                            "maximum": 1
                         }
                     ],
                     "markdownDescription": "*string* | *array<string,>*\n\n功能入口的文本名称。必填。\n\n- *string*: 单个入口名称\n- *array<string,>*: 多个入口名称，匹配任意一个即可"

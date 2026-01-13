@@ -7,7 +7,6 @@
 import os
 import sys
 import json
-import subprocess
 from pathlib import Path
 
 # utf-8
