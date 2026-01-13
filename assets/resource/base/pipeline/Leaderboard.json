@@ -27,11 +27,28 @@
         },
         "post_delay": 500,
         "next": [
-            "click_thumb_done_ocr",
-            "click_thumb_done",
-            "[JumpBack]click_thumb",
+            "leaderboard_in_leaderboard",
             "find_leaderboard_in_main_screen"
         ]
+    },
+    "leaderboard_in_leaderboard": {
+        "recognition": "OCR",
+        "expected": [
+            "返回",
+            "这回"
+        ],
+        "roi": [
+            0,
+            630,
+            229,
+            89
+        ],
+        "next": [
+            "click_thumb_done_ocr",
+            "click_thumb_done",
+            "[JumpBack]click_thumb"
+        ],
+        "focus": "[color:DeepSkyBlue]在排行榜中[/color]"
     },
     "click_thumb": {
         "recognition": "TemplateMatch",
