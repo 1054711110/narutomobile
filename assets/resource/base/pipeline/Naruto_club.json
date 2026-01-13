@@ -584,7 +584,7 @@
         "expected": [
             "本周已参与"
         ],
-        "inverse": false,
+        "inverse": true,
         "action": "Click",
         "target": [
             558,
@@ -594,7 +594,10 @@
         ],
         "max_hit": 5,
         "next": [
-            "weekly_feed_pig"
+            "confirm_feed_pig",
+            "weekly_feed_pig",
+            "feed_pig_done",
+            "close_feed_pig"
         ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]点击喂豚豚[/color]"
