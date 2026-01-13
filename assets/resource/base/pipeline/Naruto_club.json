@@ -563,8 +563,8 @@
         ],
         "inverse": true,
         "next": [
-            "weekly_feed_pig",
-            "feed_pig_done"
+            "feed_pig_done",
+            "weekly_feed_pig"
         ],
         "timeout": 7000,
         "on_error": [
@@ -721,19 +721,23 @@
         "action": "ClickKey",
         "key": 4,
         "next": [
-            "swipe_for_club_submit",
             "benefit_station",
+            "swipe_for_club_submit",
             "[JumpBack]close_gold_helper"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭金币助手[/color]"
     },
     "swipe_for_club_submit": {
+        "recognition": "OCR",
+        "expected": [
+            "金币"
+        ],
         "roi": [
-            78,
-            338,
-            102,
-            43
+            57,
+            48,
+            607,
+            671
         ],
         "action": "Swipe",
         "begin": [
