@@ -2,7 +2,87 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
     "properties": {
-        "custom_action": {},
-        "custom_action_param": {}
+        "custom_action": {
+            "enum": [
+                "Screenshot",
+                "GoIntoEntry",
+                "GoIntoEntryByGuide"
+            ]
+        },
+        "custom_action_param": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/ScreenshotParam"
+                },
+                {
+                    "$ref": "#/$defs/GoIntoEntryParam"
+                },
+                {
+                    "$ref": "#/$defs/GoIntoEntryByGuideParam"
+                }
+            ]
+        }
+    },
+    "$defs": {
+        "ScreenshotParam": {
+            "type": "object",
+            "description": "自定义截图动作，保存当前屏幕截图到日志目录",
+            "markdownDescription": "自定义截图动作\n\n**功能说明：**\n- 获取当前屏幕截图\n- 检查分辨率是否为 16:9（允许1%误差）\n- 转换图像格式为 RGB\n- 保存为 PNG 格式到日志目录\n\n**文件命名：**\n- 使用时间戳命名：`YYYYMMDD_HHMMSS.png`\n- 保存路径：日志目录（log_dir）\n\n**返回值：**\n- `success`: 始终返回 true",
+            "properties": {}
+        },
+        "GoIntoEntryParam": {
+            "type": "object",
+            "description": "从主界面获取功能入口，支持左右滑动查找",
+            "markdownDescription": "从主界面获取功能入口\n\n**功能说明：**\n- 在主界面识别指定的功能入口图标\n- 支持单个或多个模板匹配\n- 如果未找到，会自动滑动屏幕查找\n- 滑动顺序：右滑2次 → 左滑2次\n\n**查找流程：**\n1. 在当前屏幕识别功能入口\n2. 未找到则右滑，重新识别（最多2次）\n3. 仍未找到则左滑，重新识别（最多2次）\n4. 找到后点击对应位置\n\n**参数说明：**\n- `template`: 功能入口的匹配模板名称\n  - 类型：字符串或字符串数组\n  - 必填\n  - 示例：`\"template_name\"` 或 `[\"template1\", \"template2\"]`\n\n**返回值：**\n- `success`: 找到并点击返回 true，否则返回 false",
+            "properties": {
+                "template": {
+                    "title": "Template Property",
+                    "description": "功能入口的匹配模板名称，支持单个模板（字符串）或多个模板（字符串数组）",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        }
+                    ],
+                    "markdownDescription": "*string* | *array<string,>*\n\n功能入口的匹配模板名称。必填。\n\n- *string*: 单个模板名称\n- *array<string,>*: 多个模板名称，匹配任意一个即可"
+                }
+            },
+            "required": [
+                "template"
+            ]
+        },
+        "GoIntoEntryByGuideParam": {
+            "type": "object",
+            "description": "通过忍界指引进入功能入口，支持普通账号和回归账号",
+            "markdownDescription": "通过忍界指引进入功能入口\n\n**功能说明：**\n- 自动检测账号类型（普通/回归）\n- 根据账号类型调整滑动区域和ROI\n- 在任务列表中查找指定功能入口\n- 支持多次滑动查找（最多5次）\n\n**账号类型检测：**\n- **普通账号**：未检测到\"倒计时\"文本\n  - 滑动区域：[170, 640] → [170, 330]\n  - 列表ROI：(17, 131, 303, 853)\n- **回归账号**：检测到\"倒计时\"文本\n  - 先点击\"忍界指引\"按钮\n  - 滑动区域：[480, 730] → [480, 350]\n  - 列表ROI：(366, 186, 225, 749)\n\n**查找流程：**\n1. 检测账号类型并设置对应参数\n2. 确认\"任务\"标签页已打开\n3. 在列表中查找指定入口文本\n4. 未找到则滑动列表（最多5次）\n5. 找到后点击入口，再点击\"前往\"按钮\n\n**参数说明：**\n- `entry_name`: 功能入口的文本名称\n  - 类型：字符串或字符串数组\n  - 必填\n  - 示例：`\"决斗场\"` 或 `[\"决斗场\", \"段位赛\"]`\n\n**返回值：**\n- `success`: 找到入口并成功点击\"前往\"返回 true，否则返回 false",
+            "properties": {
+                "entry_name": {
+                    "title": "Entry Name Property",
+                    "description": "功能入口的文本名称，支持单个名称（字符串）或多个名称（字符串数组）",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1
+                        }
+                    ],
+                    "markdownDescription": "*string* | *array<string,>*\n\n功能入口的文本名称。必填。\n\n- *string*: 单个入口名称\n- *array<string,>*: 多个入口名称，匹配任意一个即可"
+                }
+            },
+            "required": [
+                "entry_name"
+            ]
+        }
     }
 }
