@@ -1,6 +1,7 @@
 import os
 import json
 import random
+from time import sleep
 from typing import Optional, Tuple
 
 from PIL import Image
@@ -12,6 +13,7 @@ from maa.define import RectType
 
 from utils.logger import logger, log_dir
 from utils import get_format_timestamp
+from .utils import fast_ocr
 
 
 def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
@@ -20,27 +22,32 @@ def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
     ).wait()
 
 
-@AgentServer.custom_action("MyAction111")
-class MyAction111(CustomAction):
+def save_screenshot(context: Context):
+    # image array(BGR)
+    screen_array = context.tasker.controller.cached_image
 
-    def run(
-        self,
-        context: Context,
-        argv: CustomAction.RunArg,
-    ) -> CustomAction.RunResult:
+    # Check resolution aspect ratio
+    height, width = screen_array.shape[:2]
+    aspect_ratio = width / height
+    target_ratio = 16 / 9
+    # Allow small deviation (within 1%)
+    if abs(aspect_ratio - target_ratio) / target_ratio > 0.01:
+        logger.error(f"当前模拟器分辨率不是16:9! 当前分辨率: {width}x{height}")
 
-        logger.info("MyAction111 is running!")
+    # BGR2RGB
+    if len(screen_array.shape) == 3 and screen_array.shape[2] == 3:
+        rgb_array = screen_array[:, :, ::-1]
+    else:
+        rgb_array = screen_array
+        logger.warning("当前截图并非三通道")
 
-        # 监听任务停止信号以提前终止任务
-        # 相当于用户按下了“停止”按钮
-        if context.tasker.stopping:
-            logger.info("Task is stopping, exiting MyAction111 early.")
-            return CustomAction.RunResult(success=False)
+    img = Image.fromarray(rgb_array)
 
-        # 执行自定义任务
-        # ...
-
-        return CustomAction.RunResult(success=True)
+    save_dir = log_dir
+    os.makedirs(save_dir, exist_ok=True)
+    time_str = get_format_timestamp()
+    img.save(f"{save_dir}/{time_str}.png")
+    logger.info(f"截图保存至 {save_dir}/{time_str}.png")
 
 
 @AgentServer.custom_action("Screenshot")
@@ -59,33 +66,7 @@ class Screenshot(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
-
-        # image array(BGR)
-        screen_array = context.tasker.controller.cached_image
-
-        # Check resolution aspect ratio
-        height, width = screen_array.shape[:2]
-        aspect_ratio = width / height
-        target_ratio = 16 / 9
-        # Allow small deviation (within 1%)
-        if abs(aspect_ratio - target_ratio) / target_ratio > 0.01:
-            logger.error(f"当前模拟器分辨率不是16:9! 当前分辨率: {width}x{height}")
-
-        # BGR2RGB
-        if len(screen_array.shape) == 3 and screen_array.shape[2] == 3:
-            rgb_array = screen_array[:, :, ::-1]
-        else:
-            rgb_array = screen_array
-            logger.warning("当前截图并非三通道")
-
-        img = Image.fromarray(rgb_array)
-
-        save_dir = log_dir
-        os.makedirs(save_dir, exist_ok=True)
-        time_str = get_format_timestamp()
-        img.save(f"{save_dir}/{time_str}.png")
-        logger.info(f"截图保存至 {save_dir}/{time_str}.png")
-
+        save_screenshot(context)
         task_detail: TaskDetail = context.tasker.get_task_detail(
             argv.task_detail.task_id
         )  # type: ignore
@@ -136,7 +117,7 @@ class GoIntoEntry(CustomAction):
 
         # 右滑两次
         for i in range(2):
-            logger.info(f"右滑第{i+1}次")
+            logger.info(f"右滑第{i + 1}次")
             context.run_task("main_screen_swipe_to_right")
             context.tasker.controller.post_screencap().wait()
             found, box = self.rec_entry(context, target)
@@ -150,7 +131,7 @@ class GoIntoEntry(CustomAction):
 
         # 左滑两次
         for i in range(2):
-            logger.info(f"左滑第{i+1}次")
+            logger.info(f"左滑第{i + 1}次")
             context.run_task("main_screen_swipe_to_left")
             context.tasker.controller.post_screencap().wait()
             found, box = self.rec_entry(context, target)
@@ -190,3 +171,89 @@ class GoIntoEntry(CustomAction):
             return False, None
 
         return True, reco_detail.best_result.box  # type: ignore
+
+
+@AgentServer.custom_action("GoIntoEntryByGuide")
+class GoIntoEntryByGuide(CustomAction):
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        enter_name = json.loads(argv.custom_action_param).get("entry_name", "")
+        if isinstance(enter_name, str):
+            enter_name = [enter_name]
+
+        start = [0, 0]
+        end = [0, 0]
+        list_roi = (26, 60, 404, 616)
+
+        if context.tasker.stopping:
+            logger.info("任务停止，提前退出")
+            return CustomAction.RunResult(success=False)
+
+        box = fast_ocr(context=context, expected=["倒计时"], roi=(676, 15, 411, 134))
+        if box is None:
+            logger.debug("该账号不为回归账号")
+            start = [170, 600]
+            end = [170, 200]
+        else:
+            logger.debug("该账号为回归账号")
+            start = [480, 730]
+            end = [480, 350]
+            box = fast_ocr(context, expected=["忍界指引"], roi=(6, 886, 249, 173))
+            if box is None:
+                return CustomAction.RunResult(success=False)
+
+            click(context, *box)
+            # 进入页面后等待布局动画
+            sleep(1)
+
+        if context.tasker.stopping:
+            logger.info("任务停止，提前退出")
+            return CustomAction.RunResult(success=False)
+
+        # 如果等级较低还有东西没解锁就会聚焦到这里
+        # 此时需要先划到最顶上
+        logger.info("滑动到最顶端")
+        for _ in range(10):
+            context.tasker.controller.post_swipe(
+                end[0], end[1], start[0], start[1], 200
+            ).wait()
+            sleep(0.2)
+
+        max_sweep_attempts = 10
+        box = None
+        for _ in range(max_sweep_attempts):
+            if context.tasker.stopping:
+                logger.info("任务停止，提前退出")
+                return CustomAction.RunResult(success=False)
+
+            box = fast_ocr(context, expected=enter_name, roi=list_roi, absolutely=True)
+            if box is None:
+                logger.info("未识别到功能入口，滑动页面")
+                context.tasker.controller.post_swipe(
+                    start[0], start[1], end[0], end[1], 500
+                ).wait()
+                sleep(0.5)
+                continue
+
+            logger.info(f"识别到功能入口: {enter_name}")
+            break
+
+        if box is None:
+            return CustomAction.RunResult(False)
+
+        if context.tasker.stopping:
+            logger.info("任务停止，提前退出")
+            return CustomAction.RunResult(success=False)
+
+        click(context, *box)
+        sleep(0.5)
+
+        box = fast_ocr(context, ["前往"], (834, 539, 287, 149))
+        if box is None:
+            return CustomAction.RunResult(False)
+        else:
+            click(context, *box)
+            return CustomAction.RunResult(True)
