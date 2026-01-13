@@ -185,6 +185,7 @@
             "name": "秘境(beta)",
             "entry": "secret_realm",
             "option": [
+                "秘境从奖励中心进入",
                 "秘境赢几次",
                 "烈炎秘境",
                 "罡体秘境",
@@ -699,6 +700,27 @@
                             ]
                         }
                     }
+                }
+            ]
+        },
+        "秘境从奖励中心进入": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "secret_realm": {
+                            "next": [
+                                "secret_realm_in_secret_realm",
+                                "secret_realm_in_center_enter",
+                                "secret_realm_ac_entry",
+                                "[JumpBack]back_main_screen"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "No"
                 }
             ]
         },
