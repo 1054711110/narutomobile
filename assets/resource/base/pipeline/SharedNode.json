@@ -29,40 +29,24 @@
       "[JumpBack]christmas_stocking",
       "[JumpBack]close_notice",
       "check_main_screen",
-      "[JumpBack]try_x",
-      "[JumpBack]shut_wechat"
+      "[JumpBack]shut_wechat",
+      "retry_failed"
     ],
     "focus": "[color:darkgray]尝试返回主页面[/color]"
   },
   "christmas_stocking": {
     "recognition": "TemplateMatch",
     "template": "SharedNode/christmas_stocking.png",
-    "action": "Click"
-  },
-  "try_x": {
-    "recognition": "TemplateMatch",
-    "template": "SharedNode/try_x.png",
-    "roi": [
-      1153,
-      0,
-      126,
-      105
-    ],
-    "max_hit": 3,
-    "action": "Click"
+    "action": "Click",
+    "enabled": false
   },
   "check_has_x": {
     "recognition": "TemplateMatch",
     "template": [
-      "SharedNode/announcement_x.png",
       "SharedNode/green_masked_x.png",
-      "SharedNode/ad_x_button.png",
-      "SharedNode/x.png",
-      "SharedNode/rich_room_x.png",
-      "SharedNode/big_is_coming_x.png",
-      "SharedNode/competition_announcement_x.png",
-      "SharedNode/weekly_win_duel_mission_x.png"
     ],
+    "green_mask": true,
+    "threshold": 0.45,
     "roi": [
       0,
       0,
@@ -70,11 +54,9 @@
       334
     ],
     "action": "Click",
-    "threshold": 0.75,
     "post_wait_freezes": 500,
     "post_delay": 500,
     "timeout": 1000,
-    "green_mask": true,
     "focus": "[color:darkgray]关闭当前窗口[/color]"
   },
   "close_friend_rank": {
@@ -243,6 +225,7 @@
     "template": [
       "Startup/main_green_masked.png"
     ],
+    "method": 10001,
     "threshold": 0.9,
     "action": "StopTask",
     "green_mask": true,
