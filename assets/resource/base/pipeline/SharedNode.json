@@ -43,7 +43,7 @@
   "check_has_x": {
     "recognition": "TemplateMatch",
     "template": [
-      "SharedNode/green_masked_x.png",
+      "SharedNode/green_masked_x.png"
     ],
     "green_mask": true,
     "threshold": 0.45,

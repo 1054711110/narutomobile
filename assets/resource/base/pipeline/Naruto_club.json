@@ -525,6 +525,7 @@
         "expected": [
             "去参与"
         ],
+        "enabled": false,
         "inverse": true,
         "next": [
             "check_club_mission_done"
@@ -542,6 +543,7 @@
             456,
             232
         ],
+        "enabled": false,
         "action": "Click",
         "next": [
             "feed_pig_work",
