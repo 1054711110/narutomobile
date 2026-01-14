@@ -1,9 +1,9 @@
 {
     "give_energy": {
         "next": [
+            "[JumpBack]back_main_screen",
             "energy_entry",
-            "[JumpBack]give_energy_done",
-            "[JumpBack]back_main_screen"
+            "give_energy_done"
         ],
         "focus": "[color:DeepSkyBlue]进入送体力子任务[/color]"
     },
@@ -99,31 +99,11 @@
             42
         ],
         "action": "Click",
+        "$doc": "一键领取体力后不需要点确定",
         "next": [
-            "confirm_get_energy",
             "back_main_screen_and_stop"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]领取好友送的体力[/color]"
-    },
-    "confirm_get_energy": {
-        "recognition": "OCR",
-        "roi": [
-            524,
-            394,
-            229,
-            113
-        ],
-        "expected": [
-            "确",
-            "认"
-        ],
-        "action": "Click",
-        "next": [
-            "confirm_get_energy",
-            "back_main_screen_and_stop"
-        ],
-        "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]确认送体力[/color]"
     }
 }
