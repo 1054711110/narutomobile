@@ -62,6 +62,18 @@
 
     A: 请移步[M9A的用户手册](https://1999.fan/zh_cn/manual/newbie.html)自行学习相关解决方案。
 
+5. Q: 同一路径下只能启动一个实例
+
+    ![route_lock](../imgs/route_lock.png)
+
+    A: 如果需要多开，请单独复制一份打开
+
+    Q：我确认我只开了一个但还是有这个提示
+
+    A: 请在任务管理器中检查，之前关闭时是否还有进程残留。
+
+    ![tasker_manager](../imgs/tasker_manager.png)
+
 ## 无法连接模拟器
 
 无法连接到模拟器请先按照以下步骤排查：
@@ -124,6 +136,10 @@ adb（即 Android 调试桥），MFA 通过它来与模拟器建立连接，如�
 | 雷电 | `index=多开号` | `index=1` |
 
 多开号从0开始，0代表模拟器本体，1代表第一个多开模拟器，依次类推。
+
+![multi_vm](../imgs/multi_vm.png)
+
+以上内容就表示启动在MuMu第五个虚拟机。
 
 （以上内容修改自M9A）
 
