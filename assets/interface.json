@@ -216,6 +216,8 @@
             "entry": "sky_ground",
             "option": [
                 "天地选择战场",
+                "守擂后游走避战",
+                "你的名字",
                 "天地选择额外奖励柱子",
                 "天地挑战"
             ],
@@ -225,9 +227,9 @@
             "name": "叛忍(beta)",
             "entry": "rebel_ninja",
             "option": [
+                "叛忍敌人等级",
                 "叛忍难度",
                 "叛忍开双倍",
-                "叛忍敌人等级",
                 "叛忍二级密码"
             ],
             "description": "开始测试,可以在叛忍地图打开,选项是首领功能,二级密码仅作为测试,不要输自己的"
@@ -1113,6 +1115,40 @@
                     }
                 }
             ]
+        },
+        "守擂后游走避战": {
+            "type": "switch",
+            "description": "需要输入自己的ID,子串即可,可能识别失败依旧游走,名字和别人类似可能会不动",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "sky_ground_on_column": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "你的名字": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "你的名字",
+                    "description": "为上面的选项提供ID,只需要字串,识别ID成功时,不会点空柱子避战",
+                    "pipeline_type": "string",
+                    "default": "MaaAutoNaruto"
+                }
+            ],
+            "pipeline_override": {
+                "sky_ground_on_column": {
+                    "expected": "{你的名字}"
+                }
+            }
         },
         "天地选择额外奖励柱子": {
             "type": "switch",

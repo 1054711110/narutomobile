@@ -2,7 +2,7 @@
     "sky_ground": {
         "next": [
             "sky_ground_entry",
-            "sky_ground_to_column",
+            "sky_ground_in_main",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入天地子任务[/color]"
@@ -408,6 +408,7 @@
         "next": [
             "sky_ground_end",
             "[JumpBack]sky_ground_to_award_column",
+            "[JumpBack]sky_ground_on_column",
             "sky_ground_to_column",
             "[JumpBack]sky_ground_to_fight_column",
             "[JumpBack]sky_ground_in_fight",
@@ -435,6 +436,13 @@
             0,
             0
         ]
+    },
+    "sky_ground_on_column": {
+        "recognition": "OCR",
+        "expected": [
+            "MaaAutoNaruto"
+        ],
+        "post_delay": 5000
     },
     "sky_ground_to_fight_column": {
         "recognition": "TemplateMatch",
