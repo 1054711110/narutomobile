@@ -495,7 +495,8 @@
     "treasure_box_challenge": {
         "recognition": "OCR",
         "expected": [
-            "挑战"
+            "挑战",
+            "扫荡"
         ],
         "roi": [
             721,
@@ -506,10 +507,51 @@
         "action": "Click",
         "next": [
             "treasure_box_challenge_confirm_ninja",
+            "treasure_box_celebrate",
             "[JumpBack]treasure_box_challenge"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]前往宝匣挑战[/color]"
+    },
+    "treasure_box_celebrate": {
+        "recognition": "OCR",
+        "expected": [
+            "恭喜",
+            "你获得"
+        ],
+        "roi": [
+            336,
+            53,
+            639,
+            224
+        ],
+        "action": "Click",
+        "next": [
+            "treasure_box_without_celebrate",
+            "treasure_box_celebrate"
+        ],
+        "post_wait_freezes": 500,
+        "focus": "[color:DeepSkyBlue]宝匣扫荡完成[/color]"
+    },
+    "treasure_box_without_celebrate": {
+        "recognition": "OCR",
+        "expected": [
+            "恭喜",
+            "你获得"
+        ],
+        "roi": [
+            336,
+            53,
+            639,
+            224
+        ],
+        "inverse": true,
+        "post_wait_freezes": 500,
+        "next": [
+            "ninjia_book_award_undone",
+            "ninjia_book_award_selected"
+        ],
+        "focus": "[color:DeepSkyBlue]宝匣扫荡完成[/color]"
     },
     "treasure_box_sweep": {
         "recognition": "OCR",
