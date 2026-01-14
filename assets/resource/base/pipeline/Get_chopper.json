@@ -1,9 +1,9 @@
 {
     "get_chopper": {
         "next": [
-            "[JumpBack]back_main_screen",
             "get_chopper_in_center_enter",
-            "[JumpBack]award_center_enter"
+            "[JumpBack]award_center_enter",
+            "[JumpBack]back_main_screen",
         ],
         "focus": "[color:DeepSkyBlue]进入铜币招财子任务[/color]"
     },
