@@ -32,22 +32,16 @@
 [任务流水线（Pipeline）协议](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/3.1-%E4%BB%BB%E5%8A%A1%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8D%8F%E8%AE%AE.md)以学习如何将思路转化为具体实现，并通过这个去了解如何在`assets\resource\base\pipeline`中编写流水线文件。然后学习[Project Interface 协议](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/3.2-ProjectInterface%E5%8D%8F%E8%AE%AE.md#project-interface-%E5%8D%8F%E8%AE%AE)，了解如何让软件能够调用你写的流水线文件。
 
 3. 我有一定的Python基础，想要尝试为项目编写代码。可以阅读
-[MaaFramework 开发文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)以了解如何为项目开发新功能。
+[MaaFramework 继承接口](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/2.2-%E9%9B%86%E6%88%90%E6%8E%A5%E5%8F%A3%E4%B8%80%E8%A7%88.md)并**结合本项目源码**以了解如何为项目开发高级功能。**纸上学来终觉浅，绝知此事要躬行。不结合代码实践读文档，等于白读。**
 
 4. 为项目贡献你所编写的内容，请参考[牛牛也能看懂的 GitHub Pull Request 使用指南](https://maa.plus/docs/zh-cn/develop/pr-tutorial.html)
 
 ## FAQ
 
-### 1. 使用 MaaDebugger 或 MaaPicli 时弹窗报错，应用程序错误：应用程序无法正常启动
-
-![缺少运行库](../imgs/maapicli_error.png)
-
-请安装一下 [vc++ runtime](https://aka.ms/vs/17/release/vc_redist.x64.exe) 。
-
-### 2. 我在这个仓库里提了 Issue 很久没人回复
+### 1. 我在这个仓库里提了 Issue 很久没人回复
 
 本项目目前紧缺人手，你可以先阅读文档自行尝试寻找解决方案。欢迎可以提交pr。
 
-### 3. OCR 文字识别一直没有识别结果，报错 "Failed to load det or rec", "ocrer is null"
+### 2. OCR 文字识别一直没有识别结果，报错 "Failed to load det or rec", "ocrer is null"
 
 你不但没有仔细阅读MaaFramework的开发文档，还无视了前面步骤的报错。我不想解释了，请再把文档仔细阅读一遍！
