@@ -555,12 +555,6 @@
         "expected": [
             "去参与"
         ],
-        "roi": [
-            681,
-            54,
-            466,
-            436
-        ],
         "inverse": true,
         "next": [
             "feed_pig_done",
