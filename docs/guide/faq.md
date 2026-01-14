@@ -30,7 +30,7 @@
 
 5. Q: 更新速度特别慢或无法更新？
 
-    A: 可以试试[Mirror酱](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&os=windows&arch=x64&channel=stable)高速下载服务。
+    A: 可以试试[Mirror酱](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&os=windows&arch=x64&channel=stable&source=MaaAutoNarutogh-doc)高速下载服务。
 
 ## 无法启动
 
@@ -100,7 +100,7 @@
 
 2. Q: 更新检测失败
 
-    A: 试试[Mirror酱](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&os=windows&arch=x64&channel=stable)高速下载服务或自行前往GitHub仓库手动下载。
+    A: 试试[Mirror酱](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&os=windows&arch=x64&channel=stable&source=MaaAutoNarutogh-doc)高速下载服务或自行前往GitHub仓库手动下载。
 
 ## 模拟器多开
 
