@@ -283,12 +283,13 @@
             107,
             107
         ],
-        "max_hit": 20,
+        "max_hit": 10,
         "action": "Click",
         "next": [
             "check_in_team_dash_sweep",
             "team_dash_do_not_remind_gold",
-            "team_dash_auto_fight"
+            "team_dash_auto_fight",
+            "team_dash_auto_fight_retry_failed"
         ],
         "timeout": 50000,
         "on_error": [
@@ -297,6 +298,20 @@
         "post_wait_freezes": 500,
         "rate_limit": 3000,
         "focus": "[color:DeepSkyBlue]小队突袭自动战斗[/color]"
+    },
+    "team_dash_auto_fight_retry_failed": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "Team_dash/auto_fight.png",
+            "Team_dash/auto_match.png"
+        ],
+        "roi": [
+            1138,
+            572,
+            107,
+            107
+        ],
+        "next": "retry_failed"
     },
     "team_dash_keep_fight": {
         "recognition": "OCR",
