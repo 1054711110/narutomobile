@@ -355,10 +355,17 @@
       "type": "TemplateMatch",
       "param": {
         "template": "SharedNode/notice_x.png",
-        "threshold": 0.85
+        "threshold": 0.85,
+        "roi": [
+          180,
+          123,
+          905,
+          325
+        ]
       }
     },
     "action": "Click",
+    "focus": "关闭气泡弹窗",
     "next": "ensure_to_close",
     "timeout": 1000
   },
