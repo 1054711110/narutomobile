@@ -1,20 +1,10 @@
 {
     "survival_challenge": {
         "next": [
-            "enter_survival_challenge",
-            "[JumpBack]enter_practice_place",
+            "survival_challenge_in_center_enter",
+            "[JumpBack]award_center_enter",
             "[JumpBack]back_main_screen"
         ]
-    },
-    "enter_survival_challenge": {
-        "recognition": "TemplateMatch",
-        "template": "Practice_place/survival_challenge.png",
-        "action": "Click",
-        "next": [
-            "survival_challenge_yesterday_award",
-            "enter_survival_challenge"
-        ],
-        "focus": "进入生存挑战"
     },
     "survival_challenge_yesterday_award": {
         "recognition": "TemplateMatch",
@@ -292,10 +282,7 @@
     },
     "survival_challenge_in_center_enter": {
         "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
+        "template": "SharedNode/check_in_daily_award.png",
         "roi": [
             37,
             172,

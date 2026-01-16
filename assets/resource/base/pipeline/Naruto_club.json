@@ -1102,13 +1102,18 @@
     },
     "shut_qq": {
         "action": "StopApp",
-        "package": "com.tencent.mobileqq"
+        "package": "com.tencent.mobileqq",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200
     },
-    "shut_wechat": {
-        "$doc": "加个命中次数限制，防止死循环",
+    "shut_social_media": {
+        "$doc": "关闭qq和微信，加个命中次数限制，防止死循环",
         "max_hit": 3,
         "action": "StopApp",
         "package": "com.tencent.mm",
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "shut_qq"
         ]

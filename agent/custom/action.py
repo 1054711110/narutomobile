@@ -1,3 +1,4 @@
+from numpy import log
 import json
 from time import sleep
 from typing import Optional, Tuple
@@ -9,7 +10,7 @@ from maa.context import Context
 from maa.define import RectType
 
 from utils.logger import logger
-from .utils import fast_ocr, click, save_screenshot
+from .utils import fast_ocr, fast_swipe, click, save_screenshot
 
 
 @AgentServer.custom_action("Screenshot")
@@ -143,6 +144,10 @@ class GoIntoEntryByGuide(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
         enter_name = json.loads(argv.custom_action_param).get("entry_name", "")
+        if not isinstance(enter_name, str) and not isinstance(enter_name, list):
+            logger.error(f"输入错误: {enter_name}")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
         if isinstance(enter_name, str):
             enter_name = [enter_name]
 
@@ -168,8 +173,7 @@ class GoIntoEntryByGuide(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             click(context, *box)
-            # 进入页面后等待布局动画
-            sleep(1)
+            sleep(0.5)
 
         if context.tasker.stopping:
             logger.info("任务停止，提前退出")
@@ -179,13 +183,29 @@ class GoIntoEntryByGuide(CustomAction):
         # 此时需要先划到最顶上
         logger.info("滑动到最顶端")
         for _ in range(10):
-            context.tasker.controller.post_swipe(
-                end[0], end[1], start[0], start[1], 200
-            ).wait()
-            sleep(0.2)
+            fast_swipe(
+                context,
+                start_x=end[0],
+                start_y=end[1],
+                end_x=start[0],
+                end_y=start[1],
+                end_hold=False,
+            )
+            if fast_ocr(
+                context, expected=enter_name, roi=list_roi, absolutely=True
+            ) or fast_ocr(
+                context,
+                expected=["天赋"],
+                roi=list_roi,
+                absolutely=True,
+                screenshot_refresh=False,
+            ):
+                break
 
-        max_sweep_attempts = 10
+        logger.info("开始查找功能入口")
+        max_sweep_attempts = 15
         box = None
+        logger.info(f"开始查找功能入口: {enter_name}")
         for _ in range(max_sweep_attempts):
             if context.tasker.stopping:
                 logger.info("任务停止，提前退出")
@@ -193,14 +213,17 @@ class GoIntoEntryByGuide(CustomAction):
 
             box = fast_ocr(context, expected=enter_name, roi=list_roi, absolutely=True)
             if box is None:
-                logger.info("未识别到功能入口，滑动页面")
-                context.tasker.controller.post_swipe(
-                    start[0], start[1], end[0], end[1], 500
-                ).wait()
-                sleep(0.5)
+                logger.debug("未识别到功能入口，滑动页面")
+                fast_swipe(
+                    context,
+                    start_x=start[0],
+                    start_y=start[1],
+                    end_x=end[0],
+                    end_y=end[1],
+                )
                 continue
 
-            logger.info(f"识别到功能入口: {enter_name}")
+            logger.debug(f"识别到功能入口: {enter_name}")
             break
 
         if box is None:

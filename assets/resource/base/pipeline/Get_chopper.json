@@ -10,7 +10,6 @@
     "get_chopper_in_center_enter": {
         "recognition": "TemplateMatch",
         "template": [
-            "SharedNode/check_not_in_daily_award.png",
             "SharedNode/check_in_daily_award.png"
         ],
         "roi": [
@@ -19,13 +18,13 @@
             130,
             47
         ],
-        "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "get_chopper_ac_entry_undone",
             "get_chopper_ac_done",
             "[JumpBack]swipe_for_award_center_find"
         ],
-        "post_wait_freezes": 700,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
     "get_chopper_ac_entry_undone": {
@@ -50,8 +49,9 @@
             "[JumpBack]start_chopper",
             "get_chopper_ac_entry_undone"
         ],
+        "pre_delay": 0,
         "action": "Click",
-        "post_wait_freezes": 1000,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]铜币招财未完成[/color]"
     },
     "get_chopper_ac_done": {
@@ -63,6 +63,8 @@
             1100,
             118
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "back_main_screen_and_stop"
         ],
@@ -79,18 +81,15 @@
             129,
             48
         ],
+        "pre_delay": 0,
         "action": "Click",
-        "post_delay": 1000,
+        "post_delay": 500,
         "focus": "[color:DeepSkyBlue]进行招财[/color]"
     },
     "check_chopper_done": {
         "recognition": "OCR",
         "expected": [
-            "0",
-            "10",
-            "招财",
-            "招",
-            "财"
+            "招财"
         ],
         "roi": [
             648,
@@ -98,26 +97,9 @@
             129,
             48
         ],
-        "next": [
-            "close_chooper"
-        ],
-        "pre_wait_freezes": 200,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]铜币招财完成[/color]"
-    },
-    "close_chooper": {
-        "recognition": "TemplateMatch",
-        "template": "Get_chopper/x.png",
-        "roi": [
-            1026,
-            79,
-            115,
-            78
-        ],
-        "action": "Click",
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "post_wait_freezes": 300,
-        "focus": "[color:DeepSkyBlue]关闭铜币招财[/color]"
     }
 }

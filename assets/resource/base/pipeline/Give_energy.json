@@ -1,10 +1,12 @@
 {
     "give_energy": {
         "next": [
-            "[JumpBack]back_main_screen",
             "energy_entry",
-            "give_energy_done"
+            "give_energy_done",
+            "[JumpBack]back_main_screen"
         ],
+        "post_delay": 0,
+        "pre_delay": 0,
         "focus": "[color:DeepSkyBlue]进入送体力子任务[/color]"
     },
     "energy_entry": {
@@ -18,13 +20,16 @@
             59,
             55
         ],
+        "method": 10001,
         "green_mask": true,
         "action": "Click",
         "next": [
             "sent_energy",
             "energy_entry"
         ],
-        "post_delay": 800,
+        "post_delay": 0,
+        "pre_delay": 0,
+        "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]进入送体力界面[/color]"
     },
     "give_energy_account_friend": {
@@ -45,7 +50,8 @@
             0,
             0
         ],
-        "post_delay": 800,
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "sent_energy",
             "energy_entry"
@@ -61,16 +67,16 @@
             63,
             61
         ],
+        "method": 10001,
         "green_mask": true,
         "action": "StopTask",
+        "post_delay": 0,
+        "pre_delay": 0,
         "focus": "[color:DeepSkyBlue]送体力已完成[/color]"
     },
     "sent_energy": {
         "recognition": "OCR",
         "expected": [
-            "一键赠送",
-            "赠送",
-            "送",
             "一键"
         ],
         "roi": [
@@ -83,13 +89,13 @@
         "next": [
             "get_energy"
         ],
-        "post_wait_freezes": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]送体力[/color]"
     },
     "get_energy": {
         "recognition": "OCR",
         "expected": [
-            "一键",
             "领取"
         ],
         "roi": [
@@ -99,6 +105,8 @@
             42
         ],
         "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
         "$doc": "一键领取体力后不需要点确定",
         "next": [
             "back_main_screen_and_stop"
