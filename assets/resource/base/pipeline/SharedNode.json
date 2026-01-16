@@ -53,10 +53,10 @@
       1279,
       334
     ],
+    "pre_delay": 0,
     "action": "Click",
     "post_wait_freezes": 500,
-    "post_delay": 500,
-    "timeout": 1000,
+    "post_delay": 0,
     "focus": "[color:darkgray]关闭当前窗口[/color]"
   },
   "close_friend_rank": {
@@ -101,9 +101,20 @@
   },
   "daily_mission": {
     "recognition": "TemplateMatch",
-    "template": "SharedNode/daily_mission.png",
+    "template": [
+      "SharedNode/check_not_in_daily_award.png",
+      "SharedNode/check_in_daily_award.png"
+    ],
+    "roi": [
+      37,
+      172,
+      130,
+      47
+    ],
+    "pre_delay": 0,
     "action": "Click",
-    "focus": "[color:DeepSkyBlue]进入每日任务[/color]"
+    "post_delay": 0,
+    "post_wait_freezes": 200
   },
   "swipe_for_award_center_find": {
     "recognition": "TemplateMatch",
@@ -127,8 +138,10 @@
       56,
       61
     ],
-    "duration": 700,
-    "post_delay": 500,
+    "duration": 200,
+    "pre_delay": 0,
+    "post_delay": 0,
+    "post_wait_freezes": 200,
     "focus": "[color:DeepSkyBlue]寻找奖励中心功能入口[/color]"
   },
   "swipe_for_award_center_find_end": {
@@ -154,9 +167,7 @@
   "weekly_sign": {
     "recognition": "OCR",
     "expected": [
-      "领取",
-      "领",
-      "取"
+      "领取"
     ],
     "roi": [
       606,
@@ -240,9 +251,10 @@
     ],
     "threshold": 0.9,
     "method": 10001,
-    "action": "DoNothing",
     "green_mask": true,
-    "post_delay": 500,
+    "pre_delay": 0,
+    "action": "DoNothing",
+    "post_delay": 0,
     "focus": "[color:darkgray]检查在主界面[/color]"
   },
   "main_screen_swipe_to_right": {
