@@ -32,10 +32,10 @@
         "recognition": "TemplateMatch",
         "template": "SharedNode/center_entry.png",
         "roi": [
-            1200,
-            348,
-            42,
-            39
+            1151,
+            278,
+            128,
+            158
         ],
         "action": "Click",
         "next": [

@@ -87,10 +87,10 @@
     "recognition": "TemplateMatch",
     "template": "SharedNode/center_entry.png",
     "roi": [
-      1169,
-      301,
-      111,
-      117
+      1151,
+      278,
+      128,
+      158
     ],
     "action": "Click",
     "post_wait_freezes": 300,
