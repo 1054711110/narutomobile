@@ -1,8 +1,8 @@
 {
     "shugyou_no_michi": {
         "next": [
-            "enter_shugyou_no_michi",
-            "[JumpBack]enter_practice_place",
+            "practice_place_in_center_enter",
+            "[JumpBack]award_center_enter",
             "[JumpBack]back_main_screen"
         ]
     },

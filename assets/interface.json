@@ -97,9 +97,6 @@
         {
             "name": "生存挑战",
             "entry": "survival_challenge",
-            "option": [
-                "生存挑战从奖励中心进入"
-            ],
             "default_check": true,
             "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
@@ -1412,27 +1409,6 @@
                         "shugyou_no_michi": {
                             "next": [
                                 "practice_place_in_center_enter",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                }
-            ]
-        },
-        "生存挑战从奖励中心进入": {
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "survival_challenge": {
-                            "next": [
-                                "survival_challenge_in_center_enter",
                                 "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
