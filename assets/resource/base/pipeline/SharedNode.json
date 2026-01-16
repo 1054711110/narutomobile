@@ -31,7 +31,7 @@
       "[JumpBack]click_next_step",
       "[JumpBack]naruto_club_x",
       "[JumpBack]christmas_stocking",
-      "[JumpBack]shut_wechat",
+      "[JumpBack]shut_social_media",
       "retry_failed"
     ],
     "pre_delay": 0,
@@ -98,6 +98,8 @@
     ],
     "method": 10001,
     "action": "Click",
+    "pre_delay": 0,
+    "post_delay": 0,
     "post_wait_freezes": 300,
     "next": "daily_mission",
     "timeout": 3000,
@@ -342,7 +344,10 @@
       "[JumpBack]this_week_nintou_title",
       "[JumpBack]this_week_fighting_title"
     ],
-    "timeout": 5000
+    "pre_delay": 0,
+    "post_delay": 0,
+    "post_wait_freezes": 200,
+    "timeout": 3000
   },
   "this_week_nintou_title": {
     "recognition": "OCR",
@@ -353,6 +358,9 @@
       145,
       56
     ],
+    "pre_delay": 0,
+    "post_delay": 0,
+    "post_wait_freezes": 200,
     "action": "Click",
     "focus": "获得忍道称号"
   },
@@ -365,6 +373,9 @@
       102,
       47
     ],
+    "pre_delay": 0,
+    "post_delay": 0,
+    "post_wait_freezes": 200,
     "action": "Click",
     "focus": "获得格斗称号"
   },
