@@ -1,53 +1,15 @@
-import os
 import json
-import random
 from time import sleep
 from typing import Optional, Tuple
 
-from PIL import Image
 
 from maa.agent.agent_server import AgentServer, TaskDetail
 from maa.custom_action import CustomAction
 from maa.context import Context
 from maa.define import RectType
 
-from utils.logger import logger, log_dir
-from utils import get_format_timestamp
-from .utils import fast_ocr
-
-
-def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
-    context.tasker.controller.post_click(
-        random.randint(x, x + w - 1), random.randint(y, y + h - 1)
-    ).wait()
-
-
-def save_screenshot(context: Context):
-    # image array(BGR)
-    screen_array = context.tasker.controller.cached_image
-
-    # Check resolution aspect ratio
-    height, width = screen_array.shape[:2]
-    aspect_ratio = width / height
-    target_ratio = 16 / 9
-    # Allow small deviation (within 1%)
-    if abs(aspect_ratio - target_ratio) / target_ratio > 0.01:
-        logger.error(f"当前模拟器分辨率不是16:9! 当前分辨率: {width}x{height}")
-
-    # BGR2RGB
-    if len(screen_array.shape) == 3 and screen_array.shape[2] == 3:
-        rgb_array = screen_array[:, :, ::-1]
-    else:
-        rgb_array = screen_array
-        logger.warning("当前截图并非三通道")
-
-    img = Image.fromarray(rgb_array)
-
-    save_dir = log_dir
-    os.makedirs(save_dir, exist_ok=True)
-    time_str = get_format_timestamp()
-    img.save(f"{save_dir}/{time_str}.png")
-    logger.info(f"截图保存至 {save_dir}/{time_str}.png")
+from utils.logger import logger
+from .utils import fast_ocr, click, save_screenshot
 
 
 @AgentServer.custom_action("Screenshot")
