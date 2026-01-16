@@ -2,7 +2,7 @@
     "team_dash": {
         "next": [
             "team_dash_in_center_enter",
-            "team_dash_ac_entry",
+            "[JumpBack]award_center_enter",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入小队突袭子任务[/color]"
@@ -27,22 +27,6 @@
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
-    },
-    "team_dash_ac_entry": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry.png",
-        "roi": [
-            1151,
-            278,
-            128,
-            158
-        ],
-        "action": "Click",
-        "next": [
-            "team_dash_in_center_enter"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
     },
     "team_dash_ac_entry_undone": {
         "recognition": "TemplateMatch",

@@ -668,8 +668,8 @@
                     "pipeline_override": {
                         "weekly_win": {
                             "next": [
-                                "weekly_win_ac_entry",
                                 "weekly_win_in_center_enter",
+                                "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
                         }
@@ -738,7 +738,7 @@
                             "next": [
                                 "secret_realm_in_secret_realm",
                                 "secret_realm_in_center_enter",
-                                "secret_realm_ac_entry",
+                                "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
                         }
@@ -1414,8 +1414,8 @@
                     "pipeline_override": {
                         "shugyou_no_michi": {
                             "next": [
-                                "practice_place_ac_entry",
                                 "practice_place_in_center_enter",
+                                "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
                         }
@@ -1436,7 +1436,7 @@
                         "survival_challenge": {
                             "next": [
                                 "survival_challenge_in_center_enter",
-                                "survival_challenge_ac_entry",
+                                "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
                         }
@@ -1461,8 +1461,8 @@
                     "pipeline_override": {
                         "group": {
                             "next": [
-                                "group_ac_entry",
                                 "group_in_center_enter",
+                                "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
                         }

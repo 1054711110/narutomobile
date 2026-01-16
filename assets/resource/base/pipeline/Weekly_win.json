@@ -822,22 +822,6 @@
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
-    "weekly_win_ac_entry": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry.png",
-        "roi": [
-            1151,
-            278,
-            128,
-            158
-        ],
-        "action": "Click",
-        "next": [
-            "weekly_win_in_center_enter"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
-    },
     "weekly_win_ac_entry_undone": {
         "recognition": "TemplateMatch",
         "template": "Weekly_win/weekly_win_ac_undone.png",
