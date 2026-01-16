@@ -6,7 +6,6 @@
     ],
     "pre_delay": 0,
     "post_delay": 0,
-    "post_wait_freezes": 200,
     "focus": "[color:DeepSkyBlue]退回主界面并停止当前任务[/color]"
   },
   "back_main_screen": {
