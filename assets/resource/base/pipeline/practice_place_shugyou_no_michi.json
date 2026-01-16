@@ -272,22 +272,6 @@
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
-    "practice_place_ac_entry": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry.png",
-        "roi": [
-            1151,
-            278,
-            128,
-            158
-        ],
-        "action": "Click",
-        "next": [
-            "practice_place_in_center_enter"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
-    },
     "practice_place_ac_entry_undone": {
         "recognition": "TemplateMatch",
         "template": "Practice_place/train_road_ac_undone.png",
