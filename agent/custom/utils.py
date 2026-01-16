@@ -91,7 +91,7 @@ def fast_ocr(
         return None
 
     if not absolutely:
-        logger.info(f"OCR 识别成功: {reco_detail.best_result.text}")  # type: ignore
+        logger.debug(f"OCR 识别成功: {reco_detail.best_result.text}")  # type: ignore
         return reco_detail.best_result.box  # type: ignore
     else:
         box = None
@@ -102,7 +102,7 @@ def fast_ocr(
                 break
 
         if box is not None:
-            logger.info(f"OCR 绝对匹配成功: {expected}")
+            logger.debug(f"OCR 绝对匹配成功: {expected}")
             return box
         else:
             logger.debug(f"识别失败：{reco_detail.filtered_results}")

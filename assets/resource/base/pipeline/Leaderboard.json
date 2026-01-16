@@ -1,50 +1,69 @@
 {
     "leaderboard": {
         "next": [
-            "find_leaderboard_in_main_screen",
+            "ninjia_guide_to_leaderboard",
+            "[JumpBack]open_ninjia_guide",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入排行榜子任务[/color]"
     },
-    "find_leaderboard_in_main_screen": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "Startup/main_green_masked.png"
+    "ninjia_guide_to_leaderboard": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "sub_name": "mission_label",
+                "recognition": "OCR",
+                "expected": [
+                    "任务"
                 ],
-                "green_mask": true
+                "roi": [
+                    968,
+                    68,
+                    307,
+                    100
+                ]
+            },
+            {
+                "sub_name": "activity_count_down",
+                "recognition": "OCR",
+                "expected": [
+                    "倒计时"
+                ],
+                "roi": [
+                    400,
+                    0,
+                    350,
+                    135
+                ]
             }
-        },
+        ],
         "action": {
             "type": "Custom",
             "param": {
-                "custom_action": "GoIntoEntry",
+                "custom_action": "GoIntoEntryByGuide",
                 "custom_action_param": {
-                    "template": "home/排行榜"
+                    "entry_name": "排行榜"
                 }
             }
         },
-        "post_delay": 500,
-        "next": [
-            "leaderboard_in_leaderboard",
-            "find_leaderboard_in_main_screen"
-        ]
+        "pre_wait_freezes": 200,
+        "pre_delay": 0,
+        "post_wait_freezes": 200,
+        "post_delay": 0,
+        "next": "leaderboard_in_leaderboard"
     },
     "leaderboard_in_leaderboard": {
-        "recognition": "OCR",
-        "expected": [
-            "返回",
-            "这回"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Leaderboard/leaderboard_the_first.png",
         "roi": [
-            0,
-            630,
-            229,
-            89
+            444,
+            105,
+            170,
+            170
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
-            "click_thumb_done_ocr",
             "click_thumb_done",
             "[JumpBack]click_thumb",
             "retry_failed"
@@ -62,25 +81,9 @@
         ],
         "max_hit": 5,
         "action": "Click",
-        "post_delay": 700,
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]点赞[/color]"
-    },
-    "click_thumb_done_ocr": {
-        "recognition": "OCR",
-        "expected": [
-            "已"
-        ],
-        "roi": [
-            1027,
-            79,
-            252,
-            493
-        ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "post_delay": 500,
-        "focus": "[color:DeepSkyBlue]点赞完成[/color]"
     },
     "click_thumb_done": {
         "recognition": "ColorMatch",
@@ -106,7 +109,8 @@
         "next": [
             "back_main_screen_and_stop"
         ],
-        "post_delay": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]点赞完成[/color]"
     }
 }
