@@ -1,3 +1,5 @@
+from typing import Iterable
+from time import sleep
 from base64 import b64decode
 import os
 import random
@@ -63,12 +65,11 @@ def fast_ocr(
     expected: str | list[str],
     roi: tuple[int, int, int, int],
     absolutely=False,
+    screenshot_refresh=True,
 ) -> RectType | None:
-    if isinstance(expected, list):
-        expected = expected[0]
-
     """重新截图并进行 OCR 识别"""
-    context.tasker.controller.post_screencap().wait()
+    if screenshot_refresh:
+        context.tasker.controller.post_screencap().wait()
     context.tasker.post_recognition
     reco_detail = context.run_recognition(
         "custom_ocr",
@@ -95,6 +96,9 @@ def fast_ocr(
         return reco_detail.best_result.box  # type: ignore
     else:
         box = None
+        if isinstance(expected, Iterable):
+            expected = expected[0]
+
         for res in reco_detail.filtered_results:
             logger.debug(f"OCR 识别结果: {res.text}\texpected: {expected}")  # type: ignore
             if res.text == expected:  # type: ignore
@@ -107,3 +111,52 @@ def fast_ocr(
         else:
             logger.debug(f"识别失败：{reco_detail.filtered_results}")
             return None
+
+
+def fast_swipe(
+    context: Context,
+    start_x: int,
+    start_y: int,
+    end_x: int,
+    end_y: int,
+    duration: int = 300,
+    end_hold: bool = True,
+    after_swipe_delay: int = 200,
+):
+    """
+    快速滑动屏幕
+    :param context: 上下文对象
+    :param start_x: 起始点X坐标
+    :param start_y: 起始点Y坐标
+    :param end_x: 终点X坐标
+    :param end_y: 终点Y坐标
+    :param duration: 滑动持续时间，不建议低于200，单位毫秒
+    :param end_hold: 滑动结束后是否急停，防止惯性滑动
+    :param after_swipe_delay: 滑动完成后的延迟时间，单位毫秒
+
+    如果要防止滑动动画存在惯性，end_hold参数需设置为0
+    反之，如果要利用惯性滑动，需要将end_hold设为非0值
+    """
+    logger.debug(f"start swipe from ({start_x}, {start_y}) to ({end_x}, {end_y})")
+    logger.debug(f"end hold: {end_hold}ms")
+    # 1. 按下起始点
+    controller = context.tasker.controller
+    controller.post_touch_down(start_x, start_y).wait()
+
+    # 2. 计算移动步数和间隔
+    interval = 10  # ms，与框架内部实现一致
+    total_steps = duration // interval
+    x_step = (end_x - start_x) / total_steps
+    y_step = (end_y - start_y) / total_steps
+
+    # 3. 逐步移动
+    for step in range(1, total_steps + 1):
+        current_x = int(start_x + step * x_step)
+        current_y = int(start_y + step * y_step)
+        controller.post_touch_move(current_x, current_y).wait()
+
+    # 4. 释放触摸
+    if end_hold:
+        sleep(0.3)
+    controller.post_touch_up().wait()
+    sleep(after_swipe_delay / 1000)
