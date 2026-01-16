@@ -79,7 +79,7 @@
         "next": [
             "[JumpBack]group_close_group_notice",
             "check_selected_group_gameplay",
-            "[JumpBack]group_gameplay_undone"
+            "group_gameplay_undone"
         ],
         "threshold": 0.9,
         "post_delay": 400,
@@ -94,11 +94,10 @@
             177,
             118
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "threshold": 0.9,
-        "next": [
-            "[JumpBack]group_close_group_notice",
-            "back_main_screen_and_stop"
-        ],
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]组织玩法已完成[/color]"
     },
     "check_selected_group_gameplay": {
@@ -113,9 +112,7 @@
         "action": "DoNothing",
         "threshold": 0.8,
         "next": [
-            "[JumpBack]group_close_group_notice",
-            "check_group_pray_undone",
-            "check_group_pray_done",
+            "goto_group_pray",
             "check_selected_group_gameplay"
         ],
         "post_wait_freezes": 300,
@@ -136,7 +133,7 @@
         "action": "Click",
         "next": [
             "group_without_group_notice",
-            "[JumpBack]group_close_group_notice"
+            "group_close_group_notice"
         ],
         "post_delay": 700
     },
@@ -154,43 +151,24 @@
         ],
         "inverse": true
     },
-    "check_group_pray_done": {
-        "recognition": "TemplateMatch",
-        "template": "Group/selected_group_gameplay_done_button.png",
+    "goto_group_pray": {
+        "recognition": "OCR",
+        "expected": [
+            "前往"
+        ],
         "roi": [
-            237,
-            567,
-            175,
-            75
+            239,
+            533,
+            178,
+            144
         ],
-        "threshold": 0.98,
-        "action": "Click",
-        "next": [
-            "group_pray_undone"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]检测组织签到已完成[/color]"
-    },
-    "check_group_pray_undone": {
-        "recognition": "TemplateMatch",
-        "threshold": 0.99,
-        "template": "Group/group_pray_undone.png",
-        "action": "DoNothing",
-        "next": [
-            "group_pray_undone"
-        ],
-        "focus": "[color:DeepSkyBlue]检测组织签到未完成[/color]"
-    },
-    "group_pray_undone": {
-        "recognition": "TemplateMatch",
-        "template": "Group/selected_group_gameplay_undone_button.png",
         "action": "Click",
         "next": [
             "above_kage_group_pray",
             "chopper_group_pray"
         ],
         "post_wait_freezes": 600,
-        "focus": "[color:DeepSkyBlue]检测组织签到未完成[/color]"
+        "focus": "[color:DeepSkyBlue]进入组织签到[/color]"
     },
     "above_kage_group_pray": {
         "recognition": "TemplateMatch",
@@ -204,7 +182,6 @@
         ],
         "next": [
             "confirm_chopper_group_pray",
-            "close_chopper_group_pray",
             "above_kage_group_pray"
         ],
         "post_delay": 3000,
@@ -222,51 +199,23 @@
         "action": "Click",
         "next": [
             "confirm_chopper_group_pray",
-            "close_chopper_group_pray",
             "chopper_group_pray"
         ],
         "post_delay": 3000,
         "focus": "[color:DeepSkyBlue]铜币签到[/color]"
     },
-    "close_chopper_group_pray": {
-        "recognition": "TemplateMatch",
-        "template": "Group/confirm_chopper_pray_done.png",
-        "roi": [
-            535,
-            412,
-            199,
-            77
-        ],
-        "action": "Click",
-        "pre_wait_freezes": 300,
-        "post_wait_freezes": 500,
-        "next": [
-            "group_reward_has_been_claimed"
-        ],
-        "focus": "[color:DeepSkyBlue]关闭铜币签到[/color]"
-    },
     "confirm_chopper_group_pray": {
         "recognition": "TemplateMatch",
-        "template": "Group/confirm_group_pray.png",
-        "roi": [
-            498,
-            140,
-            273,
-            58
+        "template": [
+            "Group/confirm_group_pray.png",
+            "Group/confirm_chopper_pray_done.png"
         ],
         "action": "Click",
-        "next": [
-            "group_reward_has_been_claimed"
-        ],
-        "pre_wait_freezes": 300,
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]签到已完成[/color]"
-    },
-    "group_reward_has_been_claimed": {
         "next": [
             "check_no_yesterday_award",
             "[JumpBack]yesterday_award_entry"
-        ]
+        ],
+        "focus": "[color:DeepSkyBlue]签到已完成[/color]"
     },
     "check_no_yesterday_award": {
         "recognition": "TemplateMatch",
@@ -281,10 +230,10 @@
         "inverse": true,
         "green_mask": true,
         "next": [
-            "first_group_award",
-            "first_group_award_done"
+            "first_group_award_done",
+            "[JumpBack]first_group_award"
         ],
-        "focus": "[color:DeepSkyBlue]检测没有昨日奖励[/color]"
+        "focus": "[color:DeepSkyBlue]检测昨日奖励[/color]"
     },
     "first_group_award_done": {
         "recognition": "TemplateMatch",
@@ -297,9 +246,9 @@
         ],
         "threshold": 0.95,
         "next": [
-            "second_group_award_entry"
-        ],
-        "focus": "[color:DeepSkyBlue]15人签到奖励未领取[/color]"
+            "second_group_award_done",
+            "[JumpBack]second_group_award"
+        ]
     },
     "first_group_award": {
         "recognition": "TemplateMatch",
@@ -312,18 +261,8 @@
         ],
         "threshold": 0.92,
         "action": "Click",
-        "next": [
-            "second_group_award_entry",
-            "second_group_award"
-        ],
         "post_wait_freezes": 700,
         "focus": "[color:DeepSkyBlue]领取15人签到奖励[/color]"
-    },
-    "second_group_award_entry": {
-        "next": [
-            "second_group_award",
-            "second_group_award_done"
-        ]
     },
     "second_group_award_done": {
         "recognition": "TemplateMatch",
@@ -340,7 +279,8 @@
         ],
         "threshold": 0.7,
         "next": [
-            "third_group_award_entry"
+            "third_group_award_done",
+            "[JumpBack]third_group_award"
         ],
         "focus": "[color:DeepSkyBlue]20人签到奖励已领取[/color]"
     },
@@ -359,7 +299,7 @@
             "second_group_award_box",
             "second_group_award_done_sign",
             "second_group_award_box_done",
-            "[JumpBack]second_group_award"
+            "second_group_award"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]领取20人签到奖励[/color]"
@@ -374,10 +314,6 @@
             224,
             449,
             232
-        ],
-        "next": [
-            "third_group_award",
-            "third_group_award_done"
         ],
         "focus": "[color:DarkGoldenRod]20人签到结束通知[/color]"
     },
@@ -398,10 +334,6 @@
             71
         ],
         "post_wait_freezes": 800,
-        "next": [
-            "third_group_award",
-            "third_group_award_done"
-        ],
         "focus": "[color:DeepSkyBlue]20人签到奖励金币已到账[/color]"
     },
     "second_group_award_box": {
@@ -417,45 +349,10 @@
         "action": "Click",
         "next": [
             "close_second_group_award_box",
-            "[JumpBack]second_group_award_box_not_open",
             "[JumpBack]second_group_award_box"
         ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]20人签到奖励开箱[/color]"
-    },
-    "second_group_award_box_not_open": {
-        "recognition": "OCR",
-        "expected": [
-            "尚未",
-            "未达"
-        ],
-        "roi": [
-            417,
-            278,
-            474,
-            195
-        ],
-        "next": [
-            "close_second_group_award_box"
-        ],
-        "post_wait_freezes": 400
-    },
-    "second_group_award_box_closed": {
-        "recognition": "TemplateMatch",
-        "template": "Group/group_pray_red_packet_text.png",
-        "roi": [
-            555,
-            124,
-            170,
-            48
-        ],
-        "inverse": true,
-        "post_wait_freezes": 800,
-        "next": [
-            "third_group_award",
-            "third_group_award_done"
-        ],
-        "focus": "[color:DeepSkyBlue]20人签到奖励界面已关闭[/color]"
     },
     "close_second_group_award_box": {
         "recognition": "TemplateMatch",
@@ -474,17 +371,11 @@
             71
         ],
         "next": [
-            "second_group_award_box_closed",
-            "[JumpBack]close_second_group_award_box"
+            "close_second_group_award_box"
         ],
+        "timeout": 1000,
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]关闭20人签到奖励[/color]"
-    },
-    "third_group_award_entry": {
-        "next": [
-            "third_group_award",
-            "third_group_award_done"
-        ]
     },
     "third_group_award_done": {
         "recognition": "TemplateMatch",
@@ -528,9 +419,6 @@
             54
         ],
         "action": "Click",
-        "next": [
-            "group_pray_to_pursuit_dawn_organization"
-        ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]关闭25人签到奖励[/color]"
     },
@@ -553,30 +441,6 @@
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]前往追击晓组织[/color]"
     },
-    "close_group_pray": {
-        "recognition": "TemplateMatch",
-        "template": "Group/group_pray_x.png",
-        "roi": [
-            1171,
-            0,
-            99,
-            75
-        ],
-        "action": "Click",
-        "next": [
-            "pursuit_dawn_organization"
-        ],
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]关闭组织祈福[/color]"
-    },
-    "pursuit_dawn_organization": {
-        "next": [
-            "pursuit_dawn_organization_undone",
-            "pursuit_dawn_organization_done",
-            "[JumpBack]back_main_screen",
-            "[JumpBack]pursuit_dawn_organization_entry"
-        ]
-    },
     "pursuit_dawn_organization_done": {
         "recognition": "TemplateMatch",
         "template": "Group/dawn_organization_done.png",
@@ -591,23 +455,6 @@
             "back_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]追击晓组织已完成[/color]"
-    },
-    "pursuit_dawn_organization_undone": {
-        "recognition": "TemplateMatch",
-        "template": "Group/dawn_organization_undone.png",
-        "roi": [
-            101,
-            170,
-            134,
-            186
-        ],
-        "action": "Click",
-        "threshold": 0.95,
-        "next": [
-            "pursuit_dawn_organization_award"
-        ],
-        "post_wait_freezes": 300,
-        "focus": "[color:DeepSkyBlue]追击晓组织未完成[/color]"
     },
     "pursuit_dawn_organization_award": {
         "recognition": "TemplateMatch",
@@ -645,18 +492,13 @@
         "threshold": 0.97,
         "action": "Click",
         "next": [
-            "to_pursuit_dawn_organization_award",
-            "[JumpBack]pursuit_dawn_organization_award_undone"
+            "check_no_pursuit_dawn_organization_award",
+            "one_key_get_pursuit_dawn_organization_award",
+            "[JumpBack]get_pursuit_dawn_organization_award",
+            "pursuit_dawn_organization_award_undone"
         ],
         "post_wait_freezes": 900,
         "focus": "[color:DeepSkyBlue]追击晓组织奖励未领取[/color]"
-    },
-    "to_pursuit_dawn_organization_award": {
-        "next": [
-            "check_no_pursuit_dawn_organization_award",
-            "one_key_get_pursuit_dawn_organization_award",
-            "[JumpBack]get_pursuit_dawn_organization_award"
-        ]
     },
     "one_key_get_pursuit_dawn_organization_award": {
         "recognition": "TemplateMatch",
@@ -726,16 +568,11 @@
         ],
         "duration": 50,
         "next": [
-            "to_pursuit_dawn_organization_award_1"
+            "check_no_pursuit_dawn_organization_award_1",
+            "[JumpBack]get_pursuit_dawn_organization_award_1"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]下滑寻找追击晓组织奖励[/color]"
-    },
-    "to_pursuit_dawn_organization_award_1": {
-        "next": [
-            "check_no_pursuit_dawn_organization_award_1",
-            "[JumpBack]get_pursuit_dawn_organization_award_1"
-        ]
     },
     "get_pursuit_dawn_organization_award_1": {
         "recognition": "TemplateMatch",
@@ -762,26 +599,7 @@
         "inverse": true,
         "next": [
             "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]再次检测当前没有追击晓组织奖励可领取[/color]"
-    },
-    "pursuit_dawn_organization_entry": {
-        "recognition": "TemplateMatch",
-        "template": "home/组织",
-        "green_mask": true,
-        "action": "Click",
-        "next": [
-            "pursuit_dawn_organization_entry_button"
-        ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]再次进入组织[/color]"
-    },
-    "pursuit_dawn_organization_entry_button": {
-        "recognition": "TemplateMatch",
-        "template": "Group/dawn_organization_entry_group_button.png",
-        "action": "Click",
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]进入组织[/color]"
+        ]
     },
     "yesterday_award_entry": {
         "recognition": "TemplateMatch",
@@ -836,66 +654,5 @@
         "action": "Click",
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭昨日奖励界面[/color]"
-    },
-    "group_in_center_enter": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
-        "roi": [
-            37,
-            172,
-            130,
-            47
-        ],
-        "action": "Click",
-        "next": [
-            "group_ac_entry_undone",
-            "group_ac_done",
-            "[JumpBack]swipe_for_award_center_find"
-        ],
-        "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
-    },
-    "group_ac_entry_undone": {
-        "recognition": "TemplateMatch",
-        "template": "Group/group_ac_undone.png",
-        "roi": [
-            180,
-            288,
-            1100,
-            225
-        ],
-        "threshold": 0.9,
-        "green_mask": true,
-        "target_offset": [
-            12,
-            116,
-            -40,
-            -114
-        ],
-        "next": [
-            "above_kage_group_pray",
-            "chopper_group_pray",
-            "no_group"
-        ],
-        "action": "Click",
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]进入组织[/color]"
-    },
-    "group_ac_done": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry_end.png",
-        "roi": [
-            180,
-            384,
-            1100,
-            118
-        ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]周胜已完成[/color]"
     }
 }

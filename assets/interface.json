@@ -74,9 +74,6 @@
             "name": "组织",
             "entry": "group",
             "default_check": true,
-            "option": [
-                "组织从奖励中心进入"
-            ],
             "description": "包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
         {
@@ -1445,28 +1442,6 @@
                 {
                     "name": "No",
                     "pipeline_override": {}
-                }
-            ]
-        },
-        "组织从奖励中心进入": {
-            "description": "用于适配特殊主题,一天只能运行一次",
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "group": {
-                            "next": [
-                                "group_in_center_enter",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
                 }
             ]
         },
