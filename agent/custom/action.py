@@ -144,6 +144,11 @@ class GoIntoEntryByGuide(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
         enter_name = json.loads(argv.custom_action_param).get("entry_name", "")
+        if enter_name == "":
+            logger.error("功能入口名称不能为空!")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
+
         if not isinstance(enter_name, str) and not isinstance(enter_name, list):
             logger.error(f"输入错误: {enter_name}")
             context.tasker.post_stop()
@@ -201,6 +206,7 @@ class GoIntoEntryByGuide(CustomAction):
                 screenshot_refresh=False,
             ):
                 break
+            sleep(0.2)
 
         logger.info("开始查找功能入口")
         max_sweep_attempts = 15

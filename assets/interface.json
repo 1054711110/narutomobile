@@ -81,7 +81,7 @@
             "entry": "point_race",
             "description": "领取当日奖励并尝试进行一次挑战。",
             "option": [
-                "积分赛战斗选项"
+                "强制战斗"
             ],
             "default_check": true
         },
@@ -695,27 +695,35 @@
                 }
             ]
         },
-        "积分赛战斗选项": {
+        "强制战斗": {
             "type": "switch",
+            "description": "开启后将无视战力差距直接进行挑战",
             "cases": [
                 {
-                    "name": "Yes",
+                    "name": "No",
                     "pipeline_override": {
-                        "point_race": {
-                            "next": [
-                                "enter_point_race",
-                                "[JumpBack]back_main_screen"
-                            ]
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": false
+                                    }
+                                }
+                            }
                         }
                     }
                 },
                 {
-                    "name": "No",
+                    "name": "Yes",
                     "pipeline_override": {
-                        "point_race_ac_entry_undone": {
-                            "next": [
-                                "back_main_screen_and_stop"
-                            ]
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": true
+                                    }
+                                }
+                            }
                         }
                     }
                 }
