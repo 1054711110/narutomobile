@@ -79,8 +79,9 @@
     "empty_number": {
         "recognition": "OCR",
         "expected": "位数不足",
+        "action": "Custom",
+        "custom_action": "StopTaskList",
         "focus": "[color:tomato]当前没有可登录的账号[/color]",
-        "next": "stop_task_list"
     },
     "agree_info": {
         "recognition": "OCR",

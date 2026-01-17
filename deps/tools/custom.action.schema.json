@@ -6,7 +6,8 @@
             "enum": [
                 "Screenshot",
                 "GoIntoEntry",
-                "GoIntoEntryByGuide"
+                "GoIntoEntryByGuide",
+                "StopTaskList"
             ]
         },
         "custom_action_param": {
@@ -19,6 +20,9 @@
                 },
                 {
                     "$ref": "#/$defs/GoIntoEntryByGuideParam"
+                },
+                {
+                    "$ref": "#/$defs/StopTaskListParam"
                 }
             ]
         }
@@ -84,6 +88,12 @@
             "required": [
                 "entry_name"
             ]
+        },
+        "StopTaskListParam": {
+            "type": "object",
+            "description": "停止当前任务以及后续任务列表",
+            "markdownDescription": "停止当前任务以及后续任务列表\n\n**功能说明：**\n- 停止当前正在执行的任务\n- 清空后续任务列表\n- 停止整个任务流程\n\n**返回值：**\n- `success`: 始终返回 false (表示任务已停止)",
+            "properties": {}
         }
     }
 }
