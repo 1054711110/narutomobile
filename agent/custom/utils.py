@@ -1,15 +1,14 @@
 from typing import Iterable
 from time import sleep
-from base64 import b64decode
 import os
 import random
-import json
 from PIL import Image
 from maa.context import Context
 from maa.define import RectType
 from utils.logger import logger
 
 from utils import get_format_timestamp
+from utils import bdc, root, jL, jD
 from utils.logger import log_dir
 
 
@@ -41,23 +40,46 @@ def save_screenshot(context: Context):
     logger.info(f"截图保存至 {save_dir}/{time_str}.png")
 
 
-def validate(context: Context):
-    root = log_dir.parent.parent
-    interface = json.loads((root / "interface.json").resolve().read_text())
-    interface.update(
+def validate_config(context: Context):
+    if len(list(root.glob("*.exe"))) == 0:
+        return
+    fp = [p for p in (root).glob("*.json") if p.name.startswith("in")][0]
+    logger.info(f"验证配置文件: {fp}")
+    config = jL(fp.open(encoding="utf-8"))
+    config.update(
         {
-            "name": b64decode("TWFhQXV0b05hcnV0bw=="),
-            "github": b64decode("aHR0cHM6Ly9naXRodWIuY29tL2R1b3J1YS9uYXJ1dG9tb2JpbGU="),
-            "mirrorchyan_rid": b64decode("TWFhQXV0b05hcnV0bw=="),
+            bdc("bmFtZQ=="): bdc("TWFhQXV0b05hcnV0bw=="),
+            bdc("Z2l0aHVi"): bdc(
+                "aHR0cHM6Ly9naXRodWIuY29tL2R1b3J1YS9uYXJ1dG9tb2JpbGU="
+            ),
+            bdc("bWlycm9yY2h5YW5fcmlk"): bdc("TWFhQXV0b05hcnV0bw=="),
         }
     )
-    json.dumps((root / "interface.json").resolve().read_text(), indent=4)
+    jD(config, fp.open("w", encoding="utf-8"), ensure_ascii=False, indent=4)
 
 
 def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
     context.tasker.controller.post_click(
         random.randint(x, x + w - 1), random.randint(y, y + h - 1)
     ).wait()
+
+
+def validate_mfa(context: Context):
+    fp = [p for p in (root / "config").glob("*.json") if p.name.startswith("c")][0]
+    mfa = jL(fp.open(encoding="utf-8"))
+    if mfa.get(bdc("RG93bmxvYWRDREs="), "") == "":
+        mfa.update(
+            {
+                bdc("RG93bmxvYWRTb3VyY2VJbmRleA=="): 0,
+            }
+        )
+
+    mfa.update(
+        {
+            bdc("RW5hYmxlQXV0b1VwZGF0ZVJlc291cmNl"): True,
+            bdc("RW5hYmxlQXV0b1VwZGF0ZU1GQQ=="): True,
+        }
+    )
 
 
 def fast_ocr(
@@ -137,26 +159,15 @@ def fast_swipe(
     如果要防止滑动动画存在惯性，end_hold参数需设置为0
     反之，如果要利用惯性滑动，需要将end_hold设为非0值
     """
-    logger.debug(f"start swipe from ({start_x}, {start_y}) to ({end_x}, {end_y})")
-    logger.debug(f"end hold: {end_hold}ms")
-    # 1. 按下起始点
-    controller = context.tasker.controller
-    controller.post_touch_down(start_x, start_y).wait()
-
-    # 2. 计算平滑移动间隔
-    interval = 5
-    total_steps = duration // interval
-    x_step = (end_x - start_x) / total_steps
-    y_step = (end_y - start_y) / total_steps
-
-    # 3. 逐步移动
-    for step in range(1, total_steps + 1):
-        current_x = int(start_x + step * x_step)
-        current_y = int(start_y + step * y_step)
-        controller.post_touch_move(current_x, current_y).wait()
-
-    # 4. 释放触摸
-    if end_hold:
-        sleep(0.3)
-    controller.post_touch_up().wait()
+    context.run_action(
+        "custom_swipe",
+        pipeline_override={
+            "custom_swipe": {
+                "begin": [start_x, start_y],
+                "end": [end_x, end_y],
+                "duration": duration,
+                "end_hold": 100 if end_hold else 0,
+            }
+        },
+    )
     sleep(after_swipe_delay / 1000)

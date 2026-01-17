@@ -1,4 +1,3 @@
-from numpy import log
 import json
 from time import sleep
 from typing import Optional, Tuple
@@ -10,7 +9,29 @@ from maa.context import Context
 from maa.define import RectType
 
 from utils.logger import logger
-from .utils import fast_ocr, fast_swipe, click, save_screenshot
+from .utils import (
+    fast_ocr,
+    fast_swipe,
+    click,
+    save_screenshot,
+    validate_config,
+    validate_mfa,
+)
+
+
+@AgentServer.custom_action("StopTaskList")
+class StopTaskList(CustomAction):
+    """
+    停止当前任务以及后续任务列表
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        context.tasker.post_stop()
+        return CustomAction.RunResult(success=False)
 
 
 @AgentServer.custom_action("Screenshot")
@@ -37,6 +58,23 @@ class Screenshot(CustomAction):
             f"task_id: {task_detail.task_id}, task_entry: {task_detail.entry}, status: {task_detail.status._status}"
         )
 
+        return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("RetryFailed")
+class RetryFaild(CustomAction):
+    """
+    重试失败
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        save_screenshot(context)
+        validate_config(context)
+        validate_mfa(context)
         return CustomAction.RunResult(success=True)
 
 

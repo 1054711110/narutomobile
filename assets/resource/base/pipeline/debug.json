@@ -1,0 +1,35 @@
+{
+    "debug": {
+        "next": "set_touchs"
+    },
+    "set_touchs": {
+        "next": [
+            "[JumpBack]show_touches",
+            "[JumpBack]close_touches"
+            // others settings
+        ],
+        "timeout": 100
+    },
+    "show_touches": {
+        "max_hit": 0,
+        "focus": "开启触控显示",
+        "action": "Shell",
+        "cmd": "settings put system show_touches 1",
+        "next": "pointer_location"
+    },
+    "pointer_location": {
+        "action": "Shell",
+        "cmd": "settings put system pointer_location 1"
+    },
+    "close_touches": {
+        "max_hit": 0,
+        "focus": "关闭触控显示",
+        "action": "Shell",
+        "cmd": "settings put system show_touches 0",
+        "next": "hide_pointer_location"
+    },
+    "hide_pointer_location": {
+        "action": "Shell",
+        "cmd": "settings put system pointer_location 0"
+    }
+}
