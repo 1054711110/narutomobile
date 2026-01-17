@@ -96,8 +96,7 @@
         {
             "name": "生存挑战",
             "entry": "survival_challenge",
-            "default_check": true,
-            "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
+            "default_check": true
         },
         {
             "name": "小队突袭",
