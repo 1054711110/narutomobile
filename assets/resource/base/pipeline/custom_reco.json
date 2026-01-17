@@ -1,9 +1,41 @@
 {
+    "in_ninjia_guide": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "sub_name": "mission_label",
+                "recognition": "OCR",
+                "expected": [
+                    "任务"
+                ],
+                "roi": [
+                    968,
+                    68,
+                    307,
+                    100
+                ]
+            },
+            {
+                "sub_name": "activity_count_down",
+                "recognition": "OCR",
+                "expected": [
+                    "倒计时"
+                ],
+                "roi": [
+                    400,
+                    0,
+                    350,
+                    135
+                ]
+            }
+        ]
+    },
     "GetSenryokuText": {
         "recognition": {
             "type": "OCR",
             "param": {
-                "expected": "[\\d]+万?"
+                "order_by": "Vertical",
+                "expected": "[\\u4e00-\\u9fa5]*[\\d]+万?"
             }
         }
     },

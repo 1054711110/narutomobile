@@ -8,35 +8,8 @@
         "focus": "[color:DeepSkyBlue]进入排行榜子任务[/color]"
     },
     "ninjia_guide_to_leaderboard": {
-        "recognition": "Or",
-        "any_of": [
-            {
-                "sub_name": "mission_label",
-                "recognition": "OCR",
-                "expected": [
-                    "任务"
-                ],
-                "roi": [
-                    968,
-                    68,
-                    307,
-                    100
-                ]
-            },
-            {
-                "sub_name": "activity_count_down",
-                "recognition": "OCR",
-                "expected": [
-                    "倒计时"
-                ],
-                "roi": [
-                    400,
-                    0,
-                    350,
-                    135
-                ]
-            }
-        ],
+        "recognition": "Custom",
+        "custom_recognition": "IsInNinjiaGuide",
         "action": {
             "type": "Custom",
             "param": {
@@ -63,6 +36,7 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
+        "post_wait_freezes": 300,
         "next": [
             "click_thumb_done",
             "[JumpBack]click_thumb",
