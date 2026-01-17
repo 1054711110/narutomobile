@@ -70,8 +70,8 @@
         "method": 10001,
         "green_mask": true,
         "action": "StopTask",
-        "post_delay": 0,
         "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]送体力已完成[/color]"
     },
     "sent_energy": {
@@ -86,11 +86,9 @@
             48
         ],
         "action": "Click",
-        "next": [
-            "get_energy"
-        ],
+        "next": "get_energy",
         "pre_delay": 0,
-        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]送体力[/color]"
     },
     "get_energy": {
