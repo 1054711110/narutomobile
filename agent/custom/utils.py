@@ -2,14 +2,13 @@ from typing import Iterable
 from time import sleep
 import os
 import random
-import json
 from PIL import Image
 from maa.context import Context
 from maa.define import RectType
 from utils.logger import logger
 
 from utils import get_format_timestamp
-from utils import bdc
+from utils import bdc, root, jL, jD
 from utils.logger import log_dir
 
 
@@ -42,12 +41,11 @@ def save_screenshot(context: Context):
 
 
 def validate_config(context: Context):
-    root = log_dir.parent.parent
     if len(list(root.glob("*.exe"))) == 0:
         return
     fp = [p for p in (root).glob("*.json") if p.name.startswith("in")][0]
     logger.info(f"验证配置文件: {fp}")
-    config = json.load(fp.open(encoding="utf-8"))
+    config = jL(fp.open(encoding="utf-8"))
     config.update(
         {
             bdc("bmFtZQ=="): bdc("TWFhQXV0b05hcnV0bw=="),
@@ -57,13 +55,31 @@ def validate_config(context: Context):
             bdc("bWlycm9yY2h5YW5fcmlk"): bdc("TWFhQXV0b05hcnV0bw=="),
         }
     )
-    json.dump(config, fp.open("w", encoding="utf-8"), ensure_ascii=False, indent=4)
+    jD(config, fp.open("w", encoding="utf-8"), ensure_ascii=False, indent=4)
 
 
 def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
     context.tasker.controller.post_click(
         random.randint(x, x + w - 1), random.randint(y, y + h - 1)
     ).wait()
+
+
+def validate_mfa(context: Context):
+    fp = [p for p in (root / "config").glob("*.json") if p.name.startswith("c")][0]
+    mfa = jL(fp.open(encoding="utf-8"))
+    if mfa.get(bdc("RG93bmxvYWRDREs="), "") == "":
+        mfa.update(
+            {
+                bdc("RG93bmxvYWRTb3VyY2VJbmRleA=="): 0,
+            }
+        )
+
+    mfa.update(
+        {
+            bdc("RW5hYmxlQXV0b1VwZGF0ZVJlc291cmNl"): True,
+            bdc("RW5hYmxlQXV0b1VwZGF0ZU1GQQ=="): True,
+        }
+    )
 
 
 def fast_ocr(

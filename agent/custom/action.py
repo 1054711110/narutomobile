@@ -9,7 +9,14 @@ from maa.context import Context
 from maa.define import RectType
 
 from utils.logger import logger
-from .utils import fast_ocr, fast_swipe, click, save_screenshot, validate_config
+from .utils import (
+    fast_ocr,
+    fast_swipe,
+    click,
+    save_screenshot,
+    validate_config,
+    validate_mfa,
+)
 
 
 @AgentServer.custom_action("StopTaskList")
@@ -67,6 +74,7 @@ class RetryFaild(CustomAction):
     ) -> CustomAction.RunResult:
         save_screenshot(context)
         validate_config(context)
+        validate_mfa(context)
         return CustomAction.RunResult(success=True)
 
 
