@@ -1108,7 +1108,7 @@
         "post_wait_freezes": 200
     },
     "shut_social_media": {
-        "$doc": "关闭qq和微信，加个命中次数限制，防止死循环",
+        "$doc": "关闭qq和微信,加个命中次数限制,防止死循环",
         "max_hit": 3,
         "action": "StopApp",
         "package": "com.tencent.mm",

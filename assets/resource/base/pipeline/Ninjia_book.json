@@ -117,7 +117,7 @@
             "[JumpBack]ninjia_book_mission_done",
             "[JumpBack]ninjia_book_close_share_top_bar"
         ],
-        "focus": "[color:DeepSkyBlue]关闭QQ[/color]"
+        "focus": "[color:DeepSkyBlue]关闭顶部栏[/color]"
     },
     "ninjia_book_mission_done": {
         "recognition": "TemplateMatch",
