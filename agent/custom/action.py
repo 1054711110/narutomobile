@@ -206,6 +206,7 @@ class GoIntoEntryByGuide(CustomAction):
                 screenshot_refresh=False,
             ):
                 break
+            sleep(0.2)
 
         logger.info("开始查找功能入口")
         max_sweep_attempts = 15

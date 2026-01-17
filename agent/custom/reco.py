@@ -124,7 +124,7 @@ class FindToChallenge(CustomRecognition):
 
         min_enemySenryoku = min(enemySenryoku_list)
         idx = enemySenryoku_list.index(min_enemySenryoku)
-        logger.info(f"敌队{idx + 1}战力最低：{min_enemySenryoku}")
+        logger.info(f"敌队{idx + 1}战力最低：{min_enemySenryoku/10000}万")
 
         if (min_enemySenryoku > team_senryoku) and (not fource_battle):
             logger.info("没一个打得过的，溜了溜了。")

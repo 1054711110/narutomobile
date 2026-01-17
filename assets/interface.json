@@ -702,9 +702,13 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "FindToChallenge": {
-                            "custom_recognition_param": {
-                                "fource_battle": false
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": false
+                                    }
+                                }
                             }
                         }
                     }
@@ -712,9 +716,13 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "FindToChallenge": {
-                            "custom_recognition_param": {
-                                "fource_battle": true
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": true
+                                    }
+                                }
                             }
                         }
                     }

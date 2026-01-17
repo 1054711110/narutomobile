@@ -24,7 +24,9 @@
             }
         },
         "next": "point_race_challenge_enter",
-        "post_delay": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]进入积分赛[/color]"
     },
     "point_race_challenge_enter": {
@@ -34,9 +36,12 @@
         "post_wait_freezes": 400,
         "next": [
             "point_race_challenge_limit",
-            "point_race_challenge_enter",
-            "wait_for_select_opponent"
-        ]
+            "wait_for_select_opponent",
+            "point_race_challenge_enter"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "pre_wait_freezes": 200
     },
     "point_race_challenge_limit": {
         "recognition": "TemplateMatch",
@@ -47,9 +52,9 @@
             308,
             163
         ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]积分赛挑战次数已用完[/color]"
     },
     "wait_for_select_opponent": {
@@ -61,6 +66,8 @@
             418,
             185
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "point_race_challenge",
             "back_main_screen_and_stop"
@@ -77,14 +84,14 @@
                 }
             }
         },
-        "action": {
-            "type": "Click"
-        },
+        "action": "Click",
         "next": [
             "point_race_skip",
             "point_race_challenge_finished",
             "[JumpBack]sleep_500ms"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "timeout": 60000,
         "focus": "[color:DeepSkyBlue]进入积分赛战斗[/color]"
     },
@@ -94,7 +101,9 @@
         "next": [
             "back_main_screen_and_stop"
         ],
-        "focus": "[color:DeepSkyBlue]忍者无法挑战[/color]"
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]不进行挑战直接退出[/color]"
     },
     "point_race_skip": {
         "recognition": "OCR",
@@ -103,7 +112,9 @@
         "next": [
             "point_race_challenge_finished",
             "[JumpBack]sleep_500ms"
-        ]
+        ],
+        "pre_delay": 0,
+        "post_delay": 0
     },
     "point_race_challenge_finished": {
         "recognition": "OCR",
@@ -119,6 +130,8 @@
             "point_race_challenge_finished",
             "back_main_screen_and_stop"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]积分赛战斗结束[/color]"
     },
     "point_race_get_challenge_button": {
@@ -130,6 +143,8 @@
             154,
             452
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "index": 0,
         "order_by": "Vertical"
     }

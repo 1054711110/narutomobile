@@ -121,7 +121,7 @@ def fast_swipe(
     end_y: int,
     duration: int = 300,
     end_hold: bool = True,
-    after_swipe_delay: int = 200,
+    after_swipe_delay: int = 300,
 ):
     """
     快速滑动屏幕
@@ -143,8 +143,8 @@ def fast_swipe(
     controller = context.tasker.controller
     controller.post_touch_down(start_x, start_y).wait()
 
-    # 2. 计算移动步数和间隔
-    interval = 10  # ms，与框架内部实现一致
+    # 2. 计算平滑移动间隔
+    interval = 5
     total_steps = duration // interval
     x_step = (end_x - start_x) / total_steps
     y_step = (end_y - start_y) / total_steps
