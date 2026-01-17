@@ -1,115 +1,31 @@
 {
     "point_race": {
         "next": [
-            "point_race_in_center_enter",
-            "point_race_ac_enter",
+            "go_into_point_race",
+            "[JumpBack]open_ninjia_guide",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入积分赛子任务[/color]"
     },
-    "enter_point_race": {
+    "go_into_point_race": {
         "recognition": {
-            "type": "TemplateMatch",
+            "type": "Custom",
             "param": {
-                "template": [
-                    "Startup/main_green_masked.png"
-                ],
-                "threshold": 0.95,
-                "green_mask": true
+                "custom_recognition": "IsInNinjiaGuide"
             }
         },
         "action": {
             "type": "Custom",
             "param": {
-                "custom_action": "GoIntoEntry",
+                "custom_action": "GoIntoEntryByGuide",
                 "custom_action_param": {
-                    "template": "home/积分赛"
+                    "entry_name": "积分赛"
                 }
             }
         },
-        "next": [
-            "point_race_challenge_enter",
-            "[JumpBack]enter_point_race"
-        ],
+        "next": "point_race_challenge_enter",
         "post_delay": 500,
-        "focus": [
-            "[color:DeepSkyBlue]进入积分赛[/color]"
-        ]
-    },
-    "point_race_in_center_enter": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
-        "roi": [
-            37,
-            172,
-            130,
-            47
-        ],
-        "action": "Click",
-        "next": [
-            "point_race_ac_entry_undone",
-            "point_race_ac_done",
-            "[JumpBack]swipe_for_award_center_find"
-        ],
-        "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
-    },
-    "point_race_ac_enter": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry.png",
-        "roi": [
-            1151,
-            278,
-            128,
-            158
-        ],
-        "action": "Click",
-        "next": [
-            "point_race_in_center_enter"
-        ],
-        "post_delay": 1000,
-        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
-    },
-    "point_race_ac_entry_undone": {
-        "recognition": "TemplateMatch",
-        "template": "Point_race/point_race_ac_undone.png",
-        "roi": [
-            180,
-            288,
-            1100,
-            225
-        ],
-        "threshold": 0.9,
-        "green_mask": true,
-        "target_offset": [
-            12,
-            116,
-            -40,
-            -114
-        ],
-        "next": [
-            "point_race_challenge_enter"
-        ],
-        "action": "Click",
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]积分赛未完成[/color]"
-    },
-    "point_race_ac_done": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry_end.png",
-        "roi": [
-            180,
-            384,
-            1100,
-            118
-        ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]积分赛已完成[/color]"
+        "focus": "[color:DeepSkyBlue]进入积分赛[/color]"
     },
     "point_race_challenge_enter": {
         "recognition": "TemplateMatch",
@@ -155,7 +71,10 @@
         "recognition": {
             "type": "Custom",
             "param": {
-                "custom_recognition": "FindToChallenge"
+                "custom_recognition": "FindToChallenge",
+                "custom_recognition_param": {
+                    "fource_battle": false
+                }
             }
         },
         "action": {

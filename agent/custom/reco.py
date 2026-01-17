@@ -1,3 +1,4 @@
+import json
 from maa.define import Rect
 from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
@@ -7,6 +8,21 @@ from typing import List, Tuple, Dict, Optional, Any
 import re
 
 from utils.logger import logger
+
+
+def correct_senryoku_text(source_text: str) -> int | None:
+    if source_text.endswith("万"):
+        text = source_text[:-1]
+        text += "0000"
+    else:
+        text = source_text
+
+    if text.isdigit():
+        logger.info(f"读取到战力：{source_text}")
+        return int(text)
+
+    logger.warning(f"战力解析错误：{source_text}")
+    return None
 
 
 def get_senryoku(context: Context, image: ndarray, roi: list[int]) -> int | None:
@@ -27,18 +43,22 @@ def get_senryoku(context: Context, image: ndarray, roi: list[int]) -> int | None
         return None
 
     source_text = str(reco_detail.best_result.text)  # type: ignore
-    if source_text.endswith("万"):
-        text = source_text[:-1]
-        text += "0000"
-    else:
-        text = source_text
+    return correct_senryoku_text(source_text)
 
-    if text.isdigit():
-        logger.info(f"读取到战力：{source_text}")
-        return int(text)
 
-    logger.warning(f"战力解析错误：{source_text}")
-    return None
+@AgentServer.custom_recognition("IsInNinjiaGuide")
+class IsInNinjiaGuide(CustomRecognition):
+    def analyze(
+        self, context: Context, argv: CustomRecognition.AnalyzeArg
+    ) -> CustomRecognition.AnalyzeResult:
+        reco_detail = context.run_recognition("in_ninjia_guide", argv.image, {})
+        if reco_detail and reco_detail.hit:
+            # GoIntoEntryByGuide不需要这个box
+            return CustomRecognition.AnalyzeResult(
+                box=Rect(0, 0, 1, 1),
+                detail={},
+            )
+        return CustomRecognition.AnalyzeResult(box=None, detail={})
 
 
 @AgentServer.custom_recognition("FindToChallenge")
@@ -52,6 +72,14 @@ class FindToChallenge(CustomRecognition):
         context: Context,
         argv: CustomRecognition.AnalyzeArg,
     ) -> CustomRecognition.AnalyzeResult:
+        fource_battle = json.loads(argv.custom_recognition_param).get(
+            "fource_battle", False
+        )
+        if fource_battle:
+            logger.info("当前配置：强制挑战")
+        else:
+            logger.info("当前配置：非强制挑战")
+
         logger.info("尝试读取我方小队战力...")
         team_senryoku = get_senryoku(context, argv.image, [271, 337, 178, 29])
         if team_senryoku is None:
@@ -60,52 +88,61 @@ class FindToChallenge(CustomRecognition):
                 detail={},
             )
 
-        enemy_roi_list = [
-            [843, 236, 100, 30],
-            [843, 352, 96, 31],
-            [843, 472, 103, 27],
-            [843, 589, 97, 29],
-        ]
+        enemy_list_roi = [714, 207, 248, 431]
 
         logger.info("尝试读取敌方小队战力...")
-        for idx, roi in enumerate(enemy_roi_list):
-            enemySenryoku = get_senryoku(context, argv.image, roi)
-            if enemySenryoku is None:
-                logger.warning(f"无法读取到敌队{idx + 1}的战力！")
-                return CustomRecognition.AnalyzeResult(
-                    box=None,
-                    detail={},
-                )
 
-            if enemySenryoku > team_senryoku:
-                logger.warning(f"打不过敌队{idx + 1}!")
-                continue
+        reco_detail = context.run_recognition(
+            "GetSenryokuText",
+            argv.image,
+            {
+                "GetSenryokuText": {"roi": enemy_list_roi},
+            },
+        )
 
-            logger.info(f"可以挑战敌队{idx + 1}!")
-            reco_detail = context.run_recognition(
-                "point_race_get_challenge_button",
-                argv.image,
-                {
-                    "point_race_get_challenge_button": {
-                        "index": idx,
-                    }
-                },
+        if (reco_detail is None) or len(reco_detail.filtered_results) < 4:
+            logger.warning("无法读取到敌队战力！")
+            logger.debug(
+                f"识别结果：{reco_detail.all_results if reco_detail else None}"
             )
-            if reco_detail is None or not reco_detail.hit:
-                logger.error(f"无法找到敌队{idx + 1}的挑战按钮！")
-                return CustomRecognition.AnalyzeResult(
-                    box=None,
-                    detail={},
-                )
-
             return CustomRecognition.AnalyzeResult(
-                box=reco_detail.box,
+                box=None,
                 detail={},
             )
 
-        logger.info("没一个打得过的，溜了溜了。")
+        pattern = re.compile(r"\d+万?")
+        enemySenryoku_list = []
+        for x in reco_detail.filtered_results[:4]:
+            match = pattern.search(x.text)  # ty:ignore[unresolved-attribute]
+            if match:
+                enemySenryoku_list.append(correct_senryoku_text(match.group()))
+            else:
+                logger.warning(
+                    f"无法解析战力文本: {x.text}"  # ty:ignore[unresolved-attribute]
+                )
+                enemySenryoku_list.append(1145141919810)  # 一个非常大的数，表示无法挑战
+
+        min_enemySenryoku = min(enemySenryoku_list)
+        idx = enemySenryoku_list.index(min_enemySenryoku)
+        logger.info(f"敌队{idx + 1}战力最低：{min_enemySenryoku}")
+
+        if (min_enemySenryoku > team_senryoku) and (not fource_battle):
+            logger.info("没一个打得过的，溜了溜了。")
+            return CustomRecognition.AnalyzeResult(
+                box=None,
+                detail={},
+            )
+
+        logger.info(f"挑战敌队{idx + 1}!")
+        targets = [
+            [986, 195, 92, 39],
+            [987, 312, 92, 39],
+            [988, 430, 92, 39],
+            [987, 548, 92, 39],
+        ]
+
         return CustomRecognition.AnalyzeResult(
-            box=None,
+            box=targets[idx],
             detail={},
         )
 
