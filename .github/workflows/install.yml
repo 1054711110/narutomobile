@@ -162,6 +162,22 @@ jobs:
             fi
           fi
 
+      - name: Fix permissions on unix
+        if: matrix.os != 'win'
+        shell: bash
+        run: |
+          # 修复install目录中的Python可执行文件权限
+          if [ -d "./install/python/bin" ]; then
+            echo "Setting execute permission for Python binaries..."
+            chmod +x ./install/python/bin/* 2>/dev/null || true
+          fi
+
+          # 修复所有shell脚本的权限
+          if [ -d "./install" ]; then
+            echo "Setting execute permission for shell scripts..."
+            find ./install -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
+          fi
+
       - name: Install on unix
         if: matrix.os != 'win'
         shell: bash
