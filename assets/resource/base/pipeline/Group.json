@@ -165,7 +165,7 @@
             "above_kage_group_pray",
             "chopper_group_pray"
         ],
-        "post_wait_freezes": 1000,
+        "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]进入组织签到[/color]"
     },
     "above_kage_group_pray": {
@@ -213,12 +213,13 @@
             "check_no_yesterday_award",
             "[JumpBack]yesterday_award_entry"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]签到已完成[/color]"
     },
     "check_no_yesterday_award": {
         "recognition": "TemplateMatch",
         "template": "Group/yesterday_award.png",
-        "action": "DoNothing",
         "roi": [
             402,
             135,
@@ -226,7 +227,8 @@
             175
         ],
         "inverse": true,
-        "green_mask": true,
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "first_group_award_done",
             "[JumpBack]first_group_award"
@@ -242,6 +244,8 @@
             68,
             59
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "threshold": 0.95,
         "next": [
             "second_group_award_done",
@@ -276,6 +280,8 @@
             44
         ],
         "threshold": 0.7,
+        "repeat_delay": 0,
+        "post_delay": 0,
         "next": [
             "third_group_award_done",
             "[JumpBack]third_group_award"
@@ -385,6 +391,8 @@
             59
         ],
         "threshold": 0.7,
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "group_pray_to_pursuit_dawn_organization"
         ],
