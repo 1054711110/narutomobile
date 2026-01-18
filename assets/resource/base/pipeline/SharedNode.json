@@ -101,26 +101,8 @@
     "pre_delay": 0,
     "post_delay": 0,
     "post_wait_freezes": 300,
-    "next": "daily_mission",
     "timeout": 3000,
     "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
-  },
-  "daily_mission": {
-    "recognition": "TemplateMatch",
-    "template": [
-      "SharedNode/check_not_in_daily_award.png",
-      "SharedNode/check_in_daily_award.png"
-    ],
-    "roi": [
-      37,
-      172,
-      130,
-      47
-    ],
-    "pre_delay": 0,
-    "action": "Click",
-    "post_delay": 0,
-    "post_wait_freezes": 200
   },
   "swipe_for_award_center_find": {
     "action": "Swipe",
@@ -154,16 +136,6 @@
     ],
     "next": "back_main_screen_and_stop",
     "focus": "[color:DeepSkyBlue]当前任务已完成[/color]"
-  },
-  "check_in_daily_award": {
-    "recognition": "TemplateMatch",
-    "template": "SharedNode/check_in_daily_award.png",
-    "roi": [
-      37,
-      172,
-      130,
-      47
-    ]
   },
   "weekly_sign": {
     "recognition": "OCR",
