@@ -53,13 +53,16 @@ def install_maafw(os_name, arch):
             "*MaaThriftControlUnit*",
             "*MaaRpc*",
             "*MaaHttp*",
+            "plugins",
+            "*.node",
+            "*MaaPiCli*",
         ),
         dirs_exist_ok=True,
     )
 
     shutil.copytree(
         working_dir / "deps" / "share" / "MaaAgentBinary",
-        install_path / "MaaAgentBinary",
+        install_path / "libs" / "MaaAgentBinary",
         dirs_exist_ok=True,
     )
 
