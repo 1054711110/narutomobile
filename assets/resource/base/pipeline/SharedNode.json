@@ -32,6 +32,7 @@
       "[JumpBack]naruto_club_x",
       "[JumpBack]christmas_stocking",
       "[JumpBack]shut_social_media",
+      "[JumpBack]level_up",
       "retry_failed"
     ],
     "pre_delay": 0,
@@ -173,13 +174,14 @@
   "weekly_sign": {
     "recognition": "OCR",
     "expected": [
-      "领取"
+      "领",
+      "取"
     ],
     "roi": [
-      606,
-      587,
-      68,
-      36
+      533,
+      555,
+      217,
+      96
     ],
     "action": "Click",
     "post_wait_freezes": 100,
@@ -444,7 +446,7 @@
   },
   "open_ninjia_guide": {
     "recognition": "TemplateMatch",
-    "$doc": "这里的图标在等级较低的账号可能显示为忍具，但由于有roi所以不会误判",
+    "$doc": "这里的图标在等级较低的账号可能显示为忍具,但由于有roi所以不会误判",
     "template": [
       "SharedNode/guide.png",
       "SharedNode/back_to_konoha.png",
@@ -460,6 +462,23 @@
     "pre_delay": 0,
     "post_delay": 0,
     "post_wait_freezes": 200
+  },
+  "level_up": {
+    "recognition": "OCR",
+    "expected": [
+      "等级达到"
+    ],
+    "roi": [
+      49,
+      348,
+      1123,
+      333
+    ],
+    "action": "Click",
+    "pre_delay": 0,
+    "post_delay": 0,
+    "post_wait_freezes": 200,
+    "focus": "[color:darkgray]游戏等级提升[/color]"
   },
   "unknow_error": {
     "action": "StopTask",

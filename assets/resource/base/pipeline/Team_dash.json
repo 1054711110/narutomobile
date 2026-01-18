@@ -80,12 +80,12 @@
         "next": [
             "team_dash_my_help_undone",
             "team_dash_my_help_done",
-            "[JumpBack]dash_or_exit"
+            "team_dash_not_in_group"
         ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]进入组织助战[/color]"
     },
-    "not_in_group": {
+    "team_dash_not_in_group": {
         "recognition": "TemplateMatch",
         "template": "Team_dash/not_in_group.png",
         "roi": [
@@ -344,7 +344,7 @@
         ],
         "next": [
             "check_not_in_team_dash_sweep",
-            "[JumpBack]check_in_team_dash_sweep",
+            "check_in_team_dash_sweep",
             "[JumpBack]team_dash_sweep_win"
         ],
         "rate_limit": 5000,
@@ -361,9 +361,6 @@
         "recognition": "TemplateMatch",
         "template": [
             "Team_dash/team_dash_logo.png"
-        ],
-        "next": [
-            "dash_or_exit"
         ],
         "focus": "[color:DeepSkyBlue]检测不在进行小队突袭战斗[/color]"
     },

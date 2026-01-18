@@ -146,9 +146,7 @@
             274,
             172
         ],
-        "threshold": [
-            0.9
-        ],
+        "threshold": 0.9,
         "inverse": true
     },
     "goto_group_pray": {
@@ -167,7 +165,7 @@
             "above_kage_group_pray",
             "chopper_group_pray"
         ],
-        "post_wait_freezes": 600,
+        "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]进入组织签到[/color]"
     },
     "above_kage_group_pray": {
@@ -184,7 +182,7 @@
             "confirm_chopper_group_pray",
             "above_kage_group_pray"
         ],
-        "post_delay": 3000,
+        "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]超影签到[/color]"
     },
     "chopper_group_pray": {
@@ -201,14 +199,14 @@
             "confirm_chopper_group_pray",
             "chopper_group_pray"
         ],
-        "post_delay": 3000,
+        "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]铜币签到[/color]"
     },
     "confirm_chopper_group_pray": {
         "recognition": "TemplateMatch",
         "template": [
-            "Group/confirm_group_pray.png",
-            "Group/confirm_chopper_pray_done.png"
+            "Group/confirm_chopper_pray_done.png",
+            "Group/confirm_group_pray.png"
         ],
         "action": "Click",
         "next": [
@@ -244,7 +242,7 @@
             68,
             59
         ],
-        "threshold": 0.95,
+        "threshold": 0.98,
         "next": [
             "second_group_award_done",
             "[JumpBack]second_group_award"

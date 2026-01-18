@@ -7,7 +7,8 @@
                 "FindToChallenge",
                 "FindPlantableFlower",
                 "FlipCard",
-                "find_bonds_without_enough_token"
+                "find_bonds_without_enough_token",
+                "IsInNinjiaGuide"
             ]
         },
         "custom_recognition_param": {
@@ -23,6 +24,9 @@
                 },
                 {
                     "$ref": "#/$defs/FindBondsWithoutEnoughTokenParam"
+                },
+                {
+                    "$ref": "#/$defs/IsInNinjiaGuideParam"
                 }
             ]
         }
@@ -31,8 +35,14 @@
         "FindToChallengeParam": {
             "type": "object",
             "description": "在积分赛中寻找可以挑战的对象，通过比较我方战力与敌方战力来决定是否挑战",
-            "markdownDescription": "在积分赛中寻找可以挑战的对象\n\n**功能说明：**\n- 读取我方小队战力\n- 遍历4个敌方小队，读取战力并比较\n- 找到第一个战力不高于我方的敌队\n- 返回对应的挑战按钮位置\n\n**返回值：**\n- `box`: 挑战按钮的位置\n- `detail`: 空对象",
-            "properties": {}
+            "markdownDescription": "在积分赛中寻找可以挑战的对象\n\n**功能说明：**\n- 读取我方小队战力\n- 遍历4个敌方小队，读取战力并比较\n- 找到战力最低的敌队\n- 根据`fource_battle`参数决定是否挑战\n\n**参数说明：**\n- `fource_battle`: 是否强制挑战，true时无视战力差距直接挑战\n\n**返回值：**\n- `box`: 挑战按钮的位置，如果无法挑战则返回None\n- `detail`: 空对象",
+            "properties": {
+                "fource_battle": {
+                    "type": "boolean",
+                    "description": "是否强制挑战，true时无视战力差距直接挑战战力最低的敌队",
+                    "default": false
+                }
+            }
         },
         "FindPlantableFlowerParam": {
             "type": "object",
@@ -50,6 +60,12 @@
             "type": "object",
             "description": "检查token数量是否小于5，用于决定是否继续羁绊任务",
             "markdownDescription": "检查token数量\n\n**功能说明：**\n- 读取固定ROI区域的token数量\n- token < 5: 返回识别通过（非空box）\n- token ≥ 5 或识别失败: 返回识别未通过（空box）\n\n**ROI配置：**\n- 固定区域：[846, 639, 111, 80]\n\n**返回值：**\n- `box`: token<5时返回 (0,0,1,1)，否则返回 None\n- `detail.token_count`: 识别到的token数量\n- `detail.passed`: 是否通过检查",
+            "properties": {}
+        },
+        "IsInNinjiaGuideParam": {
+            "type": "object",
+            "description": "判断是否在忍者指南界面",
+            "markdownDescription": "判断是否在忍者指南界面\n\n**功能说明：**\n- 调用 `in_ninjia_guide` 识别器进行判断\n- 如果识别成功，返回识别区域\n\n**返回值：**\n- `box`: 识别到的区域，识别失败时返回None\n- `detail`: 空对象",
             "properties": {}
         }
     }

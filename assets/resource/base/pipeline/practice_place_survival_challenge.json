@@ -16,9 +16,9 @@
             19
         ],
         "action": "Click",
-        "next": [
-            "survival_challenge_yesterday_award_1"
-        ],
+        "next": "survival_challenge_yesterday_award_1",
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]尝试领取昨日奖励[/color]"
     },
@@ -33,15 +33,12 @@
         ],
         "action": "Click",
         "next": [
-            "survival_challenge_reset"
-        ],
-        "post_wait_freezes": 200
-    },
-    "survival_challenge_reset": {
-        "next": [
             "survival_challenge_reset_undone",
-            "[JumpBack]survival_challenge_reset_done"
-        ]
+            "survival_challenge_reset_done"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 500
     },
     "survival_challenge_reset_done": {
         "recognition": "OCR",
@@ -54,9 +51,9 @@
             74,
             42
         ],
-        "next": [
-            "survival_challenge_sweep"
-        ],
+        "next": "start_survival_challenge_sweep",
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]生存挑战已重置[/color]"
     },
@@ -79,6 +76,8 @@
         "next": [
             "confirm_survival_challenge_reset"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]生存挑战未重置[/color]"
     },
@@ -97,6 +96,8 @@
         "next": [
             "survival_challenge_confirm_tp"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]确认生存挑战重置[/color]"
     },
@@ -113,7 +114,9 @@
         "next": [
             "survival_challenge_confirm_tp_1"
         ],
-        "post_wait_freezes": 100,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]生存挑战传送[/color]"
     },
     "survival_challenge_confirm_tp_1": {
@@ -126,16 +129,11 @@
             19
         ],
         "action": "Click",
-        "next": [
-            "survival_challenge_sweep"
-        ],
-        "post_wait_freezes": 100,
+        "next": "start_survival_challenge_sweep",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]确认生存挑战重置[/color]"
-    },
-    "survival_challenge_sweep": {
-        "next": [
-            "start_survival_challenge_sweep"
-        ]
     },
     "start_survival_challenge_sweep": {
         "recognition": "TemplateMatch",
@@ -155,7 +153,9 @@
             "start_survival_challenge_sweep",
             "retry_failed"
         ],
-        "post_wait_freezes": 300,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]进入生存挑战扫荡任务[/color]"
     },
     "check_survival_challenge_done": {
@@ -170,19 +170,15 @@
             229,
             47
         ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
+        "next": "back_main_screen_and_stop",
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]生存挑战已完成[/color]"
     },
     "survival_challenge_ticket_used_up": {
         "recognition": "OCR",
         "expected": [
-            "扫",
-            "荡",
-            "卷",
-            "不",
-            "足"
+            "不足"
         ],
         "roi": [
             515,
@@ -190,9 +186,9 @@
             229,
             47
         ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]扫荡券不足[/color]"
     },
     "survival_challenge_sweep_ready": {
@@ -210,6 +206,8 @@
         "next": [
             "survival_challenge_sweep_confirm"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]确认生存挑战准备就绪[/color]"
     },
@@ -228,6 +226,8 @@
         "next": [
             "survival_challenge_sweep_ticket_confirm"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]确认进行生存挑战[/color]"
     },
@@ -247,8 +247,9 @@
             "wait_for_survival_challenge_sweep_complete",
             "survival_challenge_sweep_ticket_used_up"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 200,
-        "timeout": 60000,
         "on_error": [
             "back_main_screen_and_stop"
         ],
@@ -263,9 +264,9 @@
             217
         ],
         "template": "Practice_place/sweep_ticket_used_up.png",
-        "next": [
-            "back_main_screen_and_stop"
-        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]生存挑战卷用完了[/color]"
     },
     "wait_for_survival_challenge_sweep_complete": {
@@ -277,7 +278,9 @@
         "next": [
             "back_main_screen_and_stop"
         ],
-        "post_delay": 1000,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]生存挑战扫荡完成[/color]"
     },
     "survival_challenge_in_center_enter": {
@@ -289,13 +292,13 @@
             130,
             47
         ],
-        "action": "Click",
         "next": [
             "survival_challenge_ac_entry_undone",
             "survival_challenge_ac_done",
             "[JumpBack]swipe_for_award_center_find"
         ],
-        "post_wait_freezes": 400,
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
     "survival_challenge_ac_entry_undone": {
@@ -319,7 +322,9 @@
             "survival_challenge_yesterday_award"
         ],
         "action": "Click",
-        "post_wait_freezes": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]进入生存挑战[/color]"
     },
     "survival_challenge_ac_done": {
@@ -331,9 +336,9 @@
             1100,
             118
         ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]生存挑战已完成[/color]"
     }
 }

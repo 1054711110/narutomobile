@@ -81,7 +81,7 @@
             "entry": "point_race",
             "description": "领取当日奖励并尝试进行一次挑战。",
             "option": [
-                "积分赛战斗选项"
+                "强制战斗"
             ],
             "default_check": true
         },
@@ -96,8 +96,7 @@
         {
             "name": "生存挑战",
             "entry": "survival_challenge",
-            "default_check": true,
-            "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
+            "default_check": true
         },
         {
             "name": "小队突袭",
@@ -264,6 +263,14 @@
                 "木叶小吃店不选普通蓝红色奖励"
             ],
             "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进"
+        },
+        {
+            "name": "Debug",
+            "entry": "debug",
+            "description": "用于调试，**日常使用请勿开启！**",
+            "option": [
+                "display pointer location"
+            ]
         }
     ],
     "option": {
@@ -695,27 +702,35 @@
                 }
             ]
         },
-        "积分赛战斗选项": {
+        "强制战斗": {
             "type": "switch",
+            "description": "开启后将无视战力差距直接进行挑战",
             "cases": [
                 {
-                    "name": "Yes",
+                    "name": "No",
                     "pipeline_override": {
-                        "point_race": {
-                            "next": [
-                                "enter_point_race",
-                                "[JumpBack]back_main_screen"
-                            ]
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": false
+                                    }
+                                }
+                            }
                         }
                     }
                 },
                 {
-                    "name": "No",
+                    "name": "Yes",
                     "pipeline_override": {
-                        "point_race_ac_entry_undone": {
-                            "next": [
-                                "back_main_screen_and_stop"
-                            ]
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": true
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -1432,6 +1447,28 @@
                     "pipeline_override": {
                         "train_road_entry": {
                             "next": "shugyou_no_michi_auto_push"
+                        }
+                    }
+                }
+            ]
+        },
+        "display pointer location": {
+            "type": "switch",
+            "default_case": "Yes",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "close_touches": {
+                            "max_hit": 1
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "show_touches": {
+                            "max_hit": 1
                         }
                     }
                 }

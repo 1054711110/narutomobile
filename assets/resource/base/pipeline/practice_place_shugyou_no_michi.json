@@ -158,11 +158,15 @@
             56
         ],
         "action": "Click",
+        "threshold": [
+            0.9
+        ],
         "next": [
             "confirm_train_road_reset",
             "train_road_unreset"
         ],
         "pre_delay": 0,
+        "max_hit": 5,
         "focus": "[color:DeepSkyBlue]重置修行之路[/color]"
     },
     "above_kage_confirm_train_road_reset": {
