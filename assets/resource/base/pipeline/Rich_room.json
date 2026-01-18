@@ -9,20 +9,16 @@
     },
     "rich_room_in_center_enter": {
         "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
+        "template": "SharedNode/check_in_daily_award.png",
         "roi": [
             37,
             172,
             130,
             47
         ],
-        "action": "Click",
         "next": [
             "rich_room_ac_entry_undone",
-            "rich_room_ac_done",
+            "award_center_find_end",
             "[JumpBack]swipe_for_award_center_find"
         ],
         "post_wait_freezes": 400,
@@ -138,20 +134,6 @@
             "back_main_screen_and_stop"
         ]
     },
-    "rich_room_ac_done": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry_end.png",
-        "roi": [
-            180,
-            384,
-            1100,
-            118
-        ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]丰饶之间已完成[/color]"
-    },
     "rich_room_finished": {
         "recognition": "OCR",
         "expected": [
@@ -175,7 +157,6 @@
         ],
         "action": "Click",
         "next": [
-            "rich_room_ac_done",
             "rich_room_finished",
             "rich_room_in_fight",
             "[JumpBack]challenge_rich_room"
