@@ -1,8 +1,7 @@
 [remote.github]
 owner = "duorua"
 repo = "narutomobile"
-#自用时换成自己的仓库owner和repo
-#注意，本地git user需与github一致才能实现成功@
+
 [changelog]
 # 标题
 header = """
@@ -62,6 +61,22 @@ body = """
 
 # 尾部
 footer = """
+{%- macro remote_url() -%}
+  https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}
+{%- endmacro -%}
+
+{%- set latest_version = "" -%}
+{%- for release in releases -%}
+  {%- if release.version and latest_version == "" -%}
+    {%- set_global latest_version = release.version -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{% if latest_version -%}
+**绝大部分用户请下载 [MaaAutoNaruto-win-x86_64-{{ latest_version }}.zip]({{ self::remote_url() }}/releases/download/{{ latest_version }}/MaaAutoNaruto-win-x86_64-{{ latest_version }}.zip)**
+{%- else -%}
+**绝大部分用户请下载 MaaAutoNaruto-win-x86_64
+{%- endif %}
 
 [已有 Mirror酱 CDK？点击前往高速下载](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&source=MaaAutoNarutogh-release)
 
