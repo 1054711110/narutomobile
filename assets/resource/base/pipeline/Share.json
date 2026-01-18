@@ -169,7 +169,7 @@
         "next": [
             "back_main_screen_and_stop"
         ],
-        "focus": "[color:DeepSkyBlue]关闭QQ[/color]"
+        "focus": "[color:DeepSkyBlue]关闭顶部栏[/color]"
     },
     "share_close_weekly_ninjia_title_next_step": {
         "recognition": "TemplateMatch",
