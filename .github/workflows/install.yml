@@ -1,5 +1,9 @@
 name: install
 
+env:
+  MFAA_VERSION: v2.5.1
+  MAA_FRAMEWORK_VERSION: v5.3.3
+
 on:
   push:
     tags:
@@ -102,7 +106,7 @@ jobs:
         with:
           repository: SweetSmellFox/MFAAvalonia
           fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
-          tag: "v2.5.1"
+          tag: ${{ env.MFAA_VERSION }}
           out-file-path: "MFA"
           extract: true
 
@@ -111,7 +115,7 @@ jobs:
         with:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
-          tag: "v5.3.3"
+          tag: ${{ env.MAA_FRAMEWORK_VERSION }}
           out-file-path: "deps"
           extract: true
 
@@ -156,6 +160,22 @@ jobs:
             else
               echo "Warning: Embedded Python executable not found at $EMBED_PYTHON_PATH. Skipping chmod."
             fi
+          fi
+
+      - name: Fix permissions on unix
+        if: matrix.os != 'win'
+        shell: bash
+        run: |
+          # 修复install目录中的Python可执行文件权限
+          if [ -d "./install/python/bin" ]; then
+            echo "Setting execute permission for Python binaries..."
+            chmod +x ./install/python/bin/* 2>/dev/null || true
+          fi
+
+          # 修复所有shell脚本的权限
+          if [ -d "./install" ]; then
+            echo "Setting execute permission for shell scripts..."
+            find ./install -type f -name "*.sh" -exec chmod +x {} \; 2>/dev/null || true
           fi
 
       - name: Install on unix
@@ -221,6 +241,7 @@ jobs:
 
   changelog:
     name: Generate changelog
+    needs: meta
     runs-on: ubuntu-latest
     outputs:
       release_body: ${{ steps.git-cliff.outputs.content }}
@@ -235,7 +256,11 @@ jobs:
         id: git-cliff
         with:
           config: .github/cliff.toml
-          args: -vv --latest --strip header
+          # 正式版：使用 tag-pattern 只匹配正式版标签，包含所有从上一个正式版以来的提交
+          # 预发布版：正常生成，只包含从上一个标签以来的提交
+          args: >-
+            -vv --latest --strip header
+            ${{ needs.meta.outputs.is_prerelease == 'false' && '--tag-pattern "^v[0-9]+\\.[0-9]+\\.[0-9]+$"' || '' }}
         env:
           OUTPUT: CHANGES.md
           GITHUB_REPO: ${{ github.repository }}

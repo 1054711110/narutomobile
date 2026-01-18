@@ -86,14 +86,57 @@
         },
         "action": "Click",
         "next": [
-            "point_race_skip",
-            "point_race_challenge_finished",
-            "[JumpBack]sleep_500ms"
+            "point_race_loading",
+            "point_race_unchallengeable"
+        ],
+        "on_error": [
+            "back_main_screen_and_stop"
         ],
         "pre_delay": 0,
         "post_delay": 0,
-        "timeout": 60000,
+        "timeout": 30000,
         "focus": "[color:DeepSkyBlue]进入积分赛战斗[/color]"
+    },
+    "point_race_loading": {
+        "recognition": "OCR",
+        "expected": [
+            "资源",
+            "加载中"
+        ],
+        "roi": [
+            483,
+            594,
+            303,
+            125
+        ],
+        "next": [
+            "point_race_skip",
+            "point_race_challenge_finished",
+            "point_race_loading"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DarkGoldenRod]加载战斗[/color]"
+    },
+    "point_race_unchallengeable": {
+        "recognition": "OCR",
+        "expected": [
+            "当前忍者",
+            "不可挑战"
+        ],
+        "roi": [
+            461,
+            261,
+            350,
+            204
+        ],
+        "next": [
+            "point_race_challenge_finished",
+            "back_main_screen_and_stop"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DarkGoldenRod]鸣佐[/color]"
     },
     "point_race_quit": {
         "recognition": "TemplateMatch",
@@ -111,7 +154,7 @@
         "action": "Click",
         "next": [
             "point_race_challenge_finished",
-            "[JumpBack]sleep_500ms"
+            "point_race_skip"
         ],
         "pre_delay": 0,
         "post_delay": 0

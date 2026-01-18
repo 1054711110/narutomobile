@@ -205,8 +205,8 @@
     "confirm_chopper_group_pray": {
         "recognition": "TemplateMatch",
         "template": [
-            "Group/confirm_group_pray.png",
-            "Group/confirm_chopper_pray_done.png"
+            "Group/confirm_chopper_pray_done.png",
+            "Group/confirm_group_pray.png"
         ],
         "action": "Click",
         "next": [
@@ -246,7 +246,7 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
-        "threshold": 0.95,
+        "threshold": 0.98,
         "next": [
             "second_group_award_done",
             "[JumpBack]second_group_award"
