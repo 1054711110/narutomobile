@@ -81,7 +81,7 @@
         "expected": "位数不足",
         "action": "Custom",
         "custom_action": "StopTaskList",
-        "focus": "[color:tomato]当前没有可登录的账号[/color]",
+        "focus": "[color:tomato]当前没有可登录的账号[/color]"
     },
     "agree_info": {
         "recognition": "OCR",

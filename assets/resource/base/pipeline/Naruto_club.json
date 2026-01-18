@@ -21,14 +21,61 @@
             "check_surf_post",
             "[JumpBack]surf_post",
             "click_club_icon",
+            "naruto_club_too_many_people",
             "[JumpBack]swipe_for_comments",
             "[JumpBack]surf_post_try_reflash",
+            "[JumpBack]without_naruto_club",
             "unknow_error"
         ],
-        "timeout": 10000,
+        "post_wait_freezes": 300,
+        "focus": "[color:DeepSkyBlue]点击情报社[/color]"
+    },
+    "without_naruto_club": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/club_icon.png",
+        "roi": [
+            37,
+            328,
+            39,
+            36
+        ],
+        "inverse": true,
         "post_wait_freezes": 300,
         "post_delay": 2000,
-        "focus": "[color:DeepSkyBlue]点击情报社[/color]"
+        "max_hit": 10
+    },
+    "naruto_club_too_many_people": {
+        "recognition": "OCR",
+        "expected": [
+            "访问人数过多",
+            "稍后再试"
+        ],
+        "roi": [
+            353,
+            202,
+            600,
+            353
+        ],
+        "next": [
+            "confrim_naruto_club_too_many_people"
+        ],
+        "focus": "[color:DeepSkyBlue]情报社访问人数过多[/color]"
+    },
+    "confrim_naruto_club_too_many_people": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            439,
+            280,
+            469,
+            244
+        ],
+        "action": "Click",
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "surf_post_try_reflash": {
         "recognition": "OCR",
@@ -82,7 +129,16 @@
         "post_wait_freezes": 300
     },
     "swipe_for_comments": {
-        "recognition": "DirectHit",
+        "recognition": "OCR",
+        "expected": [
+            "关注"
+        ],
+        "roi": [
+            0,
+            0,
+            170,
+            86
+        ],
         "action": "Swipe",
         "begin": [
             500,
