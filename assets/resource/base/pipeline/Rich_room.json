@@ -21,7 +21,8 @@
             "award_center_find_end",
             "[JumpBack]swipe_for_award_center_find"
         ],
-        "post_wait_freezes": 400,
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
     "rich_room_ac_entry_undone": {
@@ -46,6 +47,8 @@
             "rich_room_without_above_kage"
         ],
         "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]丰饶之间未完成[/color]"
     },
@@ -152,14 +155,21 @@
     },
     "challenge_rich_room": {
         "recognition": "OCR",
-        "expected": [
-            "挑战"
+        "expected": "挑战",
+        "roi": [
+            447,
+            568,
+            171,
+            144
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "action": "Click",
         "next": [
             "rich_room_finished",
             "rich_room_in_fight",
-            "[JumpBack]challenge_rich_room"
+            "challenge_rich_room",
+            "check_main_screen_and_stop"
         ],
         "focus": "[color:DeepSkyBlue]挑战丰饶之间[/color]"
     },
@@ -178,51 +188,46 @@
         "focus": "[color:DeepSkyBlue]检查是否和平[/color]"
     },
     "rich_room_in_fight": {
-        "recognition": "OCR",
-        "expected": [
-            "掘",
-            "金"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "auto_battle/challenge.png",
         "roi": [
-            471,
-            91,
-            330,
-            158
+            560,
+            0,
+            156,
+            89
         ],
-        "next": [
-            "rich_room_not_in_fight",
-            "[JumpBack]rich_room_combo"
-        ]
+        "threshold": 0.4,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "[JumpBack]rich_room_combo",
+        "timeout": 3000,
+        "on_error": "rich_room_not_in_fight"
     },
     "rich_room_not_in_fight": {
-        "recognition": "OCR",
-        "expected": [
-            "掘",
-            "金"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "auto_battle/challenge.png",
         "roi": [
-            471,
-            91,
-            330,
-            158
+            560,
+            0,
+            156,
+            89
         ],
+        "threshold": 0.4,
         "inverse": true,
         "next": [
             "rich_room_peace"
         ]
     },
     "rich_room_combo": {
-        "recognition": "OCR",
-        "expected": [
-            "掘",
-            "金"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "auto_battle/challenge.png",
         "roi": [
-            471,
-            91,
-            330,
-            158
+            560,
+            0,
+            156,
+            89
         ],
+        "threshold": 0.4,
         "action": "MultiSwipe",
         "swipes": [
             {
