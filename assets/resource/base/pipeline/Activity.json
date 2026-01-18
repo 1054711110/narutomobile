@@ -199,12 +199,14 @@
             206,
             115
         ],
+        "max_hit": 5,
         "action": "Click",
         "focus": "[color:DarkGray]进入特权积分[/color]",
         "next": [
             "get_copper_in_privilege_points_done",
             "[JumpBack]get_copper_in_privilege_points",
-            "privilege_points"
+            "privilege_points",
+            "retry_failed"
         ]
     },
     "get_copper_in_privilege_points_done": {
