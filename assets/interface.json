@@ -1130,7 +1130,7 @@
             "inputs": [
                 {
                     "name": "你的名字",
-                    "description": "为上面的选项提供ID,只需要字串,识别ID成功时,不会点空柱子避战",
+                    "description": "为上面的选项提供ID,只需要子串,识别ID成功时,不会点空柱子避战",
                     "pipeline_type": "string",
                     "default": "MaaAutoNaruto"
                 }
