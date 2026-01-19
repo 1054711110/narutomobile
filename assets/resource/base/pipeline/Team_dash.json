@@ -80,7 +80,8 @@
         "next": [
             "team_dash_my_help_undone",
             "team_dash_my_help_done",
-            "team_dash_not_in_group"
+            "team_dash_not_in_group",
+            "team_dash_group_help_undone"
         ],
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]进入组织助战[/color]"
@@ -270,6 +271,7 @@
         "max_hit": 10,
         "action": "Click",
         "next": [
+            "team_dash_loading",
             "check_in_team_dash_sweep",
             "team_dash_do_not_remind_gold",
             "team_dash_auto_fight",
@@ -309,12 +311,32 @@
             59
         ],
         "action": "Click",
-        "threshold": 0.5,
         "next": [
+            "team_dash_loading",
             "check_in_team_dash_sweep"
         ],
         "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]点击继续战斗[/color]"
+    },
+    "team_dash_loading": {
+        "recognition": "OCR",
+        "expected": [
+            "资源",
+            "加载"
+        ],
+        "roi": [
+            237,
+            572,
+            851,
+            128
+        ],
+        "next": [
+            "check_in_team_dash_sweep",
+            "team_dash_loading"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DarkGoldenRod]加载战斗[/color]"
     },
     "team_dash_do_not_remind_gold": {
         "recognition": "TemplateMatch",

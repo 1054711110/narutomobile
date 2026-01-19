@@ -105,7 +105,7 @@
         "next": [
             "rich_room_confirm_above_kage_sweep",
             "rich_room_peace",
-            "[JumpBack]rich_room_above_kage_sweep"
+            "rich_room_above_kage_sweep"
         ]
     },
     "rich_room_confirm_above_kage_sweep": {
