@@ -24,12 +24,14 @@
             53,
             45
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "next": [
             "check_no_energy",
-            "[JumpBack]get_ramen"
-        ],
-        "post_wait_freezes": 700,
-        "focus": "[color:DeepSkyBlue]进入活动[/color]"
+            "[JumpBack]get_ramen",
+            "activity_entry"
+        ]
     },
     "check_no_energy": {
         "recognition": "TemplateMatch",
@@ -41,11 +43,9 @@
             395
         ],
         "inverse": true,
-        "next": [
-            "swipes_for_monthly_sign"
-        ],
-        "post_delay": 200,
-        "focus": "[color:DeepSkyBlue]检测有没有一乐拉面可领取[/color]"
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "swipes_for_monthly_sign"
     },
     "get_ramen": {
         "recognition": "TemplateMatch",
@@ -56,8 +56,10 @@
             1077,
             395
         ],
-        "action": "Click",
-        "focus": "[color:DeepSkyBlue]领取一乐拉面[/color]"
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
+        "action": "Click"
     },
     "swipes_for_monthly_sign": {
         "action": "Swipe",
@@ -73,7 +75,8 @@
             50,
             50
         ],
-        "duration": 500,
+        "duration": 200,
+        "end_hold": 100,
         "max_hit": 10,
         "next": [
             "mouthly_sign_tab",
@@ -81,7 +84,6 @@
             "retry_failed"
         ],
         "post_delay": 900,
-        "focus": "[color:DeepSkyBlue]前往月度签到[/color]"
     },
     "mouthly_sign_tab": {
         "recognition": "OCR",
@@ -93,6 +95,8 @@
             572
         ],
         "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "[JumpBack]mouthly_signature",
             "mouthly_signature_done",
@@ -109,7 +113,9 @@
             61
         ],
         "action": "Click",
-        "post_delay": 1000,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]进行月度签到[/color]"
     },
     "mouthly_signature_done": {
@@ -125,6 +131,8 @@
             158,
             98
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": "check_mouthly_signature_title"
     },
     "check_mouthly_signature_title": {
@@ -136,7 +144,8 @@
             101,
             98
         ],
-        "focus": "[color:DarkGray]检查月度签到称号[/color]",
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "[JumpBack]back_main_screen",
             "store_enter"
@@ -153,7 +162,9 @@
         ],
         "action": "Click",
         "focus": "[color:DarkGray]进入商店[/color]",
-        "post_delay": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "next": [
             "click_privilege_store",
             "[JumpBack]click_normal_store",
@@ -170,7 +181,9 @@
             470
         ],
         "action": "Click",
-        "post_delay": 500
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
     },
     "click_privilege_store": {
         "recognition": "OCR",
@@ -181,7 +194,9 @@
             162,
             470
         ],
-        "post_delay": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "action": "Click",
         "focus": "[color:DarkGray]进入特权商店[/color]",
         "next": [
@@ -190,7 +205,7 @@
         ]
     },
     "privilege_points": {
-        "$doc": "这玩意会被全区广播挡住，所以用了半张图的模板检测",
+        "$doc1": "这玩意会被全区广播挡住，所以用了半张图的模板检测",
         "recognition": "TemplateMatch",
         "template": "Shop/privilege_points.png",
         "roi": [
@@ -201,11 +216,17 @@
         ],
         "action": "Click",
         "focus": "[color:DarkGray]进入特权积分[/color]",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "next": [
             "get_copper_in_privilege_points_done",
             "[JumpBack]get_copper_in_privilege_points",
             "privilege_points"
-        ]
+        ],
+        "timeout": 1000,
+        "$doc2": "遇到真投入什么字也没有",
+        "on_error": "back_main_screen_and_stop"
     },
     "get_copper_in_privilege_points_done": {
         "recognition": "OCR",
@@ -224,7 +245,6 @@
             323,
             48
         ],
-        "focus": "[color:DarkGray]铜币已领取[/color]",
         "next": "back_main_screen_and_stop"
     },
     "get_copper_in_privilege_points": {
@@ -237,6 +257,5 @@
             48
         ],
         "action": "Click",
-        "focus": "[color:DeepSkyBlue]领取铜币[/color]"
     }
 }

@@ -10,6 +10,7 @@
     "get_chopper_in_center_enter": {
         "recognition": "TemplateMatch",
         "template": [
+            "SharedNode/check_not_in_daily_award.png",
             "SharedNode/check_in_daily_award.png"
         ],
         "roi": [
@@ -19,7 +20,9 @@
             47
         ],
         "pre_delay": 0,
+        "action": "Click",
         "post_delay": 0,
+        "post_wait_freezes": 200,
         "next": [
             "get_chopper_ac_entry_undone",
             "get_chopper_ac_done",

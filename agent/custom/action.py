@@ -226,14 +226,10 @@ class GoIntoEntryByGuide(CustomAction):
         # 此时需要先划到最顶上
         logger.info("滑动到最顶端")
         for _ in range(10):
-            fast_swipe(
-                context,
-                start_x=end[0],
-                start_y=end[1],
-                end_x=start[0],
-                end_y=start[1],
-                end_hold=False,
-            )
+            if context.tasker.stopping:
+                logger.info("任务停止，提前退出")
+                return CustomAction.RunResult(success=False)
+
             if fast_ocr(
                 context, expected=enter_name, roi=list_roi, absolutely=True
             ) or fast_ocr(
@@ -244,9 +240,16 @@ class GoIntoEntryByGuide(CustomAction):
                 screenshot_refresh=False,
             ):
                 break
-            sleep(0.2)
 
-        logger.info("开始查找功能入口")
+            fast_swipe(
+                context,
+                start_x=end[0],
+                start_y=end[1],
+                end_x=start[0],
+                end_y=start[1],
+                end_hold=False,
+            )
+
         max_sweep_attempts = 15
         box = None
         logger.info(f"开始查找功能入口: {enter_name}")
@@ -256,19 +259,18 @@ class GoIntoEntryByGuide(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             box = fast_ocr(context, expected=enter_name, roi=list_roi, absolutely=True)
-            if box is None:
-                logger.debug("未识别到功能入口，滑动页面")
-                fast_swipe(
-                    context,
-                    start_x=start[0],
-                    start_y=start[1],
-                    end_x=end[0],
-                    end_y=end[1],
-                )
-                continue
+            if box:
+                logger.debug(f"识别到功能入口: {enter_name}")
+                break
 
-            logger.debug(f"识别到功能入口: {enter_name}")
-            break
+            logger.debug("未识别到功能入口，滑动页面")
+            fast_swipe(
+                context,
+                start_x=start[0],
+                start_y=start[1],
+                end_x=end[0],
+                end_y=end[1],
+            )
 
         if box is None:
             return CustomAction.RunResult(False)

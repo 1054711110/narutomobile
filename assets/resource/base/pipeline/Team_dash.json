@@ -25,7 +25,9 @@
             "team_dash_ac_done",
             "[JumpBack]swipe_for_award_center_find"
         ],
-        "post_wait_freezes": 400,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
     "team_dash_ac_entry_undone": {
@@ -51,6 +53,8 @@
             "team_dash_ac_entry_undone"
         ],
         "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]小队突袭未完成[/color]"
     },
@@ -63,9 +67,9 @@
             1100,
             118
         ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]小队突袭已完成[/color]"
     },
     "team_dash_group_help_undone": {
@@ -84,6 +88,8 @@
             "team_dash_not_in_group",
             "team_dash_group_help_undone"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 600,
         "focus": "[color:DeepSkyBlue]进入组织助战[/color]"
     },
@@ -96,9 +102,9 @@
             380,
             150
         ],
-        "next": [
-            "dash_or_exit"
-        ]
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "dash_or_exit"
     },
     "team_dash_group_help_done": {
         "recognition": "TemplateMatch",
@@ -109,10 +115,9 @@
             72,
             64
         ],
-        "next": [
-            "dash_or_exit"
-        ],
-        "post_wait_freezes": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "dash_or_exit",
         "focus": "[color:DeepSkyBlue]选择组织助战[/color]"
     },
     "team_dash_my_help_done": {
@@ -125,10 +130,9 @@
             91
         ],
         "threshold": 0.7,
-        "next": [
-            "team_dash_invite_page"
-        ],
-        "post_wait_freezes": 500,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "team_dash_invite_page",
         "focus": "[color:DeepSkyBlue]我的助战已完成[/color]"
     },
     "team_dash_my_help_undone": {
@@ -146,6 +150,8 @@
             "team_dash_my_help_award",
             "team_dash_my_help_undone"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]我的助战未完成[/color]"
     },
@@ -159,10 +165,8 @@
             55
         ],
         "action": "Click",
-        "next": [
-            "close_my_help"
-        ],
-        "post_wait_freezes": 500,
+        "next": "close_my_help",
+        "pre_delay": 0,
         "focus": "[color:DeepSkyBlue]领取我的助战奖励[/color]"
     },
     "close_my_help": {
@@ -180,6 +184,8 @@
             "team_dash_invite_page",
             "[JumpBack]close_my_help"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]关闭我的助战[/color]"
     },
@@ -192,9 +198,12 @@
             200,
             146
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "team_dash_invite_ninjia",
-            "[JumpBack]can_not_invite"
+            "[JumpBack]can_not_invite",
+            "retry_failed"
         ],
         "focus": "[color:DeepSkyBlue]进入助战邀请界面[/color]"
     },
@@ -208,14 +217,19 @@
             486
         ],
         "action": "Click",
-        "next": [
-            "dash_or_exit"
-        ],
-        "post_wait_freezes": 300,
+        "next": "dash_or_exit",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]邀请组织助战忍者[/color]"
     },
     "can_not_invite": {
+        "max_hit": 5,
         "recognition": "OCR",
+        "expected": [
+            "今日",
+            "已达"
+        ],
         "action": "Swipe",
         "begin": [
             261,
@@ -229,10 +243,6 @@
             1,
             1
         ],
-        "expected": [
-            "今日",
-            "已达"
-        ],
         "threshold": 0.5,
         "focus": "[color:darkgray]当前页面没有可邀请的助战忍者[/color]"
     },
@@ -241,7 +251,9 @@
             "team_dash_reach_the_upper_limit",
             "[JumpBack]team_dash_above_kage_sweep",
             "[JumpBack]team_dash_auto_fight"
-        ]
+        ],
+        "pre_delay": 0,
+        "post_delay": 0
     },
     "team_dash_reach_the_upper_limit": {
         "recognition": "TemplateMatch",
@@ -252,9 +264,9 @@
             360,
             111
         ],
-        "next": [
-            "close_team_desh"
-        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "next": "close_team_desh",
         "focus": "[color:darkgray]达到今日收益上限[/color]"
     },
     "team_dash_auto_fight": {
@@ -278,6 +290,8 @@
             "team_dash_auto_fight",
             "team_dash_auto_fight_retry_failed"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "timeout": 50000,
         "on_error": [
             "unknow_error"
@@ -298,6 +312,8 @@
             107,
             107
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": "retry_failed"
     },
     "team_dash_keep_fight": {
@@ -312,6 +328,8 @@
             59
         ],
         "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "team_dash_loading",
             "check_in_team_dash_sweep"
@@ -348,12 +366,11 @@
             45,
             44
         ],
-        "action": "Swipe",
-        "duration": 100,
+        "action": "Click",
         "next": [
+            "team_dash_do_not_remind_gold",
             "team_dash_keep_fight"
         ],
-        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]点击本周不再提醒[/color]"
     },
     "check_in_team_dash_sweep": {
@@ -378,13 +395,15 @@
         "template": "Team_dash/auto_fight_end.png",
         "action": "Click",
         "focus": "[color:DeepSkyBlue]胜利退出[/color]",
+        "pre_delay": 0,
+        "post_delay": 0,
         "post_wait_freezes": 300
     },
     "check_not_in_team_dash_sweep": {
         "recognition": "TemplateMatch",
-        "template": [
-            "Team_dash/team_dash_logo.png"
-        ],
+        "template": "Team_dash/team_dash_logo.png",
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]检测不在进行小队突袭战斗[/color]"
     },
     "team_dash_above_kage_sweep": {
@@ -404,7 +423,9 @@
             "team_dash_above_kage_sweep",
             "back_main_screen_and_stop"
         ],
-        "post_wait_freezes": 1000,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]超影扫荡[/color]"
     },
     "close_team_desh": {
@@ -416,8 +437,10 @@
             96,
             85
         ],
+        "method": 10001,
         "action": "Click",
         "next": [
+            "close_team_desh",
             "close_team_desh_out_team_sign"
         ],
         "timeout": 2000,
@@ -443,7 +466,9 @@
             "close_team_desh_without_out_team_sign",
             "close_team_desh_out_team_sign"
         ],
-        "post_delay": 800,
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]确认退队[/color]"
     },
     "close_team_desh_without_out_team_sign": {
@@ -458,6 +483,8 @@
             74
         ],
         "inverse": true,
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "back_main_screen_and_stop"
         ]

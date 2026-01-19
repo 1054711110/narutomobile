@@ -10,6 +10,7 @@
     "rich_room_in_center_enter": {
         "recognition": "TemplateMatch",
         "template": [
+            "SharedNode/check_not_in_daily_award.png",
             "SharedNode/check_in_daily_award.png"
         ],
         "roi": [
@@ -18,13 +19,15 @@
             130,
             47
         ],
+        "pre_delay": 0,
+        "action": "Click",
+        "post_delay": 0,
+        "post_wait_freezes": 200,
         "next": [
             "rich_room_ac_entry_undone",
-            "rich_room_ac_done",
+            "award_center_find_end",
             "[JumpBack]swipe_for_award_center_find"
         ],
-        "pre_delay": 0,
-        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
     },
     "rich_room_ac_entry_undone": {
@@ -103,7 +106,7 @@
         "next": [
             "rich_room_confirm_above_kage_sweep",
             "rich_room_peace",
-            "[JumpBack]rich_room_above_kage_sweep"
+            "rich_room_above_kage_sweep"
         ]
     },
     "rich_room_confirm_above_kage_sweep": {
@@ -120,7 +123,7 @@
         "action": "Click",
         "next": [
             "rich_room_without_confirm_above_kage_sweep",
-            "[JumpBack]rich_room_confirm_above_kage_sweep"
+            "rich_room_confirm_above_kage_sweep"
         ]
     },
     "rich_room_without_confirm_above_kage_sweep": {
@@ -139,20 +142,6 @@
             "rich_room_peace",
             "back_main_screen_and_stop"
         ]
-    },
-    "rich_room_ac_done": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry_end.png",
-        "roi": [
-            180,
-            384,
-            1100,
-            118
-        ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]丰饶之间已完成[/color]"
     },
     "rich_room_finished": {
         "recognition": "OCR",
@@ -183,7 +172,6 @@
         "post_delay": 0,
         "action": "Click",
         "next": [
-            "rich_room_ac_done",
             "rich_room_finished",
             "rich_room_in_fight",
             "challenge_rich_room",

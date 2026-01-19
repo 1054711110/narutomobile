@@ -131,7 +131,7 @@ def fast_ocr(
             logger.debug(f"OCR 绝对匹配成功: {expected}")
             return box
         else:
-            logger.debug(f"识别失败：{reco_detail.filtered_results}")
+            logger.debug(f"OCR 绝对匹配失败：{reco_detail.filtered_results}")
             return None
 
 
