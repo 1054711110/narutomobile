@@ -293,27 +293,7 @@
             "cases": [
                 {
                     "name": "No",
-                    "pipeline_override": {
-                        "weekly_win_in_duel_field": {
-                            "next": [
-                                "weekly_win_match",
-                                "[JumpBack]weekly_win_weekly_award",
-                                "[JumpBack]weekly_win_mouthly_award",
-                                "[JumpBack]weekly_win_mouthly_reset_award",
-                                "[JumpBack]weekly_win"
-                            ]
-                        },
-                        "weekly_win_entry": {
-                            "next": [
-                                "weekly_win_match",
-                                "[JumpBack]weekly_win_weekly_award",
-                                "[JumpBack]weekly_win_mouthly_award",
-                                "[JumpBack]weekly_win_mouthly_reset_award",
-                                "[JumpBack]weekly_win_entry",
-                                "[JumpBack]weekly_win"
-                            ]
-                        }
-                    }
+                    "pipeline_override": {}
                 },
                 {
                     "name": "Yes",
@@ -321,18 +301,21 @@
                         "weekly_win_in_duel_field": {
                             "next": [
                                 "weekly_win_rank",
-                                "[JumpBack]weekly_win_weekly_award",
                                 "[JumpBack]weekly_win_mouthly_award",
                                 "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_confirm_weekly_award",
+                                "[JumpBack]weekly_win_entry",
                                 "[JumpBack]weekly_win"
                             ]
                         },
                         "weekly_win_entry": {
                             "next": [
                                 "weekly_win_rank",
-                                "[JumpBack]weekly_win_weekly_award",
                                 "[JumpBack]weekly_win_mouthly_award",
                                 "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_confirm_weekly_award",
                                 "[JumpBack]weekly_win_entry",
                                 "[JumpBack]weekly_win"
                             ]

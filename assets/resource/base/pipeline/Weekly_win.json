@@ -22,6 +22,8 @@
             "weekly_win_match",
             "[JumpBack]weekly_win_mouthly_award",
             "[JumpBack]weekly_win_mouthly_reset_award",
+            "[JumpBack]weekly_win_weekly_award",
+            "[JumpBack]weekly_win_confirm_weekly_award",
             "[JumpBack]weekly_win_entry",
             "[JumpBack]weekly_win"
         ]
@@ -41,22 +43,24 @@
         "action": "Click",
         "next": [
             "weekly_win_confirm_weekly_award",
-            "[JumpBack]weekly_win_weekly_award"
+            "weekly_win_weekly_award"
         ],
         "post_wait_freezes": 400
     },
     "weekly_win_confirm_weekly_award": {
-        "recognition": "OCR",
-        "expected": [
-            "确定"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Share/weekly_ninjia_title.png",
         "roi": [
-            277,
-            577,
-            343,
-            142
+            0,
+            475,
+            622,
+            244
         ],
-        "action": "Click"
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
+        "action": "Click",
+        "focus": "[color:darkgray]关闭周榜更新提示[/color]"
     },
     "weekly_win_mouthly_award": {
         "recognition": "OCR",
@@ -102,6 +106,7 @@
         "next": [
             "weekly_win_match",
             "[JumpBack]weekly_win_weekly_award",
+            "[JumpBack]weekly_win_confirm_weekly_award",
             "[JumpBack]weekly_win_mouthly_award",
             "[JumpBack]weekly_win_mouthly_reset_award",
             "[JumpBack]weekly_win"
@@ -843,8 +848,10 @@
             "go_to_war",
             "weekly_win_match",
             "[JumpBack]weekly_win_weekly_award",
+            "[JumpBack]weekly_win_confirm_weekly_award",
             "[JumpBack]weekly_win_mouthly_award",
-            "[JumpBack]weekly_win_mouthly_reset_award"
+            "[JumpBack]weekly_win_mouthly_reset_award",
+            "weekly_win_ac_entry_undone"
         ],
         "action": "Click",
         "post_wait_freezes": 500,

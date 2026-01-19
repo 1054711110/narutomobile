@@ -783,7 +783,8 @@
     "swipe_for_club_submit": {
         "recognition": "OCR",
         "expected": [
-            "金币"
+            "金币",
+            "领取"
         ],
         "roi": [
             57,

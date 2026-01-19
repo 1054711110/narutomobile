@@ -47,7 +47,8 @@
         ],
         "next": [
             "team_dash_group_help_undone",
-            "team_dash_group_help_done"
+            "team_dash_group_help_done",
+            "team_dash_ac_entry_undone"
         ],
         "action": "Click",
         "post_wait_freezes": 600,

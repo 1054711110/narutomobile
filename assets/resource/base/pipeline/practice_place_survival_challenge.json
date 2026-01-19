@@ -319,7 +319,8 @@
             -114
         ],
         "next": [
-            "survival_challenge_yesterday_award"
+            "survival_challenge_yesterday_award",
+            "survival_challenge_ac_entry_undone"
         ],
         "action": "Click",
         "pre_delay": 0,
