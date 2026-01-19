@@ -72,16 +72,19 @@ footer = """
   {%- endif -%}
 {%- endfor -%}
 
-{% if latest_version -%}
-**绝大部分用户请下载 [MaaAutoNaruto-win-x86_64-{{ latest_version }}.zip]({{ self::remote_url() }}/releases/download/{{ latest_version }}/MaaAutoNaruto-win-x86_64-{{ latest_version }}.zip)**
+{% if latest_version is matching(".*(rc|alpha|beta).*") -%}
+**⚠️ 此版本为内部测试版本，非测试参与人员请勿下载！**
 {%- else -%}
-**绝大部分用户请下载 MaaAutoNaruto-win-x86_64
+    {% if latest_version -%}
+    **绝大部分用户请下载 [MaaAutoNaruto-win-x86_64-{{ latest_version }}.zip]({{ self::remote_url() }}/releases/download/{{ latest_version }}/MaaAutoNaruto-win-x86_64-{{ latest_version }}.zip)**
+    {%- else -%}
+    **绝大部分用户请下载 MaaAutoNaruto-win-x86_64
+    {%- endif %}
+    [已有 Mirror酱 CDK？点击前往高速下载](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&source=MaaAutoNarutogh-release)
 {%- endif %}
 
-[已有 Mirror酱 CDK？点击前往高速下载](https://mirrorchyan.com/zh/projects?rid=MaaAutoNaruto&source=MaaAutoNarutogh-release)
-
 > 本项目GitHub链接：[duorua/narutomobile](https://github.com/duorua/narutomobile)  
-> 最新版下载地址: [release](https://github.com/duorua/narutomobile/releases/latest)  
+> 最新稳定版下载地址: [release](https://github.com/duorua/narutomobile/releases/latest)  
 > 用户QQ群：[724500650](https://qm.qq.com/q/ekVOQE2bao)  
 > 软件本体完全免费，若您有付费购买请立即退款并举报！  
 
