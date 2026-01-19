@@ -163,7 +163,7 @@
         "action": "Click",
         "next": [
             "above_kage_group_pray",
-            "chopper_group_pray"
+            "copper_group_pray"
         ],
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]进入组织签到[/color]"
@@ -179,15 +179,15 @@
             42
         ],
         "next": [
-            "confirm_chopper_group_pray",
+            "confirm_copper_group_pray",
             "above_kage_group_pray"
         ],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]超影签到[/color]"
     },
-    "chopper_group_pray": {
+    "copper_group_pray": {
         "recognition": "TemplateMatch",
-        "template": "Group/chopper_pray.png",
+        "template": "Group/copper_pray.png",
         "roi": [
             476,
             542,
@@ -196,16 +196,16 @@
         ],
         "action": "Click",
         "next": [
-            "confirm_chopper_group_pray",
-            "chopper_group_pray"
+            "confirm_copper_group_pray",
+            "copper_group_pray"
         ],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]铜币签到[/color]"
     },
-    "confirm_chopper_group_pray": {
+    "confirm_copper_group_pray": {
         "recognition": "TemplateMatch",
         "template": [
-            "Group/confirm_chopper_pray_done.png",
+            "Group/confirm_copper_pray_done.png",
             "Group/confirm_group_pray.png"
         ],
         "action": "Click",

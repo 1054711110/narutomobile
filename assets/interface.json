@@ -47,7 +47,7 @@
         },
         {
             "name": "招财",
-            "entry": "get_chopper",
+            "entry": "get_copper",
             "default_check": true,
             "description": "[size:15][color:tomato]使用每日免费招财次数,需要开启二级密码,否则可能因为页面更新卡顿,消耗10金币[/color][/size]"
         },
@@ -374,7 +374,7 @@
                         "get_ninjia_book_award": {
                             "template": [
                                 "Ninjia_book/seal_roll_waiting.png",
-                                "Ninjia_book/chopper_60_waiting.png",
+                                "Ninjia_book/copper_60_waiting.png",
                                 "Ninjia_book/fame_waiting.png",
                                 "Ninjia_book/gold_waiting.png",
                                 "Ninjia_book/star_waiting.png",
@@ -394,7 +394,7 @@
                         "get_ninjia_book_award": {
                             "template": [
                                 "Ninjia_book/seal_roll_waiting.png",
-                                "Ninjia_book/chopper_60_waiting.png",
+                                "Ninjia_book/copper_60_waiting.png",
                                 "Ninjia_book/fame_waiting.png",
                                 "Ninjia_book/gold_waiting.png",
                                 "Ninjia_book/star_waiting.png",

@@ -90,7 +90,7 @@
   },
   "award_center_enter": {
     "recognition": "TemplateMatch",
-    "template": "SharedNode/center_entry.png",
+    "template": "SharedNode/award_center_entry.png",
     "roi": [
       1174,
       302,
