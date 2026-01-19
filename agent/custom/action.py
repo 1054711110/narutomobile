@@ -246,7 +246,6 @@ class GoIntoEntryByGuide(CustomAction):
                 break
             sleep(0.2)
 
-        logger.info("开始查找功能入口")
         max_sweep_attempts = 15
         box = None
         logger.info(f"开始查找功能入口: {enter_name}")

@@ -205,7 +205,9 @@
             "get_copper_in_privilege_points_done",
             "[JumpBack]get_copper_in_privilege_points",
             "privilege_points"
-        ]
+        ],
+        "timeout": 3000,
+        "on_error": "retry_failed"
     },
     "get_copper_in_privilege_points_done": {
         "recognition": "OCR",
