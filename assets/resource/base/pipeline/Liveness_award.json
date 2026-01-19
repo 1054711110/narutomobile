@@ -1,19 +1,16 @@
 {
     "liveness_award": {
         "next": [
-            "liveness_award_entry"
-        ],
-        "focus": "[color:DeepSkyBlue]进入活跃度宝箱子任务[/color]"
-    },
-    "liveness_award_entry": {
-        "next": [
             "liveness_award_undone",
             "[JumpBack]back_main_screen"
-        ]
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]进入活跃度宝箱子任务[/color]"
     },
     "liveness_award_undone": {
         "recognition": "TemplateMatch",
-        "template": "Liveness_award/liveness_award_undone_masked.png",
+        "template": "SharedNode/award_center_entry.png",
         "roi": [
             1194,
             314,
@@ -22,13 +19,13 @@
         ],
         "action": "Click",
         "green_mask": true,
+        "pre_delay": 0,
+        "post_delay": 200,
         "next": [
             "liveness_award_in_center_enter",
-            "[JumpBack]liveness_award_undone",
-            "[JumpBack]get_liveness_award"
+            "liveness_award_undone"
         ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]活跃度宝箱未领取[/color]"
+        "post_wait_freezes": 200
     },
     "liveness_award_in_center_enter": {
         "recognition": "TemplateMatch",
@@ -45,11 +42,11 @@
         "action": "Click",
         "next": [
             "liveness_award_done",
-            "check_no_liveness_award",
             "[JumpBack]get_liveness_award"
         ],
-        "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200
     },
     "liveness_award_done": {
         "recognition": "TemplateMatch",
@@ -61,34 +58,13 @@
             107
         ],
         "threshold": 0.95,
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "weekly_liveness_award_undone",
             "weekly_liveness_award_done"
         ],
         "focus": "[color:DeepSkyBlue]活跃度宝箱已领取[/color]"
-    },
-    "check_no_liveness_award": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "Liveness_award/award_box_10.png",
-            "Liveness_award/award_box_40.png",
-            "Liveness_award/award_box_80.png",
-            "Liveness_award/award_box_100.png"
-        ],
-        "roi": [
-            419,
-            507,
-            824,
-            96
-        ],
-        "next": [
-            "weekly_liveness_award_undone",
-            "weekly_liveness_award_done"
-        ],
-        "inverse": true,
-        "threshold": 0.9,
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]检测还有没有活跃度宝箱[/color]"
     },
     "get_liveness_award": {
         "recognition": "TemplateMatch",
