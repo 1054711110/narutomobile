@@ -83,7 +83,7 @@
             "swipes_for_monthly_sign",
             "retry_failed"
         ],
-        "post_delay": 900,
+        "post_delay": 900
     },
     "mouthly_sign_tab": {
         "recognition": "OCR",

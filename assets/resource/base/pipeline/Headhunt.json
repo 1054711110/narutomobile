@@ -233,12 +233,12 @@
         "post_delay": 0,
         "post_wait_freezes": 500,
         "next": [
-            "top_secret_treasure_box_chopper",
+            "top_secret_treasure_box_copper",
             "top_secret_treasure_box_log"
         ],
         "focus": "[color:DeepSkyBlue]进入绝密宝匣奖励记录[/color]"
     },
-    "top_secret_treasure_box_chopper": {
+    "top_secret_treasure_box_copper": {
         "recognition": "OCR",
         "expected": [
             "一",
