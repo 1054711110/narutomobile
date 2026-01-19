@@ -15,6 +15,9 @@
         "custom_recognition": "IsInNinjiaGuide",
         "action": "Custom",
         "custom_action": "GoIntoEntryByGuide",
+        "custom_action_param": {
+            "entry_name": "任务集会所"
+        },
         "next": [
             "check_no_mission_office_award",
             "[JumpBack]get_mission_office_award"
