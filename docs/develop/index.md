@@ -14,18 +14,18 @@
 
 ## 📋 目录
 
-- [1. 开发环境配置 🛠️](#1-开发环境配置)
-- [2. Python 安装详情 🐍](#2-python-安装详情)
-- [3. 克隆项目代码 📦](#3-克隆项目代码)
-- [4. 安装 MaaFramework 依赖 📥](#4-安装-maaframework-依赖)
-- [5. 安装 Python 依赖 📋](#5-安装-python-依赖)
-- [6. 验证安装 ✅](#6-验证安装)
-- [7. 开始开发 💻](#7-开始开发)
-- [8. 常见问题与解决方案 ❓](#8-常见问题与解决方案)
+- [1. 开发环境配置 🛠️](#1-development-environment)
+- [2. Python 安装详情 🐍](#2-python-installation)
+- [3. 克隆项目代码 📦](#3-clone-project)
+- [4. 安装 MaaFramework 依赖 📥](#4-install-maaframework)
+- [5. 安装 Python 依赖 📋](#5-install-python-deps)
+- [6. 验证安装 ✅](#6-verify-installation)
+- [7. 开始开发 💻](#7-start-development)
+- [8. 常见问题与解决方案 ❓](#8-faq)
 
 ---
 
-<h2 id="1-开发环境配置" style="color:#FF6B6B; font-size:20px;">1. 开发环境配置 🛠️</h2>
+<h2 id="1-development-environment" style="color:#FF6B6B; font-size:20px;">1. 开发环境配置 🛠️</h2>
 
 ### <span style="color:#4ECDC4; font-size:18px;">1.1 编辑器推荐</span>
 
@@ -48,7 +48,7 @@
 
 ---
 
-<h2 id="2-python-安装详情" style="color:#FF6B6B; font-size:20px;">2. Python 安装详情 🐍</h2>
+<h2 id="2-python-installation" style="color:#FF6B6B; font-size:20px;">2. Python 安装详情 🐍</h2>
 
 ### <span style="color:#4ECDC4; font-size:18px;">2.1 下载 Python</span>
 
@@ -65,7 +65,7 @@
 
 ---
 
-<h2 id="3-克隆项目代码" style="color:#FF6B6B; font-size:20px;">3. 克隆项目代码 📦</h2>
+<h2 id="3-clone-project" style="color:#FF6B6B; font-size:20px;">3. 克隆项目代码 📦</h2>
 
 使用 Git 克隆项目代码到本地：
 
@@ -80,7 +80,7 @@ cd narutomobile
 
 ---
 
-<h2 id="4-安装-maaframework-依赖" style="color:#FF6B6B; font-size:20px;">4. 安装 MaaFramework 依赖 🛠️</h2>
+<h2 id="4-install-maaframework" style="color:#FF6B6B; font-size:20px;">4. 安装 MaaFramework 依赖 🛠️</h2>
 
 MaaFramework 依赖可以通过以下三种方式之一安装：
 
@@ -108,7 +108,7 @@ git submodule update --init --recursive
 
 ---
 
-<h2 id="5-安装-python-依赖" style="color:#FF6B6B; font-size:20px;">5. 安装 Python 依赖 📋</h2>
+<h2 id="5-install-python-deps" style="color:#FF6B6B; font-size:20px;">5. 安装 Python 依赖 📋</h2>
 
 使用 pip 安装项目所需的 Python 依赖：
 
@@ -130,7 +130,7 @@ pip install -r requirements.txt
 
 ---
 
-<h2 id="6-验证安装" style="color:#FF6B6B; font-size:20px;">6. 验证安装 ✅</h2>
+<h2 id="6-verify-installation" style="color:#FF6B6B; font-size:20px;">6. 验证安装 ✅</h2>
 
 安装完成后，可以运行项目来验证是否安装成功：
 
@@ -142,7 +142,7 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 
 ---
 
-<h2 id="7-开始开发" style="color:#FF6B6B; font-size:20px;">7. 开始开发 💻</h2>
+<h2 id="7-start-development" style="color:#FF6B6B; font-size:20px;">7. 开始开发 💻</h2>
 
 ### <span style="color:#4ECDC4; font-size:18px;">7.1 入门指南</span>
 
@@ -161,7 +161,7 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 
 ---
 
-<h2 id="8-常见问题与解决方案" style="color:#FF6B6B; font-size:20px;">8. 常见问题与解决方案 ❓</h2>
+<h2 id="8-faq" style="color:#FF6B6B; font-size:20px;">8. 常见问题与解决方案 ❓</h2>
 
 ### <span style="color:#4ECDC4; font-size:18px;">6.1 Python 安装问题</span>
 
