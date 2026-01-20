@@ -32,7 +32,7 @@ cd narutomobile
 
 ## <span style="color:#FF6B6B;">3. 安装 MaaFramework 依赖 🛠️</span>
 
-MaaFramework 依赖可以通过以下三种方式之一安装：
+MaaFramework 依赖可以通过以下两种方式之一安装：
 
 ### <span style="color:#4ECDC4;">方式一：直接下载发布包</span>
 
