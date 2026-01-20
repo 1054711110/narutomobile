@@ -12,10 +12,11 @@
 - [2. Python 安装详情](#2-python-installation)
 - [3. 克隆项目代码](#3-clone-project)
 - [4. 安装 MaaFramework 依赖](#4-install-maaframework)
-- [5. 安装 Python 依赖](#5-install-python-deps)
-- [6. 验证安装](#6-verify-installation)
-- [7. 开始开发](#7-start-development)
-- [8. 常见问题与解决方案](#8-faq)
+- [5. 更新 Git 子模块](#5-update-git-submodule)
+- [6. 安装 Python 依赖](#6-install-python-deps)
+- [7. 验证安装](#7-verify-installation)
+- [8. 开始开发](#8-start-development)
+- [9. 常见问题与解决方案](#9-faq)
 
 ---
 
@@ -92,17 +93,17 @@ MaaFramework 依赖可以通过以下三种方式之一安装：
 python tools\download_maafw.py
 ```
 
-### 4.3 方式三：使用 Git Submodule
+## 5. 更新 Git 子模块 {#5-update-git-submodule}
 
-在项目根目录下执行以下命令：
+完成 MaaFramework 依赖安装后，在项目根目录下执行以下命令：
 
-```bash title="使用Git Submodule安装依赖"
+```bash title="更新Git子模块"
 git submodule update --init --recursive
 ```
 
 ---
 
-## 5. 安装 Python 依赖 {#5-install-python-deps}
+## 6. 安装 Python 依赖 {#6-install-python-deps}
 
 使用 pip 安装项目所需的 Python 依赖：
 
@@ -123,7 +124,7 @@ pip install -r requirements.txt
 
 ---
 
-## 6. 验证安装 {#6-verify-installation}
+## 7. 验证安装 {#7-verify-installation}
 
 安装完成后，可以运行项目来验证是否安装成功：
 
@@ -135,9 +136,9 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 
 ---
 
-## 7. 开始开发 {#7-start-development}
+## 8. 开始开发 {#8-start-development}
 
-### 7.1 入门指南
+### 8.1 入门指南
 
 1. 阅读 [M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)，了解如何在本地以开发模式运行本项目（本项目与M9A的项目结构类似，可以作为学习参考）。
 
@@ -154,9 +155,9 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 
 ---
 
-## 8. 常见问题与解决方案 {#8-faq}
+## 9. 常见问题与解决方案 {#9-faq}
 
-### 8.1 运行项目问题
+### 9.1 运行项目问题
 
 1. **错误**：提示 "Failed to load det or rec", "ocrer is null"
    **解决方案**：确保 MaaFramework 依赖已正确安装，且 OCR 模型文件完整
@@ -164,7 +165,7 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 2. **错误**：提示找不到模块
    **解决方案**：检查是否已正确激活虚拟环境（如果使用了虚拟环境），或重新安装依赖
 
-### 8.2 开发相关问题
+### 9.2 开发相关问题
 
 1. **问题**：我在这个仓库里提了 Issue 很久没人回复
    **解决方案**：本项目目前紧缺人手，你可以先阅读文档自行尝试寻找解决方案。欢迎提交 PR 贡献代码！
