@@ -1,26 +1,29 @@
 # Maa Auto Naruto 开发环境搭建与开发指南
 
 :::warning 警告：本项目目前的开发文档尚未完善！
+
 你可以先阅读[M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)以了解如何在本地以开发模式运行项目（本项目与M9A的项目结构类似，可以作为学习参考）。更多内容请自行学习MaaFramework的[开发文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)的内容。
+
 :::
 
 ---
 
 ## 目录
 
-- [1. 开发环境配置](#1-development-environment)
-- [2. Python 安装详情](#2-python-installation)
-- [3. 克隆项目代码](#3-clone-project)
-- [4. 安装 MaaFramework 依赖](#4-install-maaframework)
-- [5. 更新 Git 子模块](#5-update-git-submodule)
-- [6. 安装 Python 依赖](#6-install-python-deps)
-- [7. 验证安装](#7-verify-installation)
-- [8. 开始开发](#8-start-development)
-- [9. 常见问题与解决方案](#9-faq)
+- 1. 开发环境配置
+- 2. Python 安装详情
+- 3. 克隆项目代码
+- 4. 安装 MaaFramework 依赖
+- 5. 更新 Git 子模块
+- 6. 安装 Python 依赖
+- 7. 配置 OCR 模型
+- 8. 验证安装
+- 9. 开始开发
+- 10. 常见问题与解决方案
 
 ---
 
-## 1. 开发环境配置 {#1-development-environment}
+## 1. 开发环境配置
 
 ### 1.1 编辑器推荐
 
@@ -43,7 +46,7 @@
 
 ---
 
-## 2. Python 安装详情 {#2-python-installation}
+## 2. Python 安装详情
 
 ### 2.1 下载 Python
 
@@ -60,7 +63,7 @@
 
 ---
 
-## 3. 克隆项目代码 {#3-clone-project}
+## 3. 克隆项目代码
 
 使用 Git 克隆项目代码到本地：
 
@@ -75,9 +78,9 @@ cd narutomobile
 
 ---
 
-## 4. 安装 MaaFramework 依赖 {#4-install-maaframework}
+## 4. 安装 MaaFramework 依赖
 
-MaaFramework 依赖可以通过以下三种方式之一安装：
+MaaFramework 依赖可以通过以下两种方式之一安装：
 
 ### 4.1 方式一：直接下载发布包
 
@@ -93,7 +96,7 @@ MaaFramework 依赖可以通过以下三种方式之一安装：
 python tools\download_maafw.py
 ```
 
-## 5. 更新 Git 子模块 {#5-update-git-submodule}
+## 5. 更新 Git 子模块
 
 完成 MaaFramework 依赖安装后，在项目根目录下执行以下命令：
 
@@ -103,7 +106,7 @@ git submodule update --init --recursive
 
 ---
 
-## 6. 安装 Python 依赖 {#6-install-python-deps}
+## 6. 安装 Python 依赖
 
 使用 pip 安装项目所需的 Python 依赖：
 
@@ -115,6 +118,8 @@ python -m venv .venv
 
 # 安装依赖
 pip install -r requirements.txt
+# 如果已经安装过依赖，使用以下命令更新
+# pip install -U requirements.txt  # 或使用 pip install --upgrade requirements.txt
 ```
 
 :::note 说明
@@ -124,7 +129,17 @@ pip install -r requirements.txt
 
 ---
 
-## 7. 验证安装 {#7-verify-installation}
+## 7. 配置 OCR 模型
+
+在项目的根目录运行以下命令配置 OCR 模型：
+
+```bash title="配置OCR模型"
+python ./tools/ci/configure.py
+```
+
+---
+
+## 8. 验证安装
 
 安装完成后，可以运行项目来验证是否安装成功：
 
@@ -136,9 +151,9 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 
 ---
 
-## 8. 开始开发 {#8-start-development}
+## 9. 开始开发
 
-### 8.1 入门指南
+### 9.1 入门指南
 
 1. 阅读 [M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)，了解如何在本地以开发模式运行本项目（本项目与M9A的项目结构类似，可以作为学习参考）。
 
@@ -155,9 +170,9 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 
 ---
 
-## 9. 常见问题与解决方案 {#9-faq}
+## 10. 常见问题与解决方案
 
-### 9.1 运行项目问题
+### 10.1 运行项目问题
 
 1. **错误**：提示 "Failed to load det or rec", "ocrer is null"
    **解决方案**：确保 MaaFramework 依赖已正确安装，且 OCR 模型文件完整
@@ -165,13 +180,10 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 2. **错误**：提示找不到模块
    **解决方案**：检查是否已正确激活虚拟环境（如果使用了虚拟环境），或重新安装依赖
 
-### 9.2 开发相关问题
+### 10.2 开发相关问题
 
 1. **问题**：我在这个仓库里提了 Issue 很久没人回复
    **解决方案**：本项目目前紧缺人手，你可以先阅读文档自行尝试寻找解决方案。欢迎提交 PR 贡献代码！
-
-2. **问题**：OCR 文字识别一直没有识别结果，报错 "Failed to load det or rec", "ocrer is null"
-   **解决方案**：请确保已正确执行所有安装步骤，且 MaaFramework 依赖已正确安装。详细检查 OCR 模型文件是否完整。
 
 ---
 
