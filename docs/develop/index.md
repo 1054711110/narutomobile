@@ -6,23 +6,6 @@
 
 :::
 
----
-
-## 目录
-
-- 1. 开发环境配置
-- 2. Python 安装详情
-- 3. 克隆项目代码
-- 4. 安装 MaaFramework 依赖
-- 5. 更新 Git 子模块
-- 6. 安装 Python 依赖
-- 7. 配置 OCR 模型
-- 8. 验证安装
-- 9. 开始开发
-- 10. 常见问题与解决方案
-
----
-
 ## 1. 开发环境配置
 
 ### 1.1 编辑器推荐
@@ -192,7 +175,7 @@ python -m agent.main (这里加上narutomobile\assets\interface里的identifier)
 您已经成功搭建了 Maa Auto Naruto 的开发环境！
 
 如果您在使用过程中遇到其他问题，请参考：
-- [项目常见问题](guide/faq.md)
+- [项目常见问题](https://github.com/duorua/narutomobile/blob/main/docs/guide/faq.md)
 - [MaaFramework 官方文档](https://maafw.xyz/)
 
 祝您开发愉快！
